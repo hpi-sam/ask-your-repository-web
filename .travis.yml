@@ -9,3 +9,7 @@ jobs:
       script: yarn test
     - name: "Lint"
       script: yarn lint
+    - name: "Flow"
+      script: 
+        - yarn flow-typed install
+        - yarn flow
