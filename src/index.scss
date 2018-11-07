@@ -1,4 +1,31 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+:root {
+  --main-gradient-color-1: rgba(0, 0, 0, .9);
+  --main-gradient-color-2: rgba(0, 0, 0, .8);
+  --main-gradient: linear-gradient(
+    135deg,
+    var(--main-gradient-color-1) 0%, 
+    var(--main-gradient-color-2) 100%
+  );
+
+  --main-text-color: white;
+  --main-font-size: 23px;
+}
+
+html, body, #root {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: var(--main-gradient);
+  color: var(--main-text-color);
+  font-size: var(--main-font-size);
+}
+
+input {
+  font: inherit;
 }

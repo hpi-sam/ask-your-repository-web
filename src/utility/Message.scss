@@ -1,0 +1,22 @@
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.Message {
+  --text-color: var(--main-text-color);
+
+  color: var(--text-color);
+  margin: 2em 0;
+  animation: fade-in 1s;
+
+  &--error {
+    --text-color: rgb(255, 38, 38);
+    font-weight: bold;
+  }
+
+  &--success {
+    --text-color: rgb(53, 226, 19);
+    font-weight: bold;
+  }
+}

@@ -1,15 +1,12 @@
 // @flow
 import React from 'react';
+import FileUpload from './upload/FileUpload';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          The Deployment works!!!
-        </p>
-      </header>
+      <FileUpload />
     </div>
   );
 }
