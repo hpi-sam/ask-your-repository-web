@@ -13,5 +13,14 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-  }
+    "react/destructuring-assignment": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "rules": {
+        "prefer-promise-reject-errors": "off"
+      }
+    }
+  ]
 }

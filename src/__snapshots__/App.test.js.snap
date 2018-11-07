@@ -4,12 +4,6 @@ exports[`<App /> renders correctly 1`] = `
 <div
   className="App"
 >
-  <header
-    className="App-header"
-  >
-    <p>
-      HP2018HG1 - Website
-    </p>
-  </header>
+  <FileUpload />
 </div>
 `;
