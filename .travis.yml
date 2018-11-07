@@ -6,10 +6,10 @@ jobs:
   include:
     - stage: test
       name: "Unit Tests"
-      script: yarn test
+      script: yarn test --coverage --coverageReporters=text-lcov | coveralls
     - name: "Lint"
       script: yarn lint
     - name: "Flow"
-      script: 
+      script:
         - yarn flow-typed install
         - yarn flow
