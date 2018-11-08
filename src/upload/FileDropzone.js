@@ -2,18 +2,17 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import type { DropFilesEventHandler } from 'react-dropzone';
-import './UploadDropzone.scss';
+import './FileDropzone.scss';
 
 type Props = {
   onDrop: DropFilesEventHandler,
 };
 
-function UploadDropzone(props: Props) {
+function FileDropzone(props: Props) {
   const { onDrop } = props;
 
   return (
     <Dropzone
-      accept="image/*"
       multiple={false}
       className="Dropzone"
       activeClassName="Dropzone--active"
@@ -26,4 +25,4 @@ function UploadDropzone(props: Props) {
   );
 }
 
-export default UploadDropzone;
+export default FileDropzone;

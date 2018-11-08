@@ -5,11 +5,10 @@ exports[`<FileUpload /> renders correctly 1`] = `
   <div
     className="FileUpload"
   >
-    <UploadDropzone
+    <FileDropzone
       onDrop={[Function]}
     >
       <n
-        accept="image/*"
         acceptClassName="Dropzone--accept"
         activeClassName="Dropzone--active"
         className="Dropzone"
@@ -41,7 +40,6 @@ exports[`<FileUpload /> renders correctly 1`] = `
         >
           Place your file here
           <input
-            accept="image/*"
             autoComplete="off"
             disabled={false}
             multiple={false}
@@ -61,7 +59,7 @@ exports[`<FileUpload /> renders correctly 1`] = `
           />
         </div>
       </n>
-    </UploadDropzone>
+    </FileDropzone>
   </div>
 </FileUpload>
 `;

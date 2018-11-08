@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import FileUpload from './FileUpload';
-import UploadDropzone from './UploadDropzone';
+import FileDropzone from './FileDropzone';
 import api from '../config/api';
 
 jest.mock('../config/api', () => ({
@@ -25,8 +25,8 @@ describe('<FileUpload />', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('renders an UploadDropzone component', () => {
-    expect(wrapper.find(UploadDropzone)).toBeTruthy();
+  it('renders an FileDropzone component', () => {
+    expect(wrapper.find(FileDropzone)).toBeTruthy();
   });
 
   describe('an image has been dropped', () => {
