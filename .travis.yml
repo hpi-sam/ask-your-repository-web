@@ -21,6 +21,8 @@ jobs:
         - yarn flow
     - stage: build
       name: "Build & Push Docker Image"
+      env:
+        - REACT_APP_API_URL=http://askir.me/esra
       script:
         - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         - docker build -t bp2018hg1/jona:$TRAVIS_BUILD_ID -t bp2018hg1/jona:latest .
