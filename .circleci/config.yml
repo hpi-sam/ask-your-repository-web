@@ -1,0 +1,63 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:9.10
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test --coverage
+      - run: ./node_modules/.bin/coveralls < ./coverage/lcov.info
+  flow:
+    docker:
+      - image: circleci/node:9.10
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn flow-typed install
+      - run: yarn flow
+  lint:
+    docker:
+      - image: circleci/node:9.10
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn lint
+  build:
+    docker:
+      - image: circleci/node:9.10
+    environment:
+      REACT_APP_API_URL=http://askir.me:9001/esra
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - run: docker build -t bp2018hg1/jona:$CIRCLE_BUILD_NUM -t bp2018hg1/jona:latest .
+      - run: docker push bp2018hg1/jona:$CIRCLE_BUILD_NUM
+      - run: docker push bp2018hg1/jona:latest
+  deploy:
+    docker:
+      - image: dtzar/helm-kubectl:2.11.0
+    steps:
+      - run: kubectl set image deployment jona jona=bp2018hg1/jona:$CIRCLE_BUILD_NUM --server=$KUBERNETES_SERVER --token=$KUBERNETES_BEARER_TOKEN
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - test
+      - flow
+      - lint
+      - build:
+          requires:
+            - test
+            - flow
+            - lint
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
