@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import api from '../config/api';
 import UploadDropzone from './UploadDropzone';
 import './FileUpload.scss';
 import Message from '../utility/Message';
 import ErrorMessage from '../utility/ErrorMessage';
 import SuccessMessage from '../utility/SuccessMessage';
+import fetchUploadImage from '../requests/imageRequests';
 
 class FileUpload extends Component {
   constructor(props) {
@@ -42,11 +42,7 @@ class FileUpload extends Component {
 
     this.setState({ isUploading: true });
 
-    await api.post('/images', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    fetchUploadImage(formData)
       .then(() => this.setState({ hasUploaded: true }))
       .catch((error) => {
         if (error.response) {
