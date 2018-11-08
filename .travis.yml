@@ -6,6 +6,8 @@ stages:
   - test
   - name: build
     if: branch = master
+  - name: deploy
+    if: branch = master
 jobs:
   include:
     - stage: test
@@ -24,3 +26,12 @@ jobs:
         - docker build -t bp2018hg1/jona:$TRAVIS_BUILD_ID -t bp2018hg1/jona:latest .
         - docker push bp2018hg1/jona:$TRAVIS_BUILD_ID
         - docker push bp2018hg1/jona:latest
+    - stage: deploy
+      name: "Deploy to Kubernetes Cluster"
+      script:
+        - sudo apt-get update && sudo apt-get install -y apt-transport-https
+        - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+        - echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+        - sudo apt-get update
+        - sudo apt-get install -y kubectl
+        - kubectl set image deployment jona jona=bp2018hg1/jona:$TRAVIS_BUILD_ID --server=$KUBERNETES_SERVER --token=$KUBERNETES_AUTH_TOKEN
