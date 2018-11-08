@@ -42,7 +42,7 @@ class FileUpload extends Component {
 
     this.setState({ isUploading: true });
 
-    fetchUploadImage(formData)
+    await fetchUploadImage(formData)
       .then(() => this.setState({ hasUploaded: true }))
       .catch((error) => {
         if (error.response) {
