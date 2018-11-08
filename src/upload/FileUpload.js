@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UploadDropzone from './UploadDropzone';
+import FileDropzone from './FileDropzone';
 import './FileUpload.scss';
 import Message from '../utility/Message';
 import ErrorMessage from '../utility/ErrorMessage';
@@ -85,7 +85,7 @@ class FileUpload extends Component {
             className="FileUpload__image-preview"
           />
         ) : (
-          <UploadDropzone onDrop={this.handleImageDrop} />
+          <FileDropzone onDrop={this.handleImageDrop} />
         )}
       </div>
     );
