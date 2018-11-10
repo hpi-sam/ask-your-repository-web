@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tagging /> renders correctly 1`] = `
+<div
+  className="Tagging"
+>
+  <Connect(TaggingForm) />
+  <TaggingImagePreview />
+</div>
+`;

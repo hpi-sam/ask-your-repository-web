@@ -3,10 +3,11 @@ import * as actions from './image.actions';
 import * as actionTypes from './image.actionTypes';
 import type { Tag } from '../../models/Tag';
 
-export function setImage(imageSrc: string): actions.SetImageAction {
+export function setImage(id: number, src: string): actions.SetImageAction {
   return {
     type: actionTypes.SET_IMAGE,
-    imageSrc,
+    id,
+    src,
   };
 }
 

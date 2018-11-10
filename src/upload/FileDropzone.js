@@ -14,10 +14,10 @@ function FileDropzone(props: Props) {
   return (
     <Dropzone
       multiple={false}
-      className="Dropzone"
-      activeClassName="Dropzone--active"
-      acceptClassName="Dropzone--accept"
-      disabledClassName="Dropzone--disabled"
+      className="FileDropzone"
+      activeClassName="FileDropzone--active"
+      acceptClassName="FileDropzone--accept"
+      disabledClassName="FileDropzone--disabled"
       onDrop={onDrop}
     >
       Place your file here

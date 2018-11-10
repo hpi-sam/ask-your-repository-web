@@ -1,18 +1,10 @@
 // @flow
 import React from 'react';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import rootReducer from './state/rootReducer';
+import configureStore from './config/configureStore';
 import App from './App';
 
-let middleware = [];
-
-if (process.env.NODE_ENV !== 'production') {
-  const logger = require('redux-logger').default;
-  middleware = [...middleware, logger];
-}
-
-const store = createStore(rootReducer, applyMiddleware(...middleware));
+const store: any = configureStore();
 
 function Root() {
   return (

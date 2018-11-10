@@ -5,7 +5,7 @@ WORKDIR /src/app
 
 COPY package.json /src/app
 
-RUN yarn install --production
+RUN yarn install
 
 COPY . /src/app
 

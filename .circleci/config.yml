@@ -26,8 +26,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:9.10
-    environment:
-      REACT_APP_API_URL=http://askir.me:9001/esra
     steps:
       - checkout
       - setup_remote_docker

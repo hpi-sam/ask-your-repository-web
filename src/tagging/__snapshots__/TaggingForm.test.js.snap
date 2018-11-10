@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TaggingForm /> renders correctly 1`] = `
+<div
+  className="TaggingForm"
+>
+  <div
+    className="TaggingForm__title"
+  >
+    Tag your image!
+  </div>
+  <div
+    className="TaggingForm__info"
+  >
+    Type in a tag - Hit enter ⏎ - Repeat
+  </div>
+  <Connect(TagSelector) />
+  <SaveButton
+    className="TaggingForm__button"
+    onClick={[Function]}
+  >
+    Save
+  </SaveButton>
+</div>
+`;

@@ -1,65 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FileUpload /> renders correctly 1`] = `
-<FileUpload>
-  <div
-    className="FileUpload"
-  >
-    <FileDropzone
-      onDrop={[Function]}
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(FileUpload)>
+    <FileUpload
+      dispatch={[Function]}
     >
-      <n
-        acceptClassName="Dropzone--accept"
-        activeClassName="Dropzone--active"
-        className="Dropzone"
-        disableClick={false}
-        disabled={false}
-        disabledClassName="Dropzone--disabled"
-        getDataTransferItems={[Function]}
-        inputProps={Object {}}
-        maxSize={Infinity}
-        minSize={0}
-        multiple={false}
-        onDrop={[Function]}
-        preventDropOnDocument={true}
+      <div
+        className="FileUpload"
       >
-        <div
-          aria-disabled={false}
-          className="Dropzone"
-          onClick={[Function]}
-          onDragEnter={[Function]}
-          onDragLeave={[Function]}
-          onDragOver={[Function]}
-          onDragStart={[Function]}
+        <FileDropzone
           onDrop={[Function]}
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
         >
-          Place your file here
-          <input
-            autoComplete="off"
+          <n
+            acceptClassName="FileDropzone--accept"
+            activeClassName="FileDropzone--active"
+            className="FileDropzone"
+            disableClick={false}
             disabled={false}
+            disabledClassName="FileDropzone--disabled"
+            getDataTransferItems={[Function]}
+            inputProps={Object {}}
+            maxSize={Infinity}
+            minSize={0}
             multiple={false}
-            onChange={[Function]}
-            style={
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.00001,
-                "pointerEvents": "none",
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
+            onDrop={[Function]}
+            preventDropOnDocument={true}
+          >
+            <div
+              aria-disabled={false}
+              className="FileDropzone"
+              onClick={[Function]}
+              onDragEnter={[Function]}
+              onDragLeave={[Function]}
+              onDragOver={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              style={
+                Object {
+                  "position": "relative",
+                }
               }
-            }
-            type="file"
-          />
-        </div>
-      </n>
-    </FileDropzone>
-  </div>
-</FileUpload>
+            >
+              Place your file here
+              <input
+                autoComplete="off"
+                disabled={false}
+                multiple={false}
+                onChange={[Function]}
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.00001,
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+                type="file"
+              />
+            </div>
+          </n>
+        </FileDropzone>
+      </div>
+    </FileUpload>
+  </Connect(FileUpload)>
+</Provider>
 `;

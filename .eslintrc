@@ -14,7 +14,6 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/destructuring-assignment": "off",
-    "jsx-a11y/no-autofocus": "off",
     "global-require": "off"
   },
   "overrides": [
