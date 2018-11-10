@@ -1,49 +1,72 @@
+// @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FileDropzone from './FileDropzone';
-import './FileUpload.scss';
 import Message from '../utility/Message';
 import ErrorMessage from '../utility/ErrorMessage';
-import SuccessMessage from '../utility/SuccessMessage';
 import fetchUploadImage from '../requests/imageRequests';
+import { setImage } from '../state/image/image.actionCreators';
+import './FileUpload.scss';
 
-class FileUpload extends Component {
-  constructor(props) {
+type Props = {
+  dispatch: Function,
+};
+
+type State = {
+  imageId: ?number,
+  isUploading: boolean,
+  hasUploaded: boolean,
+  uploadError: ?string,
+};
+
+class FileUpload extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
-      selectedImage: null,
+      imageId: null,
       isUploading: false,
       hasUploaded: false,
       uploadError: null,
     };
   }
 
-  handleFileReaderLoad = (e) => {
-    const { result } = e.target;
-    this.setState({ selectedImage: result });
-  };
+  setImageState(dataUri: string) {
+    const { imageId } = this.state;
+    if (!imageId) return;
 
-  handleImageDrop = async (files) => {
+    this.props.dispatch(setImage(imageId, dataUri));
+  }
+
+  handleImageDrop = async (files: Blob[]) => {
     if (files && files[0]) {
       const image = files[0];
       await this.submitImage(image);
 
       if (this.state.hasUploaded) {
         const reader = new FileReader();
-        reader.onload = this.handleFileReaderLoad;
+        reader.onload = ({ target }) => this.setImageState(target.result);
         reader.readAsDataURL(image);
       }
     }
   };
 
-  async submitImage(image) {
+  async submitImage(image: Blob) {
     const formData = new FormData();
     formData.append('image', image);
 
-    this.setState({ isUploading: true });
+    this.setState({
+      isUploading: true,
+      uploadError: null,
+    });
 
     await fetchUploadImage(formData)
-      .then(() => this.setState({ hasUploaded: true }))
+      .then(({ data }) => {
+        this.setState({
+          hasUploaded: true,
+          imageId: data.id,
+        });
+      })
       .catch((error) => {
         if (error.response) {
           this.setState({ uploadError: error.response.message });
@@ -57,9 +80,7 @@ class FileUpload extends Component {
 
   render() {
     const {
-      selectedImage,
       isUploading,
-      hasUploaded,
       uploadError,
     } = this.state;
 
@@ -70,26 +91,13 @@ class FileUpload extends Component {
             Your image is being uploaded...
           </Message>
         )}
-        {hasUploaded && (
-          <SuccessMessage>
-            Your image has uploaded successfully!
-          </SuccessMessage>
-        )}
         {uploadError && (
           <ErrorMessage>{uploadError}</ErrorMessage>
         )}
-        {selectedImage ? (
-          <img
-            src={selectedImage}
-            alt=""
-            className="FileUpload__image-preview"
-          />
-        ) : (
-          <FileDropzone onDrop={this.handleImageDrop} />
-        )}
+        <FileDropzone onDrop={this.handleImageDrop} />
       </div>
     );
   }
 }
 
-export default FileUpload;
+export default connect()(FileUpload);

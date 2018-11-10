@@ -5,12 +5,16 @@
   --main-gradient-color-2: rgba(0, 0, 0, .8);
   --main-gradient: linear-gradient(
     135deg,
-    var(--main-gradient-color-1) 0%, 
+    var(--main-gradient-color-1) 0%,
     var(--main-gradient-color-2) 100%
   );
 
   --main-text-color: white;
-  --main-font-size: 23px;
+  --main-font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html, body, #root {

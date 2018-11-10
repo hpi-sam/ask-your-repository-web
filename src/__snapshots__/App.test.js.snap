@@ -4,6 +4,6 @@ exports[`<App /> renders correctly 1`] = `
 <div
   className="App"
 >
-  <FileUpload />
+  <Connect(FileUpload) />
 </div>
 `;

@@ -1,0 +1,77 @@
+@keyframes pulse {
+  0% { opacity: .6 }
+  50% { opacity: 1 }
+  100% { opacity: .6 }
+}
+
+.TagSelector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 0;
+  max-width: 100%;
+  line-height: 1;
+
+  --tag-border-radius: 8px;
+  --tag-padding-horizontal: .7em;
+  --tag-padding-vertical: .5em;
+  --tag-padding: var(--tag-padding-vertical) var(--tag-padding-horizontal);
+  --tag-font-size: .9em;
+  --tag-margin: .5em;
+  --tag-line-height: 1;
+
+  &__typing-hint {
+    margin-bottom: var(--tag-margin);
+    overflow: hidden;
+    font-size: var(--tag-font-size);
+    color: rgb(45, 194, 26);
+    animation: pulse 2s infinite;
+  }
+
+  &__tag {
+    padding: var(--tag-padding);
+    margin-right: var(--tag-margin);
+    margin-bottom: var(--tag-margin);
+    border-radius: var(--tag-border-radius);
+    font-size: var(--tag-font-size);
+
+    background-color: #eee;
+    color: white;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__input {
+    position: relative;
+    background-color: rgba(0, 0, 0, .2);
+
+    color: rgba(255, 255, 255, .8);
+    cursor: text;
+
+    &__control {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      outline: 0;
+      position: absolute;
+      background: transparent;
+      border: 0 none;
+      font: inherit;
+      cursor: inherit;
+      color: inherit;
+      padding: inherit;
+    }
+
+    &__content {
+      visibility: hidden;
+      white-space: pre;
+
+      &::after {
+        display: inline;
+        content: '\202F';
+      }
+    }
+  }
+}

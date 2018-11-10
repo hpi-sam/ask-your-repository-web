@@ -1,0 +1,39 @@
+:root {
+  --button-padding-vertical: .4em;
+  --button-padding-horizontal: 1em;
+  --button-bg-color: white;
+  --button-text-color: #222;
+  --button-border-color: #ccc;
+  --button-border-width: 1px;
+  --button-border-radius: 8px;
+
+  --button-hover-bg-color: #f8f8f8;
+}
+
+.Button {
+  font: inherit;
+  display: inline-block;
+  cursor: pointer;
+
+  padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+
+  transition: background-color .2s;
+
+  &:hover {
+    --button-bg-color: var(--button-hover-bg-color);
+  }
+
+  &--save {
+    --button-bg-color: rgb(45, 194, 26);
+    --button-text-color: white;
+    --button-border-width: 0;
+
+    &:hover {
+      --button-bg-color: rgb(50, 156, 35);
+    }
+  }
+}

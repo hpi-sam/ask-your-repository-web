@@ -1,20 +1,16 @@
 // @flow
 import * as actionTypes from './image.actionTypes';
-import * as actions from './image.actions';
+import type { Action } from '../Action';
 import type { Image } from '../../models/Image';
 
 export type ImageState = ?Image;
-
-type Action =
-  | actions.SetImageAction
-  | actions.AddTagAction
-  | actions.RemoveLastTagAction;
 
 function imageReducer(state: ImageState = null, action: Action) {
   switch (action.type) {
     case actionTypes.SET_IMAGE:
       return {
-        src: action.imageSrc,
+        id: action.id,
+        src: action.src,
         tags: [],
       };
     case actionTypes.ADD_TAG:

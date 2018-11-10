@@ -4,7 +4,8 @@ import type { Tag } from '../../models/Tag';
 
 export type SetImageAction = {
   type: typeof actionTypes.SET_IMAGE,
-  imageSrc: string,
+  id: number,
+  src: string,
 };
 
 export type AddTagAction = {
