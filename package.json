@@ -4,14 +4,20 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap-css-only": "^4.1.1",
     "classnames": "^2.2.6",
     "faker": "^4.1.0",
     "lodash": "^4.17.11",
+    "mdbreact": "^4.8.3",
     "node-sass": "^4.10.0",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "qwest": "^4.5.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-dropzone": "^7.0.1",
+    "react-infinite-scroller": "^1.2.2",
     "react-redux": "^5.1.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
@@ -19,11 +25,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack",
+    "serve": "serve ./public",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "flow": "flow"
+    "flow": "flow",
+    "watch": "webpack -d --watch"
   },
   "browserslist": [
     ">0.2%",
@@ -32,6 +40,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babel-loader": "^8.0.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "coveralls": "^3.0.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
@@ -44,7 +55,8 @@
     "eslint-plugin-react": "^7.11.0",
     "flow-bin": "^0.66.0",
     "flow-typed": "^2.5.1",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "serve": "^10.1.1"
   },
   "peerDependencies": {
     "jest": "^23.6.0"
