@@ -53,7 +53,11 @@ exports[`<FileUpload /> renders correctly 1`] = `
                 }
               }
             >
-              Place your file here
+              <span
+                className="FileDropzone__text"
+              >
+                Place your file here
+              </span>
               <input
                 autoComplete="off"
                 disabled={false}

@@ -20,7 +20,9 @@ function FileDropzone(props: Props) {
       disabledClassName="FileDropzone--disabled"
       onDrop={onDrop}
     >
-      Place your file here
+      <span className="FileDropzone__text">
+        Place your file here
+      </span>
     </Dropzone>
   );
 }

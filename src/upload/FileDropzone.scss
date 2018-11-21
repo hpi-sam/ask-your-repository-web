@@ -1,3 +1,5 @@
+@import '../style/breakpoints.scss';
+
 .FileDropzone {
   --bg-color: transparent;
   --hover-bg-color: rgba(255, 255, 255, .03);
@@ -16,13 +18,10 @@
   justify-content: center;
   cursor: pointer;
 
-  width: 750px;
-  height: 300px;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
 
-  font-weight: bold;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-color);
   background-color: var(--bg-color);
   border: var(--border-width) dashed var(--border-color);
   border-radius: 10px;
@@ -38,9 +37,16 @@
     --border-color: var(--hover-border-color);
   }
 
-  &--active {}
+  @media (min-width: $xs-to-sm) {
+    width: 750px;
+    height: 300px;
+  }
 
-  &--accept {}
-
-  &--disabled {}
+  &__text {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-color);
+  }
 }
