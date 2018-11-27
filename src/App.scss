@@ -1,9 +1,9 @@
 .App {
   max-width: 1200px;
-  height: 100%;
+  min-height: 100%;
   padding: 30px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }

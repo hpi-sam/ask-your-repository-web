@@ -1,16 +1,16 @@
 @import '../style/breakpoints.scss';
 
 .TaggingImagePreview {
-  overflow: hidden;
+overflow-x: hidden;
 
   &__image {
     display: block;
-    max-height: 100%;
+    max-height: 300px;
     max-width: 100%;
-  }
 
-  @media (min-width: $xs-to-sm) {
-    max-height: 500px;
-    max-width: 800px;
+    @media (min-width: $xs-to-sm) {
+      max-height: 500px;
+      max-width: 800px;
+    }
   }
 }
