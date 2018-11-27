@@ -1,14 +1,12 @@
+@import '../style/breakpoints.scss';
+
 .TaggingForm {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  min-width: 340px;
-  width: 400px;
+  height: 100%;
+  width: 100%;
   padding: 20px;
-
-  background-color: rgba(255, 255, 255, .02);
-  box-shadow: inset -15px 0 20px -10px rgba(0, 0, 0, .2);
 
   &__title {
     font-weight: bold;
@@ -23,5 +21,10 @@
 
   &__button {
     margin-top: auto;
+  }
+
+  @media (min-width: $xs-to-sm) {
+    min-width: 340px;
+    width: 400px;
   }
 }
