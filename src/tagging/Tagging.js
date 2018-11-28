@@ -14,8 +14,10 @@ type Props = {
 function Tagging(props: Props) {
   return (
     <div className="Tagging">
-      <TaggingForm />
-      <TaggingImagePreview image={props.image} />
+      <div className="Tagging__inner">
+        <TaggingForm />
+        <TaggingImagePreview image={props.image} />
+      </div>
     </div>
   );
 }
