@@ -4,7 +4,11 @@ exports[`<Tagging /> renders correctly 1`] = `
 <div
   className="Tagging"
 >
-  <Connect(TaggingForm) />
-  <TaggingImagePreview />
+  <div
+    className="Tagging__inner"
+  >
+    <Connect(TaggingForm) />
+    <TaggingImagePreview />
+  </div>
 </div>
 `;
