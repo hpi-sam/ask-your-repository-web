@@ -3,6 +3,6 @@ import type { Tag } from './Tag';
 
 export type Image = {
   id: number,
-  src: string,
+  url: string,
   tags: Array<Tag>,
 };

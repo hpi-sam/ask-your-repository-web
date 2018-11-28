@@ -6,11 +6,7 @@ function fetchCreateTags(
   imageId: number,
   tags: Array<Tag>,
 ): Promise<any> {
-  const requestData = {
-    tags: tags.map(tag => tag.caption),
-  };
-
-  return api.post(`/images/${imageId}/tags`, requestData);
+  return api.post(`/images/${imageId}/tags`, { tags });
 }
 
 export default fetchCreateTags;

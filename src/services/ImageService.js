@@ -3,7 +3,7 @@ import api from '../config/api';
 import { receiveImages } from '../state/images/images.actionCreators';
 
 class ImageService {
-  static list = (offset: number, limit: number) => async (dispatch: Function) => {
+  static list = (offset: number, limit: number): any => async (dispatch: Function) => {
     const params = { offset, limit };
 
     try {

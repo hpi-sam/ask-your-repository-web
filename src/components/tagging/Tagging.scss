@@ -1,0 +1,19 @@
+@import '../../style/breakpoints.scss';
+
+.Tagging {
+  padding: 30px;
+  max-width: 100%;
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    border-radius: 5px;
+    //box-shadow: inset -15px 0 20px -10px rgba(0, 0, 0, .2);
+    background-color: rgba(255, 255, 255, .02);
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, .02);
+
+    @media (min-width: $xs-to-sm) {
+      flex-direction: row;
+    }
+  }
+}

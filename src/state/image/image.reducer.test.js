@@ -3,7 +3,6 @@ import reducer from './image.reducer';
 import * as actions from './image.actions';
 import * as actionTypes from './image.actionTypes';
 import ImageFactory from '../../factories/ImageFactory';
-import TagFactory from '../../factories/TagFactory';
 import type { Image } from '../../models/Image';
 import type { Tag } from '../../models/Tag';
 
@@ -19,14 +18,14 @@ describe('image reducer', () => {
     const action: actions.SetImageAction = {
       type: actionTypes.SET_IMAGE,
       id: image.id,
-      src: image.src,
+      url: image.url,
     };
 
     expect(reducer(undefined, action)).toEqual(image);
   });
 
   it('should handle ADD_TAG', () => {
-    const tag: Tag = TagFactory.createDummyTag();
+    const tag: Tag = 'Example';
 
     const action: actions.AddTagAction = {
       type: actionTypes.ADD_TAG,
