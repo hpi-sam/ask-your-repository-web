@@ -10,7 +10,7 @@ function imageReducer(state: ImageState = null, action: Action) {
     case actionTypes.SET_IMAGE:
       return {
         id: action.id,
-        src: action.src,
+        url: action.url,
         tags: [],
       };
     case actionTypes.ADD_TAG:

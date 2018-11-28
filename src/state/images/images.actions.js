@@ -1,8 +1,8 @@
 // @flow
-import type { Artifact } from '../../models/Artifact';
+import type { Image } from '../../models/Image';
 import * as actionTypes from './images.actionTypes';
 
 export type ReceiveImagesAction = {
-  images: Array<Artifact>,
-  type: actionTypes.RECEIVE_IMAGES,
+  images: Array<Image>,
+  type: typeof actionTypes.RECEIVE_IMAGES,
 };

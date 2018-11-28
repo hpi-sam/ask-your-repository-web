@@ -1,9 +1,9 @@
 // @flow
 import * as actionTypes from './images.actionTypes';
 import type { Action } from '../Action';
-import type { Artifact } from '../../models/Artifact';
+import type { Image } from '../../models/Image';
 
-export type ImagesState = Array<Artifact>;
+export type ImagesState = Array<Image>;
 
 function imagesReducer(state: ImagesState = [], action: Action) {
   switch (action.type) {

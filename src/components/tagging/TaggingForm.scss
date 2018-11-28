@@ -1,0 +1,30 @@
+@import '../../style/breakpoints.scss';
+
+.TaggingForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+
+  &__title {
+    font-weight: bold;
+    font-size: 1.6em;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, .9);
+  }
+
+  &__info {
+    color: rgba(255, 255, 255, .3);
+  }
+
+  &__button {
+    margin-top: auto;
+  }
+
+  @media (min-width: $xs-to-sm) {
+    min-width: 340px;
+    width: 400px;
+  }
+}
