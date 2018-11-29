@@ -57,15 +57,13 @@ class ImagesIndex extends Component<Props, State> {
     const { images } = this.props;
 
     return (
-      <div className="ImagesPage">
-        <div className="IndexView">
-          <InfiniteScroll
-            hasMore={!this.state.endReached}
-            loadMore={this.loadMoreImages}
-          >
-            <Gallery images={images} />
-          </InfiniteScroll>
-        </div>
+      <div className="ImagesIndex">
+        <InfiniteScroll
+          hasMore={!this.state.endReached}
+          loadMore={this.loadMoreImages}
+        >
+          <Gallery images={images} />
+        </InfiniteScroll>
       </div>
     );
   }
