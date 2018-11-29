@@ -25,7 +25,8 @@ class Gallery extends Component<Props> {
   );
 
   renderImage = (image: Image) => {
-    const { tags, url } = image;
+    const { url } = image;
+    const tags = image.tags || [];
     const overflow = tags.length >= maxTags;
 
     return (
