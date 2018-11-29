@@ -1,21 +1,17 @@
 // @flow
 import api from '../config/api';
-import { receiveImages } from '../state/images/images.actionCreators';
+import type { Image } from '../models/Image';
+
+type ListParams = {
+  offset: number,
+  limit: number,
+};
 
 class ImageService {
-  static list = (offset: number, limit: number): any => async (dispatch: Function) => {
-    const params = { offset, limit };
-
-    try {
-      const response = await api.get('/images', { params });
-      const { images } = response.data;
-      await dispatch(receiveImages(images));
-      return images;
-    } catch (error) {
-      // Handle error response
-      return Promise.reject(error);
-    }
-  };
+  static async list(params: ListParams): Promise<Image[]> {
+    const response = await api.get('/images', { params });
+    return response.data.images;
+  }
 }
 
 export default ImageService;

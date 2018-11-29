@@ -1,19 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Gallery from './Gallery';
 import ImageService from '../../services/ImageService';
 import type { Image } from '../../models/Image';
-import type { AppState } from '../../state/AppState';
 import './ImagesIndex.scss';
 
-type Props = {
-  dispatch: Function,
-  images: Array<Image>,
-};
+type Props = {};
 
 type State = {
+  images: Array<Image>,
   offset: number,
   endReached: boolean,
 };
@@ -25,6 +21,7 @@ class ImagesIndex extends Component<Props, State> {
     super(props);
 
     this.state = {
+      images: [],
       offset: 0,
       endReached: false,
     };
@@ -36,25 +33,30 @@ class ImagesIndex extends Component<Props, State> {
 
   loadMoreImages = async () => {
     if (this.state.endReached) return;
-
-    const { dispatch } = this.props;
     const { offset } = this.state;
 
     try {
-      const images = await dispatch(ImageService.list(offset, limit));
-
-      if (images.length > 0) {
-        this.setState({ offset: offset + limit });
-      } else {
-        this.setState({ endReached: true });
-      }
+      const images = await ImageService.list({ offset, limit });
+      this.receiveImages(images);
     } catch (error) {
       // TODO: Handle error
     }
   }
 
+  receiveImages(fetchedImages: Image[]) {
+    const { images, offset } = this.state;
+
+    this.setState({ images: [...images, ...fetchedImages] });
+
+    if (fetchedImages.length > 0) {
+      this.setState({ offset: offset + limit });
+    } else {
+      this.setState({ endReached: true });
+    }
+  }
+
   render() {
-    const { images } = this.props;
+    const { images } = this.state;
 
     return (
       <div className="ImagesIndex">
@@ -69,8 +71,4 @@ class ImagesIndex extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  images: state.images,
-});
-
-export default connect(mapStateToProps)(ImagesIndex);
+export default ImagesIndex;
