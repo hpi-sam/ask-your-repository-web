@@ -1,5 +1,6 @@
 // @flow
 import { applyMiddleware, createStore } from 'redux';
+import { middleware as flashMiddleware } from 'redux-flash';
 import thunk from 'redux-thunk';
 import rootReducer from '../state/rootReducer';
 
@@ -13,7 +14,7 @@ function configureStore() {
 
   return createStore(
     rootReducer,
-    applyMiddleware(...middleware),
+    applyMiddleware(...middleware, flashMiddleware()),
   );
 }
 

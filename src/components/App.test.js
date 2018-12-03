@@ -4,9 +4,6 @@ import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import App from './App';
-import Tagging from './tagging/Tagging';
-import FileUpload from './upload/FileUpload';
-import ImageFactory from '../factories/ImageFactory';
 import emptyState from '../state/emptyState';
 import type { AppState } from '../state/AppState';
 
@@ -25,24 +22,5 @@ describe('<App />', () => {
 
   it('renders correctly', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('should render a FileUpload component', () => {
-    expect(wrapper.find(FileUpload).exists()).toBeTruthy();
-  });
-
-  describe('image state is set', () => {
-    beforeEach(() => {
-      state = { ...emptyState, image: ImageFactory.createDummyImage() };
-      wrapper = shallow(<App store={store} />).dive();
-    });
-
-    it('should not render a FileUpload component', () => {
-      expect(wrapper.find(FileUpload).exists()).toBeFalsy();
-    });
-
-    it('should render a Tagging component', () => {
-      expect(wrapper.find(Tagging).exists()).toBeTruthy();
-    });
   });
 });

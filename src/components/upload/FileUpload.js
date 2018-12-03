@@ -86,7 +86,7 @@ class FileUpload extends Component<Props, State> {
     } = this.state;
 
     if (this.state.hasUploaded) {
-      return <Redirect to='/tagging' />;
+      return <Redirect to="/tagging" />;
     }
 
     return (
