@@ -16,8 +16,10 @@ type Props = {
 class TaggingForm extends Component<Props> {
   handleSubmit = () => {
     const { image } = this.props;
-    fetchCreateTags(image.id, image.tags);
-    this.props.redirectCallback();
+    fetchCreateTags(image.id, image.tags)
+      .then(() => {
+        this.props.redirectCallback();
+      });
   };
 
   render() {

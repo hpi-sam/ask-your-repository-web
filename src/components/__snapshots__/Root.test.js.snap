@@ -16,13 +16,7 @@ exports[`<Root /> renders correctly 1`] = `
     <div>
       <Route
         component={[Function]}
-        exact={true}
         path="/"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/images"
       />
     </div>
   </BrowserRouter>
