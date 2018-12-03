@@ -37,7 +37,7 @@ class Tagging extends Component<Props, State> {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to='/upload' />;
+      return <Redirect to="/upload" />;
     }
 
     if (!this.props.image) return null;
@@ -45,7 +45,7 @@ class Tagging extends Component<Props, State> {
     return (
       <div className="Tagging">
         <div className="Tagging__inner">
-          <TaggingForm redirectCallback={this.redirectCallback}/>
+          <TaggingForm redirectCallback={this.redirectCallback} />
           <TaggingImagePreview image={this.props.image} />
         </div>
       </div>

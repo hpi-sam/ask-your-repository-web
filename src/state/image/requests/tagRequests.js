@@ -1,6 +1,6 @@
 // @flow
-import api from '../config/api';
-import type { Tag } from '../models/Tag';
+import api from '../../../config/api';
+import type { Tag } from '../../../models/Tag';
 
 function fetchCreateTags(
   imageId: number,
