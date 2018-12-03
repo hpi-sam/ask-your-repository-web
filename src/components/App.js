@@ -1,14 +1,30 @@
 // @flow
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
-import './App.scss';
+import { connect } from 'react-redux';
+import { getLatestMessage, flashMessageType } from 'redux-flash';
+import FlashMessage from './utility/FlashMessage';
 import ImagesIndex from './images/ImagesIndex';
 import FileUpload from './upload/FileUpload';
 import Tagging from './tagging/Tagging';
+import './App.scss';
 
-function App() {
+type Props = {
+  flash: flashMessageType,
+};
+
+
+function App(props: Props) {
   return (
     <div className="App">
+      {props.flash
+        && (
+        <FlashMessage>
+          {props.flash.message}
+        </FlashMessage>
+        )
+      }
+      ;
       <Switch>
         <Redirect exact from="/" to="/upload" />
         <Route path="/upload" component={FileUpload} />
@@ -19,4 +35,10 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    flash: getLatestMessage(state),
+  };
+}
+
+export default connect(mapStateToProps)(App);

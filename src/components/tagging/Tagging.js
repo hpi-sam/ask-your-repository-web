@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { flashMessage } from 'redux-flash';
 import TaggingForm from './TaggingForm';
 import TaggingImagePreview from './TaggingImagePreview';
 import type { Image } from '../../models/Image';
@@ -10,6 +11,7 @@ import './Tagging.scss';
 
 type Props = {
   image: Image,
+  dispatch: flashMessage,
 };
 
 type State = {
@@ -29,11 +31,13 @@ class Tagging extends Component<Props, State> {
     this.setState({
       redirect: true,
     });
-  };
+    const action = flashMessage('Your image was sucessfully uploaded.');
+    this.props.dispatch(action);
+  }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to='/upload' />;
+      return <Redirect to="/upload" />;
     }
 
     if (!this.props.image) return null;
@@ -41,7 +45,7 @@ class Tagging extends Component<Props, State> {
     return (
       <div className="Tagging">
         <div className="Tagging__inner">
-          <TaggingForm redirectCallback={this.redirectCallback}/>
+          <TaggingForm redirectCallback={this.redirectCallback} />
           <TaggingImagePreview image={this.props.image} />
         </div>
       </div>
