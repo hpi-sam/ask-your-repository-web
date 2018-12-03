@@ -28,12 +28,12 @@
   }
 
   &--save {
-    --button-bg-color: rgb(45, 194, 26);
+    --button-bg-color: var(--success-color);
     --button-text-color: white;
     --button-border-width: 0;
 
     &:hover {
-      --button-bg-color: rgb(50, 156, 35);
+      --button-bg-color: var(--success-dark-color);
     }
   }
 }
