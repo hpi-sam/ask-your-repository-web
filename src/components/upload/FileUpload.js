@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import FileDropzone from './FileDropzone';
 import Message from '../utility/Message';
 import ErrorMessage from '../utility/ErrorMessage';
@@ -83,6 +84,10 @@ class FileUpload extends Component<Props, State> {
       isUploading,
       uploadError,
     } = this.state;
+
+    if (this.state.hasUploaded) {
+      return <Redirect to='/tagging' />;
+    }
 
     return (
       <div className="FileUpload">
