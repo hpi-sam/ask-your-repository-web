@@ -10,12 +10,14 @@ import './TaggingForm.scss';
 
 type Props = {
   image: Image,
+  redirectCallback: Function,
 };
 
 class TaggingForm extends Component<Props> {
   handleSubmit = () => {
     const { image } = this.props;
     fetchCreateTags(image.id, image.tags);
+    this.props.redirectCallback();
   };
 
   render() {

@@ -1,28 +1,22 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router';
+import './App.scss';
+import ImagesIndex from './images/ImagesIndex';
 import FileUpload from './upload/FileUpload';
 import Tagging from './tagging/Tagging';
-import type { Image } from '../models/Image';
-import type { AppState } from '../state/AppState';
-import './App.scss';
 
-type Props = {
-  hasUploadedImage: Image,
-};
-
-function App(props: Props) {
+function App() {
   return (
     <div className="App">
-      {props.hasUploadedImage
-        ? <Tagging />
-        : <FileUpload />}
+      <Switch>
+        <Redirect exact from="/" to="/upload" />
+        <Route path="/upload" component={FileUpload} />
+        <Route path="/tagging" component={Tagging} />
+        <Route path="/images" component={ImagesIndex} />
+      </Switch>
     </div>
   );
 }
 
-const mapStateToProps = (state: AppState) => ({
-  hasUploadedImage: !!state.image,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;
