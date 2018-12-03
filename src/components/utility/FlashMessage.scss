@@ -1,0 +1,31 @@
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.FlashMessage {
+  --text-color: var(--main-text-color);
+  --background-color: var(--notification-color);
+
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  left: auto;
+  right: auto;
+  width: auto;
+  padding: 0 20px 0 20px;
+  border-radius: .4em;
+
+  text-align: center;
+  line-height: 2.5;
+  overflow: hidden;
+
+  -webkit-box-shadow: 0 0 5px black;
+  -moz-box-shadow:    0 0 5px black;
+  box-shadow:         0 0 5px black;
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  animation: fade-in 1s;
+}

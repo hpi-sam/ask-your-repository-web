@@ -2,6 +2,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../state/rootReducer';
+import { middleware as flashMiddleware } from 'redux-flash'
 
 function configureStore() {
   let middleware = [thunk];
@@ -13,7 +14,7 @@ function configureStore() {
 
   return createStore(
     rootReducer,
-    applyMiddleware(...middleware),
+    applyMiddleware(...middleware, flashMiddleware()),
   );
 }
 
