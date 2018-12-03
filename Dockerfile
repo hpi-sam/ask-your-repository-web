@@ -1,16 +1,22 @@
-FROM node:8.12.0-alpine
+# build stage
+FROM node:9.11.1-alpine as build-stage
 
-RUN mkdir -p /src/app
-WORKDIR /src/app
+WORKDIR /app
 
-COPY package.json /src/app
+COPY . .
+COPY .env.production .env
 
 RUN yarn install
-
-COPY . /src/app
-
 RUN yarn build
 
-EXPOSE 3000
+# production stage
+FROM nginx:1.13.12-alpine as production-stage
 
-CMD [ "yarn", "start" ]
+COPY --from=build-stage /app/nginx.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /var/www/html
+COPY --from=build-stage /app/build ./
+
+EXPOSE 80
+
+CMD [ "nginx", "-g", "daemon off;" ]

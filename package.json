@@ -29,8 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "flow": "flow",
-    "watch": "webpack -d --watch"
+    "flow": "flow"
   },
   "browserslist": [
     ">0.2%",
