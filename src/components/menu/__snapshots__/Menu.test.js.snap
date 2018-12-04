@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Menu /> renders correctly 1`] = `
+Array [
+  <Ref
+    innerRef={[Function]}
+    key="R"
+  >
+    <MenuIcon
+      key="T"
+      onClick={[Function]}
+      open={false}
+    />
+  </Ref>,
+  "",
+  "",
+  "",
+]
+`;
