@@ -6,13 +6,13 @@ import MenuItems from './MenuItems';
 import './Menu.scss';
 
 const contentStyle = {
-  background: "rgba(255,255,255,0",
-  width: "80%",
-  border: "none"
+  background: 'rgba(255,255,255,0',
+  width: '80%',
+  border: 'none',
 };
 
 const overlayStyle = {
-  background: 'rgba(255,255,255,0.98'
+  background: 'rgba(255,255,255,0.98',
 };
 
 function Menu() {

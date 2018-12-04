@@ -6,7 +6,7 @@ type Props = {
   open: boolean,
 };
 
-function MenuIcon({ open, ...props }: Props) {  
+function MenuIcon({ open, ...props }: Props) {
   const menuClass = open ? 'burger-menu open' : 'burger-menu';
   return (
     <div className={menuClass} {...props}>

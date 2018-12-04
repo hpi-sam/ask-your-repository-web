@@ -9,7 +9,7 @@ type Props = {
 function MenuItems(props: Props) {
   return (
     <div className="menu">
-      <ul>        
+      <ul>
         <li onClick={props.close}><a href="./">Add New Artifact</a></li>
         <li onClick={props.close}><a href="./images">View All</a></li>
       </ul>
