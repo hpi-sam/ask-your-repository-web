@@ -25,7 +25,6 @@ function App(props: Props) {
         </FlashMessage>
         )
       }
-      ;
       <Switch>
         <Redirect exact from="/" to="/upload" />
         <Route path="/upload" component={FileUpload} />

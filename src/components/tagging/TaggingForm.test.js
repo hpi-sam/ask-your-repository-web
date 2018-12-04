@@ -46,9 +46,5 @@ describe('<TaggingForm />', () => {
         { tags: image.tags },
       );
     });
-
-    it('should redirect to /upload', () => {
-      
-    });
   });
 });
