@@ -12,10 +12,19 @@
   );
 
   --main-text-color: white;
+  --medium-text-color: rgba(0, 0, 0, .6);
+  --dark-text-color: black;
   --main-font-size: 18px;
+
   --notification-color: var(--success-color);
   --success-color: rgb(45, 194, 26);
-  --success-dark-color: rgb(50, 156, 35);  
+  --success-dark-color: rgb(50, 156, 35);
+  --accent-color-1: rgba(0, 170, 187, .8);
+
+  --light-background-color: white;
+  --medium-background-color: rgba(200, 200, 200, .6);
+
+  --header-height: 50px;
 }
 
 * {

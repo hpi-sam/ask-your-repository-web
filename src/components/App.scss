@@ -6,3 +6,8 @@
   align-items: flex-start;
   justify-content: center;
 }
+
+.Body {
+  position: absolute;
+  top: var(--header-height);
+}
