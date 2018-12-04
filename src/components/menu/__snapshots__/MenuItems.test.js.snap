@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MenuItems /> renders correctly 1`] = `
+<div
+  className="menu"
+>
+  <ul>
+    <li
+      id="btnUpload"
+      onClick={[MockFunction]}
+    >
+      <a
+        href="./"
+      >
+        Add New Artifact
+      </a>
+    </li>
+    <li
+      id="btnViewAll"
+      onClick={[MockFunction]}
+    >
+      <a
+        href="./images"
+      >
+        View All
+      </a>
+    </li>
+  </ul>
+</div>
+`;

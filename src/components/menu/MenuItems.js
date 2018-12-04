@@ -10,8 +10,8 @@ function MenuItems(props: Props) {
   return (
     <div className="menu">
       <ul>
-        <li onClick={props.close}><a href="./">Add New Artifact</a></li>
-        <li onClick={props.close}><a href="./images">View All</a></li>
+        <li id="btnUpload" onClick={props.close}><a href="./">Add New Artifact</a></li>
+        <li id="btnViewAll" onClick={props.close}><a href="./images">View All</a></li>
       </ul>
     </div>
   );
