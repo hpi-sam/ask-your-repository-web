@@ -7,16 +7,17 @@ import FlashMessage from './utility/FlashMessage';
 import ImagesIndex from './images/ImagesIndex';
 import FileUpload from './upload/FileUpload';
 import Tagging from './tagging/Tagging';
+import Menu from './menu/Menu';
 import './App.scss';
 
 type Props = {
   flash: flashMessageType,
 };
 
-
 function App(props: Props) {
   return (
     <div className="App">
+      <Menu />
       {props.flash
         && (
         <FlashMessage>

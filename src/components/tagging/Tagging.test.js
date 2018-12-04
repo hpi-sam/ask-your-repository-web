@@ -34,4 +34,5 @@ describe('<Tagging />', () => {
   it('renders a TaggingImagePreview component', () => {
     expect(wrapper.find(TaggingImagePreview).exists()).toBeTruthy();
   });
+
 });
