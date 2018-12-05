@@ -8,6 +8,7 @@ import SaveButton from '../utility/SaveButton';
 import type { Image } from '../../models/Image';
 import type { AppState } from '../../state/AppState';
 import fetchCreateTags from '../../requests/tagRequests';
+import TagSuggestions from './suggestions/TagSuggestions';
 import './TaggingForm.scss';
 
 type Props = {
@@ -50,6 +51,10 @@ class TaggingForm extends Component<Props, State> {
         <div className="TaggingForm__title">
           Tag your image!
         </div>
+        <div className="TaggingForm__info">
+          Suggestions - Type number to add
+        </div>
+        <TagSuggestions />
         <div className="TaggingForm__info">
           Type in a tag - Hit enter &#9166; - Repeat
         </div>
