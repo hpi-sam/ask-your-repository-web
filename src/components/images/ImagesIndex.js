@@ -33,24 +33,29 @@ class ImagesIndex extends Component<Props, State> {
 
   loadMoreImages = async () => {
     if (this.state.endReached) return;
-    const { offset } = this.state;
+
+    const currentOffset = this.state.offset;
+    this.increaseOffset();
 
     try {
-      const images = await ImageService.list({ offset, limit });
+      const images = await ImageService.list({ offset: currentOffset, limit });
       this.receiveImages(images);
     } catch (error) {
       // TODO: Handle error
     }
   }
 
+  increaseOffset() {
+    const { offset } = this.state;
+    this.setState({ offset: offset + limit });
+  }
+
   receiveImages(fetchedImages: Image[]) {
-    const { images, offset } = this.state;
+    const { images } = this.state;
 
     this.setState({ images: [...images, ...fetchedImages] });
 
-    if (fetchedImages.length > 0) {
-      this.setState({ offset: offset + limit });
-    } else {
+    if (fetchedImages.length === 0) {
       this.setState({ endReached: true });
     }
   }
@@ -61,6 +66,7 @@ class ImagesIndex extends Component<Props, State> {
     return (
       <div className="ImagesIndex">
         <InfiniteScroll
+          initialLoad={false}
           hasMore={!this.state.endReached}
           loadMore={this.loadMoreImages}
         >
