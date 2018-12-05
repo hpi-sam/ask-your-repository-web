@@ -12,6 +12,12 @@ exports[`<TaggingForm /> renders correctly 1`] = `
   <div
     className="TaggingForm__info"
   >
+    Suggestions - Type number to add
+  </div>
+  <Connect(TagSuggestions) />
+  <div
+    className="TaggingForm__info"
+  >
     Type in a tag - Hit enter ⏎ - Repeat
   </div>
   <Connect(TagSelector) />

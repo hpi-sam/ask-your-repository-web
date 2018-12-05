@@ -4,14 +4,7 @@
   100% { opacity: .6 }
 }
 
-.TagSelector {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 20px 0;
-  max-width: 100%;
-  line-height: 1;
-
+:root {
   --tag-border-radius: 8px;
   --tag-padding-horizontal: .7em;
   --tag-padding-vertical: .5em;
@@ -19,6 +12,15 @@
   --tag-font-size: .9em;
   --tag-margin: .5em;
   --tag-line-height: 1;
+}
+
+.TagSelector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 0;
+  max-width: 100%;
+  line-height: var(--tag-line-height);
 
   &__typing-hint {
     margin-bottom: var(--tag-margin);

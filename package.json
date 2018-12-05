@@ -11,6 +11,7 @@
     "lodash": "^4.17.11",
     "mdbreact": "^4.8.3",
     "node-sass": "^4.10.0",
+    "qs": "^6.6.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-dropzone": "^7.0.1",

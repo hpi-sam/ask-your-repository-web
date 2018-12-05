@@ -1,0 +1,42 @@
+@keyframes suggestion-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.TagSuggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 0;
+
+  &__item {
+    overflow: hidden;
+    display: flex;
+    color: white;
+    opacity: 0;
+    animation-name: suggestion-fade-in;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}n) {
+        animation-delay: #{($i - 1) * 0.1}s;
+      }
+    }
+
+    margin-right: var(--tag-margin);
+    margin-bottom: var(--tag-margin);
+    border-radius: var(--tag-border-radius);
+    font-size: var(--tag-font-size);
+    line-height: var(--tag-line-height);
+
+    &__shortcut {
+      background-color: rgba(0, 0, 0, .2);
+      padding: var(--tag-padding);
+    }
+
+    &__text {
+      padding: var(--tag-padding);
+    }
+  }
+}

@@ -2,9 +2,9 @@
 import * as React from 'react';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
-import type { Image } from '../../models/Image';
-import randomColor from '../../helper/randomColor';
+import ColorFactory from '../../factories/ColorFactory';
 import { addTag, removeLastTag } from '../../state/image/image.actionCreators';
+import type { Image } from '../../models/Image';
 import type { AppState } from '../../state/AppState';
 import './TagSelector.scss';
 
@@ -16,7 +16,6 @@ type Props = {
 
 type State = {
   tagInputValue: string,
-  tagColors: Array<string>,
 };
 
 class TagSelector extends React.Component<Props, State> {
@@ -25,7 +24,6 @@ class TagSelector extends React.Component<Props, State> {
 
     this.state = {
       tagInputValue: '',
-      tagColors: [],
     };
   }
 
@@ -62,8 +60,6 @@ class TagSelector extends React.Component<Props, State> {
 
   removeLastTag() {
     this.props.dispatch(removeLastTag());
-    const { tagColors } = this.state;
-    this.setState({ tagColors: tagColors.slice(0, -1) });
   }
 
   addTag() {
@@ -71,12 +67,7 @@ class TagSelector extends React.Component<Props, State> {
     if (!tagInputValue) return;
     this.props.dispatch(addTag(tagInputValue));
 
-    const { tagColors } = this.state;
-
-    this.setState({
-      tagInputValue: '',
-      tagColors: [...tagColors, randomColor()],
-    });
+    this.setState({ tagInputValue: '' });
   }
 
   tagInput: ?HTMLInputElement;
@@ -86,15 +77,15 @@ class TagSelector extends React.Component<Props, State> {
     if (!image) return null;
 
     const { tags } = image;
-    const { tagInputValue, tagColors } = this.state;
+    const { tagInputValue } = this.state;
 
     return (
       <div className="TagSelector">
-        {tags.map((tag, index) => (
+        {tags.map(tag => (
           <div
             key={shortid.generate()}
             className="TagSelector__tag"
-            style={{ backgroundColor: tagColors[index] }}
+            style={{ backgroundColor: ColorFactory.fromTag(tag) }}
           >
             {tag}
           </div>
