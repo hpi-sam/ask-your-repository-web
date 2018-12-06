@@ -1,14 +1,14 @@
 // @flow
 import React from 'react';
-import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import App from './App';
+import { shallow } from 'enzyme';
+import ActivityIndicator from './ActivityIndicator';
 
-describe('<App />', () => {
+describe('<ActivityIndicator />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = shallow(<ActivityIndicator text="Loading" />);
   });
 
   it('renders correctly', () => {

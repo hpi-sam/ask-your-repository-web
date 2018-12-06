@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -12,9 +12,9 @@ function Root() {
   return (
     <Provider store={store}>
       <Router>
-        <div>
+        <Fragment>
           <Route path="/" component={App} />
-        </div>
+        </Fragment>
       </Router>
     </Provider>
   );

@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/Root';
 import * as serviceWorker from './serviceWorker';
-import './style/index.scss';
-import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import './style/index.scss';
 
 ReactDOM.render(
   <Root />,

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import 'breakpoints';
 @import 'grid';
+@import 'colors';
 
 :root {
   --main-gradient-color-1: rgba(0, 0, 0, .9);
@@ -13,9 +14,6 @@
 
   --main-text-color: white;
   --main-font-size: 18px;
-  --notification-color: var(--success-color);
-  --success-color: rgb(45, 194, 26);
-  --success-dark-color: rgb(50, 156, 35);  
 }
 
 * {

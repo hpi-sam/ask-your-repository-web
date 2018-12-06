@@ -13,12 +13,10 @@ exports[`<Root /> renders correctly 1`] = `
   }
 >
   <BrowserRouter>
-    <div>
-      <Route
-        component={[Function]}
-        path="/"
-      />
-    </div>
+    <Route
+      component={[Function]}
+      path="/"
+    />
   </BrowserRouter>
 </Provider>
 `;

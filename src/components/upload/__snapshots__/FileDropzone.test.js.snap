@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FileDropzone /> renders correctly 1`] = `
+<n
+  acceptClassName="FileDropzone--accept"
+  activeClassName="FileDropzone--active"
+  className="FileDropzone"
+  disableClick={false}
+  disabled={false}
+  disabledClassName="FileDropzone--disabled"
+  getDataTransferItems={[Function]}
+  inputProps={Object {}}
+  maxSize={Infinity}
+  minSize={0}
+  multiple={false}
+  onDrop={[Function]}
+  preventDropOnDocument={true}
+>
+  <span
+    className="FileDropzone__text"
+  >
+    Place your file here
+  </span>
+</n>
+`;

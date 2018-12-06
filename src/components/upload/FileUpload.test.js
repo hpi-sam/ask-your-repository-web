@@ -1,9 +1,8 @@
 // @flow
 import React from 'react';
 import faker from 'faker';
-import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import FileUpload from './FileUpload';
 import FileDropzone from './FileDropzone';
@@ -27,12 +26,8 @@ describe('<FileUpload />', () => {
 
   beforeEach(() => {
     store = mockStore(emptyState);
-    wrapper = mount((
-      <Provider store={store}>
-        <FileUpload />
-      </Provider>
-    ));
-    wrapperInstance = wrapper.find('FileUpload').instance();
+    wrapper = shallow(<FileUpload store={store} />).dive();
+    wrapperInstance = wrapper.instance();
   });
 
   afterEach(() => {
@@ -94,8 +89,13 @@ describe('<FileUpload />', () => {
         api.post.mockImplementation(() => Promise.reject(Response.error()));
       });
 
-      it('should display a network error message', () => {
-        expect(wrapper.text()).toEqual(expect.stringContaining('unavailable'));
+      it('should dispatch a network error message flash message', () => {
+        expect(store.getActions()[0].payload).toEqual(
+          expect.objectContaining({
+            options: { isError: true },
+            message: expect.stringContaining('unavailable'),
+          }),
+        );
       });
     });
 
@@ -107,8 +107,15 @@ describe('<FileUpload />', () => {
         api.post.mockImplementation(() => Promise.reject({ response: errorResponse }));
       });
 
-      it('should display the error message', () => {
-        expect(wrapper.text()).toEqual(expect.stringContaining(errorMessage));
+      it('should dispatch an error flash message', () => {
+        expect(store.getActions()[0]).toEqual(
+          expect.objectContaining({
+            payload: {
+              options: { isError: true },
+              message: errorMessage,
+            },
+          }),
+        );
       });
     });
   });

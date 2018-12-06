@@ -1,86 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FileUpload /> renders correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<div
+  className="FileUpload"
 >
-  <Connect(FileUpload)>
-    <FileUpload
-      dispatch={[Function]}
-    >
-      <div
-        className="FileUpload"
-      >
-        <FileDropzone
-          onDrop={[Function]}
-        >
-          <n
-            acceptClassName="FileDropzone--accept"
-            activeClassName="FileDropzone--active"
-            className="FileDropzone"
-            disableClick={false}
-            disabled={false}
-            disabledClassName="FileDropzone--disabled"
-            getDataTransferItems={[Function]}
-            inputProps={Object {}}
-            maxSize={Infinity}
-            minSize={0}
-            multiple={false}
-            onDrop={[Function]}
-            preventDropOnDocument={true}
-          >
-            <div
-              aria-disabled={false}
-              className="FileDropzone"
-              onClick={[Function]}
-              onDragEnter={[Function]}
-              onDragLeave={[Function]}
-              onDragOver={[Function]}
-              onDragStart={[Function]}
-              onDrop={[Function]}
-              style={
-                Object {
-                  "position": "relative",
-                }
-              }
-            >
-              <span
-                className="FileDropzone__text"
-              >
-                Place your file here
-              </span>
-              <input
-                autoComplete="off"
-                disabled={false}
-                multiple={false}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.00001,
-                    "pointerEvents": "none",
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-                type="file"
-              />
-            </div>
-          </n>
-        </FileDropzone>
-      </div>
-    </FileUpload>
-  </Connect(FileUpload)>
-</Provider>
+  <div
+    className="FileUpload__inner"
+  >
+    <FileDropzone
+      onDrop={[Function]}
+    />
+  </div>
+</div>
 `;

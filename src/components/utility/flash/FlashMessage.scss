@@ -1,0 +1,31 @@
+.FlashMessage {
+  --space-to-top: 20px;
+
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: auto;
+  padding: 20px 30px;
+  text-align: center;
+  font-weight: bold;
+
+  @keyframes slide-down {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(var(--space-to-top)); }
+  }
+
+  animation-name: slide-down, slide-down;
+  animation-duration: .2s, .2s;
+  animation-delay: 0s, 2s;
+  animation-direction: normal, reverse;
+  animation-fill-mode: forwards, forwards;
+
+  &--error {
+    background-color: var(--error-color);
+  }
+
+  &--success {
+    background-color: var(--success-color);
+  }
+}
