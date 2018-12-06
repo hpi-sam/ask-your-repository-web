@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { blobToDataURL } from 'blob-util';
 import { connect } from 'react-redux';
 import { flashErrorMessage } from 'redux-flash';
 import { Redirect } from 'react-router-dom';
@@ -14,7 +15,6 @@ type Props = {
 };
 
 type State = {
-  imageId: ?number,
   isUploading: boolean,
   hasUploaded: boolean,
 };
@@ -24,51 +24,35 @@ class FileUpload extends Component<Props, State> {
     super(props);
 
     this.state = {
-      imageId: null,
       isUploading: false,
       hasUploaded: false,
     };
   }
 
-  setImageState(dataUri: string) {
-    const { imageId } = this.state;
-    if (!imageId) return;
-
-    this.props.dispatch(setImage(imageId, dataUri));
-  }
-
-  handleImageDrop = async (files: Blob[]) => {
+  handleImageDrop = (files: Blob[]) => {
     if (files && files[0]) {
       const image = files[0];
-      await this.submitImage(image);
-
-      if (this.state.hasUploaded) {
-        const reader = new FileReader();
-        reader.onload = ({ target }) => this.setImageState(target.result);
-        reader.readAsDataURL(image);
-      }
+      this.submitImage(image);
     }
   };
 
   async submitImage(image: Blob) {
+    const { dispatch } = this.props;
     const formData = new FormData();
     formData.append('image', image);
-
     this.setState({ isUploading: true });
 
-    await fetchUploadImage(formData)
-      .then(({ data }) => {
-        this.setState({
-          hasUploaded: true,
-          imageId: data.id,
-        });
-      })
-      .catch((error) => {
-        const message = error.response
-          ? error.response.message
-          : 'Our server seems to be unavailable at the moment.';
-        this.props.dispatch(flashErrorMessage(message));
-      });
+    try {
+      const { data } = await fetchUploadImage(formData);
+      const imageDataUri = await blobToDataURL(image);
+      dispatch(setImage(data.id, imageDataUri));
+      this.setState({ hasUploaded: true });
+    } catch (error) {
+      const message = error.response
+        ? error.response.message
+        : 'Our server seems to be unavailable at the moment.';
+      dispatch(flashErrorMessage(message));
+    }
 
     this.setState({ isUploading: false });
   }

@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import faker from 'faker';
 import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
@@ -118,11 +117,6 @@ describe('<FileUpload />', () => {
         );
       });
     });
-  });
-
-  it('should not dispatch any action when imageId is not set', () => {
-    wrapperInstance.setImageState(faker.image.dataUri());
-    expect(store.getActions()).toHaveLength(0);
   });
 
   it('do nothing if image drop is called without any files', () => {
