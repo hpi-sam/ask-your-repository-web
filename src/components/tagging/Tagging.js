@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { flashMessage } from 'redux-flash';
+import { flashSuccessMessage } from 'redux-flash';
 import TaggingForm from './TaggingForm';
 import TaggingImagePreview from './TaggingImagePreview';
 import type { Image } from '../../models/Image';
@@ -11,7 +11,7 @@ import './Tagging.scss';
 
 type Props = {
   image: Image,
-  dispatch: flashMessage,
+  dispatch: Function,
 };
 
 type State = {
@@ -28,10 +28,8 @@ class Tagging extends Component<Props, State> {
   }
 
   redirectCallback = () => {
-    this.setState({
-      redirect: true,
-    });
-    const action = flashMessage('Your image was sucessfully uploaded.');
+    this.setState({ redirect: true });
+    const action = flashSuccessMessage('Your image was sucessfully uploaded.');
     this.props.dispatch(action);
   }
 

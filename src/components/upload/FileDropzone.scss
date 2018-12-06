@@ -24,7 +24,7 @@
 
   background-color: var(--bg-color);
   border: var(--border-width) dashed var(--border-color);
-  border-radius: 10px;
+  border-radius: inherit;
 
   transition:
     background-color var(--transition-duration),
@@ -35,11 +35,6 @@
     --bg-color: var(--hover-bg-color);
     --text-color: var(--hover-text-color);
     --border-color: var(--hover-border-color);
-  }
-
-  @media (min-width: $xs-to-sm) {
-    width: 750px;
-    height: 300px;
   }
 
   &__text {

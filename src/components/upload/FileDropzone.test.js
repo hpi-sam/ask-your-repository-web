@@ -2,13 +2,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import App from './App';
+import FileDropzone from './FileDropzone';
 
-describe('<App />', () => {
+describe('<FileDropzone />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = shallow(<FileDropzone onDrop={() => {}} />);
   });
 
   it('renders correctly', () => {
