@@ -2,7 +2,6 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import createRouterContext from 'react-router-test-context';
 import configureStore from 'redux-mock-store';
 import Tagging from './Tagging';
 import TaggingForm from './TaggingForm';
@@ -11,27 +10,38 @@ import ImageFactory from '../../factories/ImageFactory';
 import emptyState from '../../state/emptyState';
 
 const mockStore = configureStore();
-const initialState = { ...emptyState, image: ImageFactory.createStaticDummyImage() };
 
 describe('<Tagging />', () => {
   let wrapper;
   let store;
+  let state = emptyState;
 
   beforeEach(() => {
-    store = mockStore(initialState);
-    const context = createRouterContext();
-    wrapper = shallow(<Tagging store={store} />, { context }).dive();
+    store = mockStore(() => state);
+    wrapper = shallow(<Tagging store={store} />).dive();
   });
 
-  it('renders correctly', () => {
-    expect(toJson(wrapper)).toMatchSnapshot();
+  describe('no image is set', () => {
+    it('should render nothing', () => {
+      expect(wrapper.html()).toEqual(null);
+    });
   });
 
-  it('renders a TaggingForm component', () => {
-    expect(wrapper.find(TaggingForm).exists()).toBeTruthy();
-  });
+  describe('image is set', () => {
+    beforeAll(() => {
+      state = { ...emptyState, image: ImageFactory.createStaticDummyImage() };
+    });
 
-  it('renders a TaggingImagePreview component', () => {
-    expect(wrapper.find(TaggingImagePreview).exists()).toBeTruthy();
+    it('renders correctly', () => {
+      expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('renders a TaggingForm component', () => {
+      expect(wrapper.find(TaggingForm).exists()).toBeTruthy();
+    });
+
+    it('renders a TaggingImagePreview component', () => {
+      expect(wrapper.find(TaggingImagePreview).exists()).toBeTruthy();
+    });
   });
 });

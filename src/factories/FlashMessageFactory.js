@@ -1,5 +1,4 @@
 // @flow
-import _ from 'lodash';
 import faker from 'faker';
 
 class FlashMessageFactory {
