@@ -14,7 +14,7 @@ type State = {
   endReached: boolean,
 };
 
-const limit = 10;
+export const limit = 12;
 
 class ImagesIndex extends Component<Props, State> {
   constructor(props: Props) {

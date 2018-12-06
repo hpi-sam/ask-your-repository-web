@@ -2,7 +2,7 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import ImagesIndex from './ImagesIndex';
+import ImagesIndex, { limit } from './ImagesIndex';
 import ImageService from '../../services/ImageService';
 import ImageFactory from '../../factories/ImageFactory';
 
@@ -34,7 +34,7 @@ describe('<ImagesIndex />', () => {
     });
 
     it('should increase the offset by the limit', async () => {
-      expect(wrapper.state().offset).toEqual(10);
+      expect(wrapper.state().offset).toEqual(limit);
     });
   });
 
