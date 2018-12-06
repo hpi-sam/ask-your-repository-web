@@ -1,11 +1,16 @@
 // @flow
 import { applyMiddleware, createStore } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
 import { middleware as flashMiddleware } from 'redux-flash';
 import thunk from 'redux-thunk';
-import rootReducer from '../state/rootReducer';
+import createRootReducer from '../state/rootReducer';
 
-function configureStore() {
-  let middleware = [thunk];
+function configureStore(history: any) {
+  let middleware = [
+    thunk,
+    flashMiddleware(),
+    routerMiddleware(history),
+  ];
 
   if (process.env.NODE_ENV !== 'production') {
     const { logger } = require('redux-logger');
@@ -13,8 +18,8 @@ function configureStore() {
   }
 
   return createStore(
-    rootReducer,
-    applyMiddleware(...middleware, flashMiddleware()),
+    createRootReducer(history),
+    applyMiddleware(...middleware),
   );
 }
 

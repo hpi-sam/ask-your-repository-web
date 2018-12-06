@@ -2,20 +2,22 @@
 import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import configureStore from '../config/configureStore';
 import App from './App';
 
-const store: any = configureStore();
+const history = createBrowserHistory();
+const store: any = configureStore(history);
 
 function Root() {
   return (
     <Provider store={store}>
-      <Router>
+      <ConnectedRouter history={history}>
         <Fragment>
           <Route path="/" component={App} />
         </Fragment>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   );
 }

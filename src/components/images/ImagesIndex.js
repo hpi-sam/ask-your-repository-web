@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import Gallery from './Gallery';
 import ImageService from '../../services/ImageService';
+import Search from '../search/Search';
 import type { Image } from '../../models/Image';
 import './ImagesIndex.scss';
 
@@ -65,6 +66,7 @@ class ImagesIndex extends Component<Props, State> {
 
     return (
       <div className="ImagesIndex">
+        <Search />
         <InfiniteScroll
           initialLoad={false}
           hasMore={!this.state.endReached}

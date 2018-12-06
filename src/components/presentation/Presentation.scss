@@ -1,0 +1,50 @@
+.Presentation {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 10000px;
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__item {
+    width: 80%;
+    background-color: gray;
+    overflow: hidden;
+    transition: all .2s;
+
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 20;
+    position: absolute;
+
+
+    @for $i from 1 through 4 {
+      &--left--#{$i}, &--right--#{$i} {
+        filter: brightness(calc(60% - 10% * #{$i}));
+        z-index: calc(10 - #{$i});
+      }
+
+      &--left--#{$i} {
+        left: calc(-30% - (70px * #{$i - 1}));
+        transform:
+          translateY(-50%)
+          rotate3d(0, 1, 0, calc(80deg - (1deg * #{$i - 1})));
+      }
+
+      &--right--#{$i} {
+        left: calc(50% + (70px * #{$i - 1}));
+        transform:
+          translateY(-50%)
+          rotate3d(0, 1, 0, calc(-80deg - (1deg * #{$i - 1})));
+      }
+    }
+  }
+}

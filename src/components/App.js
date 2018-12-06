@@ -5,6 +5,7 @@ import FlashMessages from './utility/flash/FlashMessages';
 import ImagesIndex from './images/ImagesIndex';
 import FileUpload from './upload/FileUpload';
 import Tagging from './tagging/Tagging';
+import Presentation from './presentation/Presentation';
 import './App.scss';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/upload" component={FileUpload} />
         <Route path="/tagging" component={Tagging} />
         <Route path="/images" component={ImagesIndex} />
+        <Route path="/presentation" component={Presentation} />
       </Switch>
     </div>
   );
