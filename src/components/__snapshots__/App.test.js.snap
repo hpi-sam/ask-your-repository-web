@@ -14,7 +14,7 @@ exports[`<App /> renders correctly 1`] = `
         exact={true}
         from="/"
         push={false}
-        to="/upload"
+        to="/images"
       />
       <Route
         component={[Function]}
@@ -27,6 +27,10 @@ exports[`<App /> renders correctly 1`] = `
       <Route
         component={[Function]}
         path="/images"
+      />
+      <Route
+        component={[Function]}
+        path="/presentation"
       />
     </Switch>
   </div>
