@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search /> renders correctly 1`] = `
+<form
+  className="Search"
+  onSubmit={[Function]}
+>
+  <button
+    className="Search__preview"
+    onClick={[Function]}
+    type="button"
+  >
+    <MdSearch
+      className="Search__preview__icon"
+    />
+    Suchen
+  </button>
+</form>
+`;
