@@ -10,6 +10,19 @@
   height: var(--navbar-height);
   background-color: rgb(24, 24, 24);
 
+  &__left, &__right {
+    display: flex;
+    flex: 1;
+  }
+
+  &__search {
+    align-self: center;
+  }
+
+  &__right &__item {
+    margin-left: auto;
+  }
+
   &__item {
     display: flex;
     align-items: center;
@@ -22,7 +35,6 @@
     }
 
     &--upload {
-      margin-left: auto;
       background-color: var(--red);
     }
 

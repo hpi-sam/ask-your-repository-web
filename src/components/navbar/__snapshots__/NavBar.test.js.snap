@@ -4,27 +4,40 @@ exports[`<NavBar /> renders correctly 1`] = `
 <div
   className="NavBar"
 >
-  <NavLink
-    activeClassName="NavBar__item--active"
-    aria-current="page"
-    className="NavBar__item"
-    to="/images"
+  <div
+    className="NavBar__left"
   >
-    <MdImage
-      className="NavBar__item__icon"
-    />
-    Gallery
-  </NavLink>
-  <NavLink
-    activeClassName="NavBar__item--active"
-    aria-current="page"
-    className="NavBar__item NavBar__item--upload"
-    to="/upload"
+    <NavLink
+      activeClassName="NavBar__item--active"
+      aria-current="page"
+      className="NavBar__item"
+      to="/images"
+    >
+      <MdImage
+        className="NavBar__item__icon"
+      />
+      Gallery
+    </NavLink>
+  </div>
+  <div
+    className="NavBar__search"
   >
-    <MdCloudUpload
-      className="NavBar__item__icon"
-    />
-    Upload
-  </NavLink>
+    <Connect(Search) />
+  </div>
+  <div
+    className="NavBar__right"
+  >
+    <NavLink
+      activeClassName="NavBar__item--active"
+      aria-current="page"
+      className="NavBar__item NavBar__item--upload"
+      to="/upload"
+    >
+      <MdCloudUpload
+        className="NavBar__item__icon"
+      />
+      Upload
+    </NavLink>
+  </div>
 </div>
 `;

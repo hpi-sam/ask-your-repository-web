@@ -3,8 +3,9 @@ import api from '../config/api';
 import type { Image } from '../models/Image';
 
 type ListParams = {
-  offset: number,
-  limit: number,
+  offset?: number,
+  limit?: number,
+  search?: string,
 };
 
 class ImageService {
