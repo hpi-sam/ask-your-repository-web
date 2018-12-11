@@ -7,11 +7,13 @@ import { reducer as flashReducer } from 'redux-flash';
 import type { AppState } from './AppState';
 import type { Action } from './Action';
 import image from './image/image.reducer';
+import presentation from './presentation/presentation.reducer';
 
 function createRootReducer(history: History): CombinedReducer<AppState, Action> {
   return combineReducers({
     router: connectRouter(history),
     image,
+    presentation,
     flash: flashReducer,
   });
 }
