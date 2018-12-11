@@ -6,6 +6,7 @@ import ImagesIndex from './images/ImagesIndex';
 import FileUpload from './upload/FileUpload';
 import Tagging from './tagging/Tagging';
 import NavBar from './navbar/NavBar';
+import Presentation from './presentation/Presentation';
 import './App.scss';
 
 function App() {
@@ -15,10 +16,11 @@ function App() {
       <NavBar />
       <div className="App__inner">
         <Switch>
-          <Redirect exact from="/" to="/upload" />
+          <Redirect exact from="/" to="/images" />
           <Route path="/upload" component={FileUpload} />
           <Route path="/tagging" component={Tagging} />
           <Route path="/images" component={ImagesIndex} />
+          <Route path="/presentation" component={Presentation} />
         </Switch>
       </div>
     </div>
