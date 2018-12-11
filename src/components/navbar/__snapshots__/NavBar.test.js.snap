@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> renders correctly 1`] = `
+<div
+  className="NavBar"
+>
+  <NavLink
+    activeClassName="NavBar__item--active"
+    aria-current="page"
+    className="NavBar__item"
+    to="/images"
+  >
+    <MdImage
+      className="NavBar__item__icon"
+    />
+    Gallery
+  </NavLink>
+  <NavLink
+    activeClassName="NavBar__item--active"
+    aria-current="page"
+    className="NavBar__item NavBar__item--upload"
+    to="/upload"
+  >
+    <MdCloudUpload
+      className="NavBar__item__icon"
+    />
+    Upload
+  </NavLink>
+</div>
+`;

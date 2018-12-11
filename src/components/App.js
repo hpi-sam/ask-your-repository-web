@@ -5,18 +5,22 @@ import FlashMessages from './utility/flash/FlashMessages';
 import ImagesIndex from './images/ImagesIndex';
 import FileUpload from './upload/FileUpload';
 import Tagging from './tagging/Tagging';
+import NavBar from './navbar/NavBar';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
       <FlashMessages />
-      <Switch>
-        <Redirect exact from="/" to="/upload" />
-        <Route path="/upload" component={FileUpload} />
-        <Route path="/tagging" component={Tagging} />
-        <Route path="/images" component={ImagesIndex} />
-      </Switch>
+      <NavBar />
+      <div className="App__inner">
+        <Switch>
+          <Redirect exact from="/" to="/upload" />
+          <Route path="/upload" component={FileUpload} />
+          <Route path="/tagging" component={Tagging} />
+          <Route path="/images" component={ImagesIndex} />
+        </Switch>
+      </div>
     </div>
   );
 }

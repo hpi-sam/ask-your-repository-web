@@ -1,8 +1,14 @@
 .App {
-  max-width: 1200px;
   height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+
+  &__inner {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: var(--navbar-height);
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
 }

@@ -5,25 +5,30 @@ exports[`<App /> renders correctly 1`] = `
   className="App"
 >
   <Connect(FlashMessages) />
-  <Switch>
-    <Redirect
-      exact={true}
-      from="/"
-      push={false}
-      to="/upload"
-    />
-    <Route
-      component={[Function]}
-      path="/upload"
-    />
-    <Route
-      component={[Function]}
-      path="/tagging"
-    />
-    <Route
-      component={[Function]}
-      path="/images"
-    />
-  </Switch>
+  <NavBar />
+  <div
+    className="App__inner"
+  >
+    <Switch>
+      <Redirect
+        exact={true}
+        from="/"
+        push={false}
+        to="/upload"
+      />
+      <Route
+        component={[Function]}
+        path="/upload"
+      />
+      <Route
+        component={[Function]}
+        path="/tagging"
+      />
+      <Route
+        component={[Function]}
+        path="/images"
+      />
+    </Switch>
+  </div>
 </div>
 `;
