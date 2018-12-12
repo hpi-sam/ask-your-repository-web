@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
 import { MdSearch } from 'react-icons/md';
 import ImageService from '../../services/ImageService';
 import { startPresentation } from '../../state/presentation/presentation.actionCreators';
@@ -42,7 +41,6 @@ class Search extends Component<Props, State> {
     const images = await ImageService.list({ search });
 
     this.props.dispatch(startPresentation(images.slice(0, 4)));
-    this.props.dispatch(push('/presentation'));
   };
 
   render() {

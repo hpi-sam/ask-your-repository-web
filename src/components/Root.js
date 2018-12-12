@@ -5,10 +5,12 @@ import { Route } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import configureStore from '../config/configureStore';
+import configureSocket from '../config/configureSocket';
 import App from './App';
 
 const history = createBrowserHistory();
 const store: any = configureStore(history);
+configureSocket(store);
 
 function Root() {
   return (
