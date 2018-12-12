@@ -5,12 +5,12 @@
   &__preview, &__input {
     width: 330px;
     height: 55px;
-    border-radius: 10px;
+    //border-radius: 10px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(38, 124, 221, 0.98);
+    background-color: var(--accent-color-blue);
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, .2);
   }
 

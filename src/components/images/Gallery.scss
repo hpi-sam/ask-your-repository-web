@@ -1,3 +1,5 @@
+@import '../../style/colors.scss';
+
 .Gallery {
   display: grid;
   grid-template-columns: repeat(var(--grid-size), 1fr);
@@ -24,7 +26,7 @@
     border-radius: .4em;
     margin: .5em;
     padding: .5em 1em;
-    background: #00aabb;
+    background: var(--accent-color-blue);
 
     &--overflow {
       background: rgba(255, 255, 255, .4);

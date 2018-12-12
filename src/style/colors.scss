@@ -2,7 +2,20 @@
   --green: rgb(45, 194, 26);
   --green-darker: rgb(42, 153, 28);
   --red: rgb(194, 26, 26);
+  --accent-color-blue: #00aabb;
+  --accent-color-dark-blue: #003338;
+  --navbar-background-color: rgb(24, 24, 24);
 
   --success-color: var(--green);
   --error-color: var(--red);
+
+  --main-gradient-color-1: rgba(0, 0, 0, .9);
+  --main-gradient-color-2: rgba(0, 0, 0, .8);
+  --main-gradient: linear-gradient(
+    135deg,
+    var(--main-gradient-color-1) 0%,
+    var(--main-gradient-color-2) 100%
+  );
+
+  --main-text-color: white;
 }

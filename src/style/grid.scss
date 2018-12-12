@@ -4,6 +4,7 @@
     --grid-size: 3;
     --img-size: calc(var(--max-width)/var(--grid-size));
     --grid-gap: 20px;
+    --padding-sides: 50px;
   }
 
   @media (min-width: 1025px) and (max-width: 1280px) {
@@ -11,6 +12,7 @@
     --grid-size: 3;
     --img-size: calc(var(--max-width)/var(--grid-size));
     --grid-gap: 20px;
+    --padding-sides: 50px;
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -18,6 +20,7 @@
     --grid-size: 2;
     --img-size: calc(var(--max-width)/var(--grid-size));
     --grid-gap: 20px;
+    --padding-sides: 50px;
   }
 
   @media (min-width: 330px) and (max-width: 767px) {
@@ -25,5 +28,6 @@
     --grid-size: 1;
     --img-size: calc(var(--max-width)/var(--grid-size));
     --grid-gap: 20px;
+    --padding-sides: 50px;
   }
 }
