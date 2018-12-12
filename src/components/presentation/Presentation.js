@@ -27,6 +27,12 @@ class Presentation extends Component<Props, State> {
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.presentation !== this.props.presentation) {
+      this.setState({ activeIndex: 0 });
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
