@@ -40,7 +40,11 @@ class Search extends Component<Props, State> {
     const { search } = this.state;
     const images = await ImageService.list({ search });
 
-    this.props.dispatch(startPresentation(images.slice(0, 4)));
+    const filteredImages = images
+      .filter(image => image.score > 0)
+      .slice(0, 4);
+
+    this.props.dispatch(startPresentation(filteredImages));
   };
 
   render() {
