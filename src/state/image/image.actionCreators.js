@@ -2,12 +2,12 @@
 import * as actions from './image.actions';
 import * as actionTypes from './image.actionTypes';
 import type { Tag } from '../../models/Tag';
+import type { Image } from '../../models/Image';
 
-export function setImage(id: number, url: string): actions.SetImageAction {
+export function setImage(image: Image): actions.SetImageAction {
   return {
     type: actionTypes.SET_IMAGE,
-    id,
-    url,
+    image,
   };
 }
 

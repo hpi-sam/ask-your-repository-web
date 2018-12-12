@@ -8,11 +8,7 @@ export type ImageState = ?Image;
 function imageReducer(state: ImageState = null, action: Action) {
   switch (action.type) {
     case actionTypes.SET_IMAGE:
-      return {
-        id: action.id,
-        url: action.url,
-        tags: [],
-      };
+      return action.image;
     case actionTypes.ADD_TAG:
       return state && {
         ...state,

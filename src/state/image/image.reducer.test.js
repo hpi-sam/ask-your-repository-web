@@ -17,8 +17,7 @@ describe('image reducer', () => {
   it('should handle SET_IMAGE', () => {
     const action: actions.SetImageAction = {
       type: actionTypes.SET_IMAGE,
-      id: image.id,
-      url: image.url,
+      image,
     };
 
     expect(reducer(undefined, action)).toEqual(image);

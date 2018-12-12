@@ -12,6 +12,7 @@ exports[`<Tagging /> image is set renders correctly 1`] = `
       image={
         Object {
           "id": 3826,
+          "score": 1,
           "tags": Array [
             "nemo-dolorum-iusto",
             "aut-quia-atque",

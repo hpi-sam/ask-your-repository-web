@@ -1,11 +1,11 @@
 // @flow
 import * as actionTypes from './image.actionTypes';
 import type { Tag } from '../../models/Tag';
+import type { Image } from '../../models/Image';
 
 export type SetImageAction = {
   type: typeof actionTypes.SET_IMAGE,
-  id: number,
-  url: string,
+  image: Image,
 };
 
 export type AddTagAction = {

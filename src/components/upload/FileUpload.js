@@ -45,7 +45,7 @@ class FileUpload extends Component<Props, State> {
     try {
       const { data } = await fetchUploadImage(formData);
       const imageDataUri = await blobToDataURL(image);
-      dispatch(setImage(data.id, imageDataUri));
+      dispatch(setImage({ ...data, tags: [], url: imageDataUri }));
       this.setState({ hasUploaded: true });
     } catch (error) {
       const message = error.response

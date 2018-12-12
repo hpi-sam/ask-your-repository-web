@@ -1,11 +1,11 @@
 .FlashMessage {
   --space-to-top: 20px;
 
-  z-index: 100;
+  z-index: 200;
   position: absolute;
   top: 0;
-  left: auto;
-  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 20px 30px;
   text-align: center;
   font-weight: bold;

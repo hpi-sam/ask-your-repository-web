@@ -5,4 +5,5 @@ export type Image = {
   id: number,
   url: string,
   tags: Array<Tag>,
+  score: number,
 };
