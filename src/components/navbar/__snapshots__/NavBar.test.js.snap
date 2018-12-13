@@ -30,7 +30,7 @@ exports[`<NavBar /> renders correctly 1`] = `
     <NavLink
       activeClassName="NavBar__item--active"
       aria-current="page"
-      className="NavBar__item NavBar__item--upload"
+      className="NavBar__item"
       to="/upload"
     >
       <MdCloudUpload
