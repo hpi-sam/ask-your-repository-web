@@ -1,14 +1,16 @@
+@import '../../style/colors.scss';
+
 .NavBar {
   top: 0;
   left: 0;
   right: 0;
   position: fixed;
   z-index: 100;
-  padding: 0 20px;
+  padding: 0 var(--padding-sides) 0 var(--padding-sides);
 
   display: flex;
   height: var(--navbar-height);
-  background-color: rgb(24, 24, 24);
+  background-color: var(--navbar-background-color);
 
   &__left, &__right {
     display: flex;
@@ -29,18 +31,15 @@
     padding: 0 30px;
     font-weight: bold;
     color: white;
+    background-color: var(--accent-color-blue);
 
-    &:not(&--active):hover {
-      background-color: rgba(0, 0, 0, .2);
-    }
-
-    &--upload {
-      background-color: var(--red);
+    &:hover {
+      background-color: var(--accent-color-dark-blue);
     }
 
     &--active {
-      color: black;
-      background-color: white;
+      color: white;
+      background-color: var(--accent-color-blue);
     }
 
     &__icon {

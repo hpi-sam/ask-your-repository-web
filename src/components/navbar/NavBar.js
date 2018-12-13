@@ -24,7 +24,7 @@ function NavBar() {
       <div className="NavBar__right">
         <NavLink
           to="/upload"
-          className="NavBar__item NavBar__item--upload"
+          className="NavBar__item"
           activeClassName="NavBar__item--active"
         >
           <MdCloudUpload className="NavBar__item__icon" />
