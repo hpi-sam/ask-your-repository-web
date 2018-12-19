@@ -15,7 +15,9 @@ function NavBar() {
           activeClassName="NavBar__item--active"
         >
           <MdImage className="NavBar__item__icon" />
-          Gallery
+          <span className="NavBar__item__text">
+            Gallery
+          </span>
         </NavLink>
       </div>
       <div className="NavBar__search">
@@ -28,7 +30,9 @@ function NavBar() {
           activeClassName="NavBar__item--active"
         >
           <MdCloudUpload className="NavBar__item__icon" />
-          Upload
+          <span className="NavBar__item__text">
+            Upload
+          </span>
         </NavLink>
       </div>
     </div>

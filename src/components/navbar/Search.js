@@ -1,8 +1,10 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { Component, Fragment } from 'react';
+import onClickOutside from 'react-onclickoutside';
 import { connect } from 'react-redux';
-import { MdSearch } from 'react-icons/md';
+import { MdSearch, MdClose } from 'react-icons/md';
+import classNames from 'classnames';
 import ImageService from '../../services/ImageService';
 import { startPresentation } from '../../state/presentation/presentation.actionCreators';
 import './Search.scss';
@@ -26,8 +28,16 @@ class Search extends Component<Props, State> {
     };
   }
 
+  handleClickOutside = () => {
+    this.setState({ isSelected: false });
+  };
+
   handleSelect = () => {
     this.setState({ isSelected: true });
+  };
+
+  handleClose = () => {
+    this.setState({ isSelected: false });
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -49,12 +59,15 @@ class Search extends Component<Props, State> {
 
   render() {
     const { isSelected, search } = this.state;
+    const className = classNames('Search', {
+      'Search--active': isSelected,
+    });
 
     return (
-      <form className="Search" onSubmit={this.handleSubmit}>
+      <form className={className} onSubmit={this.handleSubmit}>
         {isSelected ? (
           <Fragment>
-            <MdSearch className="Search__input__icon" />
+            <MdSearch className="Search__input__icon Search__input__icon--left" />
             <input
               autoFocus
               type="text"
@@ -62,6 +75,13 @@ class Search extends Component<Props, State> {
               className="Search__input"
               onChange={this.handleChange}
             />
+            <button
+              type="button"
+              onClick={this.handleClose}
+              className="Search__input__close"
+            >
+              <MdClose />
+            </button>
           </Fragment>
         ) : (
           <button
@@ -70,7 +90,9 @@ class Search extends Component<Props, State> {
             className="Search__preview"
           >
             <MdSearch className="Search__preview__icon" />
-            Suchen
+            <span className="Search__preview__text">
+              Suchen
+            </span>
           </button>
         )}
       </form>
@@ -78,4 +100,4 @@ class Search extends Component<Props, State> {
   }
 }
 
-export default connect()(Search);
+export default connect()(onClickOutside(Search));

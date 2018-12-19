@@ -16,13 +16,17 @@ exports[`<NavBar /> renders correctly 1`] = `
       <MdImage
         className="NavBar__item__icon"
       />
-      Gallery
+      <span
+        className="NavBar__item__text"
+      >
+        Gallery
+      </span>
     </NavLink>
   </div>
   <div
     className="NavBar__search"
   >
-    <Connect(Search) />
+    <Connect(OnClickOutside(Search)) />
   </div>
   <div
     className="NavBar__right"
@@ -36,7 +40,11 @@ exports[`<NavBar /> renders correctly 1`] = `
       <MdCloudUpload
         className="NavBar__item__icon"
       />
-      Upload
+      <span
+        className="NavBar__item__text"
+      >
+        Upload
+      </span>
     </NavLink>
   </div>
 </div>

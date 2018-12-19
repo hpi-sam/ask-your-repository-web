@@ -1,19 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Search /> renders correctly 1`] = `
-<form
-  className="Search"
-  onSubmit={[Function]}
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <button
-    className="Search__preview"
-    onClick={[Function]}
-    type="button"
-  >
-    <MdSearch
-      className="Search__preview__icon"
-    />
-    Suchen
-  </button>
-</form>
+  <Connect(OnClickOutside(Search))>
+    <OnClickOutside(Search)
+      dispatch={[Function]}
+      eventTypes={
+        Array [
+          "mousedown",
+          "touchstart",
+        ]
+      }
+      excludeScrollbar={false}
+      outsideClickIgnoreClass="ignore-react-onclickoutside"
+      preventDefault={false}
+      stopPropagation={false}
+    >
+      <Search
+        disableOnClickOutside={[Function]}
+        dispatch={[Function]}
+        enableOnClickOutside={[Function]}
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
+      >
+        <form
+          className="Search"
+          onSubmit={[Function]}
+        >
+          <button
+            className="Search__preview"
+            onClick={[Function]}
+            type="button"
+          >
+            <MdSearch
+              className="Search__preview__icon"
+            >
+              <IconBase
+                attr={
+                  Object {
+                    "viewBox": "0 0 24 24",
+                  }
+                }
+                className="Search__preview__icon"
+              >
+                <svg
+                  className="Search__preview__icon"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  strokeWidth="0"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
+                  viewBox="0 0 24 24"
+                  width="1em"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    key="0"
+                  />
+                </svg>
+              </IconBase>
+            </MdSearch>
+            <span
+              className="Search__preview__text"
+            >
+              Suchen
+            </span>
+          </button>
+        </form>
+      </Search>
+    </OnClickOutside(Search)>
+  </Connect(OnClickOutside(Search))>
+</Provider>
 `;

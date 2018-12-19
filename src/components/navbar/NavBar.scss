@@ -1,4 +1,4 @@
-@import '../../style/colors.scss';
+@import '../../style/breakpoints.scss';
 
 .NavBar {
   top: 0;
@@ -6,24 +6,22 @@
   right: 0;
   position: fixed;
   z-index: 100;
-  padding: 0 var(--padding-sides) 0 var(--padding-sides);
 
   display: flex;
   height: var(--navbar-height);
   background-color: var(--navbar-background-color);
+
+  @media (min-width: $xs-to-sm) {
+    padding: 0 var(--padding-sides);
+  }
 
   &__left, &__right {
     display: flex;
     flex: 1;
   }
 
-  &__search {
-    align-self: center;
-  }
-
-  &__right &__item {
-    margin-left: auto;
-  }
+  &__search { align-self: center; }
+  &__right &__item { margin-left: auto; }
 
   &__item {
     display: flex;
@@ -31,20 +29,27 @@
     padding: 0 30px;
     font-weight: bold;
     color: white;
-    background-color: var(--accent-color-blue);
 
     &:hover {
       background-color: var(--accent-color-dark-blue);
     }
 
     &--active {
-      color: white;
-      background-color: var(--accent-color-blue);
+      background-color: #111;
+      color: var(--accent-color-blue);
     }
 
     &__icon {
       font-size: 1.5em;
-      margin-right: .8rem;
+    }
+
+    &__text {
+      display: none;
+      margin-left: .8rem;
+
+      @media (min-width: $xs-to-sm) {
+        display: inline;
+      }
     }
   }
 }

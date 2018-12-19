@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import emptyState from '../../state/emptyState';
 import Search from './Search';
@@ -15,7 +16,11 @@ describe('<Search />', () => {
 
   beforeEach(() => {
     store = mockStore(emptyState);
-    wrapper = shallow(<Search store={store} />).dive();
+    wrapper = mount((
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    ));
   });
 
   it('renders correctly', () => {
