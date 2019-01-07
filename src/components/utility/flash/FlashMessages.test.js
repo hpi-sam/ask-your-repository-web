@@ -3,7 +3,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import emptyState from '../../../state/emptyState';
+import initialState from '../../../state/initialState';
 import FlashMessageFactory from '../../../factories/FlashMessageFactory';
 import FlashSuccessMessage from './FlashSuccessMessage';
 import FlashErrorMessage from './FlashErrorMessage';
@@ -19,7 +19,7 @@ describe('<FlashMessages />', () => {
 
   beforeEach(() => {
     state = {
-      ...emptyState,
+      ...initialState,
       flash: { messages: flashMessages },
     };
     store = mockStore(() => state);

@@ -2,7 +2,7 @@
 
 exports[`<NavBar /> renders correctly 1`] = `
 <div
-  className="NavBar"
+  className="NavBar NavBar--with-sidebar"
 >
   <div
     className="NavBar__left"

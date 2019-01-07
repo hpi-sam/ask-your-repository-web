@@ -4,8 +4,9 @@ import type { Action } from '../Action';
 import type { Image } from '../../models/Image';
 
 export type ImageState = ?Image;
+export const initialState = null;
 
-function imageReducer(state: ImageState = null, action: Action) {
+function imageReducer(state: ImageState = initialState, action: Action) {
   switch (action.type) {
     case actionTypes.SET_IMAGE:
       return action.image;

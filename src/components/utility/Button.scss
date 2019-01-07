@@ -12,7 +12,7 @@
 
 .Button {
   font: inherit;
-  display: inline-block;
+  display: inline-flex;
   cursor: pointer;
 
   padding: var(--button-padding-vertical) var(--button-padding-horizontal);
@@ -34,6 +34,16 @@
 
     &:hover {
       --button-bg-color: var(--green-darker);
+    }
+  }
+
+  &--close {
+    --button-bg-color: var(--gray);
+    --button-text-color: #666;
+    --button-border-width: 0;
+
+    &:hover {
+      --button-bg-color: var(--gray-darker);
     }
   }
 }
