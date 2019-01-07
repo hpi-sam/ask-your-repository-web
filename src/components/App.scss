@@ -1,15 +1,20 @@
-@import '../style/grid.scss';
+@import '../style/breakpoints.scss';
 
 .App {
   height: 100%;
 
   &__inner {
     height: 100%;
-    margin: 0 var(--padding-sides) 0px var(--padding-sides);
+    padding: 0 var(--padding-sides) 0px var(--padding-sides);
     padding-top: var(--navbar-height);
 
     display: flex;
     align-items: flex-start;
     justify-content: center;
+
+    @media (min-width: $xs-to-sm) {
+      transition: margin-left var(--sidebar-animation-duration);
+      &--with-sidebar { margin-left: var(--team-sidebar-width); }
+    }
   }
 }

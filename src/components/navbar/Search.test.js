@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import emptyState from '../../state/emptyState';
+import initialState from '../../state/initialState';
 import Search from './Search';
 
 const mockStore = configureStore();
@@ -15,7 +15,7 @@ describe('<Search />', () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore(emptyState);
+    store = mockStore(initialState);
     wrapper = mount((
       <Provider store={store}>
         <Search />

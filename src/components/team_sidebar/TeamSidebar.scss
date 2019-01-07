@@ -1,0 +1,175 @@
+@import '../../style/breakpoints.scss';
+
+.TeamSidebar {
+  --item-padding: 12px;
+  --item-border-radius: 5px;
+  --bg-color: #111;
+
+  position: fixed;
+  z-index: 999;
+  width: var(--team-sidebar-width);
+  height: 100%;
+  background-color: var(--bg-color);
+  transition: width var(--sidebar-animation-duration);
+
+  &--collapsed {
+    width: 0;
+    overflow: hidden;
+  }
+
+  &__close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    background-color: transparent;
+    color: rgba(255, 255, 255, .5);
+    transition: color .2s, background-color .2s;
+    border-radius: 2px;
+
+    &:hover {
+      color: white;
+    }
+
+    &:active, &:focus {
+      outline: 0;
+      color: white;
+      background-color: #222;
+    }
+  }
+
+  &__title {
+    width: var(--team-sidebar-width);
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0 calc(var(--item-padding) + 3px);
+    height: var(--navbar-height);
+
+    &__icon {
+      margin-right: .5em;
+    }
+  }
+
+  &__loading {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item {
+    @keyframes item-fade-in {
+      0% { opacity: 0; }
+      100% { opacity: .5; }
+    }
+
+    animation: item-fade-in .5s;
+    width: var(--team-sidebar-width);
+    padding: var(--item-padding);
+    width: 100%;
+    margin-bottom: var(--sidebar-padding);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: opacity .1s, background-color .1s;
+    outline: 0;
+    opacity: .5;
+
+    &:hover, &:active, &:focus {
+      background-color: #181818;
+      opacity: 1;
+    }
+
+    &--active {
+      opacity: 1;
+
+      .TeamSidebar__item {
+        &__initials {
+          border-color: rgba(255, 255, 255, .3);
+        }
+      }
+    }
+
+    &__initials {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background-color: #333;
+      font-weight: bold;
+      border-radius: var(--item-border-radius);
+      border: 3px solid transparent;
+      transition: border-color .1s;
+    }
+
+    &__body {
+      font-size: .9em;
+      flex: 1;
+      text-align: left;
+      color: #ddd;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    &--add {
+      font-size: 2em;
+
+      &:hover {
+        border-color: transparent;
+      }
+    }
+  }
+
+  &__add-form {
+    --height: 44px;
+    padding: 12px;
+    animation: fade-in .5s;
+
+    &__inner {
+      display: flex;
+      height: var(--height);
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    &__input {
+      flex: 1;
+      width: 100%;
+      padding: 0 12px;
+      height: 100%;
+      color: white;
+      background-color: #333;
+      outline: none;
+      font-size: .9em;
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0;
+      width: var(--height);
+      height: var(--height);
+      border-radius: 0;
+      background-color: #222;
+      color: rgba(255, 255, 255, .3);
+      border-left: 1px solid var(--bg-color);
+      transition: color .2s, background-color .2s;
+      outline: 0;
+
+      &:hover, &:active, &:focus {
+        color: white;
+        background-color: #161616;
+      }
+    }
+  }
+}

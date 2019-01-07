@@ -1,14 +1,37 @@
 // @flow
 import React from 'react';
+import { connect } from 'react-redux';
+import initials from 'initials';
+import classNames from 'classnames';
 import { MdCloudUpload, MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
+import type { Team } from '../../models/Team';
+import type { AppState } from '../../state/AppState';
 import './NavBar.scss';
+import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
 
-function NavBar() {
+type Props = {
+  activeTeam: ?Team,
+  isTeamSidebarOpen: boolean,
+  onTeamClick: () => void,
+};
+
+function NavBar(props: Props) {
+  const { isTeamSidebarOpen, onTeamClick, activeTeam } = props;
+
   return (
-    <div className="NavBar">
+    <div className={classNames('NavBar', { 'NavBar--with-sidebar': isTeamSidebarOpen })}>
       <div className="NavBar__left">
+        {!isTeamSidebarOpen && activeTeam && (
+          <button
+            type="button"
+            onClick={onTeamClick}
+            className="NavBar__team"
+          >
+            {initials(activeTeam.name)}
+          </button>
+        )}
         <NavLink
           to="/images"
           className="NavBar__item"
@@ -39,4 +62,13 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+const mapDispatchToProps = (dispatch: Function) => ({
+  onTeamClick: () => { dispatch(openTeamSidebar()); },
+});
+
+const mapStateToProps = (state: AppState) => ({
+  activeTeam: state.activeTeam,
+  isTeamSidebarOpen: state.teamSidebar.isOpen,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

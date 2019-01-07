@@ -7,7 +7,7 @@ import TaggingForm from './TaggingForm';
 import api from '../../config/api';
 import ImageFactory from '../../factories/ImageFactory';
 import SaveButton from '../utility/SaveButton';
-import emptyState from '../../state/emptyState';
+import initialState from '../../state/initialState';
 import type { AppState } from '../../state/AppState';
 
 const mockStore = configureStore();
@@ -16,7 +16,7 @@ jest.mock('../../config/api');
 
 describe('<TaggingForm />', () => {
   const image = ImageFactory.createDummyImage();
-  const initialState: AppState = { ...emptyState, image };
+  const state: AppState = { ...initialState, image };
 
   let store;
   let wrapper;
@@ -26,7 +26,7 @@ describe('<TaggingForm />', () => {
   });
 
   beforeEach(() => {
-    store = mockStore(initialState);
+    store = mockStore(state);
     wrapper = shallow(<TaggingForm store={store} />).dive();
   });
 

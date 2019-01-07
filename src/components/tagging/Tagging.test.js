@@ -7,14 +7,14 @@ import Tagging from './Tagging';
 import TaggingForm from './TaggingForm';
 import TaggingImagePreview from './TaggingImagePreview';
 import ImageFactory from '../../factories/ImageFactory';
-import emptyState from '../../state/emptyState';
+import initialState from '../../state/initialState';
 
 const mockStore = configureStore();
 
 describe('<Tagging />', () => {
   let wrapper;
   let store;
-  let state = emptyState;
+  let state = initialState;
 
   beforeEach(() => {
     store = mockStore(() => state);
@@ -29,7 +29,7 @@ describe('<Tagging />', () => {
 
   describe('image is set', () => {
     beforeAll(() => {
-      state = { ...emptyState, image: ImageFactory.createStaticDummyImage() };
+      state = { ...initialState, image: ImageFactory.createStaticDummyImage() };
     });
 
     it('renders correctly', () => {

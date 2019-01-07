@@ -5,9 +5,10 @@ exports[`<App /> renders correctly 1`] = `
   className="App"
 >
   <Connect(FlashMessages) />
-  <NavBar />
+  <Connect(OnClickOutside(TeamSidebar)) />
+  <Connect(NavBar) />
   <div
-    className="App__inner"
+    className="App__inner App__inner--with-sidebar"
   >
     <Switch>
       <Redirect

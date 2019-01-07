@@ -1,20 +1,25 @@
 // @flow
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import initialState from '../../state/initialState';
-import NavBar from './NavBar';
+import TeamSidebar from './TeamSidebar';
 
 const mockStore = configureStore();
 
-describe('<NavBar />', () => {
+describe('<TeamSidebar />', () => {
   let wrapper;
   let store;
 
   beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = shallow(<NavBar store={store} />).dive();
+    wrapper = mount((
+      <Provider store={store}>
+        <TeamSidebar />
+      </Provider>
+    ));
   });
 
   it('renders correctly', () => {

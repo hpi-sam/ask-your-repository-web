@@ -6,7 +6,7 @@ import toJson from 'enzyme-to-json';
 import FileUpload from './FileUpload';
 import FileDropzone from './FileDropzone';
 import api from '../../config/api';
-import emptyState from '../../state/emptyState';
+import initialState from '../../state/initialState';
 
 const mockStore = configureStore();
 
@@ -24,7 +24,7 @@ describe('<FileUpload />', () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore(emptyState);
+    store = mockStore(initialState);
     wrapper = shallow(<FileUpload store={store} />).dive();
     wrapperInstance = wrapper.instance();
   });

@@ -2,10 +2,17 @@
 @import 'breakpoints';
 @import 'grid';
 @import 'colors';
+@import 'animations';
 
 :root {
   --main-font-size: 18px;
   --navbar-height: 76px;
+  --team-sidebar-width: 100%;
+  --sidebar-animation-duration: .2s;
+
+  @media (min-width: $xs-to-sm) {
+    --team-sidebar-width: 280px;
+  }
 }
 
 * {
@@ -20,8 +27,8 @@ html, body, #root {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: var(--main-gradient);
-  background-attachment: fixed;
+  font-weight: normal;
+  background-color: var(--main-bg-color);
   color: var(--main-text-color);
   font-size: var(--main-font-size);
 }

@@ -6,7 +6,7 @@ import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import TagSelector from './TagSelector';
 import ImageFactory from '../../factories/ImageFactory';
-import emptyState from '../../state/emptyState';
+import initialState from '../../state/initialState';
 import type { AppState } from '../../state/AppState';
 import * as actionTypes from '../../state/image/image.actionTypes';
 
@@ -21,7 +21,7 @@ describe('<TagSelector />', () => {
   let input;
 
   beforeEach(() => {
-    state = { ...emptyState, image };
+    state = { ...initialState, image };
     store = mockStore(() => state);
     wrapper = shallow(<TagSelector store={store} />).dive();
     input = wrapper.find('input');
