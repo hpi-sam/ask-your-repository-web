@@ -3,7 +3,7 @@ import * as actionTypes from './teamSidebar.actionTypes';
 import type { Action } from '../Action';
 
 export type TeamSidebarState = { isOpen: boolean };
-export const initialState = { isOpen: true };
+export const initialState = { isOpen: false };
 
 function teamSidebar(state: TeamSidebarState = initialState, action: Action) {
   switch (action.type) {

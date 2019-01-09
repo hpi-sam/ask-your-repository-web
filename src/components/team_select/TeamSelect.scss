@@ -1,0 +1,19 @@
+.TeamSelect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__title {
+    margin: 2em;
+    font-size: 2em;
+  }
+
+  &__list {
+
+  }
+
+  &__item {
+    background-color: transparent;
+  }
+}
