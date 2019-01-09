@@ -15,6 +15,7 @@ exports[`<Search /> renders correctly 1`] = `
 >
   <Connect(OnClickOutside(Search))>
     <OnClickOutside(Search)
+      activeTeam={null}
       dispatch={[Function]}
       eventTypes={
         Array [
@@ -28,6 +29,7 @@ exports[`<Search /> renders correctly 1`] = `
       stopPropagation={false}
     >
       <Search
+        activeTeam={null}
         disableOnClickOutside={[Function]}
         dispatch={[Function]}
         enableOnClickOutside={[Function]}

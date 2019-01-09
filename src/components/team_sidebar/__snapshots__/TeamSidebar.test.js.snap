@@ -23,7 +23,7 @@ exports[`<TeamSidebar /> renders correctly 1`] = `
         ]
       }
       excludeScrollbar={false}
-      isOpen={true}
+      isOpen={false}
       outsideClickIgnoreClass="ignore-react-onclickoutside"
       preventDefault={false}
       stopPropagation={false}
@@ -38,13 +38,13 @@ exports[`<TeamSidebar /> renders correctly 1`] = `
             "touchstart",
           ]
         }
-        isOpen={true}
+        isOpen={false}
         outsideClickIgnoreClass="ignore-react-onclickoutside"
         preventDefault={false}
         stopPropagation={false}
       >
         <div
-          className="TeamSidebar"
+          className="TeamSidebar TeamSidebar--collapsed"
         >
           <div
             className="TeamSidebar__title"

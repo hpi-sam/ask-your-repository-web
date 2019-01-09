@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 import configureStore from './configureStore';
 
 jest.mock('redux');
+jest.mock('redux-persist');
 
 const history = {};
 

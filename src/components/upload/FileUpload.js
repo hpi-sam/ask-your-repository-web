@@ -10,7 +10,6 @@ import { setImage } from '../../state/image/image.actionCreators';
 import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
 import './FileUpload.scss';
-import { active } from 'glamor';
 
 type Props = {
   dispatch: Function,
