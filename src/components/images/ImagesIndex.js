@@ -1,12 +1,17 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import Gallery from './Gallery';
 import ImageService from '../../services/ImageService';
+import type { Team } from '../../models/Team';
 import type { Image } from '../../models/Image';
+import type { AppState } from '../../state/AppState';
 import './ImagesIndex.scss';
 
-type Props = {};
+type Props = {
+  activeTeam: ?Team,
+};
 
 type State = {
   images: Array<Image>,
@@ -37,8 +42,15 @@ class ImagesIndex extends Component<Props, State> {
     const currentOffset = this.state.offset;
     this.increaseOffset();
 
+    if (!this.props.activeTeam) return;
+
     try {
-      const images = await ImageService.list({ offset: currentOffset, limit });
+      const params = {
+        teamId: this.props.activeTeam.id,
+        offset: currentOffset,
+        limit,
+      };
+      const images = await ImageService.list(params);
       this.receiveImages(images);
     } catch (error) {
       // TODO: Handle error
@@ -77,4 +89,8 @@ class ImagesIndex extends Component<Props, State> {
   }
 }
 
-export default ImagesIndex;
+const mapStateToProps = (state: AppState) => ({
+  activeTeam: state.activeTeam,
+});
+
+export default connect(mapStateToProps)(ImagesIndex);

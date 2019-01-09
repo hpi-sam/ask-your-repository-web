@@ -2,7 +2,7 @@
 import type { Tag } from './Tag';
 
 export type Image = {
-  id: number,
+  id: string,
   url: string,
   tags: Array<Tag>,
   score: number,
