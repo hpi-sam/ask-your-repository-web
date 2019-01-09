@@ -1,17 +1,20 @@
 // @flow
 import React, { Component } from 'react';
-import { blobToDataURL } from 'blob-util';
 import { connect } from 'react-redux';
 import { flashErrorMessage } from 'redux-flash';
 import { Redirect } from 'react-router-dom';
 import FileDropzone from './FileDropzone';
 import ActivityIndicator from '../utility/ActivityIndicator';
-import fetchUploadImage from '../../requests/imageRequests';
+import ImageService from '../../services/ImageService';
 import { setImage } from '../../state/image/image.actionCreators';
+import type { Team } from '../../models/Team';
+import type { AppState } from '../../state/AppState';
 import './FileUpload.scss';
+import { active } from 'glamor';
 
 type Props = {
   dispatch: Function,
+  activeTeam: ?Team,
 };
 
 type State = {
@@ -36,16 +39,20 @@ class FileUpload extends Component<Props, State> {
     }
   };
 
-  async submitImage(image: Blob) {
-    const { dispatch } = this.props;
+  async submitImage(imageData: Blob) {
+    const { dispatch, activeTeam } = this.props;
+
+    if (!activeTeam) return;
+
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('image', imageData);
+    formData.append('team_id', activeTeam.id);
+
     this.setState({ isUploading: true });
 
     try {
-      const { data } = await fetchUploadImage(formData);
-      const imageDataUri = await blobToDataURL(image);
-      dispatch(setImage({ ...data, tags: [], url: imageDataUri }));
+      const image = await ImageService.create(formData);
+      dispatch(setImage(image));
       this.setState({ hasUploaded: true });
     } catch (error) {
       const message = error.response
@@ -78,4 +85,8 @@ class FileUpload extends Component<Props, State> {
   }
 }
 
-export default connect()(FileUpload);
+const mapStateToProps = (state: AppState) => ({
+  activeTeam: state.activeTeam,
+});
+
+export default connect(mapStateToProps)(FileUpload);

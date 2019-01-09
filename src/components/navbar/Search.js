@@ -7,10 +7,13 @@ import { MdSearch, MdClose } from 'react-icons/md';
 import classNames from 'classnames';
 import ImageService from '../../services/ImageService';
 import { startPresentation } from '../../state/presentation/presentation.actionCreators';
+import type { AppState } from '../../state/AppState';
+import type { Team } from '../../models/Team';
 import './Search.scss';
 
 type Props = {
   dispatch: Function,
+  activeTeam: ?Team,
 };
 
 type State = {
@@ -47,8 +50,15 @@ class Search extends Component<Props, State> {
 
   handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const { activeTeam } = this.props;
+    if (!activeTeam) return;
+
     const { search } = this.state;
-    const images = await ImageService.list({ search });
+    const images = await ImageService.list({
+      teamId: activeTeam.id,
+      search,
+    });
 
     const filteredImages = images
       .filter(image => image.score > 0)
@@ -100,4 +110,8 @@ class Search extends Component<Props, State> {
   }
 }
 
-export default connect()(onClickOutside(Search));
+const mapStateToProps = (state: AppState) => ({
+  activeTeam: state.activeTeam,
+});
+
+export default connect(mapStateToProps)(onClickOutside(Search));

@@ -87,7 +87,12 @@ class TeamSidebar extends Component<Props, State> {
             </div>
           ) : (
             <Fragment>
-              {teams.map(team => <TeamSidebarItem team={team} />)}
+              {teams.map(team => (
+                <TeamSidebarItem
+                  key={team.id}
+                  team={team}
+                />
+              ))}
               <TeamSidebarAddItem />
             </Fragment>
           )}

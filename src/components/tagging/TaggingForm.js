@@ -7,7 +7,7 @@ import TagSelector from './TagSelector';
 import SaveButton from '../utility/SaveButton';
 import type { Image } from '../../models/Image';
 import type { AppState } from '../../state/AppState';
-import fetchCreateTags from '../../requests/tagRequests';
+import ImageService from '../../services/ImageService';
 import TagSuggestions from './suggestions/TagSuggestions';
 import './TaggingForm.scss';
 
@@ -33,7 +33,7 @@ class TaggingForm extends Component<Props, State> {
     const { image, dispatch } = this.props;
 
     try {
-      await fetchCreateTags(image.id, image.tags);
+      await ImageService.addTags(image.id, image.tags);
       dispatch(flashSuccessMessage('Your image was sucessfully uploaded.'));
       this.setState({ isSubmitted: true });
     } catch (error) {

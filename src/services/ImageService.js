@@ -1,8 +1,10 @@
 // @flow
+import humps from 'humps';
 import api from '../config/api';
 import type { Image } from '../models/Image';
 
 type ListParams = {
+  teamId: string,
   offset?: number,
   limit?: number,
   search?: string,
@@ -10,8 +12,24 @@ type ListParams = {
 
 class ImageService {
   static async list(params: ListParams): Promise<Image[]> {
-    const response = await api.get('/images', { params });
+    const response = await api.get('/images', {
+      params: humps.decamelizeKeys(params),
+    });
+
     return response.data.images;
+  }
+
+  static async create(formData: FormData): Promise<Image> {
+    const headers = { 'Content-Type': 'multipart/form-data' };
+    const response = await api.post('/images', formData, { headers });
+
+    return response.data;
+  }
+
+  static async addTags(imageId: string, tags: Array<Tag>): Promise<Image> {
+    const response = await api.post(`/images/${imageId}/tags`, { tags });
+
+    return response.data;
   }
 }
 
