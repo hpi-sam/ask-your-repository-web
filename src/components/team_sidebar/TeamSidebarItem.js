@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import initials from 'initials';
 import classNames from 'classnames';
+import TeamInitials from '../team/TeamInitials';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 import { closeTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
 import type { Team } from '../../models/Team';
@@ -24,10 +24,10 @@ class TeamSidebarItem extends Component<Props> {
 
   render() {
     const { activeTeam, team } = this.props;
-    const teamInitials = initials(team.name);
+    const isActive = !!activeTeam && activeTeam.id === team.id;
 
     const className = classNames('TeamSidebar__item', {
-      'TeamSidebar__item--active': activeTeam && activeTeam.id === team.id,
+      'TeamSidebar__item--active': isActive,
     });
 
     return (
@@ -37,9 +37,10 @@ class TeamSidebarItem extends Component<Props> {
         className={className}
         title={team.name}
       >
-        <div className="TeamSidebar__item__initials">
-          {teamInitials}
-        </div>
+        <TeamInitials
+          team={team}
+          isActive={isActive}
+        />
         <div className="TeamSidebar__item__body">
           {team.name}
         </div>

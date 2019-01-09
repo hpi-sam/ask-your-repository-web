@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import initials from 'initials';
 import classNames from 'classnames';
 import { MdCloudUpload, MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
@@ -10,6 +9,7 @@ import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
 import './NavBar.scss';
 import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
+import TeamInitials from '../team/TeamInitials';
 
 type Props = {
   activeTeam: ?Team,
@@ -29,7 +29,7 @@ function NavBar(props: Props) {
             onClick={onTeamClick}
             className="NavBar__team"
           >
-            {initials(activeTeam.name)}
+            <TeamInitials team={activeTeam} />
           </button>
         )}
         <NavLink
