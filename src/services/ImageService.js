@@ -2,6 +2,7 @@
 import humps from 'humps';
 import api from '../config/api';
 import type { Image } from '../models/Image';
+import type { Tag } from '../models/Tag';
 
 type ListParams = {
   teamId: string,

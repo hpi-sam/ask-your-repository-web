@@ -12,32 +12,55 @@ exports[`<Root /> renders correctly 1`] = `
     }
   }
 >
-  <Connect(ConnectedRouter)
-    history={
+  <PersistGate
+    loading={null}
+    persistor={
       Object {
-        "action": "POP",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
+        "dispatch": [Function],
+        "flush": [Function],
+        "getState": [Function],
+        "pause": [Function],
+        "persist": [Function],
+        "purge": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
       }
     }
   >
-    <Route
-      component={[Function]}
-      path="/"
-    />
-  </Connect(ConnectedRouter)>
+    <Connect(ConnectedRouter)
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Switch>
+        <Route
+          component={[Function]}
+          path="/select-team"
+        />
+        <Connect(TeamRoute)
+          component={[Function]}
+          path="/"
+        />
+      </Switch>
+    </Connect(ConnectedRouter)>
+  </PersistGate>
 </Provider>
 `;

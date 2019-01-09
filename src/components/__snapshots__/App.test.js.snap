@@ -8,7 +8,7 @@ exports[`<App /> renders correctly 1`] = `
   <Connect(OnClickOutside(TeamSidebar)) />
   <Connect(NavBar) />
   <div
-    className="App__inner App__inner--with-sidebar"
+    className="App__inner"
   >
     <Switch>
       <Redirect

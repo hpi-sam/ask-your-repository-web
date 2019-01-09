@@ -9,7 +9,6 @@ import Search from './Search';
 
 const mockStore = configureStore();
 
-
 describe('<Search />', () => {
   let wrapper;
   let store;

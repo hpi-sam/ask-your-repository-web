@@ -7,6 +7,7 @@ import FileUpload from './FileUpload';
 import FileDropzone from './FileDropzone';
 import api from '../../config/api';
 import initialState from '../../state/initialState';
+import TeamFactory from '../../factories/TeamFactory';
 
 const mockStore = configureStore();
 
@@ -23,8 +24,10 @@ describe('<FileUpload />', () => {
   let wrapperInstance;
   let store;
 
+  const state = { ...initialState, activeTeam: TeamFactory.createDummyTeam() };
+
   beforeEach(() => {
-    store = mockStore(initialState);
+    store = mockStore(state);
     wrapper = shallow(<FileUpload store={store} />).dive();
     wrapperInstance = wrapper.instance();
   });

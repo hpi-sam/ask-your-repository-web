@@ -11,7 +11,7 @@ exports[`<Tagging /> image is set renders correctly 1`] = `
     <TaggingImagePreview
       image={
         Object {
-          "id": 3826,
+          "id": "599f681f-cc56-4ef4-b871-4bf6329341f3",
           "score": 1,
           "tags": Array [
             "nemo-dolorum-iusto",
