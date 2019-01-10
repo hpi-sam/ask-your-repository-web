@@ -22,19 +22,31 @@ type State = {
 export const limit = 12;
 
 class ImagesIndex extends Component<Props, State> {
+  defaultState = {
+    images: [],
+    offset: 0,
+    endReached: false,
+  };
+
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      images: [],
-      offset: 0,
-      endReached: false,
-    };
+    this.state = this.defaultState;
   }
 
   componentDidMount() {
     this.loadMoreImages();
   }
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.activeTeam !== prevProps.activeTeam) {
+      this.reloadImages();
+    }
+  }
+
+  reloadImages = () => {
+    this.setState(this.defaultState, this.loadMoreImages);
+  };
 
   loadMoreImages = async () => {
     if (this.state.endReached) return;
@@ -55,7 +67,7 @@ class ImagesIndex extends Component<Props, State> {
     } catch (error) {
       // TODO: Handle error
     }
-  }
+  };
 
   increaseOffset() {
     const { offset } = this.state;
