@@ -1,5 +1,14 @@
 version: 2
 jobs:
+  build_dev:
+    docker:
+      - image: circleci/node:9.10
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - run: docker build -f Dockerfile.dev -t bp2018hg1/jona_dev:$CIRCLE_BRANCH .
+      - run: docker push bp2018hg1/jona_dev:$CIRCLE_BRANCH
   test:
     docker:
       - image: circleci/node:9.10
@@ -23,6 +32,15 @@ jobs:
       - checkout
       - run: yarn install
       - run: yarn lint
+  e2e:
+    machine:
+      docker_layer_caching: true
+    environment:
+      JONA_IMAGE_TAG: $CIRCLE_BRANCH
+    steps:
+      - checkout
+      - run: docker-compose -f .circleci/docker-compose.ci.yml up -d
+      - run: docker-compose -f .circleci/docker-compose.ci.yml exec jona yarn cypress run
   build:
     docker:
       - image: circleci/node:9.10
@@ -42,9 +60,14 @@ workflows:
   version: 2
   pipeline:
     jobs:
+      - build_dev
       - test
       - flow
       - lint
+      - e2e
+      - e2e:
+          requires:
+            - build_dev
       - build:
           requires:
             - test

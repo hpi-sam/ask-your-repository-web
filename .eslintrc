@@ -5,11 +5,13 @@
   ],
   "plugins": [
     "jest",
-    "flowtype"
+    "flowtype",
+    "cypress"
   ],
   "env": {
     "browser": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "cypress/globals": true
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
