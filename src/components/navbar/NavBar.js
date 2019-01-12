@@ -6,6 +6,7 @@ import { MdCloudUpload, MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
 import TeamInitialsButton from '../team/TeamInitialsButton';
+import PresentationSwitch from './PresentationSwitch';
 import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
 import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
@@ -42,6 +43,7 @@ function NavBar(props: Props) {
             Gallery
           </span>
         </NavLink>
+        <PresentationSwitch />
       </div>
       <div className="NavBar__search">
         <Search />
