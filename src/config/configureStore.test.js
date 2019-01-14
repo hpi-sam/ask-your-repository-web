@@ -15,7 +15,7 @@ describe('configure redux store', () => {
   });
 
   it('should include redux logger when environment is not production', () => {
-    process.env.NODE_ENV = 'test';
+    process.env.NODE_ENV = 'development';
     configureStore(history);
 
     const appliedMiddleware = applyMiddleware.mock.calls[0];

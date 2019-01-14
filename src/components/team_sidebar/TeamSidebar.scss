@@ -6,6 +6,8 @@
 
   position: fixed;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
   width: var(--team-sidebar-width);
   height: 100%;
   background-color: var(--bg-color);
@@ -61,6 +63,12 @@
     justify-content: center;
   }
 
+  &__list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
   &__item {
     @keyframes item-fade-in {
       0% { opacity: 0; }
@@ -108,48 +116,7 @@
     }
   }
 
-  &__add-form {
-    --height: 44px;
+  &__create-form {
     padding: 12px;
-    animation: fade-in .5s;
-
-    &__inner {
-      display: flex;
-      height: var(--height);
-      overflow: hidden;
-      border-radius: 2px;
-    }
-
-    &__input {
-      flex: 1;
-      width: 100%;
-      padding: 0 12px;
-      height: 100%;
-      color: white;
-      background-color: #333;
-      outline: none;
-      font-size: .9em;
-    }
-
-    &__button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 0;
-      width: var(--height);
-      height: var(--height);
-      border-radius: 0;
-      background-color: #222;
-      color: rgba(255, 255, 255, .3);
-      border-left: 1px solid var(--bg-color);
-      transition: color .2s, background-color .2s;
-      outline: 0;
-
-      &:hover, &:active, &:focus {
-        color: white;
-        background-color: #161616;
-      }
-    }
   }
 }

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { IoIosAdd } from 'react-icons/io';
 import TeamSidebarAddItemForm from './TeamSidebarAddItemForm';
-import TeamsContext from './TeamsContext';
+import TeamsContext from '../../contexts/TeamsContext';
 
 type Props = {};
 

@@ -21,7 +21,7 @@ function configureStore(history: History) {
     routerMiddleware(history),
   ];
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV === 'development') {
     const { logger } = require('redux-logger');
     middleware = [...middleware, logger];
   }

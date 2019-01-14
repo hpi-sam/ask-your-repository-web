@@ -6,8 +6,9 @@ import type { Team } from '../../models/Team';
 import ActivityIndicator from '../utility/ActivityIndicator';
 import TeamService from '../../services/TeamService';
 import type { AppState } from '../../state/AppState';
-import './TeamSelect.scss';
 import TeamSelectItem from './TeamSelectItem';
+import TeamSelectCreate from './TeamSelectCreate';
+import './TeamSelect.scss';
 
 type Props = {
   hasActiveTeam: boolean,
@@ -61,6 +62,7 @@ class TeamSelect extends Component<Props, State> {
                 />
               ))}
             </div>
+            <TeamSelectCreate />
           </Fragment>
         )}
       </div>
