@@ -19,6 +19,7 @@ function FileDropzone(props: Props) {
       acceptClassName="FileDropzone--accept"
       disabledClassName="FileDropzone--disabled"
       onDrop={onDrop}
+      data-cy="upload-dropzone"
     >
       <span className="FileDropzone__text">
         Place your file here
