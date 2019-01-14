@@ -9,6 +9,7 @@ import type { Action } from './Action';
 import presentation from './presentation/presentation.reducer';
 import activeTeam from './active_team/activeTeam.reducer';
 import teamSidebar from './team_sidebar/teamSidebar.reducer';
+import presentationMode from './presentation_mode/presentationMode.reducer';
 
 function createRootReducer(history: History): CombinedReducer<AppState, Action> {
   return combineReducers({
@@ -16,6 +17,7 @@ function createRootReducer(history: History): CombinedReducer<AppState, Action> 
     presentation,
     activeTeam,
     teamSidebar,
+    presentationMode,
     flash: flashReducer,
   });
 }
