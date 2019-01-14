@@ -6,10 +6,15 @@ import type { Image } from '../models/Image';
 function configureSocket(store: any) {
   if (!process.env.REACT_APP_API_URL) return;
 
+  // store.subscribe((action) => {
+  // });
+
   const socket = io(process.env.REACT_APP_API_URL);
 
   socket.on('START_PRESENTATION', (images: Image[]) => {
-    store.dispatch(startPresentation(images));
+    if (store.getState().presentationMode.isActive) {
+      store.dispatch(startPresentation(images));
+    }
   });
 }
 

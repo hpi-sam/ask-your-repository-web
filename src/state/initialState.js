@@ -5,6 +5,7 @@
 import type { AppState } from './AppState';
 import { initialState as presentation } from './presentation/presentation.reducer';
 import { initialState as teamSidebar } from './team_sidebar/teamSidebar.reducer';
+import { initialState as presentationMode } from './presentation_mode/presentationMode.reducer';
 import { initialState as activeTeam } from './active_team/activeTeam.reducer';
 
 const initialState: AppState = {
@@ -12,6 +13,7 @@ const initialState: AppState = {
   presentation,
   activeTeam,
   teamSidebar,
+  presentationMode,
 };
 
 export default initialState;

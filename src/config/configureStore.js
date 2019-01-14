@@ -16,7 +16,7 @@ export const history = createBrowserHistory();
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['activeTeam'],
+  whitelist: ['activeTeam', 'presentationMode'],
 };
 
 function configureStore() {
