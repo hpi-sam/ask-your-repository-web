@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import type { Team } from '../../models/Team';
+import type { Team } from '../models/Team';
 
 type TeamsContextValue = {
   teams: Array<Team>,

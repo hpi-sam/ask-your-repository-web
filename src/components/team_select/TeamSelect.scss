@@ -1,19 +1,46 @@
 .TeamSelect {
+  margin: 0 auto;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  max-width: var(--max-width);
 
   &__title {
-    margin: 2em;
+    margin: 2rem;
     font-size: 2em;
+    font-weight: 200;
   }
 
   &__list {
-
+    margin: 2rem 0;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: auto auto auto auto;
   }
 
   &__item {
-    background-color: transparent;
+    font-size: 1.5em;
+  }
+
+  &__create {
+    margin: 2rem 0;
+    font-size: 1.5em;
+
+    &__button {
+      padding: .2em;
+      display: inline-flex;
+      border-radius: .15em;
+      opacity: .5;
+      background-color: transparent;
+      font-size: 2em;
+      transition: opacity .2s, background-color .2s;
+
+      &:hover {
+        background-color: #181818;
+        opacity: 1;
+      }
+    }
   }
 }

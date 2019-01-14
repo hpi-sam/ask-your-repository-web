@@ -5,11 +5,12 @@ import classNames from 'classnames';
 import { MdCloudUpload, MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
+import TeamInitialsButton from '../team/TeamInitialsButton';
 import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
-import './NavBar.scss';
 import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
-import TeamInitials from '../team/TeamInitials';
+
+import './NavBar.scss';
 
 type Props = {
   activeTeam: ?Team,
@@ -24,13 +25,11 @@ function NavBar(props: Props) {
     <div className={classNames('NavBar', { 'NavBar--with-sidebar': isTeamSidebarOpen })}>
       <div className="NavBar__left">
         {!isTeamSidebarOpen && activeTeam && (
-          <button
-            type="button"
+          <TeamInitialsButton
             onClick={onTeamClick}
             className="NavBar__team"
-          >
-            <TeamInitials team={activeTeam} />
-          </button>
+            team={activeTeam}
+          />
         )}
         <NavLink
           to="/images"

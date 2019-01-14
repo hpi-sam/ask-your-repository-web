@@ -1,16 +1,19 @@
 .TeamInitials {
+  --dimension: 3.5em;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: var(--dimension);
+  height: var(--dimension);
   background-color: #333;
   font-weight: bold;
   border-radius: 5px;
   border: 3px solid transparent;
   transition: border-color .1s;
+  outline: none;
 
-  &:hover, &--active {
+  &:hover, &:focus, &:active, &--active {
     border-color: rgba(255, 255, 255, .3);
   }
 }

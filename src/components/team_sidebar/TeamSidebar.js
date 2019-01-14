@@ -1,5 +1,5 @@
 // @flow
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
@@ -9,7 +9,7 @@ import ActivityIndicator from '../utility/ActivityIndicator';
 import TeamService from '../../services/TeamService';
 import TeamSidebarItem from './TeamSidebarItem';
 import TeamSidebarAddItem from './TeamSidebarAddItem';
-import TeamsContext from './TeamsContext';
+import TeamsContext from '../../contexts/TeamsContext';
 import type { AppState } from '../../state/AppState';
 import './TeamSidebar.scss';
 import { closeTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
@@ -86,7 +86,7 @@ class TeamSidebar extends Component<Props, State> {
               <ActivityIndicator />
             </div>
           ) : (
-            <Fragment>
+            <div className="TeamSidebar__list">
               {teams.map(team => (
                 <TeamSidebarItem
                   key={team.id}
@@ -94,7 +94,7 @@ class TeamSidebar extends Component<Props, State> {
                 />
               ))}
               <TeamSidebarAddItem />
-            </Fragment>
+            </div>
           )}
         </div>
       </TeamsContext.Provider>

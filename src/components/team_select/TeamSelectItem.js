@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TeamInitials from '../team/TeamInitials';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
+import TeamInitialsButton from '../team/TeamInitialsButton';
 import type { Team } from '../../models/Team';
 
 type Props = {
@@ -20,13 +20,11 @@ class TeamSelectItem extends Component<Props> {
     const { team } = this.props;
 
     return (
-      <button
-        type="button"
+      <TeamInitialsButton
         onClick={this.handleClick}
+        team={team}
         className="TeamSelect__item"
-      >
-        <TeamInitials team={team} />
-      </button>
+      />
     );
   }
 }
