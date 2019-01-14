@@ -36,6 +36,7 @@ class TeamSidebarAddItemForm extends Component<Props> {
         onSubmit={this.handleSaveClick}
         placeholder="My Team"
         className="TeamSidebar__create-form"
+        data-cy="team-sidebar-form"
       />
     );
   }

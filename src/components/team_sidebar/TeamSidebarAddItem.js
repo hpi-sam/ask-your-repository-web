@@ -44,6 +44,7 @@ class TeamSidebarAddItem extends Component<Props, State> {
         type="button"
         onClick={this.handleOpenForm}
         className="TeamSidebar__item TeamSidebar__item--add"
+        data-cy="team-sidebar-add-button"
       >
         <IoIosAdd />
       </button>

@@ -3,6 +3,7 @@
 exports[`<SaveButton /> renders correctly 1`] = `
 <Button
   className="Button--save"
+  data-cy="save-button"
   type="button"
 >
   Save

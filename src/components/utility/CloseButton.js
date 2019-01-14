@@ -17,7 +17,11 @@ function CloseButton({
   const styleClasses = classNames('Button--close', className);
 
   return (
-    <Button className={styleClasses} {...rest}>
+    <Button
+      className={styleClasses}
+      data-cy="close-button"
+      {...rest}
+    >
       {children}
     </Button>
   );

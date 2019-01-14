@@ -46,7 +46,7 @@ class TeamSelect extends Component<Props, State> {
     const { teams, isLoading } = this.state;
 
     return (
-      <div className="TeamSelect">
+      <div className="TeamSelect" data-cy="team-select">
         {isLoading ? (
           <ActivityIndicator />
         ) : (

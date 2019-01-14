@@ -42,11 +42,13 @@ class TeamSelectCreate extends Component<Props, State> {
             onClose={this.handleCloseForm}
             onSubmit={this.handleFormSubmit}
             placeholder="My Team"
+            data-cy="team-select-form"
           />
         ) : (
           <button
             type="button"
             className="TeamSelect__create__button"
+            data-cy="team-select-create-button"
             onClick={this.handleOpenForm}
           >
             <IoIosAdd />

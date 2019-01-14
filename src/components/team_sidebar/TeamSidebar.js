@@ -69,7 +69,7 @@ class TeamSidebar extends Component<Props, State> {
 
     return (
       <TeamsContext.Provider value={{ teams, addTeam }}>
-        <div className={className}>
+        <div className={className} data-cy="team-sidebar">
           <div className="TeamSidebar__title">
             <MdPeople className="TeamSidebar__title__icon" />
             Teams

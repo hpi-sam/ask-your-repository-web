@@ -45,6 +45,7 @@ exports[`<TeamSidebar /> renders correctly 1`] = `
       >
         <div
           className="TeamSidebar TeamSidebar--collapsed"
+          data-cy="team-sidebar"
         >
           <div
             className="TeamSidebar__title"
