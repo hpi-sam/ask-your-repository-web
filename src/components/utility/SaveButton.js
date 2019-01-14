@@ -17,7 +17,11 @@ function SaveButton({
   const styleClasses = classNames('Button--save', className);
 
   return (
-    <Button className={styleClasses} {...rest}>
+    <Button
+      className={styleClasses}
+      data-cy="save-button"
+      {...rest}
+    >
       {children}
     </Button>
   );

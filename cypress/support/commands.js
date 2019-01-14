@@ -1,25 +1,31 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add('setActiveTeam', () => {
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:5000/teams',
+    body: { name: 'Seed Team' },
+  };
+
+  return cy.request(options)
+    .then((response) => {
+      cy.visit('/');
+      const team = response.body;
+
+      return cy
+        .get(`[data-cy=team-select-item-${team.id}]`)
+        .click()
+        .then(() => team);
+    });
+});
+
+Cypress.Commands.add('upload', {
+  prevSubject: 'element',
+}, (subject, fileUrl) => cy.fixture(fileUrl, 'base64')
+  .then(Cypress.Blob.base64StringToBlob)
+  .then((blob) => {
+    cy.window().then((window) => {
+      const file = new window.File([blob], fileUrl);
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      cy.wrap(subject).trigger('drop', { dataTransfer });
+    });
+  }));

@@ -29,6 +29,7 @@ function NavBar(props: Props) {
             onClick={onTeamClick}
             className="NavBar__team"
             team={activeTeam}
+            data-cy="navbar-team-button"
           />
         )}
         <NavLink

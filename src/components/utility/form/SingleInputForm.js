@@ -11,6 +11,7 @@ type Props = {
   onClose: () => void,
   className?: string,
   placeholder?: string,
+  'data-cy': string,
 };
 
 type State = {
@@ -21,6 +22,7 @@ class SingleInputForm extends Component<Props, State> {
   static defaultProps = {
     className: '',
     placeholder: '',
+    'data-cy': 'form',
   };
 
   constructor(props: Props) {
@@ -44,7 +46,11 @@ class SingleInputForm extends Component<Props, State> {
     const className = classNames('SingleInputForm', this.props.className);
 
     return (
-      <form className={className} onSubmit={this.handleSubmit}>
+      <form
+        className={className}
+        onSubmit={this.handleSubmit}
+        data-cy={this.props['data-cy']}
+      >
         <div className="SingleInputForm__inner">
           <input
             className="SingleInputForm__input"

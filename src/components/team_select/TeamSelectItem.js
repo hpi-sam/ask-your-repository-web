@@ -24,6 +24,7 @@ class TeamSelectItem extends Component<Props> {
         onClick={this.handleClick}
         team={team}
         className="TeamSelect__item"
+        data-cy={`team-select-item-${team.id}`}
       />
     );
   }

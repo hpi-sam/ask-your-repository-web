@@ -5,6 +5,7 @@ exports[`<FileDropzone /> renders correctly 1`] = `
   acceptClassName="FileDropzone--accept"
   activeClassName="FileDropzone--active"
   className="FileDropzone"
+  data-cy="upload-dropzone"
   disableClick={false}
   disabled={false}
   disabledClassName="FileDropzone--disabled"
