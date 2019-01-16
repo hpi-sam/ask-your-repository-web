@@ -11,11 +11,10 @@ import './PresentationSwitch.scss';
 
 type Props = {
   dispatch: Function,
-  activeTeam: ?Team,
   isPresentationModeOn: boolean,
 };
 
-class PresentationSwitch extends Component<Props, State> {
+class PresentationSwitch extends Component<Props> {
   handleClick = () => {
     const { dispatch } = this.props;
     if (!this.props.isPresentationModeOn) {
@@ -23,8 +22,6 @@ class PresentationSwitch extends Component<Props, State> {
     } else {
       dispatch(turnOffPresentationMode());
     }
-
-    // this.setState(previousState => ({ isChecked: !previousState.isChecked }));
   }
 
 
@@ -45,8 +42,7 @@ class PresentationSwitch extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  activeTeam: state.activeTeam,
   isPresentationModeOn: state.presentationMode.isActive,
 });
 
-export default connect(mapStateToProps)(onClickOutside(PresentationSwitch));
+export default connect(mapStateToProps)(PresentationSwitch);

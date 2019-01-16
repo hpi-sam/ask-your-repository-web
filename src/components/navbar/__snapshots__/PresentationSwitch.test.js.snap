@@ -1,66 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PresentationSwitch /> renders correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<button
+  className="PresentationSwitch"
+  data-tip="Turn on Presentation Mode"
+  onClick={[Function]}
+  type="button"
 >
-  <Connect(OnClickOutside(PresentationSwitch))>
-    <OnClickOutside(PresentationSwitch)
-      activeTeam={null}
-      dispatch={[Function]}
-      eventTypes={
-        Array [
-          "mousedown",
-          "touchstart",
-        ]
-      }
-      excludeScrollbar={false}
-      isPresentationModeOn={false}
-      outsideClickIgnoreClass="ignore-react-onclickoutside"
-      preventDefault={false}
-      stopPropagation={false}
-    >
-      <PresentationSwitch
-        activeTeam={null}
-        disableOnClickOutside={[Function]}
-        dispatch={[Function]}
-        enableOnClickOutside={[Function]}
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        isPresentationModeOn={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      >
-        <button
-          className="PresentationSwitch"
-          data-tip="Turn on Presentation Mode"
-          onClick={[Function]}
-          type="button"
-        >
-          <div
-            className="PresentationSwitch__outer"
-          >
-            <div
-              className="PresentationSwitch__inner"
-            />
-          </div>
-        </button>
-      </PresentationSwitch>
-    </OnClickOutside(PresentationSwitch)>
-  </Connect(OnClickOutside(PresentationSwitch))>
-</Provider>
+  <div
+    className="PresentationSwitch__outer"
+  >
+    <div
+      className="PresentationSwitch__inner"
+    />
+  </div>
+</button>
 `;

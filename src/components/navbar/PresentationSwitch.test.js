@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import initialState from '../../state/initialState';
 import PresentationSwitch from './PresentationSwitch';
@@ -15,11 +14,9 @@ describe('<PresentationSwitch />', () => {
 
   beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = mount((
-      <Provider store={store}>
-        <PresentationSwitch />
-      </Provider>
-    ));
+    wrapper = shallow((
+      <PresentationSwitch store={store} />
+    )).dive();
   });
 
   it('renders correctly', () => {
