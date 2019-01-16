@@ -8,7 +8,6 @@ services:
       - $HOME/neo4j/data:/data
     ports:
      - "7687:7687"
-     - "6479:6479"
      - "7474:7474"
   elasticsearch_dev:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
@@ -20,14 +19,20 @@ services:
       - "9200:9200"
   elija:
     image: bp2018hg1/elija:latest
+    depends_on:
+      - neo4j_dev
+      - elasticsearch_dev
     environment:
       - USE_COMPOSE_ENV=TRUE
-    command: sh -c "apk add --no-cache bash && ./wait_for_it.sh neo4j_dev:7474 -- gunicorn --worker-class eventlet --access-logfile - --log-level info -w 1 -b :5000 app:app"
+    command: ./wait-for.sh neo4j_dev:7687 --timeout=60 -- ./start-gunicorn.sh
     ports:
       - "5000:5000"
   jona:
     image: bp2018hg1/jona_dev:${CIRCLE_BRANCH}
+    depends_on:
+      - elija
     environment:
       - REACT_APP_API_URL=http://elija:5000
+      - CYPRESS_API_URL=http://elija:5000
     ports:
       - "3000:3000"

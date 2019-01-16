@@ -1,7 +1,7 @@
 Cypress.Commands.add('setActiveTeam', () => {
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/teams',
+    url: `${Cypress.env('API_URL')}/teams`,
     body: { name: 'Seed Team' },
   };
 
