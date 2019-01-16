@@ -7,7 +7,7 @@ import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { middleware as flashMiddleware } from 'redux-flash';
 import thunk from 'redux-thunk';
-import socketioMiddleware from '../middleware/socketio_middleware';
+import socketioMiddleware from '../middleware/socketioMiddleware';
 import createRootReducer from '../state/rootReducer';
 import type { AppState } from '../state/AppState';
 import type { Action } from '../state/Action';
@@ -25,15 +25,12 @@ function configureStore() {
     thunk,
     flashMiddleware(),
     routerMiddleware(history),
+    socketioMiddleware(),
   ];
 
   if (process.env.NODE_ENV === 'development') {
     const { logger } = require('redux-logger');
     middleware = [...middleware, logger];
-  }
-
-  if (process.env.REACT_APP_API_URL) {
-    middleware = [...middleware, socketioMiddleware(process.env.REACT_APP_API_URL)];
   }
 
   const rootReducer = createRootReducer(history);

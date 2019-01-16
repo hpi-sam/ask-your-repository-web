@@ -22,6 +22,7 @@ exports[`<NavBar /> renders correctly 1`] = `
         Gallery
       </span>
     </NavLink>
+    <Connect(PresentationSwitch) />
   </div>
   <div
     className="NavBar__search"

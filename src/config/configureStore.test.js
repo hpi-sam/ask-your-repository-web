@@ -1,10 +1,12 @@
 // @flow
 import { applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+import socketioMiddleware from '../middleware/socketioMiddleware';
 import configureStore from './configureStore';
 
 jest.mock('redux');
 jest.mock('redux-persist');
+jest.mock('../middleware/socketioMiddleware');
 
 describe('configure redux store', () => {
   afterEach(() => {
@@ -26,5 +28,13 @@ describe('configure redux store', () => {
 
     const appliedMiddleware = applyMiddleware.mock.calls[0];
     expect(appliedMiddleware).not.toContain(logger);
+  });
+
+  it('should include socketio middleware when socketio_url is defined', () => {
+    jest.resetAllMocks();
+
+    configureStore();
+
+    expect(socketioMiddleware).toHaveBeenCalled();
   });
 });
