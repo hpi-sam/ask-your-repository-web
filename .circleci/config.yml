@@ -1,11 +1,12 @@
 version: 2
 jobs:
   build_dev:
-    docker:
-      - image: circleci/node:9.10
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - setup_remote_docker
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
       - run: docker build -f Dockerfile.dev -t bp2018hg1/jona_dev:$CIRCLE_BRANCH .
       - run: docker push bp2018hg1/jona_dev:$CIRCLE_BRANCH
@@ -14,7 +15,13 @@ jobs:
       - image: circleci/node:9.10
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run: yarn test --coverage
       - run: ./node_modules/.bin/coveralls < ./coverage/lcov.info
   flow:
@@ -22,31 +29,47 @@ jobs:
       - image: circleci/node:9.10
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: yarn install
       - run: yarn flow-typed install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+            - ./flow-typed/npm
       - run: yarn flow
   lint:
     docker:
       - image: circleci/node:9.10
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run: yarn lint
   e2e:
     machine:
       docker_layer_caching: true
     environment:
-      JONA_IMAGE_TAG: $CIRCLE_BRANCH
+      COMPOSE_FILE: .circleci/docker-compose.ci.yml
     steps:
       - checkout
-      - run: docker-compose -f .circleci/docker-compose.ci.yml up -d
-      - run: docker-compose -f .circleci/docker-compose.ci.yml exec jona yarn cypress run
+      - run: docker-compose pull
+      - run: docker-compose up -d
+      - run: docker-compose exec jona dockerize -wait http://elija:5000 -timeout 1m
+      - run: docker-compose ps
+      - run: docker-compose logs
+      - run: docker-compose exec jona yarn cypress run
   build:
-    docker:
-      - image: circleci/node:9.10
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - setup_remote_docker
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
       - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona:latest .
       - run: docker push bp2018hg1/jona:$CIRCLE_WORKFLOW_ID
@@ -73,6 +96,7 @@ workflows:
             - test
             - flow
             - lint
+            - e2e
           filters:
             branches:
               only: master
