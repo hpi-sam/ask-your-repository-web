@@ -32,9 +32,10 @@ function configureStore() {
     middleware = [...middleware, logger];
   }
 
-  if (process.env.REACT_APP_API_URL) {
-    console.log('called');
-    middleware = [...middleware, socketioMiddleware(process.env.REACT_APP_API_URL)];
+  const { REACT_APP_API_URL } = process.env;
+
+  if (REACT_APP_API_URL) {
+    middleware = [...middleware, socketioMiddleware(REACT_APP_API_URL)];
   }
 
   const rootReducer = createRootReducer(history);

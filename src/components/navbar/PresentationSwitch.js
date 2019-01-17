@@ -2,11 +2,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import onClickOutside from 'react-onclickoutside';
 import { connect } from 'react-redux';
 import { turnOnPresentationMode, turnOffPresentationMode } from '../../state/presentation_mode/presentationMode.actionCreators';
 import type { AppState } from '../../state/AppState';
-import type { Team } from '../../models/Team';
 import './PresentationSwitch.scss';
 
 type Props = {
