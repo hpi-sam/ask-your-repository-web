@@ -6,7 +6,7 @@ import configureStore from './configureStore';
 
 jest.mock('redux');
 jest.mock('redux-persist');
-jest.mock('../middleware/socketio_middleware')
+jest.mock('../middleware/socketio_middleware');
 
 describe('configure redux store', () => {
   afterEach(() => {
@@ -31,18 +31,20 @@ describe('configure redux store', () => {
   });
 
   it('should include socketio middleware when socketio_url is defined', () => {
+    jest.resetAllMocks();
     process.env.REACT_APP_API_URL = 'http://localhost:5000';
 
     configureStore(history);
 
-    expect(socketioMiddleware).toHaveBeenCalled;
+    expect(socketioMiddleware).toHaveBeenCalled();
   });
 
   it('should not include socketio middleware when socketio_url is not defined', () => {
-    process.env.REACT_APP_API_URL = null;
+    jest.resetAllMocks();
+    delete process.env.REACT_APP_API_URL;
 
     configureStore(history);
 
-    expect(socketioMiddleware).not.toHaveBeenCalled;
+    expect(socketioMiddleware).not.toHaveBeenCalled();
   });
 });

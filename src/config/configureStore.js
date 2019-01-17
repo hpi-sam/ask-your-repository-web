@@ -33,6 +33,7 @@ function configureStore() {
   }
 
   if (process.env.REACT_APP_API_URL) {
+    console.log('called');
     middleware = [...middleware, socketioMiddleware(process.env.REACT_APP_API_URL)];
   }
 
