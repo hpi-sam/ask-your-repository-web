@@ -59,11 +59,9 @@ jobs:
       COMPOSE_FILE: .circleci/docker-compose.ci.yml
     steps:
       - checkout
-      - run: docker-compose pull
+      - run: docker-compose pull elija jona
       - run: docker-compose up -d
       - run: docker-compose exec jona dockerize -wait http://elija:5000 -timeout 1m
-      - run: docker-compose ps
-      - run: docker-compose logs
       - run: docker-compose exec jona yarn cypress run
   build:
     machine:
