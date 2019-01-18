@@ -4,7 +4,7 @@
   height: 100%;
 
   &__inner {
-    height: 100%;
+    height: calc(100% - var(--navbar-height));
     padding: 0 var(--padding-sides) 0px var(--padding-sides);
     padding-top: var(--navbar-height);
 

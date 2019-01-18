@@ -17,15 +17,21 @@ Cypress.Commands.add('setActiveTeam', () => {
     });
 });
 
-Cypress.Commands.add('upload', {
+Cypress.Commands.add('drop', {
   prevSubject: 'element',
-}, (subject, fileUrl) => cy.fixture(fileUrl, 'base64')
-  .then(Cypress.Blob.base64StringToBlob)
-  .then((blob) => {
-    cy.window().then((window) => {
-      const file = new window.File([blob], fileUrl);
-      const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(file);
-      cy.wrap(subject).trigger('drop', { dataTransfer });
-    });
-  }));
+}, (subject, fileUrls) => {
+  const dataTransfer = new DataTransfer();
+
+  fileUrls.forEach((fileUrl) => {
+    cy.fixture(fileUrl, 'base64')
+      .then(Cypress.Blob.base64StringToBlob)
+      .then((blob) => {
+        cy.window().then((window) => {
+          const file = new window.File([blob], fileUrl);
+          dataTransfer.items.add(file);
+        });
+      });
+  });
+
+  cy.wrap(subject).trigger('drop', { dataTransfer });
+});

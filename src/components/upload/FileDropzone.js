@@ -13,7 +13,6 @@ function FileDropzone(props: Props) {
 
   return (
     <Dropzone
-      multiple={false}
       className="FileDropzone"
       activeClassName="FileDropzone--active"
       acceptClassName="FileDropzone--accept"
@@ -22,7 +21,7 @@ function FileDropzone(props: Props) {
       data-cy="upload-dropzone"
     >
       <span className="FileDropzone__text">
-        Place your file here
+        Place your file(s) here
       </span>
     </Dropzone>
   );

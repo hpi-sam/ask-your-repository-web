@@ -12,6 +12,11 @@ type ListParams = {
 };
 
 class ImageService {
+  static async get(id: string): Promise<Image> {
+    const response = await api.get(`/images/${id}`);
+    return response.data;
+  }
+
   static async list(params: ListParams): Promise<Image[]> {
     const response = await api.get('/images', {
       params: humps.decamelizeKeys(params),
@@ -31,6 +36,10 @@ class ImageService {
     const response = await api.post(`/images/${imageId}/tags`, { tags });
 
     return response.data;
+  }
+
+  static async patchMany(images: Image[]) {
+    await api.patch('/images', { artifacts: images });
   }
 }
 

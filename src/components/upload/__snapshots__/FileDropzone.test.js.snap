@@ -13,14 +13,14 @@ exports[`<FileDropzone /> renders correctly 1`] = `
   inputProps={Object {}}
   maxSize={Infinity}
   minSize={0}
-  multiple={false}
+  multiple={true}
   onDrop={[Function]}
   preventDropOnDocument={true}
 >
   <span
     className="FileDropzone__text"
   >
-    Place your file here
+    Place your file(s) here
   </span>
 </n>
 `;

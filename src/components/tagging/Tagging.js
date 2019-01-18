@@ -1,10 +1,8 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
-import TaggingForm from './TaggingForm';
+import TaggingForm from './form/TaggingForm';
 import TaggingImagePreview from './TaggingImagePreview';
 import type { Image } from '../../models/Image';
-import type { AppState } from '../../state/AppState';
 import './Tagging.scss';
 
 type Props = {
@@ -12,20 +10,14 @@ type Props = {
 };
 
 function Tagging(props: Props) {
-  if (!props.image) return null;
+  const { image } = props;
 
   return (
     <div className="Tagging">
-      <div className="Tagging__inner">
-        <TaggingForm />
-        <TaggingImagePreview image={props.image} />
-      </div>
+      <TaggingForm image={image} />
+      <TaggingImagePreview image={image} />
     </div>
   );
 }
 
-const mapStateToProps = (state: AppState) => ({
-  image: state.image,
-});
-
-export default connect(mapStateToProps)(Tagging);
+export default Tagging;

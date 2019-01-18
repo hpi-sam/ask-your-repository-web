@@ -2,17 +2,14 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
 import _ from 'lodash';
-import { connect } from 'react-redux';
 import TagService from '../../../services/TagService';
 import TagSuggestion from './TagSuggestion';
-import { addTag } from '../../../state/image/image.actionCreators';
 import type { Tag } from '../../../models/Tag';
-import type { AppState } from '../../../state/AppState';
 import './TagSuggestions.scss';
 
 type Props = {
-  dispatch: Function,
   tags: Array<Tag>,
+  addTag: (tag: Tag) => void,
 };
 
 type State = {
@@ -36,9 +33,9 @@ class TagSuggestions extends Component<Props, State> {
     this.fetchSuggestions(this.props.tags);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(this.props.tags, nextProps.tags)) {
-      this.fetchSuggestions(nextProps.tags);
+  componentDidUpdate(prevProps: Props) {
+    if (!_.isEqual(this.props.tags, prevProps.tags)) {
+      this.fetchSuggestions(this.props.tags);
     }
   }
 
@@ -54,7 +51,7 @@ class TagSuggestions extends Component<Props, State> {
     if (!suggestion) return;
 
     event.preventDefault();
-    this.props.dispatch(addTag(suggestion.tag));
+    this.props.addTag(suggestion.tag);
   };
 
   async fetchSuggestions(tags: Tag[]) {
@@ -75,6 +72,7 @@ class TagSuggestions extends Component<Props, State> {
       <div className="TagSuggestions">
         {suggestions.map(suggestion => (
           <TagSuggestion
+            onClick={this.props.addTag}
             tag={suggestion.tag}
             shortcut={suggestion.shortcut}
             key={shortid.generate()}
@@ -85,8 +83,4 @@ class TagSuggestions extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  tags: state.image ? state.image.tags : [],
-});
-
-export default connect(mapStateToProps)(TagSuggestions);
+export default TagSuggestions;

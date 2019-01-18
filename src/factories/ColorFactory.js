@@ -2,7 +2,13 @@
 /* eslint-disable no-bitwise */
 import type { Tag } from '../models/Tag';
 
-const colors = ['red', 'blue', 'darkgreen', 'orange', 'purple'];
+const colors = [
+  'red',
+  'blue',
+  'darkgreen',
+  'orange',
+  'purple',
+];
 
 class ColorFactory {
   static fromTag = (tag: Tag): string => {

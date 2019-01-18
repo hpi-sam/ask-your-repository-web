@@ -52,6 +52,7 @@ class TeamSidebar extends Component<Props, State> {
   }
 
   handleClose = () => {
+    if (!this.props.isOpen) return;
     this.props.dispatch(closeTeamSidebar());
   };
 

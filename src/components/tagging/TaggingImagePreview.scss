@@ -1,7 +1,8 @@
 @import '../../style/breakpoints.scss';
 
 .TaggingImagePreview {
-overflow-x: hidden;
+  overflow-x: hidden;
+  align-self: center;
 
   &__image {
     display: block;
