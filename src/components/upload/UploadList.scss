@@ -1,0 +1,187 @@
+@import '../../style/breakpoints.scss';
+
+.UploadList {
+  --item-inner-padding: 1.5rem;
+  --item-bg-color: #181818;
+  --item-border-radius: .2rem;
+  --item-margin-bottom: .7rem;
+  --item-width: 3em;
+  --item-height: 3em;
+  --list-padding-vertical: 10px;
+  --container-width: calc(var(--list-padding-vertical) * 2 + var(--item-width));
+
+  width: var(--container-width);
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  overflow: hidden;
+
+  @media (min-width: $xs-to-sm) {
+    --item-width: 320px;
+    --item-height: 5em;
+    --list-padding-vertical: 20px;
+
+    margin-bottom: 20px;
+  }
+
+  &__inner {
+    width: var(--item-width);
+    box-sizing: content-box;
+    padding: 5px var(--list-padding-vertical);
+  }
+
+  &__dropzone-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute !important;
+    z-index: 100;
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    width: 100%;
+    height: 100%;
+
+    box-sizing: content-box;
+    background-color: rgba(0, 0, 0, .8);
+    border: var(--border-width) dashed #fff;
+    border-radius: .2em;
+    --border-width: 3px;
+
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s;
+
+    &--active {
+      opacity: 1;
+    }
+
+    &__text {
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+
+  &__dropzone-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: var(--item-inner-padding);
+    background-color: var(--item-bg-color);
+    border-radius: var(--item-border-radius);
+    margin-bottom: var(--item-margin-bottom);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color .2s;
+
+    &:hover, &:active, &:focus {
+      color: white;
+    }
+
+    &__text {
+      display: none;
+
+      @media (min-width: $xs-to-sm) {
+        display: inline;
+      }
+    }
+
+    &__icon {
+      font-size: 2rem;
+
+      @media (min-width: $xs-to-sm) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__item {
+    @keyframes item-fade-in {
+      from { opacity: 0; }
+      to { opacity: .4; }
+    }
+
+    animation: item-fade-in .2s backwards, slide-up .2s;
+    margin-bottom: var(--item-margin-bottom);
+    border-radius: var(--item-border-radius);
+    overflow: hidden;
+    position: relative;
+    height: var(--item-height);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: var(--item-bg-color);
+    outline: 0;
+    opacity: .4;
+    transition: opacity .1s, transform .1s;
+
+    @media (min-width: $xs-to-sm) {
+      width: 100%;
+
+    }
+
+    &:hover, &:active, &:focus {
+      opacity: 1;
+    }
+
+    &--selected {
+      opacity: 1;
+      transform: scale(1.11);
+    }
+
+    &__image {
+      animation: fade-in .5s;
+      width: var(--item-height);
+      height: var(--item-height);
+      overflow: hidden;
+      background-size: cover;
+
+      &-placeholder {
+        width: var(--item-height);
+        height: var(--item-height);
+      }
+    }
+
+    &__info {
+      display: none;
+      max-height: var(--item-height);
+      flex: 1;
+      padding: 0 1.5em;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .8em;
+      color: #ccc;
+      text-align: left;
+      word-break: break-all;
+
+      @media (min-width: $xs-to-sm) {
+        display: flex;
+      }
+    }
+
+    &__status {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+      font-size: 1.5rem;
+
+      &--ongoing {
+        color: #333;
+      }
+
+      &--success {
+        color: var(--green);
+      }
+
+      &--failed {
+        color: var(--red);
+      }
+    }
+  }
+}

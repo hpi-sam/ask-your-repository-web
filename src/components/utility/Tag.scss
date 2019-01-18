@@ -1,0 +1,34 @@
+:root {
+  --tag-border-radius: .3rem;
+  --tag-padding-horizontal: .9em;
+  --tag-padding-vertical: .7em;
+  --tag-padding: var(--tag-padding-vertical) var(--tag-padding-horizontal);
+  --tag-font-size: .9em;
+  --tag-margin: .5em;
+  --tag-line-height: 1;
+}
+
+.Tag {
+  padding: var(--tag-padding);
+  margin-right: var(--tag-margin);
+  margin-bottom: var(--tag-margin);
+  border-radius: var(--tag-border-radius);
+  font-size: var(--tag-font-size);
+
+  display: inline-block;
+  background-color: #eee;
+  color: white;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  outline: 0;
+  position: relative;
+  transition: box-shadow .2s;
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  &--multi {
+    box-shadow: 0 0 3px 2px #fff;
+  }
+}

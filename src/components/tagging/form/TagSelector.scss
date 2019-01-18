@@ -4,16 +4,6 @@
   100% { opacity: .6 }
 }
 
-:root {
-  --tag-border-radius: 8px;
-  --tag-padding-horizontal: .7em;
-  --tag-padding-vertical: .5em;
-  --tag-padding: var(--tag-padding-vertical) var(--tag-padding-horizontal);
-  --tag-font-size: .9em;
-  --tag-margin: .5em;
-  --tag-line-height: 1;
-}
-
 .TagSelector {
   display: flex;
   flex-wrap: wrap;
@@ -28,20 +18,6 @@
     font-size: var(--tag-font-size);
     color: rgb(45, 194, 26);
     animation: pulse 2s infinite;
-  }
-
-  &__tag {
-    padding: var(--tag-padding);
-    margin-right: var(--tag-margin);
-    margin-bottom: var(--tag-margin);
-    border-radius: var(--tag-border-radius);
-    font-size: var(--tag-font-size);
-
-    background-color: #eee;
-    color: white;
-    max-width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
 
   &__input {

@@ -20,7 +20,7 @@
     --grid-size: 2;
     --img-size: calc(var(--max-width)/var(--grid-size));
     --grid-gap: 20px;
-    --padding-sides: 50px;
+    --padding-sides: 20px;
   }
 
   @media (min-width: 330px) and (max-width: 767px) {
@@ -28,6 +28,6 @@
     --grid-size: 1;
     --img-size: calc(var(--max-width)/var(--grid-size));
     --grid-gap: 20px;
-    --padding-sides: 50px;
+    --padding-sides: 20px;
   }
 }

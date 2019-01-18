@@ -23,10 +23,6 @@ exports[`<App /> renders correctly 1`] = `
       />
       <Route
         component={[Function]}
-        path="/tagging"
-      />
-      <Route
-        component={[Function]}
         path="/images"
       />
       <Route

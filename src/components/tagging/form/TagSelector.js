@@ -1,17 +1,17 @@
 // @flow
 import * as React from 'react';
 import shortid from 'shortid';
-import { connect } from 'react-redux';
-import ColorFactory from '../../factories/ColorFactory';
-import { addTag, removeLastTag } from '../../state/image/image.actionCreators';
-import type { Image } from '../../models/Image';
-import type { AppState } from '../../state/AppState';
+import Tag from '../../utility/Tag';
+import type { Tag as TagType } from '../../../models/Tag';
 import './TagSelector.scss';
 
-
 type Props = {
-  image: ?Image,
-  dispatch: Function,
+  tags: Array<TagType>,
+  multiTags: Array<TagType>,
+  addTag: (tag: TagType) => void,
+  removeTag: (tag: TagType) => void,
+  addMultiTag: (tag: TagType) => void,
+  removeMultiTag: (tag: TagType) => void,
 };
 
 type State = {
@@ -59,13 +59,14 @@ class TagSelector extends React.Component<Props, State> {
   };
 
   removeLastTag() {
-    this.props.dispatch(removeLastTag());
+    const { removeTag, tags } = this.props;
+    removeTag(tags[tags.length - 1]);
   }
 
   addTag() {
     const { tagInputValue } = this.state;
     if (!tagInputValue) return;
-    this.props.dispatch(addTag(tagInputValue));
+    this.props.addTag(tagInputValue);
 
     this.setState({ tagInputValue: '' });
   }
@@ -73,24 +74,23 @@ class TagSelector extends React.Component<Props, State> {
   tagInput: ?HTMLInputElement;
 
   render() {
-    const { image } = this.props;
-    if (!image) return null;
-
-    const { tags } = image;
+    const { tags, multiTags } = this.props;
     const { tagInputValue } = this.state;
 
     return (
       <div className="TagSelector">
         {tags.map(tag => (
-          <div
+          <Tag
             key={shortid.generate()}
             className="TagSelector__tag"
-            style={{ backgroundColor: ColorFactory.fromTag(tag) }}
-          >
-            {tag}
-          </div>
+            caption={tag}
+            clickable
+            isMultiTag={multiTags.includes(tag)}
+            onClick={multiTags.includes(tag) ? this.props.removeMultiTag : this.props.addMultiTag}
+            data-cy="tag-selector-tag"
+          />
         ))}
-        <div className="TagSelector__tag TagSelector__input">
+        <div className="Tag TagSelector__input">
           <input
             className="TagSelector__input__control"
             type="text"
@@ -98,6 +98,7 @@ class TagSelector extends React.Component<Props, State> {
             onChange={this.handleTagInputChange}
             onKeyDown={this.handleKeyPress}
             ref={(input) => { this.tagInput = input; }}
+            data-cy="tag-selector-input"
           />
           <div className="TagSelector__input__content">
             {tagInputValue}
@@ -115,8 +116,4 @@ class TagSelector extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  image: state.image,
-});
-
-export default connect(mapStateToProps)(TagSelector);
+export default TagSelector;

@@ -1,31 +1,30 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addTag } from '../../../state/image/image.actionCreators';
+import classNames from 'classnames';
 import ColorFactory from '../../../factories/ColorFactory';
 import type { Tag } from '../../../models/Tag';
 
 type Props = {
   tag: Tag,
+  onClick: (tag: Tag) => void,
   shortcut: string,
-  dispatch: Function,
 };
 
 class TagSuggestion extends Component<Props> {
   handleClick = () => {
-    const { dispatch, tag } = this.props;
-    dispatch(addTag(tag));
+    const { onClick, tag } = this.props;
+    onClick(tag);
   };
 
   render() {
     const { tag, shortcut } = this.props;
+    const className = classNames('TagSuggestions__item', ColorFactory.fromTag(tag));
 
     return (
       <button
         onClick={this.handleClick}
         type="button"
-        className="TagSuggestions__item"
-        style={{ backgroundColor: ColorFactory.fromTag(tag) }}
+        className={className}
       >
         <span className="TagSuggestions__item__shortcut">
           {shortcut}
@@ -38,4 +37,4 @@ class TagSuggestion extends Component<Props> {
   }
 }
 
-export default connect()(TagSuggestion);
+export default TagSuggestion;

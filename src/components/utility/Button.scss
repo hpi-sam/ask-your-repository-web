@@ -5,14 +5,17 @@
   --button-text-color: #222;
   --button-border-color: #ccc;
   --button-border-width: 1px;
-  --button-border-radius: 8px;
+  --button-border-radius: .3rem;
 
+  --button-disabled-text-color: #333;
+  --button-disabled-bg-color: #999;
   --button-hover-bg-color: #f8f8f8;
 }
 
 .Button {
   font: inherit;
   display: inline-flex;
+  align-items: center;
   cursor: pointer;
 
   padding: var(--button-padding-vertical) var(--button-padding-horizontal);
@@ -21,7 +24,12 @@
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
 
-  transition: background-color .2s;
+  transition: background-color .2s, color .2s;
+
+  &:disabled {
+    --button-text-color: var(--button-disabled-text-color);
+    --button-bg-color: var(--button-disabled-bg-color);
+  }
 
   &:hover {
     --button-bg-color: var(--button-hover-bg-color);

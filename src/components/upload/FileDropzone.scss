@@ -1,7 +1,7 @@
 @import '../../style/breakpoints.scss';
 
 .FileDropzone {
-  --bg-color: transparent;
+  --bg-color: rgba(0, 0, 0, .2);
   --hover-bg-color: rgba(255, 255, 255, .03);
 
   --border-width: 4px;
@@ -24,7 +24,7 @@
 
   background-color: var(--bg-color);
   border: var(--border-width) dashed var(--border-color);
-  border-radius: inherit;
+  border-radius: 10px;
 
   transition:
     background-color var(--transition-duration),
