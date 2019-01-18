@@ -1,12 +1,12 @@
 // @flow
 import { applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import socketioMiddleware from '../middleware/socketio_middleware';
+import socketioMiddleware from '../middleware/socketioMiddleware';
 import configureStore from './configureStore';
 
 jest.mock('redux');
 jest.mock('redux-persist');
-jest.mock('../middleware/socketio_middleware');
+jest.mock('../middleware/socketioMiddleware');
 
 describe('configure redux store', () => {
   afterEach(() => {

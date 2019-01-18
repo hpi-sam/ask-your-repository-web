@@ -25,14 +25,20 @@ function socketioMiddleware(url: string) {
       socket.emit('leave_team', humps.decamelizeKeys(data));
     };
 
-    socket.on('START_PRESENTATION', (images: Image[]) => {
-      if (store.getState().presentationMode.isActive) {
+    console.log('fake');
+
+    console.log(socket.on);
+    /* socket.on('START_PRESENTATION', (images: Image[]) => {
+        if (store.getState().presentationMode.isActive) {
         store.dispatch(startPresentation(images));
       }
     });
+    */
+    console.log('After on');
 
     return (next: any) => (action: Action) => {
       if (action.type === SET_ACTIVE_TEAM) {
+        console.log('Register Active Team Action');
         const previousTeam = store.getState().activeTeam;
         if (previousTeam) leaveTeam(previousTeam);
         joinTeam(action.team);
