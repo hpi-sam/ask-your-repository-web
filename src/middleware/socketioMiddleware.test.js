@@ -2,14 +2,18 @@ import io from 'socket.io-client';
 import configureStore from '../config/configureStore';
 import socketioMiddleware from './socketioMiddleware';
 
+const mockIO = {
+  on: jest.fn(() => { console.log('asdf'); }),
+  // emit: () => { console.log('emit'); },
+  // default: () => { console.log('default'); },
+};
+
 const store = configureStore({});
-let mockIo;
+jest.mock('socket.io-client', () => jest.fn((url) => {
+  console.log(`io called with ${url}`);
+  return mockIO;
+}));
 
-jest.mock('socket.io-client', () => mockIo);
-
-let mockPromise;
-
-jest.mock('./search.js', () => ({ search: jest.fn(() => mockPromise) }));
 
 // const mockOn = jest.fn();
 // const mockEmit = jest.fn();
@@ -26,6 +30,7 @@ jest.mock('socket.io-client', () => ({
 */
 describe('socketio middleware', () => {
   beforeEach(() => {
+
   });
 
   it('calls socketio.io with process.env.REACT_APP_API_URL', () => {
@@ -35,12 +40,13 @@ describe('socketio middleware', () => {
     socketioMiddleware(process.env.REACT_APP_API_URL)(store);
     console.log('1. Test finish');
     expect(io).toBeCalledWith(process.env.REACT_APP_API_URL);
+    console.log(`API_URL ${process.env.REACT_APP_API_URL}`);
   });
 
   it('registers START_PRESENTATION', () => {
     console.log('2. Test start');
     socketioMiddleware(process.env.REACT_APP_API_URL)(store);
     console.log('2. Test finish');
-    expect(io().on).toBeCalledWith('START_PRESENTATION', expect.any(Function));
+    expect(mockIO.on).toBeCalledWith('START_PRESENTATION', expect.any(Function));
   });
 });

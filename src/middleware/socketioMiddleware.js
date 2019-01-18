@@ -10,6 +10,7 @@ import type { Action } from '../state/Action';
 function socketioMiddleware(url: string) {
   return (store: any) => {
     const socket = io(url);
+    console.log(socket);
 
     const joinTeam = (team: Team) => {
       const data = {
@@ -28,12 +29,12 @@ function socketioMiddleware(url: string) {
     console.log('fake');
 
     console.log(socket.on);
-    /* socket.on('START_PRESENTATION', (images: Image[]) => {
-        if (store.getState().presentationMode.isActive) {
+    socket.on('START_PRESENTATION', (images: Image[]) => {
+      if (store.getState().presentationMode.isActive) {
         store.dispatch(startPresentation(images));
       }
     });
-    */
+
     console.log('After on');
 
     return (next: any) => (action: Action) => {
