@@ -32,19 +32,9 @@ describe('configure redux store', () => {
 
   it('should include socketio middleware when socketio_url is defined', () => {
     jest.resetAllMocks();
-    process.env.REACT_APP_API_URL = 'http://localhost:5000';
 
     configureStore(history);
 
     expect(socketioMiddleware).toHaveBeenCalled();
-  });
-
-  it('should not include socketio middleware when socketio_url is not defined', () => {
-    jest.resetAllMocks();
-    delete process.env.REACT_APP_API_URL;
-
-    configureStore(history);
-
-    expect(socketioMiddleware).not.toHaveBeenCalled();
   });
 });

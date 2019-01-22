@@ -25,17 +25,12 @@ function configureStore() {
     thunk,
     flashMiddleware(),
     routerMiddleware(history),
+    socketioMiddleware(),
   ];
 
   if (process.env.NODE_ENV === 'development') {
     const { logger } = require('redux-logger');
     middleware = [...middleware, logger];
-  }
-
-  const { REACT_APP_API_URL } = process.env;
-
-  if (REACT_APP_API_URL) {
-    middleware = [...middleware, socketioMiddleware(REACT_APP_API_URL)];
   }
 
   const rootReducer = createRootReducer(history);

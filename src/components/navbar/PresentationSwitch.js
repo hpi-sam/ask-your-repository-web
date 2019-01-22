@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import ReactTooltip from 'react-tooltip';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { turnOnPresentationMode, turnOffPresentationMode } from '../../state/presentation_mode/presentationMode.actionCreators';
@@ -15,26 +16,31 @@ type Props = {
 class PresentationSwitch extends Component<Props> {
   handleClick = () => {
     const { dispatch } = this.props;
-    if (!this.props.isPresentationModeOn) {
-      dispatch(turnOnPresentationMode());
-    } else {
+    if (this.props.isPresentationModeOn) {
       dispatch(turnOffPresentationMode());
+    } else {
+      dispatch(turnOnPresentationMode());
     }
-  }
-
+  };
 
   render() {
     const { isPresentationModeOn } = this.props;
     const className = classNames('PresentationSwitch', { 'PresentationSwitch--active': isPresentationModeOn });
-    const outerClassName = classNames('PresentationSwitch__outer', { 'PresentationSwitch__outer--active': isPresentationModeOn });
-    const innerClassName = classNames('PresentationSwitch__inner', { 'PresentationSwitch__inner--active': isPresentationModeOn });
 
     return (
-      <button type="button" data-tip="Turn on Presentation Mode" className={className} onClick={this.handleClick}>
-        <div className={outerClassName}>
-          <div className={innerClassName} />
-        </div>
-      </button>
+      <Fragment>
+        <button
+          type="button"
+          data-tip="Synchronized Presentation Mode"
+          className={className}
+          onClick={this.handleClick}
+        >
+          <div className="PresentationSwitch__outer">
+            <div className="PresentationSwitch__inner" />
+          </div>
+        </button>
+        <ReactTooltip place="bottom" effect="solid" />
+      </Fragment>
     );
   }
 }

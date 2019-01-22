@@ -7,39 +7,32 @@ import type { Image } from '../models/Image';
 import type { Team } from '../models/Team';
 import type { Action } from '../state/Action';
 
-function socketioMiddleware(url: string) {
+function socketioMiddleware() {
+  const socket = io(process.env.REACT_APP_API_URL);
+
+  const joinTeam = (team: Team) => {
+    const data = {
+      teamId: team.id,
+    };
+    socket.emit('join_team', humps.decamelizeKeys(data));
+  };
+
+  const leaveTeam = (team: Team) => {
+    const data = {
+      teamId: team.id,
+    };
+    socket.emit('leave_team', humps.decamelizeKeys(data));
+  };
+
   return (store: any) => {
-    const socket = io(url);
-    console.log(socket);
-
-    const joinTeam = (team: Team) => {
-      const data = {
-        teamId: team.id,
-      };
-      socket.emit('join_team', humps.decamelizeKeys(data));
-    };
-
-    const leaveTeam = (team: Team) => {
-      const data = {
-        teamId: team.id,
-      };
-      socket.emit('leave_team', humps.decamelizeKeys(data));
-    };
-
-    console.log('fake');
-
-    console.log(socket.on);
     socket.on('START_PRESENTATION', (images: Image[]) => {
       if (store.getState().presentationMode.isActive) {
         store.dispatch(startPresentation(images));
       }
     });
 
-    console.log('After on');
-
     return (next: any) => (action: Action) => {
       if (action.type === SET_ACTIVE_TEAM) {
-        console.log('Register Active Team Action');
         const previousTeam = store.getState().activeTeam;
         if (previousTeam) leaveTeam(previousTeam);
         joinTeam(action.team);

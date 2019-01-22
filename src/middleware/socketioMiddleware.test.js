@@ -1,52 +1,75 @@
 import io from 'socket.io-client';
-import configureStore from '../config/configureStore';
+import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store';
 import socketioMiddleware from './socketioMiddleware';
+import mockIO, { serverSocket } from '../mocks/socketioMock';
+import { SET_ACTIVE_TEAM } from '../state/active_team/activeTeam.actionTypes';
 
-const mockIO = {
-  on: jest.fn(() => { console.log('asdf'); }),
-  // emit: () => { console.log('emit'); },
-  // default: () => { console.log('default'); },
-};
+jest.mock('socket.io-client', () => jest.fn(() => mockIO()));
 
-const store = configureStore({});
-jest.mock('socket.io-client', () => jest.fn((url) => {
-  console.log(`io called with ${url}`);
-  return mockIO;
-}));
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+let store;
 
-
-// const mockOn = jest.fn();
-// const mockEmit = jest.fn();
-/*
-jest.mock('socket.io-client', () => ({
-  __esModule: true,
-  default: jest.fn().mockImplementation(() => ({
-    on: jest.fn(),
-    lalala: jest.fn(),
-    emit: jest.fn(),
-  })),
-  namedExport: jest.fn(),
-}), { virtual: true });
-*/
 describe('socketio middleware', () => {
-  beforeEach(() => {
+  describe('setup middleware', () => {
+    beforeEach(() => {
+      store = mockStore({
+        presentationMode: {
+          isActive: true,
+        },
+      });
+      socketioMiddleware(process.env.REACT_APP_API_URL)(store);
+    });
 
+    it('calls socketio.io with process.env.REACT_APP_API_URL', () => {
+      expect(io).toBeCalledWith(process.env.REACT_APP_API_URL);
+    });
+
+    it('registers START_PRESENTATION', () => {
+      expect(mockIO().on).toBeCalledWith('START_PRESENTATION', expect.any(Function));
+    });
+
+    it('calls the registered function for START_PRESENTATION ', () => {
+      serverSocket.emit('START_PRESENTATION', [{
+        id: 'image_id', url: 'test_url', tags: 'test', score: 1.0,
+      }]);
+      expect();
+    });
   });
 
-  it('calls socketio.io with process.env.REACT_APP_API_URL', () => {
-    console.log('1. Test start');
-    // const socket = io('random_url');
-    // console.log(socket);
-    socketioMiddleware(process.env.REACT_APP_API_URL)(store);
-    console.log('1. Test finish');
-    expect(io).toBeCalledWith(process.env.REACT_APP_API_URL);
-    console.log(`API_URL ${process.env.REACT_APP_API_URL}`);
-  });
+  describe('emit actions', () => {
+    describe('SET_ACTIVE_TEAM', () => {
+      beforeEach(() => {
+        store = mockStore({
+          activeTeam: {
+            id: 'test_id',
+            name: 'team_name',
+          },
+        });
+        const action = {
+          type: SET_ACTIVE_TEAM,
+          team: {
+            id: 'new_test_id',
+            name: 'new_test_team',
+          },
+        };
+        socketioMiddleware(process.env.REACT_APP_API_URL)(store)(() => {})(action);
+      });
 
-  it('registers START_PRESENTATION', () => {
-    console.log('2. Test start');
-    socketioMiddleware(process.env.REACT_APP_API_URL)(store);
-    console.log('2. Test finish');
-    expect(mockIO.on).toBeCalledWith('START_PRESENTATION', expect.any(Function));
+      afterEach(() => {
+        Object.values(mockIO()).forEach((mock) => {
+          mock.mockReset();
+        });
+      });
+
+      it('leave_team', () => {
+        expect(mockIO().emit.mock.calls[0]).toEqual(['leave_team', { team_id: 'test_id' }]);
+      });
+
+      it('join_team', () => {
+        expect(mockIO().emit.mock.calls[1]).toEqual(['join_team', { team_id: 'new_test_id' }]);
+      });
+    });
   });
 });
