@@ -8,12 +8,12 @@ import type { Team } from '../models/Team';
 import type { Action } from '../state/Action';
 
 function socketioMiddleware() {
-  const socketUrl = process.env.REACT_APP_SOCKET_URL;
+  const socketUrl = process.env.REACT_APP_API_URL;
   let socket;
   if (socketUrl) {
     socket = io(socketUrl);
   } else {
-    throw new Error('REACT_APP_SOCKET_URL environment variable undefined');
+    throw new Error('REACT_APP_API_URL environment variable undefined');
   }
 
   const joinTeam = (team: Team) => {
