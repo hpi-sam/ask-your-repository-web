@@ -12,6 +12,14 @@ const mockStore = configureMockStore(middlewares);
 let store;
 
 describe('socketio middleware', () => {
+  beforeEach(() => {
+    process.env.REACT_APP_API_URL = 'http://localhost:5000';
+  });
+
+  afterEach(() => {
+    delete process.env.REACT_APP_API_URL;
+  });
+
   describe('setup middleware', () => {
     beforeEach(() => {
       store = mockStore({
@@ -19,7 +27,7 @@ describe('socketio middleware', () => {
           isActive: true,
         },
       });
-      socketioMiddleware(process.env.REACT_APP_API_URL)(store);
+      socketioMiddleware()(store);
     });
 
     it('calls socketio.io with process.env.REACT_APP_API_URL', () => {
@@ -54,7 +62,7 @@ describe('socketio middleware', () => {
             name: 'new_test_team',
           },
         };
-        socketioMiddleware(process.env.REACT_APP_API_URL)(store)(() => {})(action);
+        socketioMiddleware()(store)(() => {})(action);
       });
 
       afterEach(() => {
