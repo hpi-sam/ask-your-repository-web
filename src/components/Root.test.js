@@ -8,7 +8,12 @@ describe('<Root />', () => {
   let wrapper;
 
   beforeEach(() => {
+    process.env.REACT_APP_API_URL = 'http://localhost:5000';
     wrapper = shallow(<Root />);
+  });
+
+  afterEach(() => {
+    delete process.env.REACT_APP_API_URL;
   });
 
   it('renders correctly', () => {
