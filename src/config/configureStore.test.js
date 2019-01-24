@@ -33,7 +33,7 @@ describe('configure redux store', () => {
   it('should include socketio middleware when socketio_url is defined', () => {
     jest.resetAllMocks();
 
-    configureStore(history);
+    configureStore();
 
     expect(socketioMiddleware).toHaveBeenCalled();
   });
