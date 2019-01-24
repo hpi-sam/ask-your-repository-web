@@ -8,6 +8,7 @@ describe('<Root />', () => {
   let wrapper;
 
   beforeEach(() => {
+    jest.resetModules();
     process.env.REACT_APP_API_URL = 'http://localhost:5000';
     wrapper = shallow(<Root />);
   });
