@@ -1,8 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import { View, Mask } from 'mdbreact';
+import { IoIosMore } from 'react-icons/io';
+import shortid from 'shortid';
+import Tag from '../utility/Tag';
 import type { Image } from '../../models/Image';
-import type { Tag } from '../../models/Tag';
 import './Gallery.scss';
 
 const maxTags = 5;
@@ -12,33 +13,34 @@ type Props = {
 };
 
 class Gallery extends Component<Props> {
-  renderOverflow = () => (
-    <div className="Gallery__tag Gallery__tag--overflow">
-      <p>...</p>
-    </div>
-  );
-
-  renderTags = (tag: Tag, index: number) => (
-    <div key={index} className="Gallery__tag">
-      <p>{tag}</p>
-    </div>
-  );
-
   renderImage = (image: Image) => {
     const { url } = image;
+
     const tags = image.tags || [];
-    const overflow = tags.length >= maxTags;
+    const displayedTags = tags.slice(0, maxTags);
+    const showEllipses = tags.length >= maxTags;
 
     return (
-      <View key={image.id} hover>
-        <img src={url} alt="" />
-        <Mask overlay="black-strong" className="flex-center">
-          <div className="Gallery__tags-container">
-            {tags.slice(0, maxTags).map(this.renderTags)}
-            {overflow && this.renderOverflow()}
-          </div>
-        </Mask>
-      </View>
+      <div key={image.id} className="Gallery__item">
+        <img
+          className="Gallery__item__image"
+          src={url}
+          alt={displayedTags.join(', ')}
+        />
+        <div className="Gallery__item__overlay">
+          {displayedTags.map(tag => (
+            <Tag
+              key={shortid.generate()}
+              caption={tag}
+            />
+          ))}
+          {showEllipses && (
+            <div className="Gallery__item__ellipses">
+              <IoIosMore />
+            </div>
+          )}
+        </div>
+      </div>
     );
   };
 
