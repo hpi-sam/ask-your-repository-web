@@ -5,7 +5,6 @@ import type { Tag } from '../models/Tag';
 const colors = [
   'red',
   'blue',
-  'darkgreen',
   'orange',
   'purple',
 ];
