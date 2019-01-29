@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import qs from 'qs';
 import InfiniteScroll from 'react-infinite-scroller';
 import Gallery from './Gallery';
 import ImageService from '../../services/ImageService';
@@ -11,6 +12,7 @@ import './ImagesIndex.scss';
 
 type Props = {
   activeTeam: ?Team,
+  location: Object
 };
 
 type State = {
@@ -42,6 +44,15 @@ class ImagesIndex extends Component<Props, State> {
     if (this.props.activeTeam !== prevProps.activeTeam) {
       this.reloadImages();
     }
+    if (this.props.location.search !== prevProps.location.search) {
+      console.log('SEARCH CHANGED!');
+      this.reloadImages();
+    }
+  }
+
+  getSearchString = (querystring) => {
+    const { search } = qs.parse(querystring, { ignoreQueryPrefix: true });
+    return search;
   }
 
   reloadImages = () => {
@@ -56,14 +67,19 @@ class ImagesIndex extends Component<Props, State> {
 
     if (!this.props.activeTeam) return;
 
+    const search = this.getSearchString(this.props.location.search);
+
     try {
       const params = {
         teamId: this.props.activeTeam.id,
         offset: currentOffset,
         limit,
+        search,
       };
       const images = await ImageService.list(params);
-      this.receiveImages(images);
+      const filteredImages = images
+        .filter(image => image.score > 0);
+      this.receiveImages(filteredImages);
     } catch (error) {
       // TODO: Handle error
     }

@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import humps from 'humps';
 import { startPresentation } from '../state/presentation/presentation.actionCreators';
 import { SET_ACTIVE_TEAM } from '../state/active_team/activeTeam.actionTypes';
+import { SYNCHRONIZED_SEARCH } from '../state/presentation/presentation.actionTypes';
 import type { Image } from '../models/Image';
 import type { Team } from '../models/Team';
 import type { Action } from '../state/Action';
@@ -20,20 +21,24 @@ function socketioMiddleware() {
     const data = {
       teamId: team.id,
     };
-    socket.emit('join_team', humps.decamelizeKeys(data));
+    socket.emit('JOIN_TEAM', humps.decamelizeKeys(data));
   };
 
   const leaveTeam = (team: Team) => {
     const data = {
       teamId: team.id,
     };
-    socket.emit('leave_team', humps.decamelizeKeys(data));
+    socket.emit('LEAVE_TEAM', humps.decamelizeKeys(data));
   };
 
   return (store: any) => {
     socket.on('START_PRESENTATION', (images: Image[]) => {
       if (store.getState().presentationMode.isActive) {
-        store.dispatch(startPresentation(images));
+        const filteredImages = images
+          .filter(image => image.score > 0)
+          .slice(0, 4);
+
+        store.dispatch(startPresentation(filteredImages));
       }
     });
 
@@ -43,6 +48,16 @@ function socketioMiddleware() {
         if (previousTeam) leaveTeam(previousTeam);
         joinTeam(action.team);
       }
+
+      if (action.type === SYNCHRONIZED_SEARCH) {
+        const { id } = store.getState().activeTeam;
+        socket.emit('SYNCHRONIZED_SEARCH', { search: action.search, team_id: id });
+      }
+
+      if (action.type === 'persist/REHYDRATE') {
+        joinTeam(action.payload.activeTeam);
+      }
+
       return next(action);
     };
   };

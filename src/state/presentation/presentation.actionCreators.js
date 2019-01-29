@@ -13,4 +13,11 @@ export function startPresentation(images: Image[]) {
   };
 }
 
-export default startPresentation;
+export function synchronizedSearch(search: String) {
+  return (dispatch: Function) => {
+    dispatch({
+      type: actionTypes.SYNCHRONIZED_SEARCH,
+      search,
+    });
+  };
+}
