@@ -9,7 +9,9 @@ export const initialState = null;
 function presentationReducer(state: PresentationState = initialState, action: Action) {
   switch (action.type) {
     case actionTypes.START_PRESENTATION:
-      return { images: action.images };
+      return { ...state, images: action.images };
+    case actionTypes.SYNCHRONIZED_SEARCH:
+      return state;
     default:
       return state;
   }

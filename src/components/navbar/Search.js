@@ -1,12 +1,13 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { Component, Fragment } from 'react';
+import { push } from 'connected-react-router';
+import qs from 'qs';
 import onClickOutside from 'react-onclickoutside';
 import { connect } from 'react-redux';
 import { MdSearch, MdClose } from 'react-icons/md';
 import classNames from 'classnames';
-import ImageService from '../../services/ImageService';
-import { startPresentation } from '../../state/presentation/presentation.actionCreators';
+import { synchronizedSearch } from '../../state/presentation/presentation.actionCreators';
 import type { AppState } from '../../state/AppState';
 import type { Team } from '../../models/Team';
 import './Search.scss';
@@ -14,6 +15,8 @@ import './Search.scss';
 type Props = {
   dispatch: Function,
   activeTeam: ?Team,
+  location: Object,
+  isPresentationModeOn: boolean,
 };
 
 type State = {
@@ -25,9 +28,10 @@ class Search extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    const { search } = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
     this.state = {
       isSelected: false,
-      search: '',
+      search: search || '',
     };
   }
 
@@ -55,6 +59,13 @@ class Search extends Component<Props, State> {
     if (!activeTeam) return;
 
     const { search } = this.state;
+
+    if (this.props.isPresentationModeOn) {
+      this.props.dispatch(synchronizedSearch(search));
+    } else {
+      this.props.dispatch(push(`/images?${qs.stringify({ search })}`));
+    }
+    /*
     const images = await ImageService.list({
       teamId: activeTeam.id,
       search,
@@ -65,6 +76,7 @@ class Search extends Component<Props, State> {
       .slice(0, 4);
 
     this.props.dispatch(startPresentation(filteredImages));
+    */
   };
 
   render() {
@@ -112,6 +124,8 @@ class Search extends Component<Props, State> {
 
 const mapStateToProps = (state: AppState) => ({
   activeTeam: state.activeTeam,
+  isPresentationModeOn: state.presentationMode.isActive,
+  location: state.router.location,
 });
 
 export default connect(mapStateToProps)(onClickOutside(Search));
