@@ -29,9 +29,10 @@ describe('<ImagesIndex />', () => {
 
   beforeEach(() => {
     store = mockStore(state);
+	const location = { search: ' ' };
     wrapper = mount((
       <Provider store={store}>
-        <ImagesIndex />
+        <ImagesIndex location={location} />
       </Provider>
     )).find('ImagesIndex');
   });

@@ -45,7 +45,6 @@ class ImagesIndex extends Component<Props, State> {
       this.reloadImages();
     }
     if (this.props.location.search !== prevProps.location.search) {
-      console.log('SEARCH CHANGED!');
       this.reloadImages();
     }
   }
@@ -65,13 +64,14 @@ class ImagesIndex extends Component<Props, State> {
     const currentOffset = this.state.offset;
     this.increaseOffset();
 
-    if (!this.props.activeTeam) return;
+    const { activeTeam } = this.props;
+    if (!activeTeam) return;
 
     const search = this.getSearchString(this.props.location.search);
 
     try {
       const params = {
-        teamId: this.props.activeTeam.id,
+        teamId: activeTeam.id,
         offset: currentOffset,
         limit,
         search,
