@@ -15,7 +15,6 @@ import './Search.scss';
 type Props = {
   dispatch: Function,
   activeTeam: ?Team,
-  location: Object,
   isPresentationModeOn: boolean,
 };
 
@@ -28,10 +27,9 @@ class Search extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const { search } = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
     this.state = {
       isSelected: false,
-      search: search || '',
+      search: '',
     };
   }
 
@@ -44,7 +42,7 @@ class Search extends Component<Props, State> {
   };
 
   handleClose = () => {
-    this.setState({ isSelected: false });
+    this.setState({ isSelected: false, search: '' });
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -65,18 +63,6 @@ class Search extends Component<Props, State> {
     } else {
       this.props.dispatch(push(`/images?${qs.stringify({ search })}`));
     }
-    /*
-    const images = await ImageService.list({
-      teamId: activeTeam.id,
-      search,
-    });
-
-    const filteredImages = images
-      .filter(image => image.score > 0)
-      .slice(0, 4);
-
-    this.props.dispatch(startPresentation(filteredImages));
-    */
   };
 
   render() {
@@ -125,7 +111,6 @@ class Search extends Component<Props, State> {
 const mapStateToProps = (state: AppState) => ({
   activeTeam: state.activeTeam,
   isPresentationModeOn: state.presentationMode.isActive,
-  location: state.router.location,
 });
 
 export default connect(mapStateToProps)(onClickOutside(Search));

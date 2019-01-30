@@ -7,7 +7,7 @@ exports[`<ImagesIndex /> renders correctly 1`] = `
   <InfiniteScroll
     element="div"
     getScrollParent={null}
-    hasMore={true}
+    hasMore={false}
     initialLoad={false}
     isReverse={false}
     loadMore={[Function]}
