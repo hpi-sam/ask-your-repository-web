@@ -55,7 +55,9 @@ function socketioMiddleware() {
       }
 
       if (action.type === 'persist/REHYDRATE') {
-        joinTeam(action.payload.activeTeam);
+        if (action.payload && action.payload.activeTeam) {
+          joinTeam(action.payload.activeTeam);
+        }
       }
 
       return next(action);
