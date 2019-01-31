@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PresentationSwitch /> renders correctly 1`] = `
-<Fragment>
+<PresentationSwitch
+  dispatch={[Function]}
+  isPresentationModeOn={false}
+>
   <button
     className="PresentationSwitch"
     data-tip="Synchronized Presentation Mode"
@@ -22,6 +25,11 @@ exports[`<PresentationSwitch /> renders correctly 1`] = `
     place="bottom"
     resizeHide={true}
     wrapper="div"
-  />
-</Fragment>
+  >
+    <div
+      className="__react_component_tooltip place-bottom type-dark "
+      data-id="tooltip"
+    />
+  </ReactTooltip>
+</PresentationSwitch>
 `;

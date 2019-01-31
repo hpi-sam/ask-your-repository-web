@@ -2,7 +2,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
-import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from 'redux-persist-erksch/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore, { history } from '../config/configureStore';
 import TeamRoute from './custom_routes/TeamRoute';

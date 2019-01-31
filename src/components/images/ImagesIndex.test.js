@@ -2,7 +2,8 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import configureMockStore from 'redux-mock-store';
-import { shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import { mount } from 'enzyme';
 import ImagesIndex, { limit } from './ImagesIndex';
 import ImageService from '../../services/ImageService';
 import ImageFactory from '../../factories/ImageFactory';
@@ -19,7 +20,7 @@ describe('<ImagesIndex />', () => {
 
   const state = {
     ...initialState,
-    activeTeam: TeamFactory.createDummyTeam(),
+    activeTeam: TeamFactory.createStaticDummyTeam(),
   };
 
   beforeAll(() => {
@@ -28,7 +29,11 @@ describe('<ImagesIndex />', () => {
 
   beforeEach(() => {
     store = mockStore(state);
-    wrapper = shallow(<ImagesIndex store={store} />).dive();
+    wrapper = mount((
+      <Provider store={store}>
+        <ImagesIndex />
+      </Provider>
+    )).find('ImagesIndex');
   });
 
   afterEach(() => {

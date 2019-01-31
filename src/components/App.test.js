@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import initialState from '../state/initialState';
 import App from './App';
 
@@ -14,10 +15,16 @@ describe('<App />', () => {
 
   beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = shallow(<App store={store} />).dive();
+    wrapper = mount((
+      <Provider store={store}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    )).find('App');
   });
 
   it('renders correctly', () => {
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.exists()).toBeTruthy();
   });
 });

@@ -1,8 +1,8 @@
 // @flow
 import { applyMiddleware, createStore } from 'redux';
 import type { Dispatch } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist-erksch';
+import storage from 'redux-persist-erksch/lib/storage';
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { middleware as flashMiddleware } from 'redux-flash';
