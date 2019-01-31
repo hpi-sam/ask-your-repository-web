@@ -28,7 +28,7 @@ exports[`<Root /> renders correctly 1`] = `
       }
     }
   >
-    <Connect(ConnectedRouter)
+    <Connect(ConnectedRouterWithContext)
       history={
         Object {
           "action": "POP",
@@ -60,7 +60,7 @@ exports[`<Root /> renders correctly 1`] = `
           path="/"
         />
       </Switch>
-    </Connect(ConnectedRouter)>
+    </Connect(ConnectedRouterWithContext)>
   </PersistGate>
 </Provider>
 `;

@@ -5,7 +5,7 @@ import socketioMiddleware from '../middleware/socketioMiddleware';
 import configureStore from './configureStore';
 
 jest.mock('redux');
-jest.mock('redux-persist');
+jest.mock('redux-persist-erksch');
 jest.mock('../middleware/socketioMiddleware');
 
 describe('configure redux store', () => {
