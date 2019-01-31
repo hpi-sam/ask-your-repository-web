@@ -12,6 +12,8 @@ import TeamSidebar from './team_sidebar/TeamSidebar';
 import providingUploadContext from './upload/context/providingUploadContext';
 import type { AppState } from '../state/AppState';
 import './App.scss';
+import Detail from './images/Detail';
+import Edit from './images/Edit';
 
 type Props = {
   isTeamSidebarOpen: boolean,
@@ -27,6 +29,8 @@ function App(props: Props) {
         <Switch>
           <Redirect exact from="/" to="/images" />
           <Route path="/upload" component={providingUploadContext(Upload)} />
+          <Route path="/images/:id/edit" component={Edit} />
+          <Route path="/images/:id" component={Detail} />
           <Route path="/images" component={ImagesIndex} />
           <Route path="/presentation" component={Presentation} />
         </Switch>
