@@ -86,11 +86,11 @@ context('Upload', () => {
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageIds[0]}`)
         .its('body.tags')
-        .should('be.deep.eq', ['Cute', 'Sheep']);
+        .should('have.members', ['Cute', 'Sheep']);
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageIds[1]}`)
         .its('body.tags')
-        .should('be.deep.eq', ['Cute', 'Goat']);
+        .should('have.members', ['Cute', 'Goat']);
     });
   });
 });
