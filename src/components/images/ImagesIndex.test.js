@@ -29,7 +29,7 @@ describe('<ImagesIndex />', () => {
 
   beforeEach(() => {
     store = mockStore(state);
-	const location = { search: ' ' };
+    const location = { search: ' ' };
     wrapper = mount((
       <Provider store={store}>
         <ImagesIndex location={location} />
