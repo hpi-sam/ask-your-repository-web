@@ -45,7 +45,7 @@ context('Upload', () => {
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageId}`)
         .its('body.tags')
-        .should('be.deep.eq', ['Sheep', 'Cute']);
+        .should('have.members', ['Sheep', 'Cute']);
     });
   });
 
