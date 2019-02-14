@@ -78,7 +78,7 @@ class ImagesIndex extends Component<Props, State> {
       };
       const images = await ImageService.list(params);
       const filteredImages = images
-        .filter(image => image.score > 0);
+        .filter(image => image.score === undefined || image.score > 0);
       this.receiveImages(filteredImages);
     } catch (error) {
       // TODO: Handle error
@@ -92,6 +92,7 @@ class ImagesIndex extends Component<Props, State> {
 
   receiveImages(fetchedImages: Image[]) {
     const { images } = this.state;
+    console.log(fetchedImages);
 
     this.setState({ images: [...images, ...fetchedImages] });
 
