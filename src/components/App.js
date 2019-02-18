@@ -9,7 +9,6 @@ import Upload from './upload/Upload';
 import NavBar from './navbar/NavBar';
 import Presentation from './presentation/Presentation';
 import TeamSidebar from './team_sidebar/TeamSidebar';
-import providingUploadContext from './upload/context/providingUploadContext';
 import type { AppState } from '../state/AppState';
 import './App.scss';
 import Detail from './images/Detail';
@@ -28,7 +27,7 @@ function App(props: Props) {
       <div className={classNames('App__inner', { 'App__inner--with-sidebar': props.isTeamSidebarOpen })}>
         <Switch>
           <Redirect exact from="/" to="/images" />
-          <Route path="/upload" component={providingUploadContext(Upload)} />
+          <Route path="/upload" component={Upload} />
           <Route path="/images/:id/edit" component={Edit} />
           <Route path="/images/:id" component={Detail} />
           <Route path="/images" component={ImagesIndex} />

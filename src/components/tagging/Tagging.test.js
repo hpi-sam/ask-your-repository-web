@@ -13,7 +13,14 @@ describe('<Tagging />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Tagging image={image} />);
+    wrapper = shallow((
+      <Tagging
+        image={image}
+        addTag={() => {}}
+        isMultiTaggingEnabled={false}
+        tagSelector="TagSelector"
+      />
+    ));
   });
 
   it('renders correctly', () => {

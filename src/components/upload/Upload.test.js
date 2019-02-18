@@ -8,7 +8,6 @@ import Upload from './Upload';
 import FileDropzone from './FileDropzone';
 import initialState from '../../state/initialState';
 import TeamFactory from '../../factories/TeamFactory';
-import UploadContextProvider from './context/UploadContextProvider';
 import ImageService from '../../services/ImageService';
 
 const mockStore = configureStore();
@@ -36,9 +35,7 @@ describe('<Upload />', () => {
     store = mockStore(state);
     wrapper = mount((
       <Provider store={store}>
-        <UploadContextProvider>
-          <Upload />
-        </UploadContextProvider>
+        <Upload />
       </Provider>
     )).find('Upload');
     wrapperInstance = wrapper.instance();

@@ -3,6 +3,7 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 import ImagesIndex, { limit } from './ImagesIndex';
 import ImageService from '../../services/ImageService';
@@ -32,7 +33,9 @@ describe('<ImagesIndex />', () => {
     const location = { search: ' ' };
     wrapper = mount((
       <Provider store={store}>
-        <ImagesIndex location={location} />
+        <MemoryRouter>
+          <ImagesIndex location={location} />
+        </MemoryRouter>
       </Provider>
     )).find('ImagesIndex');
   });
