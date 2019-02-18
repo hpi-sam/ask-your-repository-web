@@ -29,31 +29,6 @@ exports[`<TaggingForm /> renders correctly 1`] = `
   >
     Type in a tag - Hit enter ⏎ - Repeat
   </div>
-  <TagSelector
-    addTag={[Function]}
-    removeMultiTag={[Function]}
-    removeTag={[Function]}
-    tags={
-      Array [
-        "nemo-dolorum-iusto",
-        "aut-quia-atque",
-        "et-velit-dolorem",
-      ]
-    }
-  />
-  <div
-    className="TaggingForm__tip"
-  >
-    <div
-      className="TaggingForm__tip__title"
-    >
-      Multi-Tagging
-    </div>
-    You can press a tag to apply the tag
-    <br />
-    to all your uploaded images at once.
-    <br />
-    Multi tags will be highlighted with an extra border.
-  </div>
+  DummyTagSelector
 </div>
 `;

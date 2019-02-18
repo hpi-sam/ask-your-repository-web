@@ -11,7 +11,14 @@ describe('<TaggingForm />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<TaggingForm image={image} />);
+    wrapper = shallow((
+      <TaggingForm
+        tags={image.tags}
+        addTag={() => {}}
+        tagSelector="DummyTagSelector"
+        isMultiTaggingEnabled={false}
+      />
+    ));
   });
 
   it('renders correctly', () => {

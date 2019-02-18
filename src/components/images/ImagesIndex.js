@@ -92,7 +92,6 @@ class ImagesIndex extends Component<Props, State> {
 
   receiveImages(fetchedImages: Image[]) {
     const { images } = this.state;
-    console.log(fetchedImages);
 
     this.setState({ images: [...images, ...fetchedImages] });
 

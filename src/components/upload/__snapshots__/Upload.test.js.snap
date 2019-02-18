@@ -13,6 +13,11 @@ exports[`<Upload /> renders correctly 1`] = `
   <div
     className="Upload"
   >
+    <UploadKeyboardListener
+      onSelectedChange={[Function]}
+      selectedUploadId={null}
+      uploads={Array []}
+    />
     <FileDropzone
       onDrop={[Function]}
     >

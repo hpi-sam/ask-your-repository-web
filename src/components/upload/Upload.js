@@ -7,11 +7,13 @@ import { FiSave } from 'react-icons/fi';
 import FileDropzone from './FileDropzone';
 import ImageService from '../../services/ImageService';
 import SaveButton from '../utility/SaveButton';
-import Tagging from '../tagging/Tagging';
 import UploadList from './UploadList';
-import UploadContext from './context/UploadContext';
+import UploadKeyboardListener from './UploadKeyboardHandler';
+import MultiTagging from '../tagging/MultiTagging';
 import type { Image } from '../../models/Image';
 import type { Team } from '../../models/Team';
+import type { Tag } from '../../models/Tag';
+import type { Upload as UploadType } from '../../models/Upload';
 import type { AppState } from '../../state/AppState';
 import './Upload.scss';
 
@@ -20,8 +22,58 @@ type Props = {
   activeTeam: ?Team,
 };
 
-class Upload extends Component<Props> {
-  static contextType = UploadContext;
+type State = {
+  uploads: Array<UploadType>,
+  selectedUploadId: ?string,
+};
+
+class Upload extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      uploads: [],
+      selectedUploadId: null,
+    };
+  }
+
+  getImages(): Array<?Image> {
+    return this.state.uploads.map(upload => upload.image);
+  }
+
+  getSuccessfulImages(): Array<Image> {
+    return (this.getImages().filter(image => !!image): Array<any>);
+  }
+
+  getUploadOfImage(imageId: string): ?UploadType {
+    return this.state.uploads
+      .find(upload => upload.image && upload.image.id === imageId);
+  }
+
+  addUploads = (uploads: UploadType[]) => {
+    this.setState(state => ({
+      uploads: [...state.uploads, ...uploads],
+    }));
+  };
+
+  updateUpload = (id: string, updateData: Object) => {
+    const { uploads } = this.state;
+    const index = uploads.findIndex(upload => upload.id === id);
+    uploads[index] = { ...uploads[index], ...updateData };
+
+    this.setState({ uploads });
+  };
+
+  getSelectedUpload = (): ?UploadType => {
+    const { uploads, selectedUploadId } = this.state;
+    return uploads.find(upload => upload.id === selectedUploadId);
+  };
+
+  setSelectedUpload = (selectedUploadId: string) => {
+    this.setState({ selectedUploadId });
+  };
+
+  hasSelectedUpload = () => !!this.state.selectedUploadId;
 
   handleFileDrop = (files: File[]) => {
     if (files.length === 0) return;
@@ -33,26 +85,26 @@ class Upload extends Component<Props> {
       image: null,
     }));
 
-    if (!this.context.hasSelectedUpload()) {
-      this.context.setSelectedUpload(newUploads[0].id);
+    if (!this.hasSelectedUpload()) {
+      this.setSelectedUpload(newUploads[0].id);
     }
 
-    this.context.addUploads(newUploads);
+    this.addUploads(newUploads);
 
     newUploads.forEach((upload) => {
       this.submitImage(upload.file)
-        .then(image => this.context.updateUpload(upload.id, {
+        .then(image => this.updateUpload(upload.id, {
           status: 'succeeded',
           image,
         }))
-        .catch(() => this.context.updateUpload(upload.id, {
+        .catch(() => this.updateUpload(upload.id, {
           status: 'failed',
         }));
     });
   };
 
   handleSubmitClick = async () => {
-    const patchData = this.context.getSuccessfulImages()
+    const patchData = this.getSuccessfulImages()
       .map(image => ({
         id: image.id,
         tags: image.tags,
@@ -62,17 +114,14 @@ class Upload extends Component<Props> {
     this.props.dispatch(push('/images'));
   };
 
-  isFormSaveable() {
-    const images = this.context.getSuccessfulImages();
+  handleImageTagsChange = (imageId: string, tags: Array<Tag>) => {
+    const upload = this.getUploadOfImage(imageId);
+    if (!upload) return;
 
-    return images.every((image) => {
-      if (image.tags.length === 0) {
-        return false;
-      }
-
-      return true;
+    this.updateUpload(upload.id, {
+      image: { ...upload.image, tags },
     });
-  }
+  };
 
   submitImage(file: File): Promise<Image> {
     const { activeTeam } = this.props;
@@ -86,25 +135,41 @@ class Upload extends Component<Props> {
     return ImageService.create(formData);
   }
 
+  isFormSaveable() {
+    const images = this.getSuccessfulImages();
+    return images.every(image => image.tags.length !== 0);
+  }
+
   render() {
-    const { uploads } = this.context;
-    const selectedUpload = this.context.getSelectedUpload();
+    const { uploads, selectedUploadId } = this.state;
+    const selectedUpload = this.getSelectedUpload();
 
     const isFormSaveable = this.isFormSaveable();
 
     return (
       <div className="Upload">
+        <UploadKeyboardListener
+          uploads={uploads}
+          selectedUploadId={selectedUploadId}
+          onSelectedChange={this.setSelectedUpload}
+        />
         {uploads.length > 0 ? (
           <Fragment>
             <div className="Upload__tagging">
               {selectedUpload && selectedUpload.image && (
-                <Tagging image={selectedUpload.image} />
+                <MultiTagging
+                  selectedImageId={selectedUpload.image.id}
+                  onImageTagsChange={this.handleImageTagsChange}
+                  images={this.getSuccessfulImages()}
+                />
               )}
             </div>
             <div className="Upload__uploads">
               <UploadList
                 onDrop={this.handleFileDrop}
                 uploads={uploads}
+                onItemClick={this.setSelectedUpload}
+                selectedUploadId={selectedUploadId}
               />
               {!isFormSaveable && (
                 <div className="Upload__save-disabled-hint">

@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import type { Node } from 'react';
 import shortid from 'shortid';
 import Tag from '../../utility/Tag';
 import type { Tag as TagType } from '../../../models/Tag';
@@ -7,11 +8,9 @@ import './TagSelector.scss';
 
 type Props = {
   tags: Array<TagType>,
-  multiTags: Array<TagType>,
   addTag: (tag: TagType) => void,
   removeTag: (tag: TagType) => void,
-  addMultiTag: (tag: TagType) => void,
-  removeMultiTag: (tag: TagType) => void,
+  renderTag: (tag: TagType) => Node,
 };
 
 type State = {
@@ -19,6 +18,17 @@ type State = {
 };
 
 class TagSelector extends React.Component<Props, State> {
+  static defaultProps = {
+    renderTag: (tag: TagType) => (
+      <Tag
+        key={shortid.generate()}
+        className="TagSelector__tag"
+        caption={tag}
+        data-cy="tag-selector-tag"
+      />
+    ),
+  };
+
   constructor(props: Props) {
     super(props);
 
@@ -74,22 +84,12 @@ class TagSelector extends React.Component<Props, State> {
   tagInput: ?HTMLInputElement;
 
   render() {
-    const { tags, multiTags } = this.props;
+    const { tags } = this.props;
     const { tagInputValue } = this.state;
 
     return (
       <div className="TagSelector">
-        {tags.map(tag => (
-          <Tag
-            key={shortid.generate()}
-            className="TagSelector__tag"
-            caption={tag}
-            clickable
-            isMultiTag={multiTags.includes(tag)}
-            onClick={multiTags.includes(tag) ? this.props.removeMultiTag : this.props.addMultiTag}
-            data-cy="tag-selector-tag"
-          />
-        ))}
+        {tags.map(tag => this.props.renderTag(tag))}
         <div className="Tag TagSelector__input">
           <input
             className="TagSelector__input__control"
