@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { MdCloudUpload, MdImage } from 'react-icons/md';
+import { MdCloudUpload, MdImage, MdPerson } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
 import TeamInitialsButton from '../team/TeamInitialsButton';
@@ -20,7 +20,9 @@ type Props = {
 };
 
 function NavBar(props: Props) {
-  const { isTeamSidebarOpen, onTeamClick, activeTeam } = props;
+  const {
+    isTeamSidebarOpen, onTeamClick, activeTeam,
+  } = props;
 
   return (
     <div className={classNames('NavBar', { 'NavBar--with-sidebar': isTeamSidebarOpen })}>
@@ -43,12 +45,6 @@ function NavBar(props: Props) {
             Gallery
           </span>
         </NavLink>
-        <PresentationSwitch />
-      </div>
-      <div className="NavBar__search">
-        <Search />
-      </div>
-      <div className="NavBar__right">
         <NavLink
           to="/upload"
           className="NavBar__item"
@@ -59,6 +55,13 @@ function NavBar(props: Props) {
             Upload
           </span>
         </NavLink>
+        <PresentationSwitch />
+      </div>
+      <div className="NavBar__search">
+        <Search />
+      </div>
+      <div className="NavBar__right">
+        <MdPerson className="NavBat__item__icon" />
       </div>
     </div>
   );

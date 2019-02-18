@@ -10,6 +10,7 @@ import presentation from './presentation/presentation.reducer';
 import activeTeam from './active_team/activeTeam.reducer';
 import teamSidebar from './team_sidebar/teamSidebar.reducer';
 import presentationMode from './presentation_mode/presentationMode.reducer';
+import auth from './auth/auth.reducer';
 
 function createRootReducer(history: History): CombinedReducer<AppState, Action> {
   return combineReducers({
@@ -18,6 +19,7 @@ function createRootReducer(history: History): CombinedReducer<AppState, Action> 
     activeTeam,
     teamSidebar,
     presentationMode,
+    auth,
     flash: flashReducer,
   });
 }
