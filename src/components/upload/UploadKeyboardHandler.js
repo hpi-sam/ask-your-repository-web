@@ -1,10 +1,13 @@
 // @flow
 import { Component } from 'react';
-import UploadContext from './context/UploadContext';
+import type { Upload } from '../../models/Upload';
 
-class UploadKeyboardListener extends Component<{}> {
-  static contextType = UploadContext;
-
+type Props = {
+  uploads: Array<Upload>,
+  selectedUploadId: string,
+  onSelectedChange: (uploadId: string) => void,
+};
+class UploadKeyboardListener extends Component<Props> {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
@@ -14,23 +17,23 @@ class UploadKeyboardListener extends Component<{}> {
   }
 
   getCurrentIndex() {
-    const { uploads, selectedUploadId } = this.context;
+    const { uploads, selectedUploadId } = this.props;
     return uploads.findIndex(upload => upload.id === selectedUploadId);
   }
 
   setNextUpload() {
-    const { uploads, setSelectedUpload } = this.context;
+    const { uploads, onSelectedChange } = this.props;
     const index = this.getCurrentIndex();
     const nextUpload = uploads[(index + 1) % uploads.length];
-    setSelectedUpload(nextUpload.id);
+    onSelectedChange(nextUpload.id);
   }
 
   setPrevUpload() {
-    const { uploads, setSelectedUpload } = this.context;
+    const { uploads, onSelectedChange } = this.props;
 
     const index = this.getCurrentIndex();
     const prevUpload = uploads[(((index - 1) % uploads.length) + uploads.length) % uploads.length];
-    setSelectedUpload(prevUpload.id);
+    onSelectedChange(prevUpload.id);
   }
 
   handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {

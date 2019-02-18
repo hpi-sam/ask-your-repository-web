@@ -38,6 +38,10 @@ class ImageService {
     return response.data;
   }
 
+  static async patch(imageId: Image, data) {
+    await api.patch(`/images/${imageId}`, data);
+  }
+
   static async patchMany(images: Image[]) {
     await api.patch('/images', { artifacts: images });
   }

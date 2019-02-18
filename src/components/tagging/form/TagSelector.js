@@ -19,6 +19,12 @@ type State = {
 };
 
 class TagSelector extends React.Component<Props, State> {
+  static defaultProps = {
+    addMultiTag: () => {},
+    removeMultiTag: () => {},
+    multiTags: [],
+  };
+
   constructor(props: Props) {
     super(props);
 
