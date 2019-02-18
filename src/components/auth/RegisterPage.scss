@@ -1,0 +1,36 @@
+.RegisterForm {
+    width: 80%;
+    max-width: 540px;
+    padding: 0 5%;
+
+    h1 {
+        font-weight: bold;
+    }
+
+    &__buttons {
+        display: flex;
+
+        button {
+            display: inline-block;
+            background-color: green;
+            margin-top: 1em;
+            width: 48%;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: .3rem;
+        }
+
+        .cancel {
+            background-color: gray;
+            display: inline-block;
+            color: white;
+            margin-top: 1em;
+            margin-left: 4%;
+            width: 48%;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: .3rem;
+            text-align: center;
+        }
+    }
+}

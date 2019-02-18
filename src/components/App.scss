@@ -19,5 +19,10 @@
       transition: margin-left var(--sidebar-animation-duration);
       &--with-sidebar { margin-left: var(--team-sidebar-width); }
     }
+
+    &--without-navbar {
+      height: 100%;
+      padding: auto;
+    }
   }
 }
