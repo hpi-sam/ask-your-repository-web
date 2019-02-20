@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import User from '../../models/User';
+import type { User } from '../../models/User';
 import { register } from '../../state/auth/auth.actionCreators';
-import './RegisterPage.scss';
+import './RegisterForm.scss';
 
 type Props = {
     dispatch: Function,
@@ -15,21 +15,18 @@ type Props = {
 
 type State = {
     user: User,
-    submitted: boolean,
 }
 
-class RegisterPage extends Component<Props, State> {
+class RegisterForm extends Component<Props, State> {
   constructor(props) {
     super(props);
 
     this.state = {
       user: {
-        firstName: '',
-        lastName: '',
+        email: '',
         username: '',
         password: '',
       },
-      submitted: false,
     };
   }
 
@@ -47,7 +44,6 @@ class RegisterPage extends Component<Props, State> {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.setState({ submitted: true });
     const { user } = this.state;
     const { dispatch } = this.props;
     if (user.username && user.email && user.password) {
@@ -56,8 +52,7 @@ class RegisterPage extends Component<Props, State> {
   }
 
   render() {
-    // const { registering } = this.props;
-    const { user, submitted } = this.state;
+    const { user } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="RegisterForm">
         <h1>Register</h1>
@@ -95,11 +90,4 @@ class RegisterPage extends Component<Props, State> {
   }
 }
 
-function mapStateToProps(state) {
-  // const { registering } = state.registration;
-  // return {
-  // registering,
-  // };
-}
-
-export default connect(mapStateToProps)(RegisterPage);
+export default connect()(RegisterForm);

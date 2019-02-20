@@ -23,7 +23,8 @@
   }
 
   &__search { align-self: center; }
-  &__right &__item { margin-left: auto; margin-right: 0;}
+  &__right &__item:first-child { margin-left: auto; margin-right: 0;}
+  &__right &__item { margin-left: 0; margin-right: 0;}
 
   &__team {
     border-radius: 5px;

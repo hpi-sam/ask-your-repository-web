@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { MdCloudUpload, MdImage } from 'react-icons/md';
@@ -16,6 +16,7 @@ import './NavBar.scss';
 type Props = {
   activeTeam: ?Team,
   isTeamSidebarOpen: boolean,
+  isloggedIn: boolean,
   onTeamClick: () => void,
 };
 
@@ -61,7 +62,27 @@ function NavBar(props: Props) {
         <Search />
       </div>
       <div className="NavBar__right">
-        <Dropdown/>
+        {props.isloggedIn
+          ? <Dropdown />
+          : (
+            <Fragment>
+              <NavLink
+                to="/login"
+                className="NavBar__item"
+                activeClassName="NavBar__item--active"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className="NavBar__item"
+                activeClassName="NavBar__item--active"
+              >
+                Sign up
+              </NavLink>
+            </Fragment>
+          )
+        }
       </div>
     </div>
   );
@@ -74,6 +95,7 @@ const mapDispatchToProps = (dispatch: Function) => ({
 const mapStateToProps = (state: AppState) => ({
   activeTeam: state.activeTeam,
   isTeamSidebarOpen: state.teamSidebar.isOpen,
+  isloggedIn: state.auth.loggedIn,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

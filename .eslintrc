@@ -18,7 +18,17 @@
     "react/destructuring-assignment": "off",
     "react/require-default-props": "off",
     "react/default-props-match-prop-types": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "jsx-a11y/label-has-associated-control": [ 2, {
+      "controlComponents": ["Input"]
+    }],
+    "jsx-a11y/label-has-for": [ 2, {
+      "components": [ "Label" ],
+      "required": {
+          "every": []
+      },
+      "allowChildren": false
+    }]
   },
   "overrides": [
     {

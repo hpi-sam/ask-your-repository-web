@@ -10,7 +10,7 @@
   &__button {
     height: var(--navbar-height);
     display: flex;
-    background-color: var(--navbar-background-color);;
+    background-color: var(--navbar-background-color);
     align-items: center;
     padding: 0 30px;
     font-weight: bold;
@@ -18,7 +18,12 @@
     border: none;
     outline: none;
     cursor: pointer;
-    font-size: 2em;
+    line-height: 2em;
+
+    &__icon {
+      margin-left: .8rem;
+      font-size: 2em;
+    }
   }
 
   &__button:hover, &__button:focus {
@@ -41,14 +46,21 @@
       display:block;
     }
 
-    a {
+    button {
+      background: none;
+      color: inherit;
+      border: none;
+      cursor: pointer;
       font-weight: bold;
       color: white;
-      padding: 12px 16px;
+      padding: 12px 60px;
       text-decoration: none;
+      outline: 0;
       display: block;
     }
 
-    a:hover {background-color: #ddd}
+    button:hover {
+      background-color: #444;
+    }
   }
 }

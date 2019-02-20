@@ -4,14 +4,17 @@ import type { Action } from '../Action';
 import * as actionTypes from './auth.actionTypes';
 
 const storedUser = localStorage.getItem('user');
-const user = JSON.parse(storedUser);
+let user;
+if (storedUser) {
+  user = JSON.parse(storedUser);
+}
 
 export type AuthState = {
     loggedIn: boolean,
-    user: User,
+    user: ?User,
 };
 
-export const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
+export const initialState = user ? { loggedIn: true, user } : { loggedIn: false, user: null };
 
 function auth(state: AuthState = initialState, action: Action) {
   switch (action.type) {

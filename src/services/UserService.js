@@ -5,17 +5,20 @@ import type { User } from '../models/User';
 
 export function authHeader() {
   // return authorization header with jwt token
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  if (user && user.token) {
-    return { 'X-CSRF-TOKEN': user.token };
+  const userString = localStorage.getItem('user');
+  if (userString) {
+    const user = JSON.parse(userString);
+    if (user.token) {
+      return { 'X-CSRF-TOKEN': user.token };
+    }
   }
   return {};
 }
 
 class UserService {
   static async get(id: string): Promise<User> {
-    const response = await api.get(`/users/${id}`);
+    const headers = authHeader();
+    const response = await api.get(`/users/${id}`, {}, { headers });
     return response.data;
   }
 
@@ -26,7 +29,7 @@ class UserService {
     return response.data;
   }
 
-  static async create(formData: FormData): Promise<User> {
+  static async create(formData: User): Promise<User> {
     try {
       const response = await api.post('/users', formData);
       return response.data;
@@ -35,9 +38,9 @@ class UserService {
     }
   }
 
-  static async login(email: string, password: string): Promise<User> {
+  static async login(emailOrUsername: string, password: string): Promise<User> {
     try {
-      const response = await api.post('/users/login', { email, password }, { withCredentials: true });
+      const response = await api.post('/users/login', humps.decamelizeKeys({ emailOrUsername, password }), { withCredentials: true });
       localStorage.setItem('user', JSON.stringify(response.data));
       return response.data;
     } catch (e) {
@@ -45,9 +48,13 @@ class UserService {
     }
   }
 
-  static logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
+  static async logout() {
+    try {
+      const headers = authHeader();
+      await api.post('/users/logout', {}, { headers, withCredentials: true });
+    } finally {
+      localStorage.removeItem('user');
+    }
   }
 }
 
