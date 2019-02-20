@@ -54,4 +54,8 @@
       --button-bg-color: var(--gray-darker);
     }
   }
+
+  svg + span {
+    margin-left: 10px;
+  }
 }

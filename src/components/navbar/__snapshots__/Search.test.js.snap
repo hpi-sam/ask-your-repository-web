@@ -89,7 +89,7 @@ exports[`<Search /> renders correctly 1`] = `
             <span
               className="Search__preview__text"
             >
-              Suchen
+              Search
             </span>
           </button>
         </form>

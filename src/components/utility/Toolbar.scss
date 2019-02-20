@@ -1,0 +1,23 @@
+.Toolbar {
+  display: flex;
+  padding: 0;
+  margin: 20px auto;
+
+  &__left {
+    margin-right: auto;
+    margin-left: 0;
+
+    > * + * {
+      margin-right: 10px;
+    }
+  }
+
+  &__right {
+    margin-left: auto;
+    margin-right: 0;
+
+    > * + * {
+      margin-left: 10px;
+    }
+  }
+}

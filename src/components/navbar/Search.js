@@ -99,7 +99,7 @@ class Search extends Component<Props, State> {
           >
             <MdSearch className="Search__preview__icon" />
             <span className="Search__preview__text">
-              Suchen
+              Search
             </span>
           </button>
         )}
