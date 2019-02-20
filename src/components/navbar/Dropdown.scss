@@ -1,0 +1,54 @@
+.Dropdown {
+  display: flex;
+  margin-left: auto;
+
+  &__inner {
+    display: inline-block;
+    position: relative;
+  }
+
+  &__button {
+    height: var(--navbar-height);
+    display: flex;
+    background-color: var(--navbar-background-color);;
+    align-items: center;
+    padding: 0 30px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 2em;
+  }
+
+  &__button:hover, &__button:focus {
+    background-color: inherit;
+  }
+
+  &__content {
+    margin-top: -8px;
+    right: 0;
+    display: none;
+    position: absolute;
+    background-color: var(--navbar-background-color);
+    border: 2px solid gray;
+    border-radius: 4px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+    &--active {
+      display:block;
+    }
+
+    a {
+      font-weight: bold;
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    a:hover {background-color: #ddd}
+  }
+}

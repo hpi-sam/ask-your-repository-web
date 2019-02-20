@@ -4,6 +4,8 @@ import api from '../config/api';
 import type { Image } from '../models/Image';
 import type { Tag } from '../models/Tag';
 
+import { authHeader } from './UserService';
+
 type ListParams = {
   teamId: string,
   offset?: number,
@@ -13,12 +15,14 @@ type ListParams = {
 
 class ImageService {
   static async get(id: string): Promise<Image> {
-    const response = await api.get(`/images/${id}`);
+    const response = await api.get(`/images/${id}`, { withCredentials: true });
     return response.data;
   }
 
   static async list(params: ListParams): Promise<Image[]> {
     const response = await api.get('/images', {
+      withCredentials: true,
+      headers: authHeader(),
       params: humps.decamelizeKeys(params),
     });
 

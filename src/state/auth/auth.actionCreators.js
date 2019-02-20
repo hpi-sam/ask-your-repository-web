@@ -6,10 +6,10 @@ import * as actionTypes from './auth.actionTypes';
 import * as actions from './auth.actions';
 import { history } from '../../config/configureStore';
 
-export function login(username, password) {
+export function login(email, password) {
   return async (dispatch: Function): void => {
     try {
-      const user = await UserService.login(username, password);
+      const user = await UserService.login(email, password);
       dispatch({ type: actionTypes.LOGIN, user });
       history.push('/');
       dispatch(flashSuccessMessage('Successfully logged in'));

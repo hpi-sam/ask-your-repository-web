@@ -8,7 +8,7 @@ export function authHeader() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (user && user.token) {
-    return { Authorization: `Bearer ${user.token}` };
+    return { 'X-CSRF-TOKEN': user.token };
   }
   return {};
 }
@@ -35,9 +35,9 @@ class UserService {
     }
   }
 
-  static async login(username: string, password: string): Promise<User> {
+  static async login(email: string, password: string): Promise<User> {
     try {
-      const response = await api.post('/users/authenticate', { username, password });
+      const response = await api.post('/users/login', { email, password }, { withCredentials: true });
       localStorage.setItem('user', JSON.stringify(response.data));
       return response.data;
     } catch (e) {

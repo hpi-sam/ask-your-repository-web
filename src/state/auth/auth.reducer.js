@@ -20,7 +20,7 @@ function auth(state: AuthState = initialState, action: Action) {
     case actionTypes.REGISTER:
       return state;
     case actionTypes.LOGOUT:
-      return state;
+      return { ...state, loggedIn: false };
     default:
       return state;
   }
