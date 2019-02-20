@@ -1,12 +1,15 @@
 // @flow
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { IoIosArrowRoundBack } from 'react-icons/io';
 import ImageService from '../../services/ImageService';
 import ActivityInidicator from '../utility/ActivityIndicator';
 import SingleTagging from '../tagging/SingleTagging';
 import SaveButton from '../utility/SaveButton';
-import type { Tag } from '../../models/Tag';
+import ButtonLink from '../utility/ButtonLink';
+import Toolbar from '../utility/Toolbar';
 import type { Image } from '../../models/Image';
-import './Detail.scss';
+import type { Tag } from '../../models/Tag';
 
 type Props = {
   match: {
@@ -16,14 +19,16 @@ type Props = {
 
 type State = {
   image: ?Image,
+  isSubmitted: boolean,
 };
 
-class Edit extends Component<Props, State> {
+class ImageEdit extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
       image: null,
+      isSubmitted: false,
     };
   }
 
@@ -38,6 +43,7 @@ class Edit extends Component<Props, State> {
 
     const { id, tags } = image;
     await ImageService.patch(id, { tags });
+    this.setState({ isSubmitted: true });
   };
 
   handleTagsChange = (tags: Tag[]) => {
@@ -50,20 +56,30 @@ class Edit extends Component<Props, State> {
   };
 
   render() {
-    if (!this.state.image) {
-      return <ActivityInidicator />;
-    }
+    const { image, isSubmitted } = this.state;
+
+    if (!image) return <ActivityInidicator />;
+
+    if (isSubmitted) return <Redirect to={`/images/${image.id}`} />;
+
     return (
       <div>
+        <Toolbar>
+          <ButtonLink to={`/images/${image.id}`}>
+            <IoIosArrowRoundBack />
+            <span>Back to image</span>
+          </ButtonLink>
+        </Toolbar>
         <SingleTagging
-          image={this.state.image}
+          image={image}
           onTagsChange={this.handleTagsChange}
         />
         <SaveButton onClick={this.handleSubmit}>
-          Bearbeiten
+          Save
         </SaveButton>
       </div>
     );
   }
 }
-export default Edit;
+
+export default ImageEdit;

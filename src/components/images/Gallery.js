@@ -13,7 +13,7 @@ function Gallery(props: Props) {
 
   return (
     <div className="Gallery">
-      {images.map((image: Image) => (
+      {images.map(image => (
         <GalleryItem key={image.id} image={image} />
       ))}
     </div>

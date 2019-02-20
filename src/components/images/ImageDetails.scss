@@ -1,0 +1,17 @@
+.ImageDetails {
+  &__container {
+    display: flex;
+  }
+
+  &__image {
+    max-height: 70vh;
+    display: block;
+  }
+
+  &__info {
+    flex: 1;
+    width: 300px;
+    padding: 20px;
+    background-color: #181818;
+  }
+}

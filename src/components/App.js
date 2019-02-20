@@ -10,9 +10,9 @@ import NavBar from './navbar/NavBar';
 import Presentation from './presentation/Presentation';
 import TeamSidebar from './team_sidebar/TeamSidebar';
 import type { AppState } from '../state/AppState';
+import ImageDetails from './images/ImageDetails';
+import ImageEdit from './images/ImageEdit';
 import './App.scss';
-import Detail from './images/Detail';
-import Edit from './images/Edit';
 
 type Props = {
   isTeamSidebarOpen: boolean,
@@ -28,8 +28,8 @@ function App(props: Props) {
         <Switch>
           <Redirect exact from="/" to="/images" />
           <Route path="/upload" component={Upload} />
-          <Route path="/images/:id/edit" component={Edit} />
-          <Route path="/images/:id" component={Detail} />
+          <Route path="/images/:id/edit" component={ImageEdit} />
+          <Route path="/images/:id" component={ImageDetails} />
           <Route path="/images" component={ImagesIndex} />
           <Route path="/presentation" component={Presentation} />
         </Switch>

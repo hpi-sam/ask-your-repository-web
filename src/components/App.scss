@@ -4,7 +4,10 @@
   height: 100%;
 
   &__inner {
+    max-width: var(--max-width);
     height: calc(100% - var(--navbar-height));
+
+    margin: 0 auto;
     padding: 0 var(--padding-sides) 0px var(--padding-sides);
     padding-top: var(--navbar-height);
 
