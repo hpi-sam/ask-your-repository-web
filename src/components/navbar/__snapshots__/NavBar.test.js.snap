@@ -4,6 +4,7 @@ exports[`<NavBar /> renders correctly 1`] = `
 <NavBar
   activeTeam={null}
   isTeamSidebarOpen={false}
+  isloggedIn={false}
   onTeamClick={[Function]}
 >
   <div
@@ -69,6 +70,68 @@ exports[`<NavBar /> renders correctly 1`] = `
                 className="NavBar__item__text"
               >
                 Gallery
+              </span>
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      <NavLink
+        activeClassName="NavBar__item--active"
+        aria-current="page"
+        className="NavBar__item"
+        to="/upload"
+      >
+        <Route
+          path="\\\\/upload"
+        >
+          <Link
+            aria-current={null}
+            className="NavBar__item"
+            replace={false}
+            to="/upload"
+          >
+            <a
+              aria-current={null}
+              className="NavBar__item"
+              href="/upload"
+              onClick={[Function]}
+            >
+              <MdCloudUpload
+                className="NavBar__item__icon"
+              >
+                <IconBase
+                  attr={
+                    Object {
+                      "viewBox": "0 0 24 24",
+                    }
+                  }
+                  className="NavBar__item__icon"
+                >
+                  <svg
+                    className="NavBar__item__icon"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    strokeWidth="0"
+                    style={
+                      Object {
+                        "color": undefined,
+                      }
+                    }
+                    viewBox="0 0 24 24"
+                    width="1em"
+                  >
+                    <path
+                      d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"
+                      key="0"
+                    />
+                  </svg>
+                </IconBase>
+              </MdCloudUpload>
+              <span
+                className="NavBar__item__text"
+              >
+                Upload
               </span>
             </a>
           </Link>
@@ -202,60 +265,50 @@ exports[`<NavBar /> renders correctly 1`] = `
         activeClassName="NavBar__item--active"
         aria-current="page"
         className="NavBar__item"
-        to="/upload"
+        to="/login"
       >
         <Route
-          path="\\\\/upload"
+          path="\\\\/login"
         >
           <Link
             aria-current={null}
             className="NavBar__item"
             replace={false}
-            to="/upload"
+            to="/login"
           >
             <a
               aria-current={null}
               className="NavBar__item"
-              href="/upload"
+              href="/login"
               onClick={[Function]}
             >
-              <MdCloudUpload
-                className="NavBar__item__icon"
-              >
-                <IconBase
-                  attr={
-                    Object {
-                      "viewBox": "0 0 24 24",
-                    }
-                  }
-                  className="NavBar__item__icon"
-                >
-                  <svg
-                    className="NavBar__item__icon"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    strokeWidth="0"
-                    style={
-                      Object {
-                        "color": undefined,
-                      }
-                    }
-                    viewBox="0 0 24 24"
-                    width="1em"
-                  >
-                    <path
-                      d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"
-                      key="0"
-                    />
-                  </svg>
-                </IconBase>
-              </MdCloudUpload>
-              <span
-                className="NavBar__item__text"
-              >
-                Upload
-              </span>
+              Login
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      <NavLink
+        activeClassName="NavBar__item--active"
+        aria-current="page"
+        className="NavBar__item"
+        to="/register"
+      >
+        <Route
+          path="\\\\/register"
+        >
+          <Link
+            aria-current={null}
+            className="NavBar__item"
+            replace={false}
+            to="/register"
+          >
+            <a
+              aria-current={null}
+              className="NavBar__item"
+              href="/register"
+              onClick={[Function]}
+            >
+              Sign up
             </a>
           </Link>
         </Route>

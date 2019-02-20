@@ -3,9 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router';
 import classNames from 'classnames';
-import PrivateRoute from './auth/PrivateRoute';
-import LoginPage from './auth/LoginPage';
-import RegisterPage from './auth/RegisterPage';
+import LoginForm from './auth/LoginForm';
+import RegisterForm from './auth/RegisterForm';
 import FlashMessages from './utility/flash/FlashMessages';
 import ImagesIndex from './images/ImagesIndex';
 import Upload from './upload/Upload';
@@ -19,7 +18,6 @@ import './App.scss';
 
 type Props = {
   isTeamSidebarOpen: boolean,
-  loggedIn: boolean,
 };
 
 function App(props: Props) {
@@ -27,7 +25,7 @@ function App(props: Props) {
     <div className="App">
       <FlashMessages />
       <TeamSidebar />
-      {props.loggedIn && <NavBar />}
+      <NavBar />
       <div className={classNames('App__inner', { 'App__inner--with-sidebar': props.isTeamSidebarOpen })}>
         <Switch>
           <Redirect exact from="/" to="/images" />
@@ -36,8 +34,8 @@ function App(props: Props) {
           <Route path="/images/:id" component={ImageDetails} />
           <Route path="/images" component={ImagesIndex} />
           <Route path="/presentation" component={Presentation} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/register" component={RegisterForm} />
         </Switch>
       </div>
     </div>
@@ -46,7 +44,6 @@ function App(props: Props) {
 
 const mapStateToProps = (state: AppState) => ({
   isTeamSidebarOpen: state.teamSidebar.isOpen,
-  loggedIn: state.auth.loggedIn,
 });
 
 export default connect(mapStateToProps)(App);

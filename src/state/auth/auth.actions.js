@@ -4,16 +4,15 @@ import * as actionTypes from './auth.actionTypes';
 import type { User } from '../../models/User';
 
 export type LoginAction = {
-    type: actionTypes.LOGIN,
+    type: typeof actionTypes.LOGIN,
     user: User,
 };
 
 export type LogoutAction = {
-    type: actionTypes.LOGOUT,
-    user: User,
+    type: typeof actionTypes.LOGOUT,
 };
 
 export type RegisterAction = {
-    type: actionTypes.REGISTER,
+    type: typeof actionTypes.REGISTER,
     user: User,
 };

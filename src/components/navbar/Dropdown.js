@@ -1,12 +1,16 @@
-import React, { Component, Fragment } from 'react';
+// @flow
+
+import React, { Component } from 'react';
 import { MdPerson } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import onClickOutside from 'react-onclickoutside';
 import { logout } from '../../state/auth/auth.actionCreators';
+import type { User } from '../../models/User';
+import type { AppState } from '../../state/AppState';
 import './Dropdown.scss';
 
 type Props = {
+  user: User,
   dispatch: Function,
 };
 
@@ -17,11 +21,11 @@ type State = {
 class Dropdown extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = {isSelected: false};
+    this.state = { isSelected: false };
   }
 
   handleClick = () => {
-    this.setState({ isSelected: !this.state.isSelected });
+    this.setState(state => ({ isSelected: !state.isSelected }));
   }
 
   handleClickOutside = () => {
@@ -34,20 +38,27 @@ class Dropdown extends Component<Props, State> {
   }
 
   render() {
+    const { username } = this.props.user || '';
     const { isSelected } = this.state;
     return (
       <div className="Dropdown">
         <div className="Dropdown__inner">
-          <button onClick={this.handleClick} className="Dropdown__button">
-            <MdPerson className="NavBat__item__icon" />
+          <button type="button" onClick={this.handleClick} className="Dropdown__button">
+            {username}
+            <MdPerson className="Dropdown__button__icon" />
           </button>
-          <div className={isSelected ? "Dropdown__content Dropdown__content--active" : "Dropdown__content"}>
-            <a href="#" onClick={this.handleLogoutClick}>Logout</a>
+          <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
+            <button type="button" onClick={this.handleLogoutClick}>Logout</button>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default connect()(onClickOutside(Dropdown));
+const mapStateToProps = (state: AppState) => ({
+  user: state.auth.user,
+});
+
+
+export default connect(mapStateToProps)(onClickOutside(Dropdown));

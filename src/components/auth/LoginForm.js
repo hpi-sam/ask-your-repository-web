@@ -6,19 +6,18 @@ import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import { login, logout } from '../../state/auth/auth.actionCreators';
-import './LoginPage.scss';
+import './LoginForm.scss';
 
 type Props = {
-    dispatch: Function,
+  dispatch: Function,
 }
 
 type State = {
-    email: string,
-    password: string,
-    submitted: boolean,
+  email: string,
+  password: string,
 }
 
-class LoginPage extends Component<Props, State> {
+class LoginForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -28,7 +27,6 @@ class LoginPage extends Component<Props, State> {
     this.state = {
       email: '',
       password: '',
-      submitted: false,
     };
   }
 
@@ -40,7 +38,6 @@ class LoginPage extends Component<Props, State> {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.setState({ submitted: true });
     const { email, password } = this.state;
     const { dispatch } = this.props;
     if (email && password) {
@@ -49,14 +46,13 @@ class LoginPage extends Component<Props, State> {
   }
 
   render() {
-    // const { loggingIn } = this.props;
-    const { email, password, submitted } = this.state;
+    const { email, password } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="LoginForm">
         <h1>Login</h1>
         <div className="form-input">
-          <label htmlFor="email">
-            Email:
+          <label>
+            Email or Username:
             <Input type="text" name="email" value={email} onChange={this.handleChange} />
           </label>
         </div>
@@ -77,11 +73,4 @@ class LoginPage extends Component<Props, State> {
   }
 }
 
-function mapStateToProps(state) {
-  // const { loggingIn } = state.authentication;
-  // return {
-  // loggingIn,
-  // };
-}
-
-export default connect(mapStateToProps)(LoginPage);
+export default connect()(LoginForm);
