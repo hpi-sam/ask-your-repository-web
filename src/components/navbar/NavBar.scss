@@ -23,7 +23,7 @@
   }
 
   &__search { align-self: center; }
-  &__right &__item { margin-left: auto; }
+  &__right &__item { margin-left: auto; margin-right: 0;}
 
   &__team {
     border-radius: 5px;

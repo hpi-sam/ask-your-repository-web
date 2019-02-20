@@ -50,7 +50,7 @@ class RegisterPage extends Component<Props, State> {
     this.setState({ submitted: true });
     const { user } = this.state;
     const { dispatch } = this.props;
-    if (user.firstName && user.lastName && user.username && user.password) {
+    if (user.username && user.email && user.password) {
       dispatch(register(user));
     }
   }

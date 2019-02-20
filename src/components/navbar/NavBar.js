@@ -2,15 +2,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { MdCloudUpload, MdImage, MdPerson } from 'react-icons/md';
+import { MdCloudUpload, MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
+import Dropdown from './Dropdown';
 import TeamInitialsButton from '../team/TeamInitialsButton';
 import PresentationSwitch from './PresentationSwitch';
 import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
 import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
-
 import './NavBar.scss';
 
 type Props = {
@@ -61,7 +61,7 @@ function NavBar(props: Props) {
         <Search />
       </div>
       <div className="NavBar__right">
-        <MdPerson className="NavBat__item__icon" />
+        <Dropdown/>
       </div>
     </div>
   );

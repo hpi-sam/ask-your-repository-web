@@ -13,7 +13,7 @@ type Props = {
 }
 
 type State = {
-    username: string,
+    email: string,
     password: string,
     submitted: boolean,
 }
@@ -26,7 +26,7 @@ class LoginPage extends Component<Props, State> {
     this.props.dispatch(logout());
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
       submitted: false,
     };
@@ -41,23 +41,23 @@ class LoginPage extends Component<Props, State> {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     const { dispatch } = this.props;
-    if (username && password) {
-      dispatch(login(username, password));
+    if (email && password) {
+      dispatch(login(email, password));
     }
   }
 
   render() {
     // const { loggingIn } = this.props;
-    const { username, password, submitted } = this.state;
+    const { email, password, submitted } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="LoginForm">
         <h1>Login</h1>
         <div className="form-input">
-          <label htmlFor="username">
+          <label htmlFor="email">
             Email:
-            <Input type="text" name="username" value={username} onChange={this.handleChange} />
+            <Input type="text" name="email" value={email} onChange={this.handleChange} />
           </label>
         </div>
         <div className="form-input">

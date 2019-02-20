@@ -21,8 +21,9 @@
 
   background-color: var(--accent-color-blue);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, .2);
+  border-radius: 4px;
 
-  margin: var(--unactive-margin-vertical) 0;
+  margin: var(--unactive-margin-vertical);
   font-size: 1.5rem;
 
   transition: all .2s;
