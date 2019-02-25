@@ -50,16 +50,10 @@ exports[`<Root /> renders correctly 1`] = `
         }
       }
     >
-      <Switch>
-        <Route
-          component={[Function]}
-          path="/select-team"
-        />
-        <Connect(TeamRoute)
-          component={[Function]}
-          path="/"
-        />
-      </Switch>
+      <Route
+        component={[Function]}
+        path="/"
+      />
     </Connect(ConnectedRouterWithContext)>
   </PersistGate>
 </Provider>

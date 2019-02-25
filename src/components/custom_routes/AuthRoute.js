@@ -3,29 +3,28 @@ import React from 'react';
 import type { ComponentType } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import AuthRoute from './AuthRoute';
 import type { AppState } from '../../state/AppState';
 
 type Props = {
-  hasActiveTeam: boolean,
+  isAuthenticated: boolean,
   component: ComponentType<*>,
 };
 
-function TeamRoute({ hasActiveTeam, component: Component, ...rest }: Props) {
+function TeamRoute({ isAuthenticated, component: Component, ...rest }: Props) {
   return (
     <Route
       {...rest}
-      render={() => (
-        hasActiveTeam
-          ? <AuthRoute {...rest} component={Component} />
-          : <Redirect to="/select-team" />
+      render={router => (
+        isAuthenticated
+          ? <Component {...router} />
+          : <Redirect to="/login" />
       )}
     />
   );
 }
 
 const mapStateToProps = (state: AppState) => ({
-  hasActiveTeam: !!state.activeTeam,
+  isAuthenticated: state.auth.loggedIn,
 });
 
 export default connect(mapStateToProps)(TeamRoute);

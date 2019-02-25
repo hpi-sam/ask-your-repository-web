@@ -5,14 +5,13 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
   padding: 20px 30px;
   text-align: center;
   font-weight: bold;
 
   @keyframes slide-down {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(var(--space-to-top)); }
+    from { transform: translateY(-100%) translateX(-50%); }
+    to { transform: translateY(var(--space-to-top)) translateX(-50%); }
   }
 
   animation-name: slide-down, slide-down;

@@ -43,7 +43,12 @@ class Dropdown extends Component<Props, State> {
     return (
       <div className="Dropdown">
         <div className="Dropdown__inner">
-          <button type="button" onClick={this.handleClick} className="Dropdown__button">
+          <button
+            type="button"
+            onClick={this.handleClick}
+            className="Dropdown__button"
+            data-cy="user-dropdown-button"
+          >
             {username}
             <MdPerson className="Dropdown__button__icon" />
           </button>

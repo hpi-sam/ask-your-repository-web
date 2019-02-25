@@ -11,10 +11,10 @@ if (storedUser) {
 
 export type AuthState = {
     loggedIn: boolean,
-    user: ?User,
+    user?: User,
 };
 
-export const initialState = user ? { loggedIn: true, user } : { loggedIn: false, user: null };
+export const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
 
 function auth(state: AuthState = initialState, action: Action) {
   switch (action.type) {
