@@ -67,3 +67,32 @@ Cypress.Commands.add('drop', {
 
   cy.wrap(subject).trigger('drop', { dataTransfer });
 });
+
+Cypress.Commands.add('createUser', ({ username, email, password }) => {
+  const options = {
+    method: 'POST',
+    url: `${Cypress.env('API_URL')}/users`,
+    body: {
+      username,
+      email,
+      password,
+      passwordRepeat: password,
+    },
+  };
+
+  return cy.request(options).then(response => response.body);
+});
+
+Cypress.Commands.add('resetDB', () => {
+  const options = {
+    method: 'POST',
+    url: `${Cypress.env('NEO4J_URL')}/db/data/transaction/commit`,
+    body: {
+      statements: [{
+        statement: 'MATCH (n) DETACH DELETE n',
+      }],
+    },
+  };
+
+  cy.request(options);
+});
