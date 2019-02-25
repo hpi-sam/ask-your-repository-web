@@ -16,13 +16,13 @@ import './NavBar.scss';
 type Props = {
   activeTeam: ?Team,
   isTeamSidebarOpen: boolean,
-  isloggedIn: boolean,
+  isAuthenticated: boolean,
   onTeamClick: () => void,
 };
 
 function NavBar(props: Props) {
   const {
-    isTeamSidebarOpen, onTeamClick, activeTeam,
+    isTeamSidebarOpen, onTeamClick, activeTeam, isAuthenticated,
   } = props;
 
   return (
@@ -62,7 +62,7 @@ function NavBar(props: Props) {
         <Search />
       </div>
       <div className="NavBar__right">
-        {props.isloggedIn
+        {isAuthenticated
           ? <Dropdown />
           : (
             <Fragment>
@@ -95,7 +95,7 @@ const mapDispatchToProps = (dispatch: Function) => ({
 const mapStateToProps = (state: AppState) => ({
   activeTeam: state.activeTeam,
   isTeamSidebarOpen: state.teamSidebar.isOpen,
-  isloggedIn: state.auth.loggedIn,
+  isAuthenticated: state.auth.loggedIn,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

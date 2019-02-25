@@ -3,8 +3,8 @@
 exports[`<NavBar /> renders correctly 1`] = `
 <NavBar
   activeTeam={null}
+  isAuthenticated={false}
   isTeamSidebarOpen={false}
-  isloggedIn={false}
   onTeamClick={[Function]}
 >
   <div

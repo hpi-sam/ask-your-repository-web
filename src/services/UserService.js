@@ -1,7 +1,7 @@
 // @flow
 import humps from 'humps';
 import api from '../config/api';
-import type { User } from '../models/User';
+import type { User, UserParams } from '../models/User';
 
 export function authHeader() {
   // return authorization header with jwt token
@@ -29,7 +29,7 @@ class UserService {
     return response.data;
   }
 
-  static async create(formData: User): Promise<User> {
+  static async create(formData: UserParams): Promise<User> {
     try {
       const response = await api.post('/users', formData);
       return response.data;

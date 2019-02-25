@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import { login, logout } from '../../state/auth/auth.actionCreators';
+import { login } from '../../state/auth/auth.actionCreators';
 import './LoginForm.scss';
 
 type Props = {
@@ -20,9 +20,6 @@ type State = {
 class LoginForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    // reset login status
-    this.props.dispatch(logout());
 
     this.state = {
       email: '',
@@ -53,20 +50,34 @@ class LoginForm extends Component<Props, State> {
         <div className="form-input">
           <label>
             Email or Username:
-            <Input type="text" name="email" value={email} onChange={this.handleChange} />
+            <Input
+              type="text"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+              data-cy="login-email-input"
+            />
           </label>
         </div>
         <div className="form-input">
           <label>
             Password:
-            <Input type="password" name="password" value={password} onChange={this.handleChange} />
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+              data-cy="login-password-input"
+            />
           </label>
         </div>
         <div>
           <Link to="/register">No account yet? Register here.</Link>
         </div>
         <div>
-          <Button>Submit</Button>
+          <Button data-cy="login-submit-button">
+            Submit
+          </Button>
         </div>
       </Form>
     );

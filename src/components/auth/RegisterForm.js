@@ -59,30 +59,59 @@ class RegisterForm extends Component<Props, State> {
         <div className="form-input">
           <label>
             Username:
-            <Input type="text" className="form-control" name="username" value={user.username} onChange={this.handleChange} />
+            <Input
+              type="text"
+              className="form-control"
+              name="username"
+              value={user.username}
+              onChange={this.handleChange}
+              data-cy="register-username-input"
+            />
           </label>
         </div>
         <div className="form-input">
           <label>
             Email:
-            <Input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
+            <Input
+              type="text"
+              className="form-control"
+              name="email"
+              value={user.email}
+              onChange={this.handleChange}
+              data-cy="register-email-input"
+            />
           </label>
         </div>
         <div className="form-input">
           <label>
             Password:
-            <Input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
+            <Input
+              type="password"
+              className="form-control"
+              name="password"
+              value={user.password}
+              onChange={this.handleChange}
+              data-cy="register-password-input"
+            />
           </label>
         </div>
         <div className="form-input">
           <label>
             Repeat Password:
-            <Input type="password" className="form-control" name="passwordRepeat" onChange={this.handleChange} />
+            <Input
+              type="password"
+              className="form-control"
+              name="passwordRepeat"
+              onChange={this.handleChange}
+              data-cy="register-password-repeat-input"
+            />
           </label>
         </div>
 
         <div className="RegisterForm__buttons">
-          <Button>Register</Button>
+          <Button data-cy="register-submit-button">
+            Register
+          </Button>
           <Link to="/login" className="cancel">Cancel</Link>
         </div>
       </Form>
