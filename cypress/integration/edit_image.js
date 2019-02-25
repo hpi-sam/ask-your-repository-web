@@ -38,8 +38,6 @@ context('Edit Image', () => {
       .should('have.members', expectedTags);
   });
 
-  /*
-  FIX ME: Currently failing because of missing backend functionality
   it('saves removed tags', () => {
     cy.get('[data-cy=tag-selector-input]')
       .type('{backspace}');
@@ -53,5 +51,4 @@ context('Edit Image', () => {
       .its('body.tags')
       .should('have.members', expectedTags);
   });
-  */
 });
