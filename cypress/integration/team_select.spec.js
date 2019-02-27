@@ -1,5 +1,7 @@
 context('Team Select', () => {
   beforeEach(() => {
+    cy.resetDB();
+    cy.authenticate();
     cy.visit('/');
   });
 

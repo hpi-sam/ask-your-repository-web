@@ -1,3 +1,5 @@
+import humps from 'humps';
+
 Cypress.Commands.add('setActiveTeam', () => {
   const options = {
     method: 'POST',
@@ -15,6 +17,26 @@ Cypress.Commands.add('setActiveTeam', () => {
         .click()
         .then(() => team);
     });
+});
+
+Cypress.Commands.add('authenticate', () => {
+  cy.createUser({
+    username: 'jenny',
+    email: 'jenny@example.com',
+    password: 'secret',
+  }).then(() => {
+    const loginData = { emailOrUsername: 'jenny', password: 'secret' };
+    const options = {
+      method: 'POST',
+      url: `${Cypress.env('API_URL')}/authentications`,
+      body: humps.decamelizeKeys(loginData),
+    };
+
+    cy.request(options)
+      .then((response) => {
+        localStorage.setItem('user', JSON.stringify(response.body));
+      });
+  });
 });
 
 Cypress.Commands.add('createImage', (fixture, teamId, tags = []) => {

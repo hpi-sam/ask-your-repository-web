@@ -1,5 +1,7 @@
 context('Team Sidebar', () => {
   beforeEach(() => {
+    cy.resetDB();
+    cy.authenticate();
     cy.setActiveTeam();
   });
 
@@ -44,6 +46,10 @@ context('Team Sidebar', () => {
 
           cy.get('[data-cy=team-sidebar-form] input[type=text]').type('My New Team');
           cy.get('[data-cy=team-sidebar-form] [data-cy=save-button]').click();
+        });
+
+        afterEach(() => {
+          cy.resetDB();
         });
 
         it('creates a team', () => {

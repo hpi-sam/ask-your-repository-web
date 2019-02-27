@@ -1,17 +1,15 @@
 context('Login', () => {
   beforeEach(() => {
+    cy.resetDB();
+
     cy.server();
-    cy.route({ method: 'POST', url: '/users/login' }).as('login');
+    cy.route({ method: 'POST', url: '/authentications' }).as('login');
     cy.createUser({
       username: 'jenny',
       email: 'jenny@example.com',
       password: 'secret',
     });
     cy.visit('/login');
-  });
-
-  afterEach(() => {
-    cy.resetDB();
   });
 
   it('authenticates the user with the given credentials', () => {

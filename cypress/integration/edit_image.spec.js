@@ -2,14 +2,15 @@ context('Edit Image', () => {
   let image;
 
   beforeEach(() => {
-    cy.server();
-
+    cy.resetDB();
+    cy.authenticate();
     cy.setActiveTeam()
       .then((team) => {
         cy.createImage('goat.jpg', team.id, ['Goat'])
           .then((createdImage) => {
             image = createdImage;
             cy.visit(`/images/${image.id}/edit`);
+            cy.server();
             cy.route({ method: 'PATCH', url: `/images/${image.id}` }).as('updateImage');
           });
       });
