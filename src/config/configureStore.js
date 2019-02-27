@@ -8,6 +8,7 @@ import { createBrowserHistory } from 'history';
 import { middleware as flashMiddleware } from 'redux-flash';
 import thunk from 'redux-thunk';
 import socketioMiddleware from '../middleware/socketioMiddleware';
+import axiosAuthMiddleware from './axiosAuthMiddleware';
 import createRootReducer from '../state/rootReducer';
 import type { AppState } from '../state/AppState';
 import type { Action } from '../state/Action';
@@ -17,7 +18,7 @@ export const history = createBrowserHistory();
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['activeTeam', 'presentationMode'],
+  whitelist: ['activeTeam', 'presentationMode', 'auth'],
 };
 
 function configureStore() {
@@ -26,6 +27,7 @@ function configureStore() {
     flashMiddleware(),
     routerMiddleware(history),
     socketioMiddleware(),
+    axiosAuthMiddleware(),
   ];
 
   if (process.env.NODE_ENV === 'development') {

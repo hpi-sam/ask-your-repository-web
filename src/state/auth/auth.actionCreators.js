@@ -13,13 +13,12 @@ export function login(email: string, password: string) {
       dispatch(push('/'));
       dispatch(flashSuccessMessage('Successfully logged in'));
     } catch (error) {
-      dispatch(flashErrorMessage((error.response.data.error.toString())));
+      dispatch(flashErrorMessage(error.response.data.error.toString()));
     }
   };
 }
 
 export function logout() {
-  if (!localStorage.getItem('user')) return { type: actionTypes.LOGOUT };
   return async (dispatch: Function): Promise<void> => {
     UserService.logout();
     dispatch({ type: actionTypes.LOGOUT });
@@ -36,7 +35,7 @@ export function register(userParameters: UserParams) {
       dispatch(push('/login'));
       dispatch(flashSuccessMessage('Successfully registered.'));
     } catch (error) {
-      dispatch(flashErrorMessage((error.response.data.error.toString())));
+      dispatch(flashErrorMessage(error.response.data.error.toString()));
     }
   };
 }
