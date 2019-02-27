@@ -21,4 +21,6 @@ function Root() {
   );
 }
 
+if (window.Cypress) window.store = store;
+
 export default Root;

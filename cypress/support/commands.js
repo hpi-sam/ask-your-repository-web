@@ -32,9 +32,16 @@ Cypress.Commands.add('authenticate', () => {
       body: humps.decamelizeKeys(loginData),
     };
 
+    cy.visit('/');
+
     cy.request(options)
       .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response.body));
+        cy.window().then((window) => {
+          window.store.dispatch({
+            type: 'LOGIN',
+            user: response.body,
+          });
+        });
       });
   });
 });
