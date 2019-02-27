@@ -1,18 +1,34 @@
 // @flow
 import React from 'react';
+import type { ComponentType } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import type { AppState } from '../../state/AppState';
 
-function AuthenticatedRoute({ component: Component, ...rest }: Object) {
+type Props = {
+  component: ComponentType<*>,
+  isAuthenticated: boolean,
+};
+
+function AuthenticatedRoute({
+  isAuthenticated,
+  component: Component,
+  ...rest
+}: Props) {
   return (
     <Route
       {...rest}
-      render={props => (
-        localStorage.getItem('user')
-          ? <Component {...props} />
-          : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+      render={router => (
+        isAuthenticated
+          ? <Component {...router} />
+          : <Redirect to={{ pathname: '/login', state: { from: router.location } }} />
       )}
     />
   );
 }
 
-export default AuthenticatedRoute;
+const mapStateToProps = (state: AppState) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(AuthenticatedRoute);
