@@ -7,7 +7,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 import LoginForm from './LoginForm';
 import UserService from '../../services/UserService';
-// import UserFactory from '../../factories/UserFactory';
 import initialState from '../../state/initialState';
 
 const mockStore = configureMockStore();

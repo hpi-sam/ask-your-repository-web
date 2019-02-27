@@ -24,7 +24,7 @@ function TeamRoute({ isAuthenticated, component: Component, ...rest }: Props) {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  isAuthenticated: state.auth.loggedIn,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(TeamRoute);

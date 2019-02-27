@@ -10,12 +10,12 @@ import { register } from '../../state/auth/auth.actionCreators';
 import './RegisterForm.scss';
 
 type Props = {
-    dispatch: Function,
-}
+  dispatch: Function,
+};
 
 type State = {
-    user: UserParams,
-}
+  user: UserParams,
+};
 
 class RegisterForm extends Component<Props, State> {
   constructor(props) {

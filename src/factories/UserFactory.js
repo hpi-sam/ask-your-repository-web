@@ -11,11 +11,9 @@ class UserFactory {
     };
   }
 
-  static createLoggedInUser(): User {
+  static createAuthenticatedUser(): User {
     return {
-      id: faker.random.uuid(),
-      email: faker.internet.email(),
-      username: faker.internet.userName(),
+      ...this.createDummyUser(),
       token: faker.random.uuid(),
     };
   }
@@ -28,11 +26,9 @@ class UserFactory {
     };
   }
 
-  static createStaticLoggedInUser(): User {
+  static createStaticAuthenticatedUser(): User {
     return {
-      id: 'f1bc8f40-7698-4df7-b410-efac1f1a03d2',
-      email: 'test@example.com',
-      username: 'test_user',
+      ...this.createStaticDummyUser(),
       token: '61e6fa4c-de31-48e6-97a2-4f66b31d84e9',
     };
   }

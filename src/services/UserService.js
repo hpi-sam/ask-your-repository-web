@@ -40,7 +40,7 @@ class UserService {
 
   static async login(emailOrUsername: string, password: string): Promise<User> {
     try {
-      const response = await api.post('/authentications', humps.decamelizeKeys({ emailOrUsername, password }), { withCredentials: true });
+      const response = await api.post('/authentications', humps.decamelizeKeys({ emailOrUsername, password }));
       localStorage.setItem('user', JSON.stringify(response.data));
       return response.data;
     } catch (e) {
@@ -51,7 +51,7 @@ class UserService {
   static async logout() {
     try {
       const headers = authHeader();
-      await api.delete('/authentications', {}, { headers, withCredentials: true });
+      await api.delete('/authentications', {}, { headers });
     } finally {
       localStorage.removeItem('user');
     }

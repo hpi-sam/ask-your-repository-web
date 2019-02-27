@@ -10,20 +10,22 @@ if (storedUser) {
 }
 
 export type AuthState = {
-    loggedIn: boolean,
-    user?: User,
+  isAuthenticated: boolean,
+  user?: User,
 };
 
-export const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
+export const initialState = user
+  ? { isAuthenticated: true, user }
+  : { isAuthenticated: false };
 
 function auth(state: AuthState = initialState, action: Action) {
   switch (action.type) {
     case actionTypes.LOGIN:
-      return { loggedIn: true, user: action.user };
+      return { isAuthenticated: true, user: action.user };
     case actionTypes.REGISTER:
       return state;
     case actionTypes.LOGOUT:
-      return { ...state, loggedIn: false };
+      return { ...state, isAuthenticated: false };
     default:
       return state;
   }
