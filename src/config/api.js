@@ -7,6 +7,7 @@ const api = axios.create({
     ...config,
   }),
   paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' }),
+  withCredentials: true,
 });
 
 export default api;

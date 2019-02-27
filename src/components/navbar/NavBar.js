@@ -95,7 +95,7 @@ const mapDispatchToProps = (dispatch: Function) => ({
 const mapStateToProps = (state: AppState) => ({
   activeTeam: state.activeTeam,
   isTeamSidebarOpen: state.teamSidebar.isOpen,
-  isAuthenticated: state.auth.loggedIn,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

@@ -10,12 +10,12 @@ import './LoginForm.scss';
 
 type Props = {
   dispatch: Function,
-}
+};
 
 type State = {
   email: string,
   password: string,
-}
+};
 
 class LoginForm extends Component<Props, State> {
   constructor(props: Props) {

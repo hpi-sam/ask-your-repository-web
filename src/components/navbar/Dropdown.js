@@ -1,5 +1,4 @@
 // @flow
-
 import React, { Component } from 'react';
 import { MdPerson } from 'react-icons/md';
 import { connect } from 'react-redux';
@@ -64,6 +63,5 @@ class Dropdown extends Component<Props, State> {
 const mapStateToProps = (state: AppState) => ({
   user: state.auth.user,
 });
-
 
 export default connect(mapStateToProps)(onClickOutside(Dropdown));
