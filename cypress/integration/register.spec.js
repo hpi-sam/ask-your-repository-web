@@ -1,12 +1,9 @@
 context('Register', () => {
   beforeEach(() => {
+    cy.resetDB();
     cy.server();
     cy.route({ method: 'POST', url: '/users' }).as('createUser');
     cy.visit('/register');
-  });
-
-  afterEach(() => {
-    cy.resetDB();
   });
 
   it('creates a user with the given credentials', () => {

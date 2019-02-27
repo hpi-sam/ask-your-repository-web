@@ -2,6 +2,8 @@ context('Upload', () => {
   let activeTeam;
 
   beforeEach(() => {
+    cy.resetDB();
+    cy.authenticate();
     cy.setActiveTeam()
       .then((team) => {
         activeTeam = team;
