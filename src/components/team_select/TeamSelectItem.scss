@@ -1,0 +1,57 @@
+
+
+.TeamSelectItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: .3em;
+  width: 450px;
+
+  background-color: #333;
+  font-size: 1.2em;
+  text-align: left;
+
+  border-radius: 5px;
+  border: 3px solid transparent;
+  transition: border-color .1s;
+  outline: none;
+  cursor: pointer;
+
+  &:hover, &:focus, &:active, &--active {
+    border-color: rgba(255, 255, 255, .3);
+  }
+
+  & + & {
+    margin-top: 1em;
+  }
+
+  &__info {
+    flex: 1;
+    margin-left: .8em;
+  }
+
+  &__title {
+    margin-bottom: .1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__members {
+    color: #666;
+  }
+
+  &__avatar {
+    --dimension: 3em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--dimension);
+    height: var(--dimension);
+    background-color: #222;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+}

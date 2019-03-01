@@ -52,7 +52,7 @@ class TeamSelect extends Component<Props, State> {
         ) : (
           <Fragment>
             <div className="TeamSelect__title">
-              Team wählen
+              Select Team
             </div>
             <div className="TeamSelect__list">
               {teams.map(team => (

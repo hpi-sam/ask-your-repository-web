@@ -71,12 +71,12 @@ describe('socketio middleware', () => {
         });
       });
 
-      it('LEAVE_TEAM', () => {
-        expect(mockIO().emit.mock.calls[0]).toEqual(['LEAVE_TEAM', { team_id: 'test_id' }]);
+      it('EXIT_TEAM_SPACE', () => {
+        expect(mockIO().emit.mock.calls[0]).toEqual(['EXIT_TEAM_SPACE', { team_id: 'test_id' }]);
       });
 
-      it('JOIN_TEAM', () => {
-        expect(mockIO().emit.mock.calls[1]).toEqual(['JOIN_TEAM', { team_id: 'new_test_id' }]);
+      it('ENTER_TEAM_SPACE', () => {
+        expect(mockIO().emit.mock.calls[1]).toEqual(['ENTER_TEAM_SPACE', { team_id: 'new_test_id' }]);
       });
     });
   });
