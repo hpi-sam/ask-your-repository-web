@@ -21,14 +21,14 @@ function socketioMiddleware() {
     const data = {
       teamId: team.id,
     };
-    socket.emit('JOIN_TEAM', humps.decamelizeKeys(data));
+    socket.emit('ENTER_TEAM_SPACE', humps.decamelizeKeys(data));
   };
 
   const leaveTeam = (team: Team) => {
     const data = {
       teamId: team.id,
     };
-    socket.emit('LEAVE_TEAM', humps.decamelizeKeys(data));
+    socket.emit('EXIT_TEAM_SPACE', humps.decamelizeKeys(data));
   };
 
   return (store: any) => {
