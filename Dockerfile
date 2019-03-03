@@ -3,10 +3,14 @@ FROM node:10.15.1-alpine as build-stage
 
 WORKDIR /app
 
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn install
+
 COPY . .
 COPY .env.production .env
 
-RUN yarn install
 RUN yarn build
 
 # production stage
