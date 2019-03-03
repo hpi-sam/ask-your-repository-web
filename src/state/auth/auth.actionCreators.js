@@ -13,7 +13,11 @@ export function login(email: string, password: string) {
       dispatch(push('/'));
       dispatch(flashSuccessMessage('Successfully logged in'));
     } catch (error) {
-      dispatch(flashErrorMessage(error.response.data.error.toString()));
+      const message = error.response
+        ? error.response.data.error
+        : 'Could not establish a connection to the server.';
+
+      dispatch(flashErrorMessage(message));
     }
   };
 }
