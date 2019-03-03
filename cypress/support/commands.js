@@ -1,23 +1,28 @@
 import humps from 'humps';
 
-Cypress.Commands.add('setActiveTeam', () => {
-  const options = {
-    method: 'POST',
-    url: `${Cypress.env('API_URL')}/teams`,
-    body: { name: 'Seed Team' },
-  };
+Cypress.Commands.add('setActiveTeam', () => cy.window()
+  .then((window) => {
+    const options = {
+      method: 'POST',
+      url: `${Cypress.env('API_URL')}/teams`,
+      body: { name: 'Seed Team' },
+      headers: {
+        'X-CSRF-Token': window.store.getState().auth.user.token,
+      },
+    };
 
-  return cy.request(options)
-    .then((response) => {
-      cy.visit('/');
-      const team = response.body;
+    return cy.request(options)
+      .then((response) => {
+        const team = response.body;
 
-      return cy
-        .get(`[data-cy=team-select-item-${team.id}]`)
-        .click()
-        .then(() => team);
-    });
-});
+        window.store.dispatch({
+          type: 'SET_ACTIVE_TEAM',
+          team,
+        });
+
+        return team;
+      });
+  }));
 
 Cypress.Commands.add('authenticate', () => {
   cy.createUser({

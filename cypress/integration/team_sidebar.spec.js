@@ -3,6 +3,7 @@ context('Team Sidebar', () => {
     cy.resetDB();
     cy.authenticate();
     cy.setActiveTeam();
+    cy.visit('/');
   });
 
   context('is closed', () => {
