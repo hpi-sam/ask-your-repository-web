@@ -27,40 +27,44 @@ function NavBar(props: Props) {
 
   return (
     <div className={classNames('NavBar', { 'NavBar--with-sidebar': isTeamSidebarOpen })}>
-      <div className="NavBar__left">
-        {!isTeamSidebarOpen && activeTeam && (
-          <TeamInitialsButton
-            onClick={onTeamClick}
-            className="NavBar__team"
-            team={activeTeam}
-            data-cy="navbar-team-button"
-          />
-        )}
-        <NavLink
-          to="/images"
-          className="NavBar__item"
-          activeClassName="NavBar__item--active"
-        >
-          <MdImage className="NavBar__item__icon" />
-          <span className="NavBar__item__text">
-            Gallery
-          </span>
-        </NavLink>
-        <NavLink
-          to="/upload"
-          className="NavBar__item"
-          activeClassName="NavBar__item--active"
-        >
-          <MdCloudUpload className="NavBar__item__icon" />
-          <span className="NavBar__item__text">
-            Upload
-          </span>
-        </NavLink>
-        <PresentationSwitch />
-      </div>
-      <div className="NavBar__search">
-        <Search />
-      </div>
+      {activeTeam && (
+        <Fragment>
+          <div className="NavBar__left">
+            {!isTeamSidebarOpen && activeTeam && (
+              <TeamInitialsButton
+                onClick={onTeamClick}
+                className="NavBar__team"
+                team={activeTeam}
+                data-cy="navbar-team-button"
+              />
+            )}
+            <NavLink
+              to="/images"
+              className="NavBar__item"
+              activeClassName="NavBar__item--active"
+            >
+              <MdImage className="NavBar__item__icon" />
+              <span className="NavBar__item__text">
+                Gallery
+              </span>
+            </NavLink>
+            <NavLink
+              to="/upload"
+              className="NavBar__item"
+              activeClassName="NavBar__item--active"
+            >
+              <MdCloudUpload className="NavBar__item__icon" />
+              <span className="NavBar__item__text">
+                Upload
+              </span>
+            </NavLink>
+            <PresentationSwitch />
+          </div>
+          <div className="NavBar__search">
+            <Search />
+          </div>
+        </Fragment>
+      )}
       <div className="NavBar__right">
         {isAuthenticated
           ? <Dropdown />
