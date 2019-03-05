@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import qs from 'qs';
-import InfiniteScroll from 'react-infinite-scroller';
-import Gallery from './Gallery';
+import InfinityScroll from 'react-infinite-scroller';
+import Gallery from './gallery/Gallery';
 import ImageService from '../../services/ImageService';
+import ImageDecorator from './gallery/ImageDecorator';
 import type { Team } from '../../models/Team';
-import type { Image } from '../../models/Image';
+import type { Image as APIImage } from '../../models/Image';
+import type { Image } from './gallery/ImageDecorator';
 import type { AppState } from '../../state/AppState';
 import './ImagesIndex.scss';
 
@@ -52,7 +54,7 @@ class ImagesIndex extends Component<Props, State> {
   getSearchString = (querystring) => {
     const { search } = qs.parse(querystring, { ignoreQueryPrefix: true });
     return search;
-  }
+  };
 
   reloadImages = () => {
     this.setState(this.defaultState, this.loadMoreImages);
@@ -76,7 +78,7 @@ class ImagesIndex extends Component<Props, State> {
         limit,
         search,
       };
-      const images = await ImageService.list(params);
+      const images: APIImage[] = await ImageService.list(params);
       const filteredImages = images
         .filter(image => image.score === undefined || image.score > 0);
       this.receiveImages(filteredImages);
@@ -85,15 +87,22 @@ class ImagesIndex extends Component<Props, State> {
     }
   };
 
+  deleteImage = (id: string) => {
+    this.setState(state => ({
+      images: state.images.filter(image => image.id !== id),
+    }));
+  };
+
   increaseOffset() {
     const { offset } = this.state;
     this.setState({ offset: offset + limit });
   }
 
-  receiveImages(fetchedImages: Image[]) {
-    const { images } = this.state;
-
-    this.setState({ images: [...images, ...fetchedImages] });
+  receiveImages(fetchedImages: APIImage[]) {
+    const decoratedImages = fetchedImages.map(
+      image => ImageDecorator.decorateImage(image, this.deleteImage),
+    );
+    this.setState(state => ({ images: [...state.images, ...decoratedImages] }));
 
     if (fetchedImages.length === 0) {
       this.setState({ endReached: true });
@@ -105,13 +114,13 @@ class ImagesIndex extends Component<Props, State> {
 
     return (
       <div className="ImagesIndex">
-        <InfiniteScroll
+        <InfinityScroll
           initialLoad={false}
           hasMore={!this.state.endReached}
           loadMore={this.loadMoreImages}
         >
           <Gallery images={images} />
-        </InfiniteScroll>
+        </InfinityScroll>
       </div>
     );
   }

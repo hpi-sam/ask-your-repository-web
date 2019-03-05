@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { FiSave } from 'react-icons/fi';
 import FileDropzone from './FileDropzone';
 import ImageService from '../../services/ImageService';
-import SaveButton from '../utility/SaveButton';
+import { SaveButton } from '../utility/buttons';
 import UploadList from './UploadList';
 import UploadKeyboardListener from './UploadKeyboardHandler';
 import MultiTagging from '../tagging/MultiTagging';
