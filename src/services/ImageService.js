@@ -42,6 +42,10 @@ class ImageService {
     await api.patch(`/images/${imageId}`, data);
   }
 
+  static async delete(imageId: string) {
+    await api.delete(`images/${imageId}`);
+  }
+
   static async patchMany(images: Array<{ id: string, tags: Array<Tag> }>) {
     await api.patch('/images', { artifacts: images });
   }

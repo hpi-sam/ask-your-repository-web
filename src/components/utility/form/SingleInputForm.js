@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { MdCheck, MdClose } from 'react-icons/md';
-import SaveButton from '../SaveButton';
-import CloseButton from '../CloseButton';
+import { SaveButton, CloseButton } from '../buttons';
 import './SingleInputForm.scss';
 
 type Props = {

@@ -1,6 +1,6 @@
 :root {
-  --button-padding-vertical: .4em;
-  --button-padding-horizontal: 1em;
+  --button-padding-vertical: 12px;
+  --button-padding-horizontal: 15px;
   --button-bg-color: white;
   --button-text-color: #222;
   --button-border-color: #ccc;
@@ -52,6 +52,16 @@
 
     &:hover {
       --button-bg-color: var(--gray-darker);
+    }
+  }
+
+  &--delete {
+    --button-bg-color: var(--red);
+    --button-text-color: white;
+    --button-border-width: 0;
+
+    &:hover {
+      --button-bg-color: var(--red-darker);
     }
   }
 
