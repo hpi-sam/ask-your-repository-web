@@ -84,7 +84,7 @@ class Presentation extends Component<Props, State> {
 
               return (
                 <div key={image.id} className={className}>
-                  <img src={image.url} alt={image.tags.join(', ')} />
+                  <img src={image.url} alt={image.userTags.join(', ')} />
                 </div>
               );
             })}

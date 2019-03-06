@@ -19,8 +19,6 @@ exports[`<TaggingForm /> renders correctly 1`] = `
     tags={
       Array [
         "nemo-dolorum-iusto",
-        "aut-quia-atque",
-        "et-velit-dolorem",
       ]
     }
   />

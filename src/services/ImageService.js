@@ -14,28 +14,29 @@ type ListParams = {
 class ImageService {
   static async get(id: string): Promise<Image> {
     const response = await api.get(`/images/${id}`);
-    return response.data;
+    const image: any = humps.camelizeKeys(response.data);
+    return image;
   }
 
   static async list(params: ListParams): Promise<Image[]> {
     const response = await api.get('/images', {
       params: humps.decamelizeKeys(params),
     });
-
-    return response.data.images;
+    const images: any = humps.camelizeKeys(response.data.images);
+    return images;
   }
 
   static async create(formData: FormData): Promise<Image> {
     const headers = { 'Content-Type': 'multipart/form-data' };
     const response = await api.post('/images', formData, { headers });
-
-    return response.data;
+    const image: any = humps.camelizeKeys(response.data);
+    return image;
   }
 
   static async addTags(imageId: string, tags: Array<Tag>): Promise<Image> {
     const response = await api.post(`/images/${imageId}/tags`, { tags });
-
-    return response.data;
+    const image: any = humps.camelizeKeys(response.data);
+    return image;
   }
 
   static async patch(imageId: string, data: Object) {

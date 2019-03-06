@@ -18,7 +18,7 @@ type Props = {
 
 function GalleryItemOverlay(props: Props) {
   const { image, maxTags } = props;
-  const tags = image.tags || [];
+  const tags = image.userTags || [];
   const displayedTags = tags.slice(0, maxTags);
   const showEllipses = tags.length >= maxTags;
 

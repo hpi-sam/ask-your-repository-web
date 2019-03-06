@@ -19,7 +19,7 @@ describe('<GalleryItem />', () => {
   });
 
   it('should render the tags of the image', () => {
-    image.tags.forEach((tag, index) => {
+    image.userTags.forEach((tag, index) => {
       const tagComponent = wrapper.find(Tag).at(index);
       expect(tagComponent.props().caption).toEqual(tag);
     });

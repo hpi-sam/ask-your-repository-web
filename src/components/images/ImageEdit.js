@@ -40,16 +40,16 @@ class ImageEdit extends Component<Props, State> {
     const { image } = this.state;
     if (!image) return;
 
-    const { id, tags } = image;
-    await ImageService.patch(id, { tags });
+    const { id, userTags } = image;
+    await ImageService.patch(id, { tags: userTags });
     this.setState({ isSubmitted: true });
   };
 
-  handleTagsChange = (tags: Tag[]) => {
+  handleTagsChange = (userTags: Tag[]) => {
     this.setState(state => ({
       image: {
         ...state.image,
-        tags,
+        userTags,
       },
     }));
   };

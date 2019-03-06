@@ -44,11 +44,11 @@ class ImageDetail extends Component<Props, State> {
           <img
             className="ImageDetails__image"
             src={image.url}
-            alt={image.tags.join(' ')}
+            alt={image.userTags.join(' ')}
           />
           <div className="ImageDetails__info">
             <div className="ImageDetail__tag-list">
-              {image.tags.map(tag => (
+              {image.userTags.map(tag => (
                 <Tag
                   key={shortid.generate()}
                   className="ImageDetail__tag"

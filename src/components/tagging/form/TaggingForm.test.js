@@ -13,7 +13,7 @@ describe('<TaggingForm />', () => {
   beforeEach(() => {
     wrapper = shallow((
       <TaggingForm
-        tags={image.tags}
+        tags={image.userTags}
         addTag={() => {}}
         tagSelector="DummyTagSelector"
         isMultiTaggingEnabled={false}

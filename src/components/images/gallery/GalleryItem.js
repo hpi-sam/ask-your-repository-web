@@ -13,7 +13,7 @@ type Props = {
 
 function GalleryItem(props: Props) {
   const { image } = props;
-  const tags = image.tags || [];
+  const tags = image.userTags || [];
   const displayedTags = tags.slice(0, maxTags);
 
   return (
