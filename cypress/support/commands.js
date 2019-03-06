@@ -13,7 +13,7 @@ Cypress.Commands.add('setActiveTeam', () => cy.window()
 
     return cy.request(options)
       .then((response) => {
-        const team = response.body;
+        const team = humps.camelizeKeys(response.body);
 
         window.store.dispatch({
           type: 'SET_ACTIVE_TEAM',
@@ -41,10 +41,12 @@ Cypress.Commands.add('authenticate', () => {
 
     cy.request(options)
       .then((response) => {
+        const user = humps.camelizeKeys(response.body);
+
         cy.window().then((window) => {
           window.store.dispatch({
             type: 'LOGIN',
-            user: response.body,
+            user,
           });
         });
       });
@@ -77,8 +79,10 @@ Cypress.Commands.add('createImage', (fixture, teamId, tags = []) => {
 
         sendRequest(formData);
 
-        return cy.wait('@createImage')
-          .then(xhr => xhr.response.body);
+        return cy.wait('@createImage').then((xhr) => {
+          const image = humps.camelizeKeys(xhr.response.body);
+          return image;
+        });
       });
     });
 });
