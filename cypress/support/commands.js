@@ -73,7 +73,7 @@ Cypress.Commands.add('createImage', (fixture, teamId, tags = []) => {
         const formData = new FormData();
         formData.append('image', file);
         formData.append('team_id', teamId);
-        formData.append('tags', tags);
+        formData.append('user_tags', tags);
 
         sendRequest(formData);
 

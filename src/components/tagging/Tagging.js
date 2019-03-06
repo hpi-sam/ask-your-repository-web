@@ -20,7 +20,7 @@ function Tagging(props: Props) {
   return (
     <div className="Tagging">
       <TaggingForm
-        tags={image.tags}
+        tags={image.userTags}
         addTag={props.addTag}
         isMultiTaggingEnabled={props.isMultiTaggingEnabled}
         tagSelector={props.tagSelector}

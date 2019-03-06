@@ -107,19 +107,19 @@ class Upload extends Component<Props, State> {
     const patchData = this.getSuccessfulImages()
       .map(image => ({
         id: image.id,
-        tags: image.tags,
+        tags: image.userTags,
       }));
 
     await ImageService.patchMany(patchData);
     this.props.dispatch(push('/images'));
   };
 
-  handleImageTagsChange = (imageId: string, tags: Array<Tag>) => {
+  handleImageTagsChange = (imageId: string, userTags: Array<Tag>) => {
     const upload = this.getUploadOfImage(imageId);
     if (!upload) return;
 
     this.updateUpload(upload.id, {
-      image: { ...upload.image, tags },
+      image: { ...upload.image, userTags },
     });
   };
 
@@ -137,7 +137,7 @@ class Upload extends Component<Props, State> {
 
   isFormSaveable() {
     const images = this.getSuccessfulImages();
-    return images.every(image => image.tags.length !== 0);
+    return images.every(image => image.userTags.length !== 0);
   }
 
   render() {

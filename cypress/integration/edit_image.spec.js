@@ -32,10 +32,10 @@ context('Edit Image', () => {
     cy.get('[data-cy=save-button]').click();
     cy.wait('@updateImage');
 
-    const expectedTags = [...image.tags, 'Nice', 'Cool'];
+    const expectedTags = [...image.userTags, 'Nice', 'Cool'];
 
     cy.request(`${Cypress.env('API_URL')}/images/${image.id}`)
-      .its('body.tags')
+      .its('body.user_tags')
       .should('have.members', expectedTags);
   });
 
@@ -46,10 +46,10 @@ context('Edit Image', () => {
     cy.get('[data-cy=save-button]').click();
     cy.wait('@updateImage');
 
-    const expectedTags = image.tags.slice(0, -1);
+    const expectedTags = image.userTags.slice(0, -1);
 
     cy.request(`${Cypress.env('API_URL')}/images/${image.id}`)
-      .its('body.tags')
+      .its('body.user_tags')
       .should('have.members', expectedTags);
   });
 });

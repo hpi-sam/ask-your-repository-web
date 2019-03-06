@@ -13,19 +13,19 @@ type Props = {
 
 class SingleTagging extends Component<Props> {
   addTag = (tag: Tag) => {
-    const { onTagsChange, image: { tags } } = this.props;
-    onTagsChange([...tags, tag]);
+    const { onTagsChange, image: { userTags } } = this.props;
+    onTagsChange([...userTags, tag]);
   };
 
   removeTag = (tag: Tag) => {
-    const { onTagsChange, image: { tags } } = this.props;
-    onTagsChange(tags.filter(existingTag => existingTag !== tag));
+    const { onTagsChange, image: { userTags } } = this.props;
+    onTagsChange(userTags.filter(existingTag => existingTag !== tag));
   };
 
   createSingleTagSelector() {
     return (
       <TagSelector
-        tags={this.props.image.tags}
+        tags={this.props.image.userTags}
         addTag={this.addTag}
         removeTag={this.removeTag}
       />

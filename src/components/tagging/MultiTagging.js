@@ -65,11 +65,13 @@ class MultiTagging extends Component<Props, State> {
   };
 
   addTagToImage(image: Image, tag: TagType) {
-    this.props.onImageTagsChange(image.id, _.uniq([...image.tags, tag]));
+    this.props.onImageTagsChange(image.id, _.uniq([...image.userTags, tag]));
   }
 
   removeTagFromImage(image: Image, tag: TagType) {
-    this.props.onImageTagsChange(image.id, image.tags.filter(existingTag => existingTag !== tag));
+    this.props.onImageTagsChange(
+      image.id, image.userTags.filter(existingTag => existingTag !== tag),
+    );
   }
 
   createMultiTag(tag: TagType) {
@@ -93,7 +95,7 @@ class MultiTagging extends Component<Props, State> {
       <TagSelector
         addTag={this.addTagToSelected}
         removeTag={this.removeTagFromSelected}
-        tags={this.getSelectedImage().tags}
+        tags={this.getSelectedImage().userTags}
         renderTag={(tag: TagType) => this.createMultiTag(tag)}
       />
     );

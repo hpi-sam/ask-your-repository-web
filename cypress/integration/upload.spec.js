@@ -46,7 +46,7 @@ context('Upload', () => {
       cy.get('[data-cy=save-button]').click();
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageId}`)
-        .its('body.tags')
+        .its('body.user_tags')
         .should('have.members', ['Sheep', 'Cute']);
     });
   });
@@ -87,11 +87,11 @@ context('Upload', () => {
       cy.get('[data-cy=save-button]').click();
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageIds[0]}`)
-        .its('body.tags')
+        .its('body.user_tags')
         .should('have.members', ['Cute', 'Sheep']);
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageIds[1]}`)
-        .its('body.tags')
+        .its('body.user_tags')
         .should('have.members', ['Cute', 'Goat']);
     });
   });
