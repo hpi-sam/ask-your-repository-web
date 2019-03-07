@@ -5,11 +5,11 @@
 
   &__inner {
     max-width: var(--max-width);
-    height: calc(100% - var(--navbar-height));
+    min-height: calc(100% - var(--navbar-height) - var(--footer-height) - 20px);
 
     margin: 0 auto;
-    padding: 0 var(--padding-sides) 0px var(--padding-sides);
-    padding-top: var(--navbar-height);
+    box-sizing: content-box;
+    padding: var(--navbar-height) var(--padding-sides) 20px var(--padding-sides);
 
     display: flex;
     align-items: flex-start;

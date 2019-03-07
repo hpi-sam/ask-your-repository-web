@@ -6,6 +6,7 @@ import LoginForm from './auth/LoginForm';
 import RegisterForm from './auth/RegisterForm';
 import FlashMessages from './utility/flash/FlashMessages';
 import AuthorizedApp from './AuthorizedApp';
+import Footer from './footer/Footer';
 import './App.scss';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" component={RegisterForm} />
         <AuthRoute path="/" component={AuthorizedApp} />
       </Switch>
+      <Footer />
     </div>
   );
 }
