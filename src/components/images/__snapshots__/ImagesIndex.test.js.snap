@@ -25,6 +25,47 @@ exports[`<ImagesIndex /> renders correctly 1`] = `
   <div
     className="ImagesIndex"
   >
+    <ActivityIndicator
+      className=""
+      text=""
+    >
+      <div
+        className="ActivityIndicator"
+      >
+        <MdCropSquare
+          className="ActivityIndicator__spinner"
+        >
+          <IconBase
+            attr={
+              Object {
+                "viewBox": "0 0 24 24",
+              }
+            }
+            className="ActivityIndicator__spinner"
+          >
+            <svg
+              className="ActivityIndicator__spinner"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width="1em"
+            >
+              <path
+                d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"
+                key="0"
+              />
+            </svg>
+          </IconBase>
+        </MdCropSquare>
+      </div>
+    </ActivityIndicator>
     <InfiniteScroll
       element="div"
       getScrollParent={null}

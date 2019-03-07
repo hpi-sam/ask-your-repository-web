@@ -6,6 +6,7 @@ import InfinityScroll from 'react-infinite-scroller';
 import Gallery from './gallery/Gallery';
 import ImageService from '../../services/ImageService';
 import ImageDecorator from './gallery/ImageDecorator';
+import ActivityIndicator from '../utility/ActivityIndicator';
 import type { Team } from '../../models/Team';
 import type { Image as APIImage } from '../../models/Image';
 import type { Image } from './gallery/ImageDecorator';
@@ -21,6 +22,7 @@ type State = {
   images: Array<Image>,
   offset: number,
   endReached: boolean,
+  isLoadingInitially: boolean,
 };
 
 export const limit = 12;
@@ -30,6 +32,7 @@ class ImagesIndex extends Component<Props, State> {
     images: [],
     offset: 0,
     endReached: false,
+    isLoadingInitially: true,
   };
 
   constructor(props: Props) {
@@ -38,8 +41,9 @@ class ImagesIndex extends Component<Props, State> {
     this.state = this.defaultState;
   }
 
-  componentDidMount() {
-    this.loadMoreImages();
+  async componentDidMount() {
+    await this.loadMoreImages();
+    this.setState({ isLoadingInitially: false });
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -110,10 +114,11 @@ class ImagesIndex extends Component<Props, State> {
   }
 
   render() {
-    const { images } = this.state;
+    const { images, isLoadingInitially } = this.state;
 
     return (
       <div className="ImagesIndex">
+        {isLoadingInitially && <ActivityIndicator />}
         <InfinityScroll
           initialLoad={false}
           hasMore={!this.state.endReached}
