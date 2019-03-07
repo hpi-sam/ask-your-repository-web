@@ -1,43 +1,36 @@
 @import '../../style/breakpoints';
 
 .Search {
-  --unactive-margin-vertical: 10px;
+  --margin-vertical: 10px;
 
-  --active-height-mobile: var(--navbar-height);
-  --active-width-mobile: 100%;
-  --unactive-height-mobile: calc(var(--navbar-height) - 2 * var(--unactive-margin-vertical));
-  --unactive-width-mobile: var(--unactive-height-mobile);
+  --height-mobile: var(--searchbar-height);
+  --width-mobile: 100%;
 
   --width-desktop: 330px;
-  --height-desktop: var(--unactive-height-mobile);
+  --height-desktop: calc(var(--navbar-height) - 2 * var(--margin-vertical));
 
-  height: var(--unactive-height-mobile);
-  width: var(--unactive-width-mobile);
-
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  height: var(--height-mobile);
+  width: var(--width-mobile);
 
   background-color: var(--accent-color-blue);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, .2);
   border-radius: 4px;
 
-  margin: var(--unactive-margin-vertical);
   font-size: 1.5rem;
 
   transition: all .2s;
 
   &--active {
-    width: var(--active-width-mobile);
-    height: var(--active-height-mobile);
-    margin: 0;
+    width: var(--width-mobile);
+    height: var(--height-mobile);
   }
 
-  @media (min-width: $xs-to-sm) {
+  @media (min-width: $sm-to-md) {
     position: relative;
     width: var(--width-desktop);
     height: var(--height-desktop);
+    margin: var(--margin-vertical) 0;
   }
 
   &__preview, &__input {
@@ -51,16 +44,12 @@
 
   &__preview {
     cursor: pointer;
-
-    @media (min-width: $xs-to-sm) {
-      width: 330px;
-      color: rgba(255, 255, 255, .5);
-    }
+    width: 100%;
+    color: rgba(255, 255, 255, .5);
+    outline: none;
 
     &__text {
-      display: none;
       margin-left: 10px;
-      @media (min-width: $xs-to-sm) { display: inline; }
     }
   }
 
@@ -70,10 +59,6 @@
     padding-left: 60px;
     outline: 0;
     position: relative;
-
-    @media (min-width: $xs-to-sm) {
-      display: inline;
-    }
 
     &__icon, &__close {
       position: absolute;

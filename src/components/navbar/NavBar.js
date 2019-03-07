@@ -27,66 +27,68 @@ function NavBar(props: Props) {
 
   return (
     <div className={classNames('NavBar', { 'NavBar--with-sidebar': isTeamSidebarOpen })}>
-      {activeTeam && (
-        <Fragment>
-          <div className="NavBar__left">
-            {!isTeamSidebarOpen && activeTeam && (
-              <TeamInitialsButton
-                onClick={onTeamClick}
-                className="NavBar__team"
-                team={activeTeam}
-                data-cy="navbar-team-button"
-              />
-            )}
-            <NavLink
-              to="/images"
-              className="NavBar__item"
-              activeClassName="NavBar__item--active"
-            >
-              <MdImage className="NavBar__item__icon" />
-              <span className="NavBar__item__text">
-                Gallery
-              </span>
-            </NavLink>
-            <NavLink
-              to="/upload"
-              className="NavBar__item"
-              activeClassName="NavBar__item--active"
-            >
-              <MdCloudUpload className="NavBar__item__icon" />
-              <span className="NavBar__item__text">
-                Upload
-              </span>
-            </NavLink>
-            <PresentationSwitch />
-          </div>
-          <div className="NavBar__search">
-            <Search />
-          </div>
-        </Fragment>
-      )}
-      <div className="NavBar__right">
-        {isAuthenticated
-          ? <Dropdown />
-          : (
-            <Fragment>
+      <div className="NavBar__inner">
+        {activeTeam && (
+          <Fragment>
+            <div className="NavBar__left">
+              {!isTeamSidebarOpen && activeTeam && (
+                <TeamInitialsButton
+                  onClick={onTeamClick}
+                  className="NavBar__team"
+                  team={activeTeam}
+                  data-cy="navbar-team-button"
+                />
+              )}
               <NavLink
-                to="/login"
+                to="/images"
                 className="NavBar__item"
                 activeClassName="NavBar__item--active"
               >
-                Login
+                <MdImage className="NavBar__item__icon" />
+                <span className="NavBar__item__text">
+                  Gallery
+                </span>
               </NavLink>
               <NavLink
-                to="/register"
+                to="/upload"
                 className="NavBar__item"
                 activeClassName="NavBar__item--active"
               >
-                Sign up
+                <MdCloudUpload className="NavBar__item__icon" />
+                <span className="NavBar__item__text">
+                  Upload
+                </span>
               </NavLink>
-            </Fragment>
-          )
-        }
+              <PresentationSwitch />
+            </div>
+          </Fragment>
+        )}
+        <div className="NavBar__right">
+          {isAuthenticated
+            ? <Dropdown />
+            : (
+              <Fragment>
+                <NavLink
+                  to="/login"
+                  className="NavBar__item"
+                  activeClassName="NavBar__item--active"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="NavBar__item"
+                  activeClassName="NavBar__item--active"
+                >
+                  Sign up
+                </NavLink>
+              </Fragment>
+            )
+          }
+        </div>
+      </div>
+      <div className="NavBar__search">
+        <Search />
       </div>
     </div>
   );

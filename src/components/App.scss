@@ -9,13 +9,15 @@
 
     margin: 0 auto;
     box-sizing: content-box;
-    padding: var(--navbar-height) var(--padding-sides) 20px var(--padding-sides);
+    padding: 0 var(--padding-sides) 20px var(--padding-sides);
+    padding-top: calc(var(--navbar-height) + var(--searchbar-height));
 
     display: flex;
     align-items: flex-start;
     justify-content: center;
 
     @media (min-width: $xs-to-sm) {
+      padding-top: var(--navbar-height);
       transition: margin-left var(--sidebar-animation-duration);
       &--with-sidebar { margin-left: var(--team-sidebar-width); }
     }
