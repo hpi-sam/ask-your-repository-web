@@ -16,7 +16,7 @@
     align-items: flex-start;
     justify-content: center;
 
-    @media (min-width: $xs-to-sm) {
+    @media (min-width: $sm-to-md) {
       padding-top: var(--navbar-height);
       transition: margin-left var(--sidebar-animation-duration);
       &--with-sidebar { margin-left: var(--team-sidebar-width); }
