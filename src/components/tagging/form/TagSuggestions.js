@@ -6,8 +6,12 @@ import TagService from '../../../services/TagService';
 import TagSuggestion from './TagSuggestion';
 import type { Tag } from '../../../models/Tag';
 import './TagSuggestions.scss';
+import type { AppState } from '../../../state/AppState';
+import { connect } from "react-redux";
+import type { Team } from '../../../models/Team';
 
 type Props = {
+  activeTeam: ?Team,
   tags: Array<Tag>,
   addTag: (tag: Tag) => void,
 };
@@ -55,7 +59,9 @@ class TagSuggestions extends Component<Props, State> {
   };
 
   async fetchSuggestions(tags: Tag[]) {
-    const suggestedTags = await TagService.suggested(tags);
+    const { activeTeam } = this.props;
+    if (!activeTeam) return;
+    const suggestedTags = await TagService.suggested(activeTeam.id, tags);
 
     this.setState({
       suggestions: suggestedTags.map((tag, index) => ({
@@ -83,4 +89,8 @@ class TagSuggestions extends Component<Props, State> {
   }
 }
 
-export default TagSuggestions;
+const mapStateToProps = (state: AppState) => ({
+  activeTeam: state.activeTeam,
+});
+
+export default connect(mapStateToProps)(TagSuggestions);
