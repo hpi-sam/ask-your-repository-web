@@ -59,7 +59,9 @@ function NavBar(props: Props) {
                   Upload
                 </span>
               </NavLink>
-              <PresentationSwitch />
+              <div className="NavBar__presentation-switch">
+                <PresentationSwitch />
+              </div>
             </div>
           </Fragment>
         )}

@@ -1,3 +1,5 @@
+@import '../../style/breakpoints.scss';
+
 .Dropdown {
   display: flex;
   margin-left: auto;
@@ -20,9 +22,20 @@
     cursor: pointer;
     line-height: 2em;
 
+    &__username {
+      display: none;
+
+      @media (min-width: $sm-to-md) {
+        display: inline;
+      }
+    }
+
     &__icon {
-      margin-left: .8rem;
       font-size: 2em;
+
+      @media (min-width: $sm-to-md) {
+        margin-left: .8rem;
+      }
     }
   }
 

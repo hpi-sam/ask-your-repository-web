@@ -48,7 +48,7 @@ class Dropdown extends Component<Props, State> {
             className="Dropdown__button"
             data-cy="user-dropdown-button"
           >
-            {username}
+            <span className="Dropdown__button__username">{username}</span>
             <MdPerson className="Dropdown__button__icon" />
           </button>
           <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
