@@ -1,27 +1,22 @@
 :root {
-  --tag-border-radius: .3rem;
-  --tag-padding-horizontal: .9em;
-  --tag-padding-vertical: .7em;
-  --tag-padding: var(--tag-padding-vertical) var(--tag-padding-horizontal);
+  --tag-height: 40px;
+  --tag-border-radius: 5px;
+  --tag-padding-horizontal: 13px;
   --tag-font-size: .9em;
   --tag-margin: .5em;
   --tag-line-height: 1;
 }
 
 .Tag {
-  padding: var(--tag-padding);
   margin-right: var(--tag-margin);
   margin-bottom: var(--tag-margin);
   border-radius: var(--tag-border-radius);
-  font-size: var(--tag-font-size);
 
-  display: inline-block;
+  height: 40px;
+  display: inline-flex;
   background-color: #eee;
-  color: white;
   max-width: 100%;
-  text-overflow: ellipsis;
   outline: 0;
-  position: relative;
   transition: box-shadow .2s;
 
   &--clickable {
@@ -30,5 +25,33 @@
 
   &--multi {
     box-shadow: 0 0 3px 2px #fff;
+  }
+
+  &__button {
+    display: flex;
+    background-color: transparent;
+  }
+
+  &__caption {
+    align-self: center;
+    padding: 0 var(--tag-padding-horizontal);
+    font-size: var(--tag-font-size);
+    color: white;
+    text-overflow: ellipsis;
+  }
+
+  &__remove-button {
+    height: var(--tag-height);
+    width: var(--tag-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .1);
+    border-left: 1px solid rgba(0, 0, 0, .1);
+    outline: none;
+
+    svg {
+      font-size: 25px;
+    }
   }
 }

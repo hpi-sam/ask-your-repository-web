@@ -1,22 +1,23 @@
+@import '../../../style/breakpoints.scss';
+
 @keyframes suggestion-fade-in {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
 
 .TagSuggestions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 20px 0;
+  margin-bottom: calc(-1 * var(--tag-margin));
+  white-space: nowrap;
 
   &__item {
+    display: inline-flex;
     overflow: hidden;
-    display: flex;
     color: white;
     opacity: 0;
     animation-name: suggestion-fade-in;
     animation-duration: .5s;
     animation-fill-mode: forwards;
+    white-space: nowrap;
 
     @for $i from 1 through 10 {
       &:nth-child(#{$i}n) {
@@ -24,19 +25,35 @@
       }
     }
 
+    height: var(--tag-height);
     margin-right: var(--tag-margin);
     margin-bottom: var(--tag-margin);
     border-radius: var(--tag-border-radius);
     font-size: var(--tag-font-size);
-    line-height: var(--tag-line-height);
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &__shortcut {
+      display: none;
+      width: var(--tag-height);
+      height: var(--tag-height);
+      padding: 0 var(--tag-padding-horizontal);
+      align-items: center;
+      justify-content: center;
       background-color: rgba(0, 0, 0, .2);
-      padding: var(--tag-padding);
+
+      @media (min-width: $xs-to-sm) {
+        display: flex;
+      }
     }
 
     &__text {
-      padding: var(--tag-padding);
+      height: var(--tag-height);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--tag-padding-horizontal);
     }
   }
 }
