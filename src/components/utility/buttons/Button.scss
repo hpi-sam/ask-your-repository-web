@@ -17,6 +17,7 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  outline: none;
 
   padding: var(--button-padding-vertical) var(--button-padding-horizontal);
   border: var(--button-border-width) solid var(--button-border-color);

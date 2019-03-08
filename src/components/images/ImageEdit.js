@@ -1,14 +1,16 @@
 // @flow
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { IoIosArrowRoundBack } from 'react-icons/io';
 import ImageService from '../../services/ImageService';
 import ActivityInidicator from '../utility/ActivityIndicator';
-import SingleTagging from '../tagging/SingleTagging';
-import { SaveButton, ButtonLink } from '../utility/buttons';
-import Toolbar from '../utility/Toolbar';
 import type { Image } from '../../models/Image';
+import MobileTagging from '../tagging/MobileTagging';
 import type { Tag } from '../../models/Tag';
+
+export type TaggableImage = Image & {
+  addTag: (tag: Tag) => void,
+  removeTag: (tag: Tag) => void,
+};
 
 type Props = {
   match: {
@@ -17,7 +19,7 @@ type Props = {
 };
 
 type State = {
-  image: ?Image,
+  image: ?TaggableImage,
   isSubmitted: boolean,
 };
 
@@ -33,11 +35,19 @@ class ImageEdit extends Component<Props, State> {
 
   async componentDidMount() {
     const image = await ImageService.get(this.props.match.params.id);
-    this.setState({ image });
+    const taggableImage: TaggableImage = {
+      ...image,
+      addTag: this.addTag,
+      removeTag: this.removeTag,
+    };
+
+    this.setState({ image: taggableImage });
   }
 
   handleSubmit = async () => {
     const { image } = this.state;
+
+    console.log(image);
     if (!image) return;
 
     const { id, userTags } = image;
@@ -45,11 +55,20 @@ class ImageEdit extends Component<Props, State> {
     this.setState({ isSubmitted: true });
   };
 
-  handleTagsChange = (userTags: Tag[]) => {
+  addTag = (tag: Tag) => {
+    const { image } = this.state;
+    if (!image || image.userTags.includes(tag)) return;
+
+    this.setState({
+      image: { ...image, userTags: [...image.userTags, tag] },
+    });
+  };
+
+  removeTag = (tag: Tag) => {
     this.setState(state => ({
-      image: {
+      image: state.image && {
         ...state.image,
-        userTags,
+        userTags: state.image.userTags.filter(existingTag => existingTag !== tag),
       },
     }));
   };
@@ -62,21 +81,10 @@ class ImageEdit extends Component<Props, State> {
     if (isSubmitted) return <Redirect to={`/images/${image.id}`} />;
 
     return (
-      <div>
-        <Toolbar>
-          <ButtonLink to={`/images/${image.id}`}>
-            <IoIosArrowRoundBack />
-            <span>Back to image</span>
-          </ButtonLink>
-        </Toolbar>
-        <SingleTagging
-          image={image}
-          onTagsChange={this.handleTagsChange}
-        />
-        <SaveButton onClick={this.handleSubmit}>
-          Save
-        </SaveButton>
-      </div>
+      <MobileTagging
+        image={image}
+        onSubmit={this.handleSubmit}
+      />
     );
   }
 }

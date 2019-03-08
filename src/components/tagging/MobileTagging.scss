@@ -1,0 +1,142 @@
+.MobileTagging {
+  --spacing: 20px;
+  --input-height: 60px;
+
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+
+  header {
+    display: flex;
+  }
+
+  &__cancel {
+    border-left: 1px solid #444;
+    padding: 8px var(--spacing);
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    svg {
+      font-size: 40px;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  &__suggestions {
+    &-container {
+      flex: 1;
+      padding: var(--spacing);
+      overflow: hidden;
+    }
+
+    & {
+      height: var(--tag-height);
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__title {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    &__tip {
+      color: #666;
+
+      &::before {
+        margin: 0 5px;
+        content: "·";
+      }
+    }
+  }
+
+  &__image {
+    &-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+    }
+
+    & {
+      opacity: 0.4;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  &__tags {
+    max-height: calc(100% - 60px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing);
+    bottom: var(--input-height);
+    overflow: auto;
+  }
+
+  &__input {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    height: var(--input-height);
+
+    &__field {
+      flex: 1;
+      background-color: rgba(0, 0, 0, .5);
+      border-bottom: 3px solid var(--accent-color-blue);
+      color: white;
+      padding: 0 20px;
+      outline: none;
+      min-width: 100px;
+    }
+
+    &__enter-button {
+      display: flex;
+      justify-content: center;
+      min-width: var(--input-height);
+      background-color: rgba(0, 0, 0, .7);
+      border: none;
+      border-radius: 0;
+      color: white;
+
+      &:active, &:focus {
+        background-color: rgba(0, 0, 0, .9);
+      }
+    }
+
+    &__save-button {
+      display: flex;
+      justify-content: center;
+      border-radius: 0;
+      min-width: var(--input-height);
+    }
+  }
+}
