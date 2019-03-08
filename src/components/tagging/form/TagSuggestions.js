@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import shortid from 'shortid';
 import _ from 'lodash';
 import TagService from '../../../services/TagService';
@@ -7,7 +8,6 @@ import TagSuggestion from './TagSuggestion';
 import type { Tag } from '../../../models/Tag';
 import './TagSuggestions.scss';
 import type { AppState } from '../../../state/AppState';
-import { connect } from "react-redux";
 import type { Team } from '../../../models/Team';
 
 type Props = {
