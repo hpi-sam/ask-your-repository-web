@@ -30,7 +30,7 @@ function TaggingForm(props: Props) {
       </div>
       <TagSuggestions
         tags={tags}
-        addTag={addTag}
+        onSuggestionClick={addTag}
       />
       <div className="TaggingForm__info">
         Type in a tag - Hit enter &#9166; - Repeat

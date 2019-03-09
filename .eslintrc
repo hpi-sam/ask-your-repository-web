@@ -6,7 +6,8 @@
   "plugins": [
     "jest",
     "flowtype",
-    "cypress"
+    "cypress",
+    "react-hooks"
   ],
   "env": {
     "browser": true,
@@ -28,7 +29,8 @@
           "every": []
       },
       "allowChildren": false
-    }]
+    }],
+    "react-hooks/rules-of-hooks": "error"
   },
   "overrides": [
     {
