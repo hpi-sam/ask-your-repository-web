@@ -2,42 +2,34 @@
 import React, { Component } from 'react';
 import Tagging from './Tagging';
 import TagSelector from './form/TagSelector';
-import type { Image } from '../../models/Image';
-import type { Tag } from '../../models/Tag';
+import type { TaggableImage } from '../../hooks/useTaggableImage';
 import './Tagging.scss';
 
 type Props = {
-  image: Image,
-  onTagsChange: (newTags: Array<Tag>) => void,
+  image: TaggableImage,
 };
 
 class SingleTagging extends Component<Props> {
-  addTag = (tag: Tag) => {
-    const { onTagsChange, image: { userTags } } = this.props;
-    onTagsChange([...userTags, tag]);
-  };
-
-  removeTag = (tag: Tag) => {
-    const { onTagsChange, image: { userTags } } = this.props;
-    onTagsChange(userTags.filter(existingTag => existingTag !== tag));
-  };
-
   createSingleTagSelector() {
+    const { image } = this.props;
+
     return (
       <TagSelector
-        tags={this.props.image.userTags}
-        addTag={this.addTag}
-        removeTag={this.removeTag}
+        tags={image.userTags}
+        addTag={image.addTag}
+        removeTag={image.removeTag}
       />
     );
   }
 
   render() {
+    const { image } = this.props;
+
     return (
       <Tagging
-        image={this.props.image}
-        addTag={this.addTag}
-        removeTag={this.removeTag}
+        image={image}
+        addTag={image.addTag}
+        removeTag={image.removeTag}
         tagSelector={this.createSingleTagSelector()}
       />
     );
