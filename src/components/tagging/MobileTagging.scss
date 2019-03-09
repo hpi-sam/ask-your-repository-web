@@ -50,6 +50,7 @@
       overflow-x: scroll;
       overflow-y: hidden;
       scrollbar-width: none;
+      white-space: nowrap;
 
       &::-webkit-scrollbar {
         display: none;

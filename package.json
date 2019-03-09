@@ -28,6 +28,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-tooltip": "^3.9.2",
+    "react-use": "^5.5.5",
     "react-validation": "^3.0.7",
     "redux": "^4.0.1",
     "redux-flash": "^2.0.1",

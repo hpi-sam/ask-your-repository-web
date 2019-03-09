@@ -7,7 +7,6 @@
 
 .TagSuggestions {
   margin-bottom: calc(-1 * var(--tag-margin));
-  white-space: nowrap;
 
   &__item {
     display: inline-flex;
