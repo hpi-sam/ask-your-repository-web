@@ -70,6 +70,7 @@ class Tag extends Component<Props> {
           <button
             type="button"
             className="Tag__remove-button"
+            data-cy={`tag-remove-button-${caption}`}
             onClick={this.handleRemoveClick}
           >
             <IoIosClose />

@@ -39,6 +39,7 @@ function MobileTaggingInput(props: Props) {
         onChange={handleChange}
         ref={inputElement}
         placeholder="Tag your image!"
+        data-cy="tag-input"
       />
       <SubmitButton className="MobileTagging__input__enter-button">
         <IoIosReturnLeft />
