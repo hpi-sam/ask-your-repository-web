@@ -5,7 +5,7 @@ import { IoIosClose } from 'react-icons/io';
 import Tag from '../utility/Tag';
 import TagSuggestions from './form/TagSuggestions';
 import MobileTaggingInput from './MobileTaggingInput';
-import type { TaggableImage } from '../images/ImageEdit';
+import type { TaggableImage } from '../../hooks/useTaggableImage';
 import './MobileTagging.scss';
 
 type Props = {

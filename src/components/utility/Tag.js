@@ -22,6 +22,8 @@ class Tag extends Component<Props> {
     isMultiTag: false,
     clickable: false,
     onClick: () => {},
+    removable: false,
+    onRemove: () => {},
   };
 
   handleClick = () => {
