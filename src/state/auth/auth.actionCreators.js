@@ -31,6 +31,19 @@ export function logout() {
   };
 }
 
+export function changePassword(id: string, oldPassword: string, newPassword: string) {
+  return async (dispatch: Function): Promise<void> => {
+    try {
+      await UserService.changePassword(id, oldPassword, newPassword);
+      dispatch({ type: actionTypes.CHANGE_PASSWORD });
+      dispatch(push('/settings'));
+      dispatch(flashSuccessMessage('Successfully changed password'));
+    } catch (error) {
+      dispatch(flashErrorMessage(error.response.data.error.toString()));
+    }
+  };
+}
+
 export function register(userParameters: UserParams) {
   return async (dispatch: Function): Promise<void> => {
     try {

@@ -12,6 +12,10 @@ export type LogoutAction = {
     type: typeof actionTypes.LOGOUT,
 };
 
+export type ChangePasswordAction = {
+    type: typeof actionTypes.CHANGE_PASSWORD,
+};
+
 export type RegisterAction = {
     type: typeof actionTypes.REGISTER,
     user: User,
