@@ -52,8 +52,7 @@ class Password extends Component<Props, State> {
         return false;
       }
       dispatch(changePassword(user.id, oldPassword, newPassword));
-    }
-    else {
+    } else {
       this.handleMissingInput();
     }
     return true;
