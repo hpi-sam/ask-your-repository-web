@@ -44,6 +44,7 @@ context('Upload', () => {
         .type('Cute{enter}');
 
       cy.get('[data-cy=save-button]').click();
+      cy.wait(100);
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageId}`)
         .its('body.user_tags')
@@ -85,6 +86,7 @@ context('Upload', () => {
         .type('Goat{enter}');
 
       cy.get('[data-cy=save-button]').click();
+      cy.wait(100);
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageIds[0]}`)
         .its('body.user_tags')
