@@ -19,6 +19,8 @@ function auth(state: AuthState = initialState, action: Action) {
       return { isAuthenticated: true, user: action.user };
     case actionTypes.REGISTER:
       return state;
+    case actionTypes.CHANGE_PASSWORD:
+      return state;
     case actionTypes.LOGOUT:
       return { ...state, isAuthenticated: false, user: null };
     default:
