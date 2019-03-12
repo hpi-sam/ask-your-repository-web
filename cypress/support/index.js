@@ -13,8 +13,11 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
 import './commands';
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+if (Cypress.env('API_URL').includes('https') || Cypress.env('API_URL').includes('api.askyour.cloud')) {
+  throw new Error(`
+    You are trying to run tests while having a remote API url configured.
+    This is permitted. Use a local server instead.
+  `);
+}
