@@ -6,6 +6,7 @@ import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import { changePassword } from '../../state/auth/auth.actionCreators';
 import type { User } from '../../models/User';
+import type { AppState } from '../../state/AppState';
 import './Password.scss';
 
 type Props = {
@@ -103,7 +104,7 @@ class Password extends Component<Props, State> {
               name="oldPassword"
               value={oldPassword}
               onChange={this.handleChange}
-              data-cy="changePassword-oldPassword-input"
+              data-cy="change-password-old-password-input"
             />
           </label>
         </div>
@@ -115,7 +116,7 @@ class Password extends Component<Props, State> {
               name="newPassword"
               value={newPassword}
               onChange={this.handleChange}
-              data-cy="changePassword-newPassword-input"
+              data-cy="change-password-new-password-input"
             />
           </label>
         </div>
@@ -127,12 +128,12 @@ class Password extends Component<Props, State> {
               name="newPasswordConfirm"
               value={newPasswordConfirm}
               onChange={this.handleChange}
-              data-cy="changePassword-newPassword-confirm-input"
+              data-cy="change-password-new-password-confirm-input"
             />
           </label>
         </div>
         <div>
-          <Button data-cy="changePassword-submit-button">
+          <Button data-cy="change-password-submit-button">
             Submit
           </Button>
         </div>

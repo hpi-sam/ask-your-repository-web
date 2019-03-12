@@ -24,34 +24,34 @@ Cypress.Commands.add('setActiveTeam', () => cy.window()
       });
   }));
 
-Cypress.Commands.add('authenticate', () => {
-  cy.createUser({
-    username: 'jenny',
-    email: 'jenny@example.com',
-    password: 'secret',
-  }).then(() => {
-    const loginData = { emailOrUsername: 'jenny', password: 'secret' };
-    const options = {
-      method: 'POST',
-      url: `${Cypress.env('API_URL')}/authentications`,
-      body: humps.decamelizeKeys(loginData),
-    };
+Cypress.Commands.add('authenticate', () => cy.createUser({
+  username: 'jenny',
+  email: 'jenny@example.com',
+  password: 'secret',
+}).then((user) => {
+  cy.log(user);
+  const loginData = { emailOrUsername: 'jenny', password: 'secret' };
+  const options = {
+    method: 'POST',
+    url: `${Cypress.env('API_URL')}/authentications`,
+    body: humps.decamelizeKeys(loginData),
+  };
 
-    cy.visit('/');
+  cy.visit('/');
 
-    cy.request(options)
-      .then((response) => {
-        const user = humps.camelizeKeys(response.body);
+  cy.request(options)
+    .then((response) => {
+      const authUser = humps.camelizeKeys(response.body);
 
-        cy.window().then((window) => {
-          window.store.dispatch({
-            type: 'LOGIN',
-            user,
-          });
+      cy.window().then((window) => {
+        window.store.dispatch({
+          type: 'LOGIN',
+          user: authUser,
         });
       });
-  });
-});
+    });
+  return user;
+}));
 
 Cypress.Commands.add('createImage', (fixture, teamId, tags = []) => {
   const url = `${Cypress.env('API_URL')}/images`;
