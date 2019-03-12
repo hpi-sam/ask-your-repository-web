@@ -34,20 +34,6 @@
       margin-right: 0;
     }
 
-    &__shortcut {
-      display: none;
-      width: var(--tag-height);
-      height: var(--tag-height);
-      padding: 0 var(--tag-padding-horizontal);
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, .2);
-
-      @media (min-width: $xs-to-sm) {
-        display: flex;
-      }
-    }
-
     &__text {
       height: var(--tag-height);
       display: flex;
