@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import ImagesIndex from './images/ImagesIndex';
 import Upload from './upload/Upload';
 import NavBar from './navbar/NavBar';
+import Settings from './settings/Settings';
 import Presentation from './presentation/Presentation';
 import TeamSidebar from './team_sidebar/TeamSidebar';
 import type { AppState } from '../state/AppState';
@@ -28,6 +29,7 @@ function AuthorizedApp(props: Props) {
         <Switch>
           <Redirect exact from="/" to="/images" />
           <Route path="/select-team" component={TeamSelect} />
+          <Route path="/settings" component={Settings} />
           <TeamRoute path="/upload" component={Upload} />
           <TeamRoute path="/images/:id/edit" component={ImageEdit} />
           <TeamRoute path="/images/:id" component={ImageDetails} />
