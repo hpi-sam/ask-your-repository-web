@@ -4,12 +4,18 @@ import { connect } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
+//import { changePassword } from '../../state/auth/auth.changePassword';
 import './Password.scss';
+
+type Props = {
+  dispatch: Function,
+};
 
 type State = {
   oldPassword: string,
   newPassword: string,
   newPasswordConfirm: string,
+  missingInput: boolean,
 };
 
 class Password extends Component<Props, State> {
@@ -20,6 +26,7 @@ class Password extends Component<Props, State> {
       oldPassword: '',
       newPassword: '',
       newPasswordConfirm: '',
+      missingInput: false,
     };
   }
 
@@ -30,13 +37,47 @@ class Password extends Component<Props, State> {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const { oldPassword, newPassword, newPasswordConfirm } = this.state;
+    const { dispatch } = this.props;
+
+    if (oldPassword && newPassword && newPasswordConfirm) {
+      if (newPassword !== newPasswordConfirm) {
+        this.handleIncorrectInput();
+        return false;
+      }
+      //dispatch(changePassword(oldPassword, newPassword));
+    }
+    else {
+      this.handleMissingInput();
+    }
+    return true;
+  }
+
+  handleMissingInput = () => {
+    this.setState({
+      missingInput: true,
+    });
+  }
+
+  handleIncorrectInput = () => {
+
   }
 
   render() {
-    const { oldPassword, newPassword, newPasswordConfirm } = this.state;
+    const {
+      oldPassword,
+      newPassword,
+      newPasswordConfirm,
+      missingInput
+    } = this.state;
+
     return (
       <Form onSubmit={this.handleSubmit} className="ChangePasswordForm">
         <h2>Change Password</h2>
+        {missingInput ? (
+          <p>Please fill in all fields. </p>
+        ) : ''}
         <div className="form-input">
           <label>
             Old password:
