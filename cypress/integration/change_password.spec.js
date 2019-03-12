@@ -4,13 +4,13 @@ context('Change Password', () => {
   beforeEach(() => {
     cy.resetDB();
     cy.authenticate().then((user) => {
-      cy.visit('/settings');
       cy.server();
       cy.route({ method: 'PATCH', url: `users/${user.id}/change_password` }).as('changePassword');
+      cy.visit('/settings');
     });
   });
 
-  it('saves a new password', () => {
+  it('enables to login with the new password', () => {
     cy.get('[data-cy=change-password-old-password-input]').type('secret');
     cy.get('[data-cy=change-password-new-password-input]').type('newSecret');
     cy.get('[data-cy=change-password-new-password-confirm-input]').type('newSecret');

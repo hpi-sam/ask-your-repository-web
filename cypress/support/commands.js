@@ -29,28 +29,30 @@ Cypress.Commands.add('authenticate', () => cy.createUser({
   email: 'jenny@example.com',
   password: 'secret',
 }).then((user) => {
-  cy.log(user);
-  const loginData = { emailOrUsername: 'jenny', password: 'secret' };
   const options = {
     method: 'POST',
     url: `${Cypress.env('API_URL')}/authentications`,
-    body: humps.decamelizeKeys(loginData),
+    body: humps.decamelizeKeys({
+      emailOrUsername: user.username,
+      password: 'secret',
+    }),
   };
 
   cy.visit('/');
 
-  cy.request(options)
+  return cy.request(options)
     .then((response) => {
       const authUser = humps.camelizeKeys(response.body);
 
-      cy.window().then((window) => {
+      return cy.window().then((window) => {
         window.store.dispatch({
           type: 'LOGIN',
           user: authUser,
         });
+
+        return authUser;
       });
     });
-  return user;
 }));
 
 Cypress.Commands.add('createImage', (fixture, teamId, tags = []) => {
@@ -118,7 +120,8 @@ Cypress.Commands.add('createUser', ({ username, email, password }) => {
     },
   };
 
-  return cy.request(options).then(response => response.body);
+  return cy.request(options)
+    .then(response => humps.camelizeKeys(response.body));
 });
 
 Cypress.Commands.add('resetDB', () => {
