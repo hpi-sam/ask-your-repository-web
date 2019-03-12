@@ -16,6 +16,7 @@ type State = {
   newPassword: string,
   newPasswordConfirm: string,
   missingInput: boolean,
+  mismatchedPassword: boolean,
 };
 
 class Password extends Component<Props, State> {
@@ -27,6 +28,7 @@ class Password extends Component<Props, State> {
       newPassword: '',
       newPasswordConfirm: '',
       missingInput: false,
+      mismatchedPassword: false,
     };
   }
 
@@ -37,13 +39,14 @@ class Password extends Component<Props, State> {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.resetErrors();
 
     const { oldPassword, newPassword, newPasswordConfirm } = this.state;
     const { dispatch } = this.props;
 
     if (oldPassword && newPassword && newPasswordConfirm) {
       if (newPassword !== newPasswordConfirm) {
-        this.handleIncorrectInput();
+        this.handleMismatchedPassword();
         return false;
       }
       //dispatch(changePassword(oldPassword, newPassword));
@@ -60,8 +63,17 @@ class Password extends Component<Props, State> {
     });
   }
 
-  handleIncorrectInput = () => {
+  handleMismatchedPassword = () => {
+    this.setState({
+      mismatchedPassword: true,
+    });
+  }
 
+  resetErrors = () => {
+    this.setState({
+      mismatchedPassword: false,
+      missingInput: false,
+    });
   }
 
   render() {
@@ -69,7 +81,8 @@ class Password extends Component<Props, State> {
       oldPassword,
       newPassword,
       newPasswordConfirm,
-      missingInput
+      missingInput,
+      mismatchedPassword,
     } = this.state;
 
     return (
@@ -77,6 +90,9 @@ class Password extends Component<Props, State> {
         <h2>Change Password</h2>
         {missingInput ? (
           <p>Please fill in all fields. </p>
+        ) : ''}
+        {mismatchedPassword ? (
+          <p>Passwords do not match. </p>
         ) : ''}
         <div className="form-input">
           <label>
