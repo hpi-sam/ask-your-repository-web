@@ -45,6 +45,8 @@ context('Upload', () => {
 
       cy.get('[data-cy=save-button]').click();
 
+      cy.wait('@updateManyImages');
+
       cy.request(`${Cypress.env('API_URL')}/images/${imageId}`)
         .its('body.user_tags')
         .should('have.members', ['Sheep', 'Cute']);
@@ -85,6 +87,8 @@ context('Upload', () => {
         .type('Goat{enter}');
 
       cy.get('[data-cy=save-button]').click();
+
+      cy.wait('@updateManyImages');
 
       cy.request(`${Cypress.env('API_URL')}/images/${imageIds[0]}`)
         .its('body.user_tags')
