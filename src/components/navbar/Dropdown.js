@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { MdPerson } from 'react-icons/md';
 import { connect } from 'react-redux';
 import onClickOutside from 'react-onclickoutside';
+import { Link } from 'react-router-dom';
 import { logout } from '../../state/auth/auth.actionCreators';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
@@ -36,11 +37,6 @@ class Dropdown extends Component<Props, State> {
     this.props.dispatch(logout());
   }
 
-  handleSettingsClick = (e) => {
-    e.preventDefault();
-    this.props.dispatch(logout());
-  }
-
   render() {
     const { username } = this.props.user || '';
     const { isSelected } = this.state;
@@ -59,7 +55,9 @@ class Dropdown extends Component<Props, State> {
           <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
             <button type="button" onClick={this.handleLogoutClick}>Logout</button>
             <hr />
-            <button type="button" onClick={this.handleSettingsClick}>Settings</button>
+            <Link to="/settings">
+              <button type="button">Settings</button>
+            </Link>
           </div>
         </div>
       </div>
