@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-//import { changePassword } from '../../state/auth/auth.changePassword';
+import { changePassword } from '../../state/auth/auth.actionCreators';
+import type { User } from '../../models/User';
 import './Password.scss';
 
 type Props = {
   dispatch: Function,
+  user: User,
 };
 
 type State = {
@@ -42,14 +44,14 @@ class Password extends Component<Props, State> {
     this.resetErrors();
 
     const { oldPassword, newPassword, newPasswordConfirm } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, user } = this.props;
 
     if (oldPassword && newPassword && newPasswordConfirm) {
       if (newPassword !== newPasswordConfirm) {
         this.handleMismatchedPassword();
         return false;
       }
-      //dispatch(changePassword(oldPassword, newPassword));
+      dispatch(changePassword(user.id, oldPassword, newPassword));
     }
     else {
       this.handleMissingInput();
@@ -140,4 +142,8 @@ class Password extends Component<Props, State> {
   }
 }
 
-export default connect()(Password);
+const mapStateToProps = (state: AppState) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Password);
