@@ -74,7 +74,6 @@ class Password extends Component<Props, State> {
       mismatchedPassword: false,
       missingInput: false,
     });
-  }
 
   render() {
     const {
@@ -91,6 +90,7 @@ class Password extends Component<Props, State> {
         {missingInput ? (
           <p>Please fill in all fields. </p>
         ) : ''}
+
         {mismatchedPassword ? (
           <p>Passwords do not match. </p>
         ) : ''}
