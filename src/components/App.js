@@ -15,7 +15,7 @@ function App() {
       <FlashMessages />
       <Switch>
         <Route path="/login" component={LoginForm} />
-        <Route path="/register" component={RegisterForm} />        
+        <Route path="/register" component={RegisterForm} />
         <AuthRoute path="/" component={AuthorizedApp} />
       </Switch>
       <Footer />
