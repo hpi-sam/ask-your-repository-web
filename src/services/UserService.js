@@ -11,11 +11,11 @@ class UserService {
 
   static async changePassword(id: string, oldPassword: string, newPassword: string): Promise<User> {
     try {
-      const response = await api.patch('/users/${id}/change_password', humps.decamelizeKeys({ oldPassword, newPassword }));
+      const response = await api.patch(`/users/${id}/change_password`, humps.decamelizeKeys({ oldPassword, newPassword }));
       return response.data;
     } catch (e) {
       throw e;
-    }    
+    }
   }
 
   static async list(): Promise<User[]> {
