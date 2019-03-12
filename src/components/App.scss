@@ -5,7 +5,7 @@
 
   &__inner {
     max-width: var(--max-width);
-    min-height: calc(100% - var(--navbar-height) - var(--footer-height) - 20px);
+    height: calc(100% - var(--navbar-height) - var(--footer-height) - 20px);
 
     margin: 0 auto;
     box-sizing: content-box;

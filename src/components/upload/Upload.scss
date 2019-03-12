@@ -2,7 +2,6 @@
 
 .Upload {
   width: 100%;
-  position: relative;
   margin: 20px 0;
   display: flex;
 
@@ -28,7 +27,7 @@
     flex-direction: column;
     position: fixed;
     right: var(--padding-sides);
-    top: calc(var(--navbar-height) + 20px);
+    top: calc(var(--navbar-height) + var(--searchbar-height) + 20px);
     bottom: 30px;
 
     @media (min-width: $xs-to-sm) {
