@@ -36,6 +36,11 @@ class Dropdown extends Component<Props, State> {
     this.props.dispatch(logout());
   }
 
+  handleSettingsClick = (e) => {
+    e.preventDefault();
+    this.props.dispatch(logout());
+  }
+
   render() {
     const { username } = this.props.user || '';
     const { isSelected } = this.state;
@@ -53,6 +58,8 @@ class Dropdown extends Component<Props, State> {
           </button>
           <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
             <button type="button" onClick={this.handleLogoutClick}>Logout</button>
+            <hr />
+            <button type="button" onClick={this.handleSettingsClick}>Settings</button>
           </div>
         </div>
       </div>

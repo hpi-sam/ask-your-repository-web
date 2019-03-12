@@ -59,7 +59,13 @@
       display:block;
     }
 
+    hr {
+      padding: 0px;
+      margin: 0px;    
+    }
+
     button {
+      width: 100%;
       background: none;
       color: inherit;
       border: none;
