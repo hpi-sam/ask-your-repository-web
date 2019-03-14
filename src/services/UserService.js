@@ -9,9 +9,9 @@ class UserService {
     return response.data;
   }
 
-  static async changePassword(id: string, oldPassword: string, newPassword: string): Promise<User> {
+  static async changePassword(id: string, oldPassword: string, password: string): Promise<User> {
     try {
-      const response = await api.patch(`/users/${id}/change_password`, humps.decamelizeKeys({ oldPassword, newPassword }));
+      const response = await api.patch(`/users/${id}`, humps.decamelizeKeys({ oldPassword, password }));
       return response.data;
     } catch (e) {
       throw e;

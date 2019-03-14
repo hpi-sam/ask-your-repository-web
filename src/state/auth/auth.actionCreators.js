@@ -39,7 +39,7 @@ export function changePassword(id: string, oldPassword: string, newPassword: str
       dispatch(push('/settings'));
       dispatch(flashSuccessMessage('Successfully changed password'));
     } catch (error) {
-      dispatch(flashErrorMessage(error.response.data.error.toString()));
+      dispatch(flashErrorMessage('Password could not be changed.'));
     }
   };
 }
