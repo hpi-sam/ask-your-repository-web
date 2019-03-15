@@ -16,6 +16,7 @@ type Props = {
 type State = {
   email: string,
   password: string,
+  missingInput: boolean,
 };
 
 class LoginForm extends Component<Props, State> {
@@ -25,6 +26,7 @@ class LoginForm extends Component<Props, State> {
     this.state = {
       email: '',
       password: '',
+      missingInput: false,
     };
   }
 
@@ -35,19 +37,39 @@ class LoginForm extends Component<Props, State> {
 
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    this.resetErrors();
 
     const { email, password } = this.state;
     const { dispatch } = this.props;
+
     if (email && password) {
       dispatch(login(email, password));
     }
-  };
+    else {
+      this.handleMissingInput();
+    }
+  }
+
+  handleMissingInput = () => {
+    this.setState({
+      missingInput: true,
+    });
+  }
+
+  resetErrors = () => {
+    this.setState({
+      missingInput: false,
+    });
+  }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, missingInput } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="Form">
         <h1>Login</h1>
+        {missingInput ? (
+          <p>Please fill in all fields. </p>
+        ) : ''}
         <div className="form-input">
           <label>
             Email or Username:

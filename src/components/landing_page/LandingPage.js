@@ -52,7 +52,7 @@ class LandingPage extends Component<Props, State> {
       .type('Ordner waren gestern')
       .pause(1000)
       .break()
-      .type('Graphbasierte Cloudlösung für Datensammlungen')
+      .type('Graphbasierte Cloudlösung für deine Datensammlung')
       .pause(4000)
       .delete()
       .pause(1000)
