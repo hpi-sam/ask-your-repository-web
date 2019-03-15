@@ -53,11 +53,11 @@ class Dropdown extends Component<Props, State> {
             <MdPerson className="Dropdown__button__icon" />
           </button>
           <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
-            <button type="button" onClick={this.handleLogoutClick}>Logout</button>
-            <hr />
             <Link to="/settings">
               <button type="button">Settings</button>
             </Link>
+            <hr />
+            <button type="button" onClick={this.handleLogoutClick}>Logout</button>
           </div>
         </div>
       </div>
