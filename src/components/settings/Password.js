@@ -18,8 +18,7 @@ type State = {
   oldPassword: string,
   newPassword: string,
   newPasswordConfirm: string,
-  missingInput: boolean,
-  mismatchedPassword: boolean,
+  errors: Object,
 };
 
 class Password extends Component<Props, State> {
@@ -32,6 +31,11 @@ class Password extends Component<Props, State> {
       newPasswordConfirm: '',
       missingInput: false,
       mismatchedPassword: false,
+      errors: {
+        missingInput: false,
+        mismatchedPassword: false,
+        samePassword: false,
+      },
     };
   }
 
@@ -49,33 +53,50 @@ class Password extends Component<Props, State> {
 
     if (oldPassword && newPassword && newPasswordConfirm) {
       if (newPassword !== newPasswordConfirm) {
-        this.handleMismatchedPassword();
+        this.handleError('mismatchedPassword', true);
+        return false;
+      }
+      if (oldPassword == newPassword) {
+        this.handleError('samePassword', true);
         return false;
       }
       dispatch(changePassword(user.id, oldPassword, newPassword));
     } else {
-      this.handleMissingInput();
+      this.handleError('missingInput', true);
     }
     return true;
   }
 
-  handleMissingInput = () => {
+  handleError = (name, value) => {
     this.setState({
-      missingInput: true,
-    });
-  }
-
-  handleMismatchedPassword = () => {
-    this.setState({
-      mismatchedPassword: true,
+      errors: {
+        [name]: value,
+      },
     });
   }
 
   resetErrors = () => {
     this.setState({
-      mismatchedPassword: false,
-      missingInput: false,
+      errors: {
+        missingInput: false,
+        mismatchedPassword: false,
+        samePassword: false,
+      },
     });
+  }
+
+  printError() {
+    const errorMessages = {
+      'mismatchedPassword': 'Passwords do not match.',
+      'missingInput': 'Please fill in all fields.',
+      'samePassword': 'Your new password cannot be the same as your old one.',
+    }
+    const errors = Object.keys(this.state.errors);
+    for (let i in errors) {
+      if (this.state.errors[errors[i]]) {
+        return (<p> {errorMessages[errors[i]]} </p>);
+      }
+    }
   }
 
   render() {
@@ -83,19 +104,12 @@ class Password extends Component<Props, State> {
       oldPassword,
       newPassword,
       newPasswordConfirm,
-      missingInput,
-      mismatchedPassword,
     } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit} className="ChangePasswordForm">
         <h2>Change Password</h2>
-        {missingInput ? (
-          <p>Please fill in all fields. </p>
-        ) : ''}
-        {mismatchedPassword ? (
-          <p>Passwords do not match. </p>
-        ) : ''}
+        {this.printError()}
         <div className="form-input">
           <label>
             Old password:
