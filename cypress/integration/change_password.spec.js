@@ -5,7 +5,7 @@ context('Change Password', () => {
     cy.resetDB();
     cy.authenticate().then((user) => {
       cy.server();
-      cy.route({ method: 'PATCH', url: `users/${user.id}/change_password` }).as('changePassword');
+      cy.route({ method: 'PATCH', url: `users/${user.id}` }).as('changePassword');
       cy.visit('/settings');
     });
   });
