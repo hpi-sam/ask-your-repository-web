@@ -60,7 +60,7 @@ export function logout() {
   return async (dispatch: Function): Promise<void> => {
     await AuthService.logout();
     dispatch({ type: actionTypes.LOGOUT });
-    dispatch(push('/login'));
+    dispatch(push('/'));
     dispatch(flashSuccessMessage('Successfully logged out'));
   };
 }

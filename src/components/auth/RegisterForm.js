@@ -19,9 +19,7 @@ type State = {
   oldPassword: string,
   newPassword: string,
   newPasswordConfirm: string,
-  missingInput: boolean,
-  mismatchedPassword: boolean,
-  invalidEmail: boolean,
+  errors: Object,
 };
 
 class RegisterForm extends Component<Props, State> {
@@ -33,9 +31,11 @@ class RegisterForm extends Component<Props, State> {
       username: '',
       password: '',
       passwordConfirm: '',
-      missingInput: false,
-      mismatchedPassword: false,
-      invalidEmail: false,
+      errors: {
+        missingInput: false,
+        mismatchedPassword: false,
+        invalidEmail: false,
+      },
     };
   }
 
@@ -76,21 +76,39 @@ class RegisterForm extends Component<Props, State> {
 
   handleError = (name, value) => {
     this.setState({
+      errors: {
         [name]: value,
+      },
     });
   }
 
   resetErrors = () => {
     this.setState({
-      mismatchedPassword: false,
-      missingInput: false,
-      invalidEmail: false,
+      errors: {
+        missingInput: false,
+        mismatchedPassword: false,
+        invalidEmail: false,
+      },
     });
   }
 
+  printError() {
+    const errorMessages = {
+      'mismatchedPassword': 'Passwords do not match.',
+      'missingInput': 'Please fill in all fields.',
+      'invalidEmail': 'Please provide a valid email address.',
+    }
+    const errors = Object.keys(this.state.errors);
+    for (let i in errors) {
+      if (this.state.errors[errors[i]]) {
+        return (<p> {errorMessages[errors[i]]} </p>);
+      }
+    }
+  }
+
   isValidEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(String(email).toLowerCase());
   }
 
   render() {
@@ -99,23 +117,12 @@ class RegisterForm extends Component<Props, State> {
       username,
       password,
       passwordConfirm,
-      missingInput,
-      mismatchedPassword,
-      invalidEmail,
     } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit} className="Form">
         <h1>Register</h1>
-        {missingInput ? (
-          <p>Please fill in all fields. </p>
-        ) : ''}
-        {invalidEmail ? (
-          <p>Please provide a valid email address. </p>
-        ) : ''}
-        {mismatchedPassword ? (
-          <p>Passwords do not match. </p>
-        ) : ''}
+        {this.printError()}
         <div className="form-input">
           <label>
             Username:
