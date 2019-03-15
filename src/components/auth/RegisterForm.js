@@ -14,7 +14,14 @@ type Props = {
 };
 
 type State = {
-  user: UserCreateParams,
+  email: string,
+  username: string,
+  oldPassword: string,
+  newPassword: string,
+  newPasswordConfirm: string,
+  missingInput: boolean,
+  mismatchedPassword: boolean,
+  invalidEmail: boolean,
 };
 
 class RegisterForm extends Component<Props, State> {
@@ -22,40 +29,93 @@ class RegisterForm extends Component<Props, State> {
     super(props);
 
     this.state = {
-      user: {
-        email: '',
-        username: '',
-        password: '',
-      },
+      email: '',
+      username: '',
+      password: '',
+      passwordConfirm: '',
+      missingInput: false,
+      mismatchedPassword: false,
+      invalidEmail: false,
     };
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    const { user } = this.state;
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.resetErrors();
+
+    const { email, username, password, passwordConfirm } = this.state;
+    const { dispatch } = this.props;
+
+    if (email && username && password && passwordConfirm) {
+      if (password !== passwordConfirm) {
+        this.handleError('mismatchedPassword', true);
+        return false;
+      }
+
+      if (!this.isValidEmail(email)) {
+        this.handleError('invalidEmail', true);
+        return false;
+      }
+
+      const user = {
+        email: email,
+        username: username,
+        password: password
+      }
+      dispatch(register(user));
+    } else {
+      this.handleError('missingInput', true);
+    }
+    return true;
+  }
+
+  handleError = (name, value) => {
     this.setState({
-      user: {
-        ...user,
         [name]: value,
-      },
     });
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  resetErrors = () => {
+    this.setState({
+      mismatchedPassword: false,
+      missingInput: false,
+      invalidEmail: false,
+    });
+  }
 
-    const { user } = this.state;
-    const { dispatch } = this.props;
-    if (user.username && user.email && user.password) {
-      dispatch(register(user));
-    }
+  isValidEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
 
   render() {
-    const { user } = this.state;
+    const {
+      email,
+      username,
+      password,
+      passwordConfirm,
+      missingInput,
+      mismatchedPassword,
+      invalidEmail,
+    } = this.state;
+
     return (
       <Form onSubmit={this.handleSubmit} className="Form">
         <h1>Register</h1>
+        {missingInput ? (
+          <p>Please fill in all fields. </p>
+        ) : ''}
+        {invalidEmail ? (
+          <p>Please provide a valid email address. </p>
+        ) : ''}
+        {mismatchedPassword ? (
+          <p>Passwords do not match. </p>
+        ) : ''}
         <div className="form-input">
           <label>
             Username:
@@ -63,7 +123,7 @@ class RegisterForm extends Component<Props, State> {
               type="text"
               className="form-control"
               name="username"
-              value={user.username}
+              value={username}
               onChange={this.handleChange}
               data-cy="register-username-input"
             />
@@ -76,7 +136,7 @@ class RegisterForm extends Component<Props, State> {
               type="text"
               className="form-control"
               name="email"
-              value={user.email}
+              value={email}
               onChange={this.handleChange}
               data-cy="register-email-input"
             />
@@ -89,7 +149,7 @@ class RegisterForm extends Component<Props, State> {
               type="password"
               className="form-control"
               name="password"
-              value={user.password}
+              value={password}
               onChange={this.handleChange}
               data-cy="register-password-input"
             />
@@ -101,7 +161,8 @@ class RegisterForm extends Component<Props, State> {
             <Input
               type="password"
               className="form-control"
-              name="passwordRepeat"
+              name="passwordConfirm"
+              value={passwordConfirm}
               onChange={this.handleChange}
               data-cy="register-password-repeat-input"
             />
