@@ -2,13 +2,14 @@
 import { flashSuccessMessage, flashErrorMessage } from 'redux-flash';
 import { push } from 'connected-react-router';
 import UserService from '../../services/UserService';
+import AuthService from '../../services/AuthService';
 import * as actionTypes from './auth.actionTypes';
 import type { UserParams } from '../../models/User';
 
 export function login(email: string, password: string) {
   return async (dispatch: Function): Promise<void> => {
     try {
-      const user = await UserService.login(email, password);
+      const user = await AuthService.login(email, password);
       dispatch({ type: actionTypes.LOGIN, user });
       dispatch(push('/'));
       dispatch(flashSuccessMessage('Successfully logged in'));
@@ -22,9 +23,25 @@ export function login(email: string, password: string) {
   };
 }
 
+export function loginWithGoogle(googleUser: any) {
+  return async(dispatch: Function): Promise<void> => {
+    try {
+      const user = await AuthService.loginWithGoogle(googleUser.getAuthResponse().id_token);
+      dispatch({ type: actionTypes.LOGIN, user, googleUser });
+      dispatch(push('/'));
+      dispatch(flashSuccessMessage('Successfully logged in'));
+    } catch (error) {
+      const message = error.response
+        ? error.response.data.error
+        : 'Could not establish a connection to the server.';
+
+      dispatch(flashErrorMessage(message));
+    }
+  };
+}
 export function logout() {
   return async (dispatch: Function): Promise<void> => {
-    UserService.logout();
+    await AuthService.logout();
     dispatch({ type: actionTypes.LOGOUT });
     dispatch(push('/login'));
     dispatch(flashSuccessMessage('Successfully logged out'));

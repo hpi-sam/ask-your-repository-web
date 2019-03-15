@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { flashErrorMessage } from 'redux-flash';
+import GoogleLogin from 'react-google-login';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import { login } from '../../state/auth/auth.actionCreators';
+import { login, loginWithGoogle } from '../../state/auth/auth.actionCreators';
 import './LoginForm.scss';
 
 type Props = {
@@ -20,7 +22,6 @@ type State = {
 class LoginForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
     this.state = {
       email: '',
       password: '',
@@ -30,7 +31,7 @@ class LoginForm extends Component<Props, State> {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +41,16 @@ class LoginForm extends Component<Props, State> {
     if (email && password) {
       dispatch(login(email, password));
     }
-  }
+  };
+
+  handleGoogleSuccess = (googleUser) => {
+    this.props.dispatch(loginWithGoogle(googleUser));
+  };
+
+  handleGoogleFailure = () => {
+    const { dispatch } = this.props;
+    dispatch(flashErrorMessage('Google login failed'));
+  };
 
   render() {
     const { email, password } = this.state;
@@ -74,10 +84,17 @@ class LoginForm extends Component<Props, State> {
         <div>
           <Link to="/register">No account yet? Register here.</Link>
         </div>
-        <div>
+        <div className="LoginForm__buttons">
           <Button data-cy="login-submit-button">
             Submit
           </Button>
+          <GoogleLogin
+            clientId="24456970850-u9prmb53vbgthab5qrel3b0rqe7rcjua.apps.googleusercontent.com"
+            buttonText="Sign up with Google"
+            className="google-login"
+            onSuccess={this.handleGoogleSuccess}
+            onFailure={this.handleGoogleFailure}
+          />
         </div>
       </Form>
     );

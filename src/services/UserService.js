@@ -23,23 +23,6 @@ class UserService {
       throw e;
     }
   }
-
-  static async login(emailOrUsername: string, password: string): Promise<User> {
-    try {
-      const response = await api.post('/authentications', humps.decamelizeKeys({ emailOrUsername, password }));
-      return response.data;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  static async logout() {
-    try {
-      await api.delete('/authentications');
-    } finally {
-      localStorage.removeItem('user');
-    }
-  }
 }
 
 export default UserService;
