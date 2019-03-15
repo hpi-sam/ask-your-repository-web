@@ -1,0 +1,47 @@
+.Form {
+  height: 100%;
+  max-width: 450px;
+  margin: auto;
+
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  label {
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200 !important;
+  }
+
+  a {
+    font-weight: 400;
+    color: lightslategray;
+  }
+
+  &__buttons {
+    margin-top: .5em;
+    margin-right: 1em;
+    border-radius: .3rem;
+
+    font-size: 1.2em;
+    font-weight: 400;
+
+    button {
+      margin: inherit;
+      padding: 1rem 2rem;
+      border-radius: inherit;
+      background-color: var(--accent-color-blue);
+    }
+
+    .cancel {
+      margin: inherit;
+      padding: 1rem 2rem;
+      border-radius: inherit;
+      background-color: var(--gray);
+      color: black;
+    }
+  }
+}

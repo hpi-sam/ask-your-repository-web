@@ -7,7 +7,7 @@ import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import type { UserCreateParams } from '../../models/User';
 import { register } from '../../state/auth/auth.actionCreators';
-import './RegisterForm.scss';
+import './Forms.scss';
 
 type Props = {
   dispatch: Function,
@@ -54,7 +54,7 @@ class RegisterForm extends Component<Props, State> {
   render() {
     const { user } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit} className="RegisterForm">
+      <Form onSubmit={this.handleSubmit} className="Form">
         <h1>Register</h1>
         <div className="form-input">
           <label>
@@ -97,7 +97,7 @@ class RegisterForm extends Component<Props, State> {
         </div>
         <div className="form-input">
           <label>
-            Repeat Password:
+            Confirm Password:
             <Input
               type="password"
               className="form-control"
@@ -108,11 +108,11 @@ class RegisterForm extends Component<Props, State> {
           </label>
         </div>
 
-        <div className="RegisterForm__buttons">
+        <div className="Form__buttons">
           <Button data-cy="register-submit-button">
             Register
           </Button>
-          <Link to="/login" className="cancel">Cancel</Link>
+          <Link to="/" className="cancel">Cancel</Link>
         </div>
       </Form>
     );

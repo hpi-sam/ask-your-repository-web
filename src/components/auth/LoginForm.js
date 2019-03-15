@@ -7,7 +7,7 @@ import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import GoogleLogin from './GoogleLogin';
 import { login } from '../../state/auth/auth.actionCreators';
-import './LoginForm.scss';
+import './Forms.scss';
 
 type Props = {
   dispatch: Function,
@@ -46,10 +46,8 @@ class LoginForm extends Component<Props, State> {
   render() {
     const { email, password } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit} className="LoginForm">
-        <h1 className="LoginForm__title">
-          Login
-        </h1>
+      <Form onSubmit={this.handleSubmit} className="Form">
+        <h1>Login</h1>
         <div className="form-input">
           <label>
             Email or Username:
@@ -79,11 +77,12 @@ class LoginForm extends Component<Props, State> {
             No account yet? Register here.
           </Link>
         </div>
-        <div className="LoginForm__buttons">
+        <div className="Form__buttons">
           <Button data-cy="login-submit-button">
-            Submit
+            Login
           </Button>
           <GoogleLogin />
+          <Link to="/" className="cancel">Cancel</Link>
         </div>
       </Form>
     );
