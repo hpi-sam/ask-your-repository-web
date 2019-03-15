@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Assistant:200|Roboto:100|Source+Sans+Pro:200|Work+Sans:200');
-
 .LandingPage {
   width: 100%;
   height: calc(100% - var(--footer-height));
@@ -12,6 +10,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
 
   h1 {
     color: var(--accent-color-blue);
@@ -21,7 +20,7 @@
   .subtitle {
     height: 4em;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.9em;
     line-height: 2em;
   }
 }
