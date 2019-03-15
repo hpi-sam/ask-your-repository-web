@@ -6,17 +6,21 @@ import * as actionTypes from './auth.actionTypes';
 export type AuthState = {
   isAuthenticated: boolean,
   user: ?User,
+  googleUser: any,
 };
 
 export const initialState = {
   isAuthenticated: false,
   user: null,
+  googleUser: null,
 };
 
 function auth(state: AuthState = initialState, action: Action) {
   switch (action.type) {
     case actionTypes.LOGIN:
-      return { isAuthenticated: true, user: action.user };
+      return { ...state, isAuthenticated: true, user: action.user};
+    case actionTypes.LOGIN_WITH_GOOGLE:
+      return { isAuthenticated: true, user: action.user, googleUser: action.googleUser};
     case actionTypes.REGISTER:
       return state;
     case actionTypes.CHANGE_PASSWORD:

@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { flashErrorMessage } from 'redux-flash';
+import GoogleLogin from 'react-google-login';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import { login } from '../../state/auth/auth.actionCreators';
+import { login, loginWithGoogle } from '../../state/auth/auth.actionCreators';
 import './LoginForm.scss';
 
 type Props = {
@@ -30,7 +32,7 @@ class LoginForm extends Component<Props, State> {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +42,16 @@ class LoginForm extends Component<Props, State> {
     if (email && password) {
       dispatch(login(email, password));
     }
-  }
+  };
+
+  handleGoogleSuccess = (googleUser) => {
+    this.props.dispatch(loginWithGoogle(googleUser));
+  };
+
+  handleGoogleFailure = () => {
+    const { dispatch } = this.props;
+    dispatch(flashErrorMessage('Google login failed'));
+  };
 
   render() {
     const { email, password } = this.state;
@@ -74,10 +85,17 @@ class LoginForm extends Component<Props, State> {
         <div>
           <Link to="/register">No account yet? Register here.</Link>
         </div>
-        <div>
+        <div className="LoginForm__buttons">
           <Button data-cy="login-submit-button">
             Submit
           </Button>
+          <GoogleLogin
+            clientId={process.env.REACT_APP_CLIENT_ID}
+            buttonText="Sign up with Google"
+            className="google-login"
+            onSuccess={this.handleGoogleSuccess}
+            onFailure={this.handleGoogleFailure}
+          />
         </div>
       </Form>
     );

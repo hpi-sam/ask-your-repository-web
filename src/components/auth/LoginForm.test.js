@@ -6,19 +6,19 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 import LoginForm from './LoginForm';
-import UserService from '../../services/UserService';
 import initialState from '../../state/initialState';
+import AuthService from '../../services/AuthService';
 
 const mockStore = configureMockStore();
 
-jest.mock('../../services/UserService');
+jest.mock('../../services/AuthService');
 
 describe('<LoginForm />', () => {
   let wrapper;
   let store;
 
   beforeAll(() => {
-    UserService.logout.mockImplementation(() => Promise.resolve());
+    AuthService.logout.mockImplementation(() => Promise.resolve());
   });
 
   beforeEach(() => {
