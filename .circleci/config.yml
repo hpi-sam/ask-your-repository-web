@@ -84,7 +84,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - $STAGING_DEPLOY_FINGERPRINT
-      - run: ssh root@$STAGING_DEPLOY_HOST "cd $STAGING_DEPLOY_HOME; ./deploy-scripts/web"
+      - run: ssh root@$STAGING_DEPLOY_HOST "cd $STAGING_DEPLOY_HOME; ./deploy-scripts/jona"
   build_production:
     machine:
       docker_layer_caching: true
