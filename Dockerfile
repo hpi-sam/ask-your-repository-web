@@ -11,9 +11,8 @@ COPY yarn.lock .
 RUN yarn install
 
 COPY . .
-COPY .env.$ENVIRONMENT .env
 
-RUN yarn build
+RUN yarn build:$ENVIRONMENT
 
 # production stage
 FROM nginx:1.13.12-alpine as production-stage
