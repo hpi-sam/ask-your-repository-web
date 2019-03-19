@@ -29,12 +29,12 @@ class LoginForm extends Component<Props, State> {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { email, password } = this.state;
@@ -44,8 +44,8 @@ class LoginForm extends Component<Props, State> {
     }
   };
 
-  handleGoogleSuccess = (googleUser) => {
-    this.props.dispatch(loginWithGoogle(googleUser));
+  handleGoogleSuccess = (response) => {
+    this.props.dispatch(loginWithGoogle(response.getAuthResponse().id_token));
   };
 
   handleGoogleFailure = () => {
@@ -57,7 +57,9 @@ class LoginForm extends Component<Props, State> {
     const { email, password } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="LoginForm">
-        <h1>Login</h1>
+        <h1 className="LoginForm__title">
+          Login
+        </h1>
         <div className="form-input">
           <label>
             Email or Username:
@@ -83,16 +85,18 @@ class LoginForm extends Component<Props, State> {
           </label>
         </div>
         <div>
-          <Link to="/register">No account yet? Register here.</Link>
+          <Link to="/register">
+            No account yet? Register here.
+          </Link>
         </div>
         <div className="LoginForm__buttons">
-          <Button data-cy="login-submit-button">
+          <Button data-cy="LoginForm__submit-button">
             Submit
           </Button>
           <GoogleLogin
-            clientId={process.env.REACT_APP_CLIENT_ID}
-            buttonText="Sign up with Google"
-            className="google-login"
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
+            buttonText="Sign in with Google"
+            className="LoginForm__google-login"
             onSuccess={this.handleGoogleSuccess}
             onFailure={this.handleGoogleFailure}
           />

@@ -7,18 +7,19 @@ import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 import LoginForm from './LoginForm';
 import initialState from '../../state/initialState';
-import AuthService from '../../services/AuthService';
 
 const mockStore = configureMockStore();
 
-jest.mock('../../services/AuthService');
+jest.mock('../../services/AuthService', () => ({
+  logout: jest.fn(() => Promise.resolve()),
+}));
+
 
 describe('<LoginForm />', () => {
   let wrapper;
   let store;
 
   beforeAll(() => {
-    AuthService.logout.mockImplementation(() => Promise.resolve());
   });
 
   beforeEach(() => {

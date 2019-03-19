@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import type { UserParams } from '../../models/User';
+import type { UserCreateParams } from '../../models/User';
 import { register } from '../../state/auth/auth.actionCreators';
 import './RegisterForm.scss';
 
@@ -14,7 +14,7 @@ type Props = {
 };
 
 type State = {
-  user: UserParams,
+  user: UserCreateParams,
 };
 
 class RegisterForm extends Component<Props, State> {

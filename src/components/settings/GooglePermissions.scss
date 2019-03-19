@@ -1,0 +1,28 @@
+.GooglePermissions {
+  .google-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    border-radius: .3em !important;
+    text-align: center;
+    border: 1px solid transparent;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 2px 2px 0, rgba(0, 0, 0, 0.24) 0 0 1px 0;
+    padding: 0;
+
+    span {
+      font-weight: 500;
+      font-family: Roboto, sans-serif;
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 14px;
+      text-align: center;
+      padding: 10px 10px 10px 0;
+    }
+
+    div {
+      margin-right: 0 !important;
+      background: rgb(255, 255, 255);
+      padding: 15px 10px 10px 10px;
+      border-radius: 2px;
+    }
+  }
+}

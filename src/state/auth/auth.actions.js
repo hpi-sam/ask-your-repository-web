@@ -8,16 +8,13 @@ export type LoginAction = {
     user: User,
 };
 
-export type LoginWithGoogleAction = {
-    type: typeof actionTypes.LOGIN_WITH_GOOGLE,
-    user: User,
-    googleUser: any,
-}
-
 export type LogoutAction = {
     type: typeof actionTypes.LOGOUT,
 };
 
+export type UpdateUserAction = {
+    type: typeof actionTypes.UPDATE_USER,
+}
 export type ChangePasswordAction = {
     type: typeof actionTypes.CHANGE_PASSWORD,
 };

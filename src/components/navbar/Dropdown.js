@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import onClickOutside from 'react-onclickoutside';
 import { Link } from 'react-router-dom';
 import { logout } from '../../state/auth/auth.actionCreators';
+import createGoogleAuthInstance from '../../config/createGoogleAuthInstance';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
 import './Dropdown.scss';
@@ -26,16 +27,17 @@ class Dropdown extends Component<Props, State> {
 
   handleClick = () => {
     this.setState(state => ({ isSelected: !state.isSelected }));
-  }
+  };
 
   handleClickOutside = () => {
     this.setState({ isSelected: false });
   };
 
-  handleLogoutClick = (e) => {
-    e.preventDefault();
+  handleLogoutClick = async () => {
+    const googleAuth = await createGoogleAuthInstance();
+    googleAuth.signOut();
     this.props.dispatch(logout());
-  }
+  };
 
   render() {
     const { username } = this.props.user || '';
@@ -57,7 +59,12 @@ class Dropdown extends Component<Props, State> {
               <button type="button">Settings</button>
             </Link>
             <hr />
-            <button type="button" onClick={this.handleLogoutClick}>Logout</button>
+            <button
+              type="button"
+              onClick={this.handleLogoutClick}
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>

@@ -4,19 +4,21 @@ import api from '../config/api';
 import type { User } from '../models/User';
 
 class AuthService {
-  static async login(emailOrUsername: string, password: string): Promise<User> {
+  static async login(emailOrUsername: string, password: string): Promise<User & { token: string }> {
     try {
       const response = await api.post('/authentications', humps.decamelizeKeys({ emailOrUsername, password }));
-      return response.data;
+      const user: any = humps.camelizeKeys(response.data);
+      return user;
     } catch (e) {
       throw e;
     }
   }
 
-  static async loginWithGoogle(idToken: string): Promise<User> {
+  static async loginWithGoogle(idToken: string): Promise<User & { token: string }> {
     try {
       const response = await api.post('/authentications', humps.decamelizeKeys({ idToken }));
-      return response.data;
+      const user: any = humps.camelizeKeys(response.data);
+      return user;
     } catch (e) {
       throw e;
     }

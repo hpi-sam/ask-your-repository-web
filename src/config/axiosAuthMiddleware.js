@@ -2,10 +2,10 @@ import axios from 'axios';
 
 function axiosAuthMiddleware() {
   return ({ getState }) => next => (action) => {
-    const { user } = getState().auth;
+    const { token } = getState().auth;
 
-    if (user) {
-      axios.defaults.headers.common['X-CSRF-Token'] = user.token;
+    if (token) {
+      axios.defaults.headers.common['X-CSRF-Token'] = token;
     } else {
       delete axios.defaults.headers.common['X-CSRF-Token'];
     }
