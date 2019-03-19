@@ -62,12 +62,11 @@ context('Upload', () => {
       cy.route({ method: 'PATCH', url: '/images' }).as('updateManyImages');
       cy.get('[data-cy=upload-dropzone]').drop(['goat.jpg', 'sheep.jpg']);
 
-      cy.wait(['@uploadImage', '@uploadImage'])
-        .then((xhrs) => {
-          xhrs.forEach((xhr) => {
-            imageIds.push(xhr.response.body.id);
-          });
-        });
+      cy.wait('@uploadImage')
+        .then((xhr) => { imageIds.push(xhr.response.body.id); });
+
+      cy.wait('@uploadImage')
+        .then((xhr) => { imageIds.push(xhr.response.body.id); });
     });
 
     it('saves the entered tags and multi tags correctly', () => {
