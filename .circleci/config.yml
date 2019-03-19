@@ -69,7 +69,16 @@ jobs:
       - store_artifacts:
           path: /app/cypress/videos
           destination: e2e-videos
-  build:
+  build_staging:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - run: docker build --build-arg ENVIRONMENT=staging -t bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona_staging:latest .
+      - run: docker push bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID
+      - run: docker push bp2018hg1/jona_staging:latest
+  build_production:
     machine:
       docker_layer_caching: true
     steps:
@@ -78,11 +87,7 @@ jobs:
       - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona:latest .
       - run: docker push bp2018hg1/jona:$CIRCLE_WORKFLOW_ID
       - run: docker push bp2018hg1/jona:latest
-  deploy:
-    docker:
-      - image: dtzar/helm-kubectl:2.11.0
-    steps:
-      - run: kubectl set image deployment jona jona=bp2018hg1/jona:$CIRCLE_WORKFLOW_ID --server=$KUBERNETES_SERVER --token=$KUBERNETES_BEARER_TOKEN
+
 workflows:
   version: 2
   pipeline:
@@ -91,11 +96,10 @@ workflows:
       - test
       - flow
       - lint
-      - e2e
       - e2e:
           requires:
             - build_dev
-      - build:
+      - build_staging:
           requires:
             - test
             - flow
@@ -104,9 +108,12 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
+      - build_production:
           requires:
-            - build
+            - test
+            - flow
+            - lint
+            - e2e
           filters:
             branches:
               only: master
