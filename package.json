@@ -8,6 +8,7 @@
     "classnames": "^2.2.6",
     "connected-react-router": "^6.2.2",
     "faker": "^4.1.0",
+    "google-client-api": "^1.0.4",
     "history": "^4.7.2",
     "humps": "^2.0.1",
     "initials": "^3.0.0",

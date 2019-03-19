@@ -20,7 +20,6 @@ exports[`<PresentationSwitch /> renders correctly 1`] = `
     </div>
   </button>
   <ReactTooltip
-    clickable={false}
     effect="solid"
     insecure={true}
     place="bottom"

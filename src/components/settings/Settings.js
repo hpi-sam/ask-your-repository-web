@@ -1,32 +1,28 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Password from './Password';
+import GooglePermissions from './GooglePermissions';
 import './Settings.scss';
+import type { AppState } from '../../state/AppState';
+import type { User } from '../../models/User';
 
 type Props = {
-
+  user: User,
 };
 
-type State = {
-};
-
-class Settings extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-    };
-  }
-
-  render() {
-    return (
-      <div className="Settings">
-        <h1> Settings </h1>
-        <Password />
-      </div>
-    );
-  }
+function Settings(props: Props) {
+  return (
+    <div className="Settings">
+      <h1> Settings </h1>
+      <GooglePermissions />
+      {props.user.hasPassword && <Password />}
+    </div>
+  );
 }
 
-export default connect()(Settings);
+const mapStateToProps = (state: AppState) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Settings);

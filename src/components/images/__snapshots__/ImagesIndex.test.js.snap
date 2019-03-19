@@ -8,6 +8,7 @@ exports[`<ImagesIndex /> renders correctly 1`] = `
       "members": Array [
         Object {
           "email": "test@example.com",
+          "hasPassword": true,
           "id": "f1bc8f40-7698-4df7-b410-efac1f1a03d2",
           "username": "test_user",
         },
@@ -56,7 +57,6 @@ exports[`<ImagesIndex /> renders correctly 1`] = `
               }
               viewBox="0 0 24 24"
               width="1em"
-              xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"

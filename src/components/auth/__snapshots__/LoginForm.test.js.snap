@@ -21,7 +21,9 @@ exports[`<LoginForm /> renders correctly 1`] = `
         className="LoginForm"
         onSubmit={[Function]}
       >
-        <h1>
+        <h1
+          className="LoginForm__title"
+        >
           Login
         </h1>
         <div
@@ -111,14 +113,14 @@ exports[`<LoginForm /> renders correctly 1`] = `
           className="LoginForm__buttons"
         >
           <Button(s)
-            data-cy="login-submit-button"
+            data-cy="LoginForm__submit-button"
           >
             <s
-              data-cy="login-submit-button"
+              data-cy="LoginForm__submit-button"
               hasErrors={false}
             >
               <button
-                data-cy="login-submit-button"
+                data-cy="LoginForm__submit-button"
                 disabled={false}
               >
                 Submit
@@ -127,9 +129,9 @@ exports[`<LoginForm /> renders correctly 1`] = `
           </Button(s)>
           <e
             accessType="online"
-            buttonText="Sign up with Google"
-            className="google-login"
-            clientId="24456970850-u9prmb53vbgthab5qrel3b0rqe7rcjua.apps.googleusercontent.com"
+            buttonText="Sign in with Google"
+            className="LoginForm__google-login"
+            clientId=""
             cookiePolicy="single_host_origin"
             disabledStyle={
               Object {
@@ -151,7 +153,7 @@ exports[`<LoginForm /> renders correctly 1`] = `
             uxMode="popup"
           >
             <button
-              className="google-login"
+              className="LoginForm__google-login"
               disabled={true}
               onClick={[Function]}
               onMouseDown={[Function]}
@@ -238,7 +240,7 @@ exports[`<LoginForm /> renders correctly 1`] = `
                     }
                   }
                 >
-                  Sign up with Google
+                  Sign in with Google
                 </span>
               </b>
             </button>

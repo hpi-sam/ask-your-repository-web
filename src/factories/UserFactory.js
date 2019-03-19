@@ -8,10 +8,11 @@ class UserFactory {
       id: faker.random.uuid(),
       email: faker.internet.email(),
       username: faker.internet.userName(),
+      hasPassword: true,
     };
   }
 
-  static createAuthenticatedUser(): User {
+  static createAuthenticatedUser(): User & { token: string } {
     return {
       ...this.createDummyUser(),
       token: faker.random.uuid(),
@@ -23,10 +24,11 @@ class UserFactory {
       id: 'f1bc8f40-7698-4df7-b410-efac1f1a03d2',
       email: 'test@example.com',
       username: 'test_user',
+      hasPassword: true,
     };
   }
 
-  static createStaticAuthenticatedUser(): User {
+  static createStaticAuthenticatedUser(): User & { token: string } {
     return {
       ...this.createStaticDummyUser(),
       token: '61e6fa4c-de31-48e6-97a2-4f66b31d84e9',

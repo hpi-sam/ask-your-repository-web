@@ -4,12 +4,26 @@
   max-width: 540px;
   padding: 0 5%;
 
-  h1 {
+  &__title {
     font-weight: bold;
   }
 
   a {
     color: lightslategray;
+  }
+
+  &__google-login {
+    background-color: gray;
+    display: inline-block;
+    color: white;
+    margin-left: 4%;
+    width: 48%;
+    border-radius: .3em !important;
+    text-align: center;
+
+    div {
+      padding-left: 15px !important;
+    }
   }
 
   &__buttons {
@@ -23,20 +37,6 @@
       font-weight: bold;
       padding: 1em 2em;
       border-radius: .3em;
-    }
-
-    .google-login {
-      background-color: gray;
-      display: inline-block;
-      color: white;
-      margin-left: 4%;
-      width: 48%;
-      border-radius: .3em !important;
-      text-align: center;
-
-      div {
-        padding-left: 15px !important;
-      }
     }
   }
 }

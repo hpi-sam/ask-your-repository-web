@@ -8,6 +8,7 @@ exports[`<Upload /> renders correctly 1`] = `
       "members": Array [
         Object {
           "email": "test@example.com",
+          "hasPassword": true,
           "id": "f1bc8f40-7698-4df7-b410-efac1f1a03d2",
           "username": "test_user",
         },
