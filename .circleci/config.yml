@@ -75,18 +75,16 @@ jobs:
     steps:
       - checkout
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build --build-arg ENVIRONMENT=staging -t bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona_staging:latest .
+      - run: docker build --build-arg ENVIRONMENT=staging -t bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID .
       - run: docker push bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID
-      - run: docker push bp2018hg1/jona_staging:latest
   build_production:
     machine:
       docker_layer_caching: true
     steps:
       - checkout
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona:latest .
+      - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID .
       - run: docker push bp2018hg1/jona:$CIRCLE_WORKFLOW_ID
-      - run: docker push bp2018hg1/jona:latest
   deploy_staging:
     machine: true
     steps:
@@ -111,33 +109,25 @@ workflows:
       - test
       - flow
       - lint
-      - e2e:
-          requires:
-            - build_dev
       - build_staging:
-          requires:
-            - test
-            - flow
-            - lint
-            - e2e
           filters:
             branches:
               only: master
       - build_production:
-          requires:
-            - test
-            - flow
-            - lint
-            - e2e
           filters:
             branches:
               only: master
+      - e2e:
+          requires:
+            - build_dev
       - deploy_staging:
           requires:
+            - e2e
             - build_staging
       - hold_production_deploy:
           type: approval
           requires:
+            - e2e
             - build_production
       - deploy_production:
           requires:
