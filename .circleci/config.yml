@@ -78,13 +78,6 @@ jobs:
       - run: docker build --build-arg ENVIRONMENT=staging -t bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona_staging:latest .
       - run: docker push bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID
       - run: docker push bp2018hg1/jona_staging:latest
-  deploy_staging:
-    machine: true
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - $STAGING_DEPLOY_FINGERPRINT
-      - run: ssh root@$STAGING_DEPLOY_HOST "cd $STAGING_DEPLOY_HOME; ./deploy jona bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID"
   build_production:
     machine:
       docker_layer_caching: true
@@ -94,6 +87,21 @@ jobs:
       - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona:latest .
       - run: docker push bp2018hg1/jona:$CIRCLE_WORKFLOW_ID
       - run: docker push bp2018hg1/jona:latest
+  deploy_staging:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - $STAGING_DEPLOY_FINGERPRINT
+      - run: ssh root@$STAGING_DEPLOY_HOST "cd $STAGING_DEPLOY_HOME; ./deploy jona bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID"
+  deploy_production:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - $PRODUCTION_DEPLOY_FINGERPRINT
+      - run: ssh root@$PRODUCTION_DEPLOY_HOST "cd $PRODUCTION_DEPLOY_HOME; ./deploy jona bp2018hg1/jona:$CIRCLE_WORKFLOW_ID"
+
 
 workflows:
   version: 2
@@ -115,12 +123,6 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_staging:
-          requires:
-            - build_staging
-          filters:
-            branches:
-              only: master
       - build_production:
           requires:
             - test
@@ -130,3 +132,13 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy_staging:
+          requires:
+            - build_staging
+      - hold_production_deploy:
+          type: approval
+          requires:
+            - build_production
+      - deploy_production:
+          requires:
+            - hold_production_deploy
