@@ -124,11 +124,20 @@ workflows:
           requires:
             - e2e
             - build_staging
+          filters:
+            branches:
+              only: master
       - hold_production_deploy:
           type: approval
           requires:
             - e2e
             - build_production
+          filters:
+            branches:
+              only: master
       - deploy_production:
           requires:
             - hold_production_deploy
+          filters:
+            branches:
+              only: master
