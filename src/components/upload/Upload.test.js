@@ -13,7 +13,8 @@ import ImageService from '../../services/ImageService';
 const mockStore = configureStore();
 
 jest.mock('../../services/ImageService', () => {
-  const image = { id: 1, tags: [] };
+  const ImageFactory = require('../../factories/ImageFactory').default;
+  const image = ImageFactory.createStaticDummyImage();
 
   return {
     create: jest.fn(() => Promise.resolve(image)),
