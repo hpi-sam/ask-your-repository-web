@@ -43,7 +43,6 @@ class ImagesIndex extends Component<Props, State> {
 
   async componentDidMount() {
     await this.loadMoreImages();
-    this.setState({ isLoadingInitially: false });
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -89,6 +88,8 @@ class ImagesIndex extends Component<Props, State> {
     } catch (error) {
       // TODO: Handle error
     }
+
+    this.setState({ isLoadingInitially: false });
   };
 
   deleteImage = (id: string) => {
