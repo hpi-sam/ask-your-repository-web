@@ -136,23 +136,6 @@ exports[`<GooglePermissions /> when User is not connected renders correctly 1`] 
         </b>
       </button>
     </e>
-    <button
-      className="google-button"
-      onClick={[Function]}
-      type="button"
-    >
-      <div>
-        <img
-          alt="Google Drive badge"
-          height="18"
-          src="googleDrive.png"
-          width="18"
-        />
-      </div>
-      <span>
-        Connect to Google Drive™
-      </span>
-    </button>
   </div>
 </GooglePermissions>
 `;

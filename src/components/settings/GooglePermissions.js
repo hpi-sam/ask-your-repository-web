@@ -29,12 +29,13 @@ class GooglePermissions extends Component<Props, State> {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { dispatch, user } = this.props;
     dispatch(refreshUser(user.id));
 
-    const googleAuth = await createGoogleAuthInstance();
-    this.setState({ googleAuth });
+    createGoogleAuthInstance().then((googleAuth) => {
+      this.setState({ googleAuth });
+    });
   }
 
   isConnected = () => {
@@ -62,6 +63,16 @@ class GooglePermissions extends Component<Props, State> {
 
   requestAdditionalPermissions = () => {
     const { googleAuth } = this.state;
+    if (!googleAuth) {
+      createGoogleAuthInstance().then((freshGoogleAuth) => {
+        this.grantGoogleOfflineAccess(freshGoogleAuth);
+      });
+    } else {
+      this.grantGoogleOfflineAccess(googleAuth);
+    }
+  };
+
+  grantGoogleOfflineAccess = (googleAuth) => {
     googleAuth.grantOfflineAccess(
       { scope: 'profile email https://www.googleapis.com/auth/drive' },
     ).then(this.additionalPermissionsSuccess, this.additionalPermissionsError);
@@ -95,7 +106,7 @@ class GooglePermissions extends Component<Props, State> {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
           />
         )}
-        {this.isConnected() && this.hasGoogleDriveAccess() ? (
+        {this.isConnected() && (this.hasGoogleDriveAccess() ? (
           <button type="button" className="google-button" onClick={this.revokeDriveAccess}>
             <div>
               <img src={googleDriveBadge} alt="Google Drive badge" height="18" width="18" />
@@ -113,7 +124,7 @@ class GooglePermissions extends Component<Props, State> {
               Connect to Google Drive™
             </span>
           </button>
-        )}
+        ))}
       </div>
     );
   }

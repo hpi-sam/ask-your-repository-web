@@ -90,7 +90,7 @@ class LoginForm extends Component<Props, State> {
           </Link>
         </div>
         <div className="LoginForm__buttons">
-          <Button data-cy="LoginForm__submit-button">
+          <Button data-cy="login-submit-button">
             Submit
           </Button>
           <GoogleLogin

@@ -113,14 +113,14 @@ exports[`<LoginForm /> renders correctly 1`] = `
           className="LoginForm__buttons"
         >
           <Button(s)
-            data-cy="LoginForm__submit-button"
+            data-cy="login-submit-button"
           >
             <s
-              data-cy="LoginForm__submit-button"
+              data-cy="login-submit-button"
               hasErrors={false}
             >
               <button
-                data-cy="LoginForm__submit-button"
+                data-cy="login-submit-button"
                 disabled={false}
               >
                 Submit
