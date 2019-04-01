@@ -7,7 +7,7 @@ Cypress.Commands.add('setActiveTeam', () => cy.window()
       url: `${Cypress.env('API_URL')}/teams`,
       body: { name: 'Seed Team' },
       headers: {
-        'X-CSRF-Token': window.store.getState().auth.user.token,
+        'X-CSRF-Token': window.store.getState().auth.token,
       },
     };
 
@@ -42,12 +42,13 @@ Cypress.Commands.add('authenticate', () => cy.createUser({
 
   return cy.request(options)
     .then((response) => {
-      const authUser = humps.camelizeKeys(response.body);
+      const { token, ...authUser } = humps.camelizeKeys(response.body);
 
       return cy.window().then((window) => {
         window.store.dispatch({
           type: 'LOGIN',
           user: authUser,
+          token,
         });
 
         return authUser;

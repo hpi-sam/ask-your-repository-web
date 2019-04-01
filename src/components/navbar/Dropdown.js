@@ -33,9 +33,10 @@ class Dropdown extends Component<Props, State> {
     this.setState({ isSelected: false });
   };
 
-  handleLogoutClick = async () => {
-    const googleAuth = await createGoogleAuthInstance();
-    googleAuth.signOut();
+  handleLogoutClick = () => {
+    createGoogleAuthInstance().then((googleAuth) => {
+      googleAuth.signOut();
+    });
     this.props.dispatch(logout());
   };
 

@@ -38,14 +38,17 @@ function createWrapper(localUser) {
 describe('<GooglePermissions />', () => {
   describe('when User is not connected', () => {
     let wrapper;
+    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
     beforeEach(() => {
       const user = UserFactory.createStaticDummyUser();
       UserService.get.mockImplementation(jest.fn(() => (Promise.resolve(user))));
+      delete process.env.REACT_APP_GOOGLE_CLIENT_ID; // Necessary for snapshot testing
       wrapper = createWrapper(user);
     });
 
     afterEach(() => {
+      process.env.REACT_APP_GOOGLE_CLIENT_ID = clientId;
       UserService.get.mockClear();
     });
 
