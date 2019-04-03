@@ -1,10 +1,11 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
+import ValidationErrors from '../utility/form/ValidationErrors';
 import type { UserCreateParams } from '../../models/User';
 import { register } from '../../state/auth/auth.actionCreators';
 import './Forms.scss';
@@ -23,7 +24,7 @@ type State = {
 };
 
 class RegisterForm extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -39,12 +40,12 @@ class RegisterForm extends Component<Props, State> {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-  }
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.resetErrors();
 
@@ -72,15 +73,15 @@ class RegisterForm extends Component<Props, State> {
       this.handleError('missingInput', true);
     }
     return true;
-  }
+  };
 
-  handleError = (name, value) => {
+  handleError = (name: string, value: boolean) => {
     this.setState({
       errors: {
         [name]: value,
       },
     });
-  }
+  };
 
   resetErrors = () => {
     this.setState({
@@ -90,26 +91,22 @@ class RegisterForm extends Component<Props, State> {
         invalidEmail: false,
       },
     });
-  }
+  };
 
-  printError() {
-    const errorMessages = {
-      'mismatchedPassword': 'Passwords do not match.',
-      'missingInput': 'Please fill in all fields.',
-      'invalidEmail': 'Please provide a valid email address.',
-    }
-    const errors = Object.keys(this.state.errors);
-    for (let i in errors) {
-      if (this.state.errors[errors[i]]) {
-        return (<p> {errorMessages[errors[i]]} </p>);
-      }
-    }
-  }
-
-  isValidEmail(email) {
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  isValidEmail = (email: string) => {
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regex.test(String(email).toLowerCase());
-  }
+  };
+
+  printError = () => {
+    const errors = Object.keys(this.state.errors);
+    if (errors) {
+      return (
+        <ValidationErrors error={errors[0]} />
+      );
+    }
+    return false;
+  };
 
   render() {
     const {

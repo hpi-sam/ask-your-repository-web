@@ -5,6 +5,7 @@ import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import { changePassword } from '../../state/auth/auth.actionCreators';
+import ValidationErrors from '../utility/form/ValidationErrors';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
 import './Password.scss';
@@ -42,7 +43,7 @@ class Password extends Component<Props, State> {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +66,7 @@ class Password extends Component<Props, State> {
       this.handleError('missingInput', true);
     }
     return true;
-  }
+  };
 
   handleError = (name, value) => {
     this.setState({
@@ -73,7 +74,7 @@ class Password extends Component<Props, State> {
         [name]: value,
       },
     });
-  }
+  };
 
   resetErrors = () => {
     this.setState({
@@ -83,21 +84,18 @@ class Password extends Component<Props, State> {
         samePassword: false,
       },
     });
-  }
+  };
 
-  printError() {
-    const errorMessages = {
-      'mismatchedPassword': 'Passwords do not match.',
-      'missingInput': 'Please fill in all fields.',
-      'samePassword': 'Your new password cannot be the same as your old one.',
-    }
+  printError = () => {
     const errors = Object.keys(this.state.errors);
-    for (let i in errors) {
-      if (this.state.errors[errors[i]]) {
-        return (<p> {errorMessages[errors[i]]} </p>);
-      }
+    if (errors) {
+      return (
+        <ValidationErrors error={errors[0]} />
+      );
     }
-  }
+
+    return false;
+  };
 
   render() {
     const {
