@@ -94,6 +94,10 @@ class GooglePermissions extends Component<Props, State> {
   };
 
   render() {
+    if (!process.env.REACT_APP_GOOGLE_CLIENT_ID) {
+      return null;
+    }
+
     return (
       <div className="GooglePermissions">
         <h2>Google Permissions</h2>

@@ -9,8 +9,8 @@ import type { UserCreateParams, User } from '../../models/User';
 export function login(email: string, password: string) {
   return async (dispatch: Function): Promise<void> => {
     try {
-      const { token, ...user } = await AuthService.login(email, password);
-      dispatch({ type: actionTypes.LOGIN, user, token });
+      const { csrfToken, ...user } = await AuthService.login(email, password);
+      dispatch({ type: actionTypes.LOGIN, user, csrfToken });
       dispatch(push('/'));
       dispatch(flashSuccessMessage('Successfully logged in'));
     } catch (error) {
@@ -26,8 +26,8 @@ export function login(email: string, password: string) {
 export function loginWithGoogle(idToken: string) {
   return async (dispatch: Function): Promise<void> => {
     try {
-      const { token, ...user } = await AuthService.loginWithGoogle(idToken);
-      dispatch({ type: actionTypes.LOGIN, user, token });
+      const { csrfToken, ...user } = await AuthService.loginWithGoogle(idToken);
+      dispatch({ type: actionTypes.LOGIN, user, csrfToken });
       dispatch(push('/'));
       dispatch(flashSuccessMessage('Successfully logged in'));
     } catch (error) {

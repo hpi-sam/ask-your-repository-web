@@ -18,10 +18,9 @@ jest.mock('../../services/AuthService', () => ({
 describe('<LoginForm />', () => {
   let wrapper;
   let store;
-  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID; // Necessary for snapshot testing
+
   beforeEach(() => {
     store = mockStore(initialState);
-    delete process.env.REACT_APP_GOOGLE_CLIENT_ID; // Necessary for snapshot testing
     wrapper = mount((
       <Provider store={store}>
         <MemoryRouter>
@@ -29,10 +28,6 @@ describe('<LoginForm />', () => {
         </MemoryRouter>
       </Provider>
     )).find('LoginForm');
-  });
-
-  afterEach(() => {
-    process.env.REACT_APP_GOOGLE_CLIENT_ID = clientId; // Necessary for snapshot testing
   });
 
   it('renders correctly', () => {

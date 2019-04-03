@@ -22,7 +22,7 @@ exports[`<GooglePermissions /> when User is not connected renders correctly 1`] 
       accessType="online"
       buttonText="Connect your account to Google"
       className="google-button"
-      clientId=""
+      clientId="24456970850-u9prmb53vbgthab5qrel3b0rqe7rcjua.apps.googleusercontent.com"
       cookiePolicy="single_host_origin"
       disabledStyle={
         Object {

@@ -12,10 +12,10 @@ class UserFactory {
     };
   }
 
-  static createAuthenticatedUser(): User & { token: string } {
+  static createAuthenticatedUser(): User & { csrfToken: string } {
     return {
       ...this.createDummyUser(),
-      token: faker.random.uuid(),
+      csrfToken: faker.random.uuid(),
     };
   }
 
@@ -28,10 +28,10 @@ class UserFactory {
     };
   }
 
-  static createStaticAuthenticatedUser(): User & { token: string } {
+  static createStaticAuthenticatedUser(): User & { csrfToken: string } {
     return {
       ...this.createStaticDummyUser(),
-      token: '61e6fa4c-de31-48e6-97a2-4f66b31d84e9',
+      csrfToken: '61e6fa4c-de31-48e6-97a2-4f66b31d84e9',
     };
   }
 }

@@ -6,13 +6,13 @@ import * as actionTypes from './auth.actionTypes';
 export type AuthState = {
   isAuthenticated: boolean,
   user: ?User,
-  token: ?string,
+  csrfToken: ?string,
 };
 
 export const initialState = {
   isAuthenticated: false,
   user: null,
-  token: null,
+  csrfToken: null,
 };
 
 function auth(state: AuthState = initialState, action: Action) {
@@ -22,7 +22,7 @@ function auth(state: AuthState = initialState, action: Action) {
         ...state,
         isAuthenticated: true,
         user: action.user,
-        token: action.token,
+        csrfToken: action.csrfToken,
       };
     case actionTypes.REGISTER:
       return state;
@@ -38,7 +38,7 @@ function auth(state: AuthState = initialState, action: Action) {
         ...state,
         isAuthenticated: false,
         user: null,
-        token: null,
+        csrfToken: null,
       };
     default:
       return state;

@@ -2,12 +2,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { flashErrorMessage } from 'redux-flash';
-import GoogleLogin from 'react-google-login';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import { login, loginWithGoogle } from '../../state/auth/auth.actionCreators';
+import GoogleLogin from './GoogleLogin';
+import { login } from '../../state/auth/auth.actionCreators';
 import './LoginForm.scss';
 
 type Props = {
@@ -42,15 +41,6 @@ class LoginForm extends Component<Props, State> {
     if (email && password) {
       dispatch(login(email, password));
     }
-  };
-
-  handleGoogleSuccess = (response) => {
-    this.props.dispatch(loginWithGoogle(response.getAuthResponse().id_token));
-  };
-
-  handleGoogleFailure = () => {
-    const { dispatch } = this.props;
-    dispatch(flashErrorMessage('Google login failed'));
   };
 
   render() {
@@ -93,13 +83,7 @@ class LoginForm extends Component<Props, State> {
           <Button data-cy="login-submit-button">
             Submit
           </Button>
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
-            buttonText="Sign in with Google"
-            className="LoginForm__google-login"
-            onSuccess={this.handleGoogleSuccess}
-            onFailure={this.handleGoogleFailure}
-          />
+          <GoogleLogin />
         </div>
       </Form>
     );
