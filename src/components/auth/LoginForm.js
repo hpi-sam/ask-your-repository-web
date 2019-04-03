@@ -1,11 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
+<<<<<<< HEAD
 import GoogleLogin from './GoogleLogin';
+=======
+import ValidationErrors from '../utility/form/ValidationErrors';
+>>>>>>> Refactor PR comments.
 import { login } from '../../state/auth/auth.actionCreators';
 import './Forms.scss';
 
@@ -48,19 +52,19 @@ class LoginForm extends Component<Props, State> {
     else {
       this.handleMissingInput();
     }
-  }
+  };
 
   handleMissingInput = () => {
     this.setState({
       missingInput: true,
     });
-  }
+  };
 
   resetErrors = () => {
     this.setState({
       missingInput: false,
     });
-  }
+  };
 
   render() {
     const { email, password, missingInput } = this.state;
@@ -68,7 +72,7 @@ class LoginForm extends Component<Props, State> {
       <Form onSubmit={this.handleSubmit} className="Form">
         <h1>Login</h1>
         {missingInput ? (
-          <p>Please fill in all fields. </p>
+          <ValidationErrors error="missingInput" />
         ) : ''}
         <div className="form-input">
           <label>

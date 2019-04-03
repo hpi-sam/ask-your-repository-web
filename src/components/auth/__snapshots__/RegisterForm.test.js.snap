@@ -24,6 +24,11 @@ exports[`<RegisterForm /> renders correctly 1`] = `
         <h1>
           Register
         </h1>
+        <ValidationErrors>
+          <div
+            className="ValidationErrors"
+          />
+        </ValidationErrors>
         <div
           className="form-input"
         >

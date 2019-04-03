@@ -1,65 +1,48 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Particles from 'react-particles-js';
 import TypeIt from 'typeit';
+import particlesConfig from './ParticlesConfiguration';
 import UserAuthNav from './UserAuthNav';
 import './LandingPage.scss';
 
-type Props = {
-};
+type Props = {};
 
 type State = {
   particles_params: Object,
 };
 
 class LandingPage extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
-      particles_params: {
-        particles: {
-          number: {
-            value: 100,
-            density: {
-              enable: true,
-              value_area: 800,
-            },
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: false,
-              speed: 40,
-              size_min: 0.1,
-              sync: false,
-            },
-          },
-        },
-      },
+      particles_params: particlesConfig,
     };
   }
 
   componentDidMount() {
-    new TypeIt('.subtitle', {
+    // Ordner waren gestern
+    // Graphbasierte Cloudlösung für deine Datensammlung
+    // Schluss mit dem Datensalat
+    // Bring Ordnung in deine Cloud
+    new TypeIt('.LandingPage__subtitle', {
       speed: 80,
       loop: true,
       loopDelay: 4000,
       waitUntilVisible: true,
     })
-      .type('Ordner waren gestern')
+      .type('Still using folders?')
       .pause(1000)
       .break()
-      .type('Graphbasierte Cloudlösung für deine Datensammlung')
+      .type('Graphbased cloud solution for your data collection')
       .pause(4000)
       .delete()
       .pause(1000)
-      .type('Schluss mit dem Datensalat')
+      .type('Say no to the data jumble')
       .pause(1000)
       .break()
-      .type('Bring Ordnung in deine Cloud')
+      .type('Declutter your cloud')
       .go();
   }
 
@@ -71,14 +54,14 @@ class LandingPage extends Component<Props, State> {
             params={this.state.particles_params}
           />
         </div>
-        <div className="Content unselectable">
+        <div className="LandingPage__content unselectable">
           <UserAuthNav />
-          <h1>Ask Your Cloud</h1>
-          <div className="subtitle" />
+          <div className="LandingPage__title">Ask Your Cloud </div>
+          <div className="LandingPage__subtitle" />
         </div>
       </div>
     );
   }
 }
 
-export default connect()(LandingPage);
+export default LandingPage;
