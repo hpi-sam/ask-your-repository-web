@@ -135,7 +135,6 @@ exports[`<LoginForm /> renders correctly 1`] = `
                 accessType="online"
                 buttonText="Sign in with Google"
                 className="LoginForm__google-login"
-                clientId="24456970850-u9prmb53vbgthab5qrel3b0rqe7rcjua.apps.googleusercontent.com"
                 cookiePolicy="single_host_origin"
                 disabledStyle={
                   Object {

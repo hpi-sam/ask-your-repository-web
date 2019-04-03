@@ -94,10 +94,6 @@ class GooglePermissions extends Component<Props, State> {
   };
 
   render() {
-    if (!process.env.REACT_APP_GOOGLE_CLIENT_ID) {
-      return null;
-    }
-
     return (
       <div className="GooglePermissions">
         <h2>Google Permissions</h2>
@@ -107,7 +103,7 @@ class GooglePermissions extends Component<Props, State> {
             buttonText="Connect your account to Google"
             onSuccess={this.handleConnectGoogleSuccess}
             onFailure={this.handleConnectGoogleFailure}
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           />
         )}
         {this.isConnected() && (this.hasGoogleDriveAccess() ? (
