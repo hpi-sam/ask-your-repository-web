@@ -68,6 +68,14 @@
     overflow-x: hidden;
   }
 
+  &__listpoint {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
+
   &__item {
     @keyframes item-fade-in {
       0% { opacity: 0; }
@@ -77,7 +85,6 @@
     animation: item-fade-in .5s;
     width: var(--team-sidebar-width);
     padding: var(--item-padding);
-    width: 100%;
     margin-bottom: var(--sidebar-padding);
     display: flex;
     align-items: center;
@@ -116,5 +123,73 @@
 
   &__create-form {
     padding: 12px;
+  }
+
+  &__dropdown {
+    height: 3.5em;
+    width: 3em;
+    margin-left: auto;
+
+    &__inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+    }
+
+    &__button {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: inherit;
+      align-items: center;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      line-height: 2em;
+    }
+
+    &__button:hover {
+      background-color: inherit;
+      color: var(--accent-color-blue);
+    }
+
+    &__content {
+      line-height: 2.5em;
+      margin-top: 10px;
+      left: 12px;
+      width: calc(-30px + var(--team-sidebar-width));
+      display: none;
+      position: fixed;
+      background-color: var(--gray-darker);
+      min-width: 160px;
+      border-radius: 4px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+
+      &--active {
+        display:block;
+      }
+
+      &__item {
+        width: 100%;
+        height: 100%;
+        background-color: inherit;
+        color: inherit;
+        border-radius: inherit;
+        cursor: pointer;
+        outline: 0;
+        display: block;
+        border-bottom: 2px solid black;
+
+        &:hover {
+          background-color: var(--accent-color-blue);
+        }
+      }
+    }
   }
 }
