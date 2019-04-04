@@ -9,7 +9,7 @@ import GoogleLogin from './GoogleLogin';
 import ValidationErrors from '../utility/form/ValidationErrors';
 import { login } from '../../state/auth/auth.actionCreators';
 import type { Errors } from '../../models/Errors';
-import './Forms.scss';
+import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
@@ -95,8 +95,8 @@ class LoginForm extends Component<Props, State> {
         </div>
         <hr className="Form__separator" data-content="OR" />
         {this.printError()}
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Email or Username:
             <Input
               type="text"
@@ -107,8 +107,8 @@ class LoginForm extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Password:
             <Link className="Form__label-link" to="/forgot-password">Forgot password?</Link>
             <Input
@@ -126,10 +126,10 @@ class LoginForm extends Component<Props, State> {
           </Link>
         </div>
         <div className="Form__buttons">
-          <Button className="Form__buttons__item" data-cy="login-submit-button">
+          <Button className="Form__buttons__item Form__buttons__item__blue" data-cy="login-submit-button">
             Login
           </Button>
-          <Link to="/" className="Form__buttons__cancel">Cancel</Link>
+          <Link to="/" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
         </div>
       </Form>
     );
