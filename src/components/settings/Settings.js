@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import Password from './Password';
+import ChangePasswordForm from './ChangePasswordForm';
 import GooglePermissions from './GooglePermissions';
 import type { AppState } from '../../state/AppState';
 import type { User } from '../../models/User';
@@ -22,7 +22,7 @@ function Settings(props: Props) {
       {props.user.hasPassword && (
         <div className="Settings__item">
           <div className="Settings__item__title">Change Password</div>
-          <Password />
+          <ChangePasswordForm />
         </div>
       )}
     </div>
