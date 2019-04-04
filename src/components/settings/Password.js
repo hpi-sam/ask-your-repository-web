@@ -8,6 +8,7 @@ import { changePassword } from '../../state/auth/auth.actionCreators';
 import ValidationErrors from '../utility/form/ValidationErrors';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
+import type { Errors } from '../../models/Errors';
 import './Password.scss';
 
 type Props = {
@@ -19,7 +20,7 @@ type State = {
   oldPassword: string,
   newPassword: string,
   newPasswordConfirm: string,
-  errors: Object,
+  errors: Errors,
 };
 
 class Password extends Component<Props, State> {
@@ -30,8 +31,6 @@ class Password extends Component<Props, State> {
       oldPassword: '',
       newPassword: '',
       newPasswordConfirm: '',
-      missingInput: false,
-      mismatchedPassword: false,
       errors: {
         missingInput: false,
         mismatchedPassword: false,
@@ -57,7 +56,7 @@ class Password extends Component<Props, State> {
         this.handleError('mismatchedPassword', true);
         return false;
       }
-      if (oldPassword == newPassword) {
+      if (oldPassword === newPassword) {
         this.handleError('samePassword', true);
         return false;
       }
@@ -87,10 +86,10 @@ class Password extends Component<Props, State> {
   };
 
   printError = () => {
-    const errors = Object.keys(this.state.errors);
-    if (errors) {
+    const error = Object.keys(this.state.errors).find(key => this.state.errors[key] === true);
+    if (error) {
       return (
-        <ValidationErrors error={errors[0]} />
+        <ValidationErrors error={error} />
       );
     }
 

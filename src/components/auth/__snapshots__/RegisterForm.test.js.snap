@@ -5,11 +5,11 @@ exports[`<RegisterForm /> renders correctly 1`] = `
   dispatch={[Function]}
 >
   <Form(t)
-    className="RegisterForm"
+    className="Form"
     onSubmit={[Function]}
   >
     <t
-      className="RegisterForm"
+      className="Form"
       getValues={[Function]}
       hideError={[Function]}
       onSubmit={[Function]}
@@ -18,21 +18,20 @@ exports[`<RegisterForm /> renders correctly 1`] = `
       validateAll={[Function]}
     >
       <form
-        className="RegisterForm"
+        className="Form"
         onSubmit={[Function]}
       >
-        <h1>
+        <div
+          className="Form__title"
+        >
           Register
-        </h1>
-        <ValidationErrors>
-          <div
-            className="ValidationErrors"
-          />
-        </ValidationErrors>
+        </div>
         <div
           className="form-input"
         >
-          <label>
+          <label
+            className="Form__label"
+          >
             Username:
             <Control(s)
               className="form-control"
@@ -70,7 +69,9 @@ exports[`<RegisterForm /> renders correctly 1`] = `
         <div
           className="form-input"
         >
-          <label>
+          <label
+            className="Form__label"
+          >
             Email:
             <Control(s)
               className="form-control"
@@ -108,7 +109,9 @@ exports[`<RegisterForm /> renders correctly 1`] = `
         <div
           className="form-input"
         >
-          <label>
+          <label
+            className="Form__label"
+          >
             Password:
             <Control(s)
               className="form-control"
@@ -146,20 +149,23 @@ exports[`<RegisterForm /> renders correctly 1`] = `
         <div
           className="form-input"
         >
-          <label>
-            Repeat Password:
+          <label
+            className="Form__label"
+          >
+            Confirm Password:
             <Control(s)
               className="form-control"
               data-cy="register-password-repeat-input"
-              name="passwordRepeat"
+              name="passwordConfirm"
               onChange={[Function]}
               type="password"
               validations={Array []}
+              value=""
             >
               <s
                 className="form-control"
                 data-cy="register-password-repeat-input"
-                name="passwordRepeat"
+                name="passwordConfirm"
                 onBlur={[Function]}
                 onChange={[Function]}
                 type="password"
@@ -169,7 +175,7 @@ exports[`<RegisterForm /> renders correctly 1`] = `
                   <input
                     className="form-control"
                     data-cy="register-password-repeat-input"
-                    name="passwordRepeat"
+                    name="passwordConfirm"
                     onBlur={[Function]}
                     onChange={[Function]}
                     type="password"
@@ -181,16 +187,19 @@ exports[`<RegisterForm /> renders correctly 1`] = `
           </label>
         </div>
         <div
-          className="RegisterForm__buttons"
+          className="Form__buttons"
         >
           <Button(s)
+            className="Form__buttons__item"
             data-cy="register-submit-button"
           >
             <s
+              className="Form__buttons__item"
               data-cy="register-submit-button"
               hasErrors={false}
             >
               <button
+                className="Form__buttons__item"
                 data-cy="register-submit-button"
                 disabled={false}
               >
@@ -199,13 +208,13 @@ exports[`<RegisterForm /> renders correctly 1`] = `
             </s>
           </Button(s)>
           <Link
-            className="cancel"
+            className="Form__buttons__cancel"
             replace={false}
-            to="/login"
+            to="/"
           >
             <a
-              className="cancel"
-              href="/login"
+              className="Form__buttons__cancel"
+              href="/"
               onClick={[Function]}
             >
               Cancel

@@ -6,8 +6,8 @@ import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import ValidationErrors from '../utility/form/ValidationErrors';
-import type { UserCreateParams } from '../../models/User';
 import { register } from '../../state/auth/auth.actionCreators';
+import type { Errors } from '../../models/Errors';
 import './Forms.scss';
 
 type Props = {
@@ -17,10 +17,9 @@ type Props = {
 type State = {
   email: string,
   username: string,
-  oldPassword: string,
-  newPassword: string,
-  newPasswordConfirm: string,
-  errors: Object,
+  password: string,
+  passwordConfirm: string,
+  errors: Errors,
 };
 
 class RegisterForm extends Component<Props, State> {
@@ -99,10 +98,10 @@ class RegisterForm extends Component<Props, State> {
   };
 
   printError = () => {
-    const errors = Object.keys(this.state.errors);
-    if (errors) {
+    const error = Object.keys(this.state.errors).find(key => this.state.errors[key] === true);
+    if (error) {
       return (
-        <ValidationErrors error={errors[0]} />
+        <ValidationErrors error={error} />
       );
     }
     return false;
@@ -118,10 +117,10 @@ class RegisterForm extends Component<Props, State> {
 
     return (
       <Form onSubmit={this.handleSubmit} className="Form">
-        <h1>Register</h1>
+        <div className="Form__title">Register</div>
         {this.printError()}
         <div className="form-input">
-          <label>
+          <label className="Form__label">
             Username:
             <Input
               type="text"
@@ -134,7 +133,7 @@ class RegisterForm extends Component<Props, State> {
           </label>
         </div>
         <div className="form-input">
-          <label>
+          <label className="Form__label">
             Email:
             <Input
               type="text"
@@ -147,7 +146,7 @@ class RegisterForm extends Component<Props, State> {
           </label>
         </div>
         <div className="form-input">
-          <label>
+          <label className="Form__label">
             Password:
             <Input
               type="password"
@@ -160,7 +159,7 @@ class RegisterForm extends Component<Props, State> {
           </label>
         </div>
         <div className="form-input">
-          <label>
+          <label className="Form__label">
             Confirm Password:
             <Input
               type="password"
@@ -174,10 +173,10 @@ class RegisterForm extends Component<Props, State> {
         </div>
 
         <div className="Form__buttons">
-          <Button data-cy="register-submit-button">
+          <Button className="Form__buttons__item" data-cy="register-submit-button">
             Register
           </Button>
-          <Link to="/" className="cancel">Cancel</Link>
+          <Link to="/" className="Form__buttons__cancel">Cancel</Link>
         </div>
       </Form>
     );

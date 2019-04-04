@@ -1,21 +1,80 @@
 .Form {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   max-width: 450px;
   margin: auto;
   font-weight: 200;
+  justify-content: center;
 
-  h1 {
+  &__title {
     font-size: 2.5em;
+    margin-bottom: .5em;
   }
 
-  label {
+  &__label {
     font-size: 1.3em;
     font-weight: 200 !important;
   }
 
-  a {
+  &__external-login {
+    text-align: center;
+    width: 100%;
+
+    &__google {
+      display: inline-block;
+      width: 100%;
+      height: 3.5em;
+      border-radius: .3em !important;
+
+      div {
+        margin-left: 3px;
+        border-radius: .3em !important;
+      }
+
+      span {
+        flex: .9;
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  &__separator {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+
+    &:before {
+      content: '';
+      background: var(--accent-color-blue);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1.5px;
+    }
+
+    &:after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      padding: 0 .5em;
+      line-height: 1.5em;
+      background-color: var(--main-bg-color);
+    }
+  }
+
+  &__link {
     font-weight: 400;
-    color: lightslategray;
+    color: var(--link-color);
   }
 
   &__buttons {
@@ -26,14 +85,14 @@
     font-size: 1.2em;
     font-weight: 400;
 
-    button {
+    &__item {
       margin: inherit;
       padding: 1rem 2rem;
       border-radius: inherit;
       background-color: var(--accent-color-blue);
     }
 
-    .cancel {
+    &__cancel {
       margin: inherit;
       padding: 1rem 2rem;
       border-radius: inherit;
