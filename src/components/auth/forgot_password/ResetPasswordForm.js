@@ -12,7 +12,6 @@ import Button from 'react-validation/build/button';
 import UserService from '../../../services/UserService';
 import ValidationErrors from '../../utility/form/ValidationErrors';
 import type { Errors } from '../../../models/Errors';
-import '../Forms.scss';
 
 type Props = {
   dispatch: Function,

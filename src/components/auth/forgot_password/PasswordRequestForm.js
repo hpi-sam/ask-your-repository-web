@@ -9,7 +9,6 @@ import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import ValidationErrors from '../../utility/form/ValidationErrors';
 import type { Errors } from '../../../models/Errors';
-import '../Forms.scss';
 import AuthService from '../../../services/AuthService';
 
 type Props = {

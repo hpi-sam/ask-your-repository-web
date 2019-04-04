@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import TeamInitials from '../team/TeamInitials';
+import TeamSidebarSettings from './TeamSidebarSettings';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 import { closeTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
 import type { Team } from '../../models/Team';
@@ -31,20 +32,23 @@ class TeamSidebarItem extends Component<Props> {
     });
 
     return (
-      <button
-        type="button"
-        onClick={this.handleClick}
-        className={className}
-        title={team.name}
-      >
-        <TeamInitials
-          team={team}
-          isActive={isActive}
-        />
-        <div className="TeamSidebar__item__body">
-          {team.name}
-        </div>
-      </button>
+      <div className="TeamSidebar__listpoint">
+        <button
+          type="button"
+          onClick={this.handleClick}
+          className={className}
+          title={team.name}
+        >
+          <TeamInitials
+            team={team}
+            isActive={isActive}
+          />
+          <div className="TeamSidebar__item__body">
+            {team.name}
+          </div>
+        </button>
+        {isActive && <TeamSidebarSettings team={team}/>}
+      </div>
     );
   }
 }
