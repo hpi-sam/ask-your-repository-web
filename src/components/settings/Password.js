@@ -67,7 +67,7 @@ class Password extends Component<Props, State> {
     return true;
   };
 
-  handleError = (name, value) => {
+  handleError = (name: $Keys<Errors>, value: boolean) => {
     this.setState({
       errors: {
         [name]: value,
