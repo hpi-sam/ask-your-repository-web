@@ -88,7 +88,7 @@ class LoginForm extends Component<Props, State> {
   render() {
     const { email, password } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit} className="Form">
+      <Form onSubmit={this.handleSubmit} className="Form Form__centered">
         <div className="Form__title">Login</div>
         <div className="Form__external-login">
           <GoogleLogin />

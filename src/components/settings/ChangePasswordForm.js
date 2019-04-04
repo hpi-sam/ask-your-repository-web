@@ -23,7 +23,7 @@ type State = {
   errors: Errors,
 };
 
-class Password extends Component<Props, State> {
+class ChangePasswordForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -143,7 +143,7 @@ class Password extends Component<Props, State> {
           </label>
         </div>
         <div className="Form__buttons">
-          <Button className="Form__buttons__item" data-cy="change-password-submit-button">
+          <Button className="Form__buttons__item Form__buttons__item__blue" data-cy="change-password-submit-button">
             Submit
           </Button>
         </div>
@@ -156,4 +156,4 @@ const mapStateToProps = (state: AppState) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps)(Password);
+export default connect(mapStateToProps)(ChangePasswordForm);

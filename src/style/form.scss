@@ -4,9 +4,12 @@
   display: flex;
   flex-direction: column;
   max-width: 450px;
-  margin: auto;
   font-weight: 200;
   justify-content: center;
+
+  &__centered {
+    margin: auto;
+  }
 
   &__title {
     font-size: 2.5em;
@@ -124,6 +127,8 @@
       border-radius: inherit;
       color: var(--font-color);
       margin: .5em 0 0 0;
+      height: 2.5em;
+      line-height: 2.5em;
 
       &__blue {
         background-color: var(--primary-color);
