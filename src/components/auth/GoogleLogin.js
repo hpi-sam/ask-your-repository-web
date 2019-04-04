@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { flashErrorMessage } from 'redux-flash';
 import GoogleLoginButton from 'react-google-login';
@@ -12,7 +13,9 @@ type Props = {
 
 class GoogleLogin extends Component<Props> {
   handleGoogleSuccess = (response) => {
-    this.props.dispatch(loginWithGoogle(response.getAuthResponse().id_token));
+    const { location, dispatch } = this.props;
+    const to = location.state ? location.state.from : '/';
+    dispatch(loginWithGoogle(response.getAuthResponse().id_token, to));
   };
 
   handleGoogleFailure = () => {
@@ -36,4 +39,4 @@ class GoogleLogin extends Component<Props> {
   }
 }
 
-export default connect()(GoogleLogin);
+export default connect()(withRouter(GoogleLogin));

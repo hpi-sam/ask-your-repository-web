@@ -182,9 +182,23 @@
         color: inherit;
         border-radius: inherit;
         cursor: pointer;
-        outline: 0;
+        outline: none;
         display: block;
-        border-bottom: 2px solid black;
+
+        > * {
+          width: 100%;
+          background-color: inherit;
+          outline: inherit;
+          border: none;
+        }
+
+        &:after {
+          content: "";
+          display: block;
+          margin: 0 auto;
+          width: 96%;
+          border-bottom: 1px solid lightgray;
+        }
 
         &:hover {
           background-color: var(--accent-color-blue);

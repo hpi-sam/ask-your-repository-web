@@ -44,10 +44,11 @@ class LoginForm extends Component<Props, State> {
     this.resetErrors();
 
     const { email, password } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, location } = this.props;
+    const to = location.state ? location.state.from : '/';
 
     if (email && password) {
-      dispatch(login(email, password));
+      dispatch(login(email, password, to));
     } else {
       this.handleError('missingInput', true);
     }
@@ -87,6 +88,7 @@ class LoginForm extends Component<Props, State> {
 
   render() {
     const { email, password } = this.state;
+    const { location } = this.props;
     return (
       <Form onSubmit={this.handleSubmit} className="Form Form__centered">
         <div className="Form__title">Login</div>
@@ -121,7 +123,7 @@ class LoginForm extends Component<Props, State> {
           </label>
         </div>
         <div>
-          <Link className="Form__link" to="/register">
+          <Link className="Form__link" to={{pathname: '/register', state: location.state}}>
             No account yet? Register here.
           </Link>
         </div>

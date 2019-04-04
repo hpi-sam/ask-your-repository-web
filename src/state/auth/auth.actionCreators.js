@@ -6,12 +6,12 @@ import AuthService from '../../services/AuthService';
 import * as actionTypes from './auth.actionTypes';
 import type { UserCreateParams, User } from '../../models/User';
 
-export function login(email: string, password: string) {
+export function login(email: string, password: string, to: string) {
   return async (dispatch: Function): Promise<void> => {
     try {
       const { csrfToken, ...user } = await AuthService.login(email, password);
       dispatch({ type: actionTypes.LOGIN, user, csrfToken });
-      dispatch(push('/'));
+      dispatch(push(to));
       dispatch(flashSuccessMessage('Successfully logged in'));
     } catch (error) {
       const message = error.response
@@ -23,12 +23,12 @@ export function login(email: string, password: string) {
   };
 }
 
-export function loginWithGoogle(idToken: string) {
+export function loginWithGoogle(idToken: string, to: string) {
   return async (dispatch: Function): Promise<void> => {
     try {
       const { csrfToken, ...user } = await AuthService.loginWithGoogle(idToken);
       dispatch({ type: actionTypes.LOGIN, user, csrfToken });
-      dispatch(push('/'));
+      dispatch(push(to));
       dispatch(flashSuccessMessage('Successfully logged in'));
     } catch (error) {
       const message = error.response
@@ -78,12 +78,12 @@ export function changePassword(id: string, oldPassword: string, password: string
   };
 }
 
-export function register(userParameters: UserCreateParams) {
+export function register(userParameters: UserCreateParams, to: string) {
   return async (dispatch: Function): Promise<void> => {
     try {
       const user = await UserService.create(userParameters);
       dispatch({ type: actionTypes.REGISTER, user });
-      dispatch(push('/login'));
+      dispatch(push(to));
       dispatch(flashSuccessMessage('Successfully registered.'));
     } catch (error) {
       dispatch(flashErrorMessage(error.response.data.error.toString()));

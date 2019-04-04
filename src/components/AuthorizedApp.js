@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router';
 import classNames from 'classnames';
 import ImagesIndex from './images/ImagesIndex';
 import Upload from './upload/Upload';
+import TeamJoin from './team/TeamJoin';
 import NavBar from './navbar/NavBar';
 import Settings from './settings/Settings';
 import Presentation from './presentation/Presentation';
@@ -32,11 +33,13 @@ function AuthorizedApp(props: Props) {
           <Redirect exact from="/" to="/images" />
           <Route path="/select-team" component={TeamSelect} />
           <Route path="/settings" component={Settings} />
+          <Route path="/join/:joinKey" component={TeamJoin} />
           <TeamRoute path="/upload" component={Upload} />
           <TeamRoute path="/images/:id/edit" component={ImageEdit} />
           <TeamRoute path="/images/:id" component={ImageDetails} />
           <TeamRoute path="/images" component={ImagesIndex} />
           <TeamRoute path="/presentation" component={Presentation} />
+          <Redirect from="*" to="/images" />
         </Switch>
         <TeamRoute exact path="/images" component={UploadActionButton} />
       </div>

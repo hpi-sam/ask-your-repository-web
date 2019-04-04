@@ -9,8 +9,20 @@ class TeamService {
     return humps.camelizeKeys(response.data.teams);
   }
 
+  static async listAll(): Promise<Team[]> {
+    const response = await api.get('/teams/all');
+    return humps.camelizeKeys(response.data.teams);
+  }
+
   static async create(data: { name: string }): Promise<Team> {
     const response = await api.post('/teams', data);
+    return response.data;
+  }
+
+  static async updateMember(team: Team, id: string): Promise<Team> {
+    const url = '/teams/' + team.id + '/members';
+    const data = { member: id };
+    const response = await api.post(url, data);
     return response.data;
   }
 }
