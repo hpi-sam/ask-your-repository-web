@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-<<<<<<< HEAD
 import GoogleLogin from './GoogleLogin';
-=======
 import ValidationErrors from '../utility/form/ValidationErrors';
->>>>>>> Refactor PR comments.
 import { login } from '../../state/auth/auth.actionCreators';
+import type { Errors } from '../../models/Errors';
 import './Forms.scss';
 
 type Props = {
@@ -20,7 +18,7 @@ type Props = {
 type State = {
   email: string,
   password: string,
-  missingInput: boolean,
+  errors: Errors,
 };
 
 class LoginForm extends Component<Props, State> {
@@ -30,7 +28,9 @@ class LoginForm extends Component<Props, State> {
     this.state = {
       email: '',
       password: '',
-      missingInput: false,
+      errors: {
+        missingInput: false,
+      },
     };
   }
 
@@ -50,32 +50,54 @@ class LoginForm extends Component<Props, State> {
       dispatch(login(email, password));
     }
     else {
-      this.handleMissingInput();
+      this.handleError('missingInput', true);
     }
   };
 
-  handleMissingInput = () => {
+  handleError = (name: string, value: boolean) => {
     this.setState({
-      missingInput: true,
+      errors: {
+        [name]: value,
+      },
     });
   };
 
   resetErrors = () => {
     this.setState({
-      missingInput: false,
+      errors: {
+        missingInput: false,
+      },
     });
   };
 
+  isValidEmail = (email: string) => {
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(String(email).toLowerCase());
+  };
+
+  printError = () => {
+    const error = Object.keys(this.state.errors).find(key => this.state.errors[key] === true);
+    if (error) {
+      return (
+        <ValidationErrors error={error} />
+      );
+    }
+    return false;
+  };
+
+
   render() {
-    const { email, password, missingInput } = this.state;
+    const { email, password } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="Form">
-        <h1>Login</h1>
-        {missingInput ? (
-          <ValidationErrors error="missingInput" />
-        ) : ''}
+        <div className="Form__title">Login</div>
+        <div className="Form__external-login">
+          <GoogleLogin />
+        </div>
+        <hr className="Form__separator" data-content="OR" />
+        {this.printError()}
         <div className="form-input">
-          <label>
+          <label className="Form__label">
             Email or Username:
             <Input
               type="text"
@@ -87,7 +109,7 @@ class LoginForm extends Component<Props, State> {
           </label>
         </div>
         <div className="form-input">
-          <label>
+          <label className="Form__label">
             Password:
             <Input
               type="password"
@@ -99,16 +121,15 @@ class LoginForm extends Component<Props, State> {
           </label>
         </div>
         <div>
-          <Link to="/register">
+          <Link className="Form__link" to="/register">
             No account yet? Register here.
           </Link>
         </div>
         <div className="Form__buttons">
-          <Button data-cy="login-submit-button">
+          <Button className="Form__buttons__item" data-cy="login-submit-button">
             Login
           </Button>
-          <GoogleLogin />
-          <Link to="/" className="cancel">Cancel</Link>
+          <Link to="/" className="Form__buttons__cancel">Cancel</Link>
         </div>
       </Form>
     );

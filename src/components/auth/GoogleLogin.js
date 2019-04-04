@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { flashErrorMessage } from 'redux-flash';
 import GoogleLoginButton from 'react-google-login';
 import { loginWithGoogle } from '../../state/auth/auth.actionCreators';
-import './LoginForm.scss';
+import './Forms.scss';
 
 type Props = {
   dispatch: Function,
@@ -27,9 +27,10 @@ class GoogleLogin extends Component<Props> {
       <GoogleLoginButton
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Sign in with Google"
-        className="LoginForm__google-login"
+        className="Form__external-login__google"
         onSuccess={this.handleGoogleSuccess}
         onFailure={this.handleGoogleFailure}
+        theme={"dark"}
       />
     );
   }

@@ -5,11 +5,11 @@ exports[`<LoginForm /> renders correctly 1`] = `
   dispatch={[Function]}
 >
   <Form(t)
-    className="LoginForm"
+    className="Form"
     onSubmit={[Function]}
   >
     <t
-      className="LoginForm"
+      className="Form"
       getValues={[Function]}
       hideError={[Function]}
       onSubmit={[Function]}
@@ -18,115 +18,17 @@ exports[`<LoginForm /> renders correctly 1`] = `
       validateAll={[Function]}
     >
       <form
-        className="LoginForm"
+        className="Form"
         onSubmit={[Function]}
       >
-        <h1
-          className="LoginForm__title"
+        <div
+          className="Form__title"
         >
           Login
-        </h1>
-        <div
-          className="form-input"
-        >
-          <label>
-            Email or Username:
-            <Control(s)
-              data-cy="login-email-input"
-              name="email"
-              onChange={[Function]}
-              type="text"
-              validations={Array []}
-              value=""
-            >
-              <s
-                data-cy="login-email-input"
-                name="email"
-                onBlur={[Function]}
-                onChange={[Function]}
-                type="text"
-                value=""
-              >
-                <div>
-                  <input
-                    data-cy="login-email-input"
-                    name="email"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </s>
-            </Control(s)>
-          </label>
         </div>
         <div
-          className="form-input"
+          className="Form__external-login"
         >
-          <label>
-            Password:
-            <Control(s)
-              data-cy="login-password-input"
-              name="password"
-              onChange={[Function]}
-              type="password"
-              validations={Array []}
-              value=""
-            >
-              <s
-                data-cy="login-password-input"
-                name="password"
-                onBlur={[Function]}
-                onChange={[Function]}
-                type="password"
-                value=""
-              >
-                <div>
-                  <input
-                    data-cy="login-password-input"
-                    name="password"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    type="password"
-                    value=""
-                  />
-                </div>
-              </s>
-            </Control(s)>
-          </label>
-        </div>
-        <div>
-          <Link
-            replace={false}
-            to="/register"
-          >
-            <a
-              href="/register"
-              onClick={[Function]}
-            >
-              No account yet? Register here.
-            </a>
-          </Link>
-        </div>
-        <div
-          className="LoginForm__buttons"
-        >
-          <Button(s)
-            data-cy="login-submit-button"
-          >
-            <s
-              data-cy="login-submit-button"
-              hasErrors={false}
-            >
-              <button
-                data-cy="login-submit-button"
-                disabled={false}
-              >
-                Submit
-              </button>
-            </s>
-          </Button(s)>
           <Connect(GoogleLogin)>
             <GoogleLogin
               dispatch={[Function]}
@@ -134,7 +36,7 @@ exports[`<LoginForm /> renders correctly 1`] = `
               <e
                 accessType="online"
                 buttonText="Sign in with Google"
-                className="LoginForm__google-login"
+                className="Form__external-login__google"
                 cookiePolicy="single_host_origin"
                 disabledStyle={
                   Object {
@@ -151,12 +53,12 @@ exports[`<LoginForm /> renders correctly 1`] = `
                 prompt=""
                 scope="profile email"
                 tag="button"
-                theme="light"
+                theme="dark"
                 type="button"
                 uxMode="popup"
               >
                 <button
-                  className="LoginForm__google-login"
+                  className="Form__external-login__google"
                   disabled={true}
                   onClick={[Function]}
                   onMouseDown={[Function]}
@@ -166,11 +68,11 @@ exports[`<LoginForm /> renders correctly 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#fff",
+                      "backgroundColor": "rgb(66, 133, 244)",
                       "border": "1px solid transparent",
                       "borderRadius": 2,
                       "boxShadow": "0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)",
-                      "color": "rgba(0, 0, 0, .54)",
+                      "color": "#fff",
                       "display": "inline-flex",
                       "fontFamily": "Roboto, sans-serif",
                       "fontSize": 14,
@@ -250,6 +152,134 @@ exports[`<LoginForm /> renders correctly 1`] = `
               </e>
             </GoogleLogin>
           </Connect(GoogleLogin)>
+        </div>
+        <hr
+          className="Form__separator"
+          data-content="OR"
+        />
+        <div
+          className="form-input"
+        >
+          <label
+            className="Form__label"
+          >
+            Email or Username:
+            <Control(s)
+              data-cy="login-email-input"
+              name="email"
+              onChange={[Function]}
+              type="text"
+              validations={Array []}
+              value=""
+            >
+              <s
+                data-cy="login-email-input"
+                name="email"
+                onBlur={[Function]}
+                onChange={[Function]}
+                type="text"
+                value=""
+              >
+                <div>
+                  <input
+                    data-cy="login-email-input"
+                    name="email"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </s>
+            </Control(s)>
+          </label>
+        </div>
+        <div
+          className="form-input"
+        >
+          <label
+            className="Form__label"
+          >
+            Password:
+            <Control(s)
+              data-cy="login-password-input"
+              name="password"
+              onChange={[Function]}
+              type="password"
+              validations={Array []}
+              value=""
+            >
+              <s
+                data-cy="login-password-input"
+                name="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                type="password"
+                value=""
+              >
+                <div>
+                  <input
+                    data-cy="login-password-input"
+                    name="password"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    type="password"
+                    value=""
+                  />
+                </div>
+              </s>
+            </Control(s)>
+          </label>
+        </div>
+        <div>
+          <Link
+            className="Form__link"
+            replace={false}
+            to="/register"
+          >
+            <a
+              className="Form__link"
+              href="/register"
+              onClick={[Function]}
+            >
+              No account yet? Register here.
+            </a>
+          </Link>
+        </div>
+        <div
+          className="Form__buttons"
+        >
+          <Button(s)
+            className="Form__buttons__item"
+            data-cy="login-submit-button"
+          >
+            <s
+              className="Form__buttons__item"
+              data-cy="login-submit-button"
+              hasErrors={false}
+            >
+              <button
+                className="Form__buttons__item"
+                data-cy="login-submit-button"
+                disabled={false}
+              >
+                Login
+              </button>
+            </s>
+          </Button(s)>
+          <Link
+            className="Form__buttons__cancel"
+            replace={false}
+            to="/"
+          >
+            <a
+              className="Form__buttons__cancel"
+              href="/"
+              onClick={[Function]}
+            >
+              Cancel
+            </a>
+          </Link>
         </div>
       </form>
     </t>
