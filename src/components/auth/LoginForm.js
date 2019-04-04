@@ -48,13 +48,12 @@ class LoginForm extends Component<Props, State> {
 
     if (email && password) {
       dispatch(login(email, password));
-    }
-    else {
+    } else {
       this.handleError('missingInput', true);
     }
   };
 
-  handleError = (name: string, value: boolean) => {
+  handleError = (name: $Keys<Errors>, value: boolean) => {
     this.setState({
       errors: {
         [name]: value,

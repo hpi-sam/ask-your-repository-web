@@ -48,7 +48,12 @@ class RegisterForm extends Component<Props, State> {
     e.preventDefault();
     this.resetErrors();
 
-    const { email, username, password, passwordConfirm } = this.state;
+    const {
+      email,
+      username,
+      password,
+      passwordConfirm,
+    } = this.state;
     const { dispatch } = this.props;
 
     if (email && username && password && passwordConfirm) {
@@ -63,10 +68,10 @@ class RegisterForm extends Component<Props, State> {
       }
 
       const user = {
-        email: email,
-        username: username,
-        password: password
-      }
+        email,
+        username,
+        password,
+      };
       dispatch(register(user));
     } else {
       this.handleError('missingInput', true);
@@ -74,7 +79,7 @@ class RegisterForm extends Component<Props, State> {
     return true;
   };
 
-  handleError = (name: string, value: boolean) => {
+  handleError = (name: $Keys<Errors>, value: boolean) => {
     this.setState({
       errors: {
         [name]: value,

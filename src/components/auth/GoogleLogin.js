@@ -30,7 +30,7 @@ class GoogleLogin extends Component<Props> {
         className="Form__external-login__google"
         onSuccess={this.handleGoogleSuccess}
         onFailure={this.handleGoogleFailure}
-        theme={"dark"}
+        theme="dark"
       />
     );
   }
