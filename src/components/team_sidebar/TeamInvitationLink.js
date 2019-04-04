@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { FaClipboard, FaClipboardCheck } from 'react-icons/fa';
-import { MdContentCopy, MdContentPaste } from 'react-icons/md';
+import { MdContentCopy } from 'react-icons/md';
 import { copyToClipboard } from '../utility/Clipboard';
 import type { Team } from '../../models/Team';
 import './TeamInvitationLink.scss';
@@ -12,14 +11,19 @@ type Props = {
 
 type State = {
   isCopied: boolean,
+  link: string,
 };
 
 class TeamInvitationLink extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    const baseUrl = 'localhost:3000/join/';
+    const link = baseUrl + this.props.team.joinKey;
+
     this.state = {
       isCopied: false,
+      link,
     };
   }
 
@@ -27,12 +31,11 @@ class TeamInvitationLink extends Component<Props, State> {
     this.setState({
       isCopied: true,
     });
-    copyToClipboard(this.props.team.joinKey);
+    copyToClipboard(this.state.link);
   };
 
   render() {
-    const { isCopied } = this.state;
-    const { team } = this.props;
+    const { isCopied, link } = this.state;
 
     return (
       <div className="InviteForm">
@@ -40,7 +43,7 @@ class TeamInvitationLink extends Component<Props, State> {
           type="text"
           name="input"
           className="InviteForm__link"
-          value={team.joinKey}
+          value={link}
           readOnly
           disabled
         />

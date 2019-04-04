@@ -39,9 +39,9 @@ class TeamSidebarSettings extends Component<Props, State> {
   };
 
   invitePeople = () => {
-    this.setState({
-      showInvitation: true,
-    });
+    this.setState(prevState => ({
+      showInvitation: !prevState.showInvitation
+    }));
   };
 
   render() {
@@ -58,17 +58,23 @@ class TeamSidebarSettings extends Component<Props, State> {
           <FaEllipsisV />
         </button>
         <div className={isSelected ? 'TeamSidebar__dropdown__content TeamSidebar__dropdown__content--active' : 'TeamSidebar__dropdown__content'}>
-          {showInvitation ? (
-            <TeamInvitationLink team={team} />
-          ) : (
+          <div className="TeamSidebar__dropdown__content__item">
             <button
               type="button"
               onClick={this.invitePeople}
-              className="TeamSidebar__dropdown__content__item"
             >
               Invite people
             </button>
-          )}
+            <div>
+            {showInvitation && (<TeamInvitationLink team={team} />)}
+            </div>
+          </div>
+          <button
+            type="button"
+            className="TeamSidebar__dropdown__content__item"
+          >
+            Link with Google Drive
+          </button>
         </div>
       </div>
     );

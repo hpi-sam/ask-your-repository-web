@@ -7,6 +7,11 @@
   align-self: center;
   text-align: center;
 
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition: width 2s;
+  transition: width 2s;
+
   &__link {
     flex: .8;
     margin: 5px 0 5px 5px;

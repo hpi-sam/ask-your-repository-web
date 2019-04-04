@@ -72,7 +72,8 @@ class RegisterForm extends Component<Props, State> {
         username,
         password,
       };
-      dispatch(register(user));
+      const to = this.props.location.state ? this.props.location.state.from : '/';
+      dispatch(register(user, to));
     } else {
       this.handleError('missingInput', true);
     }
