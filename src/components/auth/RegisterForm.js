@@ -124,8 +124,8 @@ class RegisterForm extends Component<Props, State> {
       <Form onSubmit={this.handleSubmit} className="Form">
         <div className="Form__title">Register</div>
         {this.printError()}
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Username:
             <Input
               type="text"
@@ -137,8 +137,8 @@ class RegisterForm extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Email:
             <Input
               type="text"
@@ -150,8 +150,8 @@ class RegisterForm extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Password:
             <Input
               type="password"
@@ -163,8 +163,8 @@ class RegisterForm extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Confirm Password:
             <Input
               type="password"
@@ -178,10 +178,10 @@ class RegisterForm extends Component<Props, State> {
         </div>
 
         <div className="Form__buttons">
-          <Button className="Form__buttons__item" data-cy="register-submit-button">
+          <Button className="Form__buttons__item Form__buttons__item__blue" data-cy="register-submit-button">
             Register
           </Button>
-          <Link to="/" className="Form__buttons__cancel">Cancel</Link>
+          <Link to="/" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
         </div>
       </Form>
     );

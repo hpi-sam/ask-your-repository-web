@@ -14,9 +14,17 @@ type Props = {
 function Settings(props: Props) {
   return (
     <div className="Settings">
-      <h1>Settings</h1>
-      <GooglePermissions />
-      {props.user.hasPassword && <Password />}
+      <div className="Settings__title"> Settings </div>
+      <div className="Settings__item">
+        <div className="Settings__item__title">Permissions</div>
+        <GooglePermissions />
+      </div>
+      {props.user.hasPassword && (
+        <div className="Settings__item">
+          <div className="Settings__item__title">Change Password</div>
+          <Password />
+        </div>
+      )}
     </div>
   );
 }

@@ -9,7 +9,7 @@ import ValidationErrors from '../utility/form/ValidationErrors';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
 import type { Errors } from '../../models/Errors';
-import './Password.scss';
+import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
@@ -104,11 +104,10 @@ class Password extends Component<Props, State> {
     } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit} className="ChangePasswordForm">
-        <h2>Change Password</h2>
+      <Form onSubmit={this.handleSubmit} className="Form">
         {this.printError()}
-        <div className="form-input">
-          <label>
+        <div className="Form__input">
+          <label className="Form__input__label">
             Old password:
             <Input
               type="password"
@@ -119,8 +118,8 @@ class Password extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label>
+        <div className="Form__input">
+          <label className="Form__input__label">
             New password:
             <Input
               type="password"
@@ -131,8 +130,8 @@ class Password extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label>
+        <div className="Form__input">
+          <label className="Form__input__label">
             Confirm new password:
             <Input
               type="password"
@@ -143,8 +142,8 @@ class Password extends Component<Props, State> {
             />
           </label>
         </div>
-        <div>
-          <Button data-cy="change-password-submit-button">
+        <div className="Form__buttons">
+          <Button className="Form__buttons__item" data-cy="change-password-submit-button">
             Submit
           </Button>
         </div>
