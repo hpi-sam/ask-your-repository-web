@@ -1,114 +1,67 @@
 // @flow
-import _ from 'lodash';
-import shortid from 'shortid';
 import React, { Component } from 'react';
 import Tagging from './Tagging';
-import type { Image } from '../../models/Image';
+import type { TaggableImage } from '../../hooks/useTaggableImage';
 import TagSelector from './form/TagSelector';
 import Tag from '../utility/Tag';
 import type { Tag as TagType } from '../../models/Tag';
 
 type Props = {
-  images: Array<Image>,
-  selectedImageId: string,
-  onImageTagsChange: (imageId: string, tags: Array<TagType>) => void,
-};
-
-type State = {
+  image: TaggableImage,
   multiTags: Array<TagType>,
+  removeMultiTag: (tag: TagType) => void,
+  addMultiTag: (tag: TagType) => void,
 };
 
-class MultiTagging extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+class MultiTagging extends Component<Props> {
+  handleRemoveTag = (tag: TagType) => {
+    const { image, multiTags, removeMultiTag } = this.props;
 
-    this.state = {
-      multiTags: [],
-    };
-  }
-
-  getSelectedImage(): Image {
-    const { images, selectedImageId } = this.props;
-    const selectedImage = images.find(image => image.id === selectedImageId);
-
-    if (!selectedImage) {
-      throw new Error('MultiTagging: Could not find selected image in given images.');
-    }
-
-    return selectedImage;
-  }
-
-  addTagToSelected = (tag: TagType) => {
-    this.addTagToImage(this.getSelectedImage(), tag);
+    if (image) image.removeTag(tag);
+    if (multiTags.includes(tag)) removeMultiTag(tag);
   };
 
-  removeTagFromSelected = (tag: TagType) => {
-    this.removeTagFromImage(this.getSelectedImage(), tag);
-  };
-
-  addMultiTag = (multiTag: TagType) => {
-    this.setState(state => ({ multiTags: [...state.multiTags, multiTag] }));
-
-    this.props.images.forEach((image) => {
-      this.addTagToImage(image, multiTag);
-    });
-  };
-
-  removeMultiTag = (multiTag: TagType) => {
-    this.setState(state => ({
-      multiTags: state.multiTags.filter(existingMultiTag => existingMultiTag !== multiTag),
-    }));
-
-    this.props.images.forEach((image) => {
-      this.removeTagFromImage(image, multiTag);
-    });
-  };
-
-  addTagToImage(image: Image, tag: TagType) {
-    this.props.onImageTagsChange(image.id, _.uniq([...image.userTags, tag]));
-  }
-
-  removeTagFromImage(image: Image, tag: TagType) {
-    this.props.onImageTagsChange(
-      image.id, image.userTags.filter(existingTag => existingTag !== tag),
-    );
-  }
-
-  createMultiTag(tag: TagType) {
-    const { multiTags } = this.state;
+  createMultiTag = (tag: TagType) => {
+    const {
+      image, multiTags, addMultiTag, removeMultiTag,
+    } = this.props;
 
     return (
       <Tag
-        key={shortid.generate()}
+        key={`${image.id}-${tag}`}
         className="TagSelector__tag"
         caption={tag}
         clickable
+        removable
+        onRemove={this.handleRemoveTag}
         isMultiTag={multiTags.includes(tag)}
-        onClick={multiTags.includes(tag) ? this.removeMultiTag : this.addMultiTag}
+        onClick={multiTags.includes(tag) ? removeMultiTag : addMultiTag}
         data-cy="tag-selector-tag"
       />
     );
-  }
+  };
 
   createMultiTagSelector() {
+    const { image } = this.props;
+
     return (
       <TagSelector
-        addTag={this.addTagToSelected}
-        removeTag={this.removeTagFromSelected}
-        tags={this.getSelectedImage().userTags}
-        renderTag={(tag: TagType) => this.createMultiTag(tag)}
+        addTag={image.addTag}
+        removeTag={image.removeTag}
+        tags={image.userTags}
+        renderTag={this.createMultiTag}
       />
     );
   }
 
   render() {
-    const image = this.getSelectedImage();
+    const { image } = this.props;
 
     return (
       <Tagging
         image={image}
-        addTag={this.addTagToSelected}
-        removeTag={this.removeTagFromSelected}
+        addTag={image.addTag}
+        removeTag={image.removeTag}
         tagSelector={this.createMultiTagSelector()}
       />
     );

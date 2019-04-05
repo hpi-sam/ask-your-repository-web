@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Tagging from './Tagging';
 import TagSelector from './form/TagSelector';
 import type { TaggableImage } from '../../hooks/useTaggableImage';
+import type { Tag as TagType } from '../../models/Tag';
+import Tag from '../utility/Tag';
 import './Tagging.scss';
 
 type Props = {
@@ -10,6 +12,21 @@ type Props = {
 };
 
 class SingleTagging extends Component<Props> {
+  createSingleTag = (tag: TagType) => {
+    const { image } = this.props;
+
+    return (
+      <Tag
+        key={`${image.id}-${tag}`}
+        className="TagSelector__tag"
+        caption={tag}
+        removable
+        onRemove={image.removeTag}
+        data-cy="tag-selector-tag"
+      />
+    );
+  };
+
   createSingleTagSelector() {
     const { image } = this.props;
 
@@ -18,6 +35,7 @@ class SingleTagging extends Component<Props> {
         tags={image.userTags}
         addTag={image.addTag}
         removeTag={image.removeTag}
+        renderTag={this.createSingleTag}
       />
     );
   }

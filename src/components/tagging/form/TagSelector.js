@@ -1,8 +1,6 @@
 // @flow
 import * as React from 'react';
 import type { Node } from 'react';
-import shortid from 'shortid';
-import Tag from '../../utility/Tag';
 import type { Tag as TagType } from '../../../models/Tag';
 import './TagSelector.scss';
 
@@ -18,17 +16,6 @@ type State = {
 };
 
 class TagSelector extends React.Component<Props, State> {
-  static defaultProps = {
-    renderTag: (tag: TagType) => (
-      <Tag
-        key={shortid.generate()}
-        className="TagSelector__tag"
-        caption={tag}
-        data-cy="tag-selector-tag"
-      />
-    ),
-  };
-
   constructor(props: Props) {
     super(props);
 

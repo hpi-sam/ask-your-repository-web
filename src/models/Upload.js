@@ -6,5 +6,5 @@ export type Upload = {
   file: File,
   status: 'ongoing' | 'succeeded' | 'failed',
   image: ?TaggableImage,
-  retry: () => void,
+  retry: () => Promise<void>,
 }

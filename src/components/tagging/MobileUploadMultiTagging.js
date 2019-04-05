@@ -12,11 +12,13 @@ import MobileTaggingImagesPreview from './MobileTaggingImagesPreview';
 import ActivityIndicator from '../utility/ActivityIndicator';
 import type { Upload } from '../../models/Upload';
 import SourceSetFactory from '../../factories/SourceSetFactory';
-import './MobileTagging.scss';
 import { Button } from '../utility/buttons';
-import useMultiTags from '../../hooks/useMultiTags';
+import './MobileTagging.scss';
 
 type Props = {
+  multiTags: Array<TagType>,
+  addMultiTag: (tag: TagType) => void,
+  removeMultiTag: (tag: TagType) => void,
   uploads: Array<Upload>,
   selectedUpload: Upload,
   setSelectedUpload: (uploadId: string) => void,
@@ -25,27 +27,13 @@ type Props = {
 };
 
 function MobileUploadMultiTagging(props: Props) {
-  const { selectedUpload, uploads } = props;
-
-  function onAddMultiTag(multiTag: TagType) {
-    uploads.forEach(({ image }) => {
-      if (!image) return;
-      image.addTag(multiTag);
-    });
-  }
-
-  function onRemoveMultiTag(multiTag: TagType) {
-    uploads.forEach(({ image }) => {
-      if (!image || image.id === selectedUpload.image.id) return;
-      image.removeTag(multiTag);
-    });
-  }
-
   const {
     multiTags,
     addMultiTag,
     removeMultiTag,
-  } = useMultiTags(onAddMultiTag, onRemoveMultiTag);
+    selectedUpload,
+    uploads,
+  } = props;
 
   const { image, status } = selectedUpload;
 
@@ -75,7 +63,6 @@ function MobileUploadMultiTagging(props: Props) {
 
     return areAllImagesUploaded && areAllImagesTagged;
   }
-
 
   return (
     <div className="MobileTagging">

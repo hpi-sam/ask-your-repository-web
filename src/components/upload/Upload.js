@@ -1,25 +1,18 @@
 // @flow
-import React, { Component, Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import uuidv4 from 'uuid/v4';
 import { useMedia } from 'react-use';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
-import { FiSave } from 'react-icons/fi';
 import FileDropzone from './FileDropzone';
 import ImageService from '../../services/ImageService';
-import { SaveButton } from '../utility/buttons';
-import UploadList from './UploadList';
 import UploadKeyboardListener from './UploadKeyboardHandler';
-import MultiTagging from '../tagging/MultiTagging';
-import type { Image } from '../../models/Image';
 import type { Team } from '../../models/Team';
-import type { Tag } from '../../models/Tag';
-import type { Upload as UploadType } from '../../models/Upload';
 import type { AppState } from '../../state/AppState';
-import './Upload.scss';
-import useUploads from '../../hooks/useUploads';
-import MobileTagging from '../tagging/MobileTagging';
 import MobileUploadMultiTagging from '../tagging/MobileUploadMultiTagging';
+import useTaggableUploads from '../../hooks/useTaggableUploads';
+import UploadMultiTagging from './UploadMultiTagging';
+import './Upload.scss';
 
 type Props = {
   dispatch: Function,
@@ -29,14 +22,15 @@ type Props = {
 function Upload(props: Props) {
   const {
     uploads,
-    getUploadOfImage,
     getSelectedUpload,
     hasSelectedUpload,
     setSelectedUpload,
-    updateUpload,
     addUploads,
     getSuccessfulImages,
-  } = useUploads(props.activeTeam);
+    multiTags,
+    addMultiTag,
+    removeMultiTag,
+  } = useTaggableUploads(props.activeTeam);
   const isMobile = useMedia('(max-width: 600px)');
 
   function handleFileDrop(files: File[]) {
@@ -67,18 +61,8 @@ function Upload(props: Props) {
     props.dispatch(push('/images'));
   }
 
-  function handleImageTagsChange(imageId: string, userTags: Array<Tag>) {
-    const upload = getUploadOfImage(imageId);
-    if (!upload) return;
-    updateUpload(upload.id, { image: { ...upload.image, userTags } });
-  }
-
-  function isFormSaveable() {
-    const images = getSuccessfulImages();
-    return images.every(image => image.userTags.length !== 0);
-  }
-
   const selectedUpload = getSelectedUpload();
+  const TaggingComponent = isMobile ? MobileUploadMultiTagging : UploadMultiTagging;
 
   return (
     <div className="Upload">
@@ -89,48 +73,20 @@ function Upload(props: Props) {
       />
       {uploads.length > 0 ? (
         <Fragment>
-          {isMobile && selectedUpload ? (
-            <MobileUploadMultiTagging
-              selectedUpload={selectedUpload}
-              setSelectedUpload={setSelectedUpload}
-              uploads={uploads}
-              onSubmit={handleSubmitClick}
-              onFileDrop={handleFileDrop}
-            />
-          ) : (
+          {selectedUpload && (
             <Fragment>
-              <div className="Upload__tagging">
-                {selectedUpload && selectedUpload.image && (
-                  <MultiTagging
-                    selectedImageId={selectedUpload.image.id}
-                    onImageTagsChange={handleImageTagsChange}
-                    images={getSuccessfulImages()}
-                  />
-                )}
-              </div>
-              <div className="Upload__uploads">
-                <UploadList
-                  onDrop={handleFileDrop}
+              {selectedUpload && (
+                <TaggingComponent
+                  multiTags={multiTags}
+                  addMultiTag={addMultiTag}
+                  removeMultiTag={removeMultiTag}
+                  selectedUpload={selectedUpload}
+                  setSelectedUpload={setSelectedUpload}
                   uploads={uploads}
-                  onItemClick={setSelectedUpload}
-                  selectedUploadId={selectedUpload && selectedUpload.id}
+                  onSubmit={handleSubmitClick}
+                  onFileDrop={handleFileDrop}
                 />
-                {!isFormSaveable && (
-                  <div className="Upload__save-disabled-hint">
-                    Add at least one tag to your image(s).
-                  </div>
-                )}
-                <SaveButton
-                  onClick={handleSubmitClick}
-                  className="Upload__save-button"
-                  disabled={!isFormSaveable()}
-                >
-                  <FiSave className="Upload__save-button__icon" />
-                  <span className="Upload__save-button__text">
-                    Finish
-                  </span>
-                </SaveButton>
-              </div>
+              )}
             </Fragment>
           )}
         </Fragment>
