@@ -1,8 +1,8 @@
 // @flow
 import React, { useState, useEffect, useRef } from 'react';
 import { IoIosReturnLeft, IoIosSave } from 'react-icons/io';
-import { SubmitButton, SaveButton } from '../utility/buttons';
-import type { Tag } from '../../models/Tag';
+import { SubmitButton, SaveButton } from '../../utility/buttons';
+import type { Tag } from '../../../models/Tag';
 
 type Props = {
   onTagSubmit: (tag: Tag) => void,

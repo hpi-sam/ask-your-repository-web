@@ -9,8 +9,8 @@ import ImageService from '../../services/ImageService';
 import UploadKeyboardListener from './UploadKeyboardHandler';
 import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
-import MobileUploadMultiTagging from '../tagging/MobileUploadMultiTagging';
-import useTaggableUploads from '../../hooks/useTaggableUploads';
+import MobileUploadMultiTagging from '../tagging/mobile/MobileUploadMultiTagging';
+import useTaggableUploads from '../../hooks/tagging/useTaggableUploads';
 import UploadMultiTagging from './UploadMultiTagging';
 import './Upload.scss';
 

@@ -3,9 +3,9 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
 import Tagging from './Tagging';
-import TaggingForm from './form/TaggingForm';
+import TaggingForm from './TaggingForm';
 import TaggingImagePreview from './TaggingImagePreview';
-import ImageFactory from '../../factories/ImageFactory';
+import ImageFactory from '../../../factories/ImageFactory';
 
 const image = ImageFactory.createStaticDummyImage();
 

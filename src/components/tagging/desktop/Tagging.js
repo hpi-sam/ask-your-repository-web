@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-import TaggingForm from './form/TaggingForm';
+import TaggingForm from './TaggingForm';
 import TaggingImagePreview from './TaggingImagePreview';
-import type { Image } from '../../models/Image';
-import type { Tag } from '../../models/Tag';
+import type { Image } from '../../../models/Image';
+import type { Tag } from '../../../models/Tag';
 import './Tagging.scss';
 
 type Props = {

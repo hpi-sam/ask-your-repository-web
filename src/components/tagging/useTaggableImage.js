@@ -1,12 +1,7 @@
 // @flow
-import type { Image } from '../models/Image';
-import useImage from './useImage';
-import type { Tag } from '../models/Tag';
-
-export type TaggableImage = Image & {
-  addTag: (tag: Tag) => void,
-  removeTag: (tag: Tag) => void,
-};
+import useImage from '../images/useImage';
+import type { Tag } from '../../models/Tag';
+import type { TaggableImage } from '../../models/Image';
 
 function useTaggableImage(imageId: string): ?TaggableImage {
   const { image, setImage } = useImage(imageId);

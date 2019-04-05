@@ -1,18 +1,17 @@
 // @flow
 import React, { Fragment } from 'react';
 import Swipe from 'react-easy-swipe';
-import { Link } from 'react-router-dom';
-import { IoIosClose, IoIosRepeat } from 'react-icons/io';
+import { IoIosRepeat } from 'react-icons/io';
 import type { DropFilesEventHandler } from 'react-dropzone';
-import Tag from '../utility/Tag';
-import type { Tag as TagType } from '../../models/Tag';
-import TagSuggestions from './form/TagSuggestions';
+import { Button } from '../../utility/buttons';
+import Tag from '../../utility/Tag';
 import MobileTaggingInput from './MobileTaggingInput';
 import MobileTaggingImagesPreview from './MobileTaggingImagesPreview';
-import ActivityIndicator from '../utility/ActivityIndicator';
-import type { Upload } from '../../models/Upload';
-import SourceSetFactory from '../../factories/SourceSetFactory';
-import { Button } from '../utility/buttons';
+import ActivityIndicator from '../../utility/ActivityIndicator';
+import SourceSetFactory from '../../../factories/SourceSetFactory';
+import MobileTaggingHeader from './MobileTaggingHeader';
+import type { Tag as TagType } from '../../../models/Tag';
+import type { Upload } from '../../../models/Upload';
 import './MobileTagging.scss';
 
 type Props = {
@@ -25,7 +24,7 @@ type Props = {
   onFileDrop: DropFilesEventHandler,
   onSubmit: () => {},
 };
-
+//
 function MobileUploadMultiTagging(props: Props) {
   const {
     multiTags,
@@ -66,31 +65,7 @@ function MobileUploadMultiTagging(props: Props) {
 
   return (
     <div className="MobileTagging">
-      <header>
-        <div className="MobileTagging__suggestions-container">
-          <h3 className="MobileTagging__suggestions__title">
-            Suggestions
-            <span className="MobileTagging__suggestions__tip">
-              press to apply
-            </span>
-          </h3>
-          <div className="MobileTagging__suggestions">
-            {status === 'ongoing' && (
-              <span>Loading...</span>
-            )}
-            {status === 'succeeded' && image && (
-              <TagSuggestions
-                tags={image.userTags}
-                onSuggestionClick={image.addTag}
-              />
-            )}
-          </div>
-        </div>
-        <Link to="back" className="MobileTagging__cancel">
-          <IoIosClose />
-          <span>Cancel</span>
-        </Link>
-      </header>
+      <MobileTaggingHeader image={selectedUpload.image} />
       <MobileTaggingImagesPreview
         uploads={uploads}
         selectedUpload={selectedUpload}
@@ -111,7 +86,7 @@ function MobileUploadMultiTagging(props: Props) {
               <br />
               Please try again.
             </span>
-            <Button onClick={() => { selectedUpload.retry(); }}>
+            <Button onClick={selectedUpload.retry}>
               <IoIosRepeat />
               <span>Retry</span>
             </Button>

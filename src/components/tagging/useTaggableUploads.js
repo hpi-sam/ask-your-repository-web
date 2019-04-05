@@ -2,10 +2,10 @@
 import { useEffect } from 'react';
 import _ from 'lodash';
 import useMultiTags from './useMultiTags';
-import useUploads from './useUploads';
-import type { Tag } from '../models/Tag';
-import type { Upload } from '../models/Upload';
-import type { Team } from '../models/Team';
+import useUploads from '../upload/useUploads';
+import type { Tag } from '../../models/Tag';
+import type { Upload } from '../../models/Upload';
+import type { Team } from '../../models/Team';
 
 function useTaggableUploads(team: ?Team) {
   const {

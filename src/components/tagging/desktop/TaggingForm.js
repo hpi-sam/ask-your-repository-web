@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-import TagSuggestions from './TagSuggestions';
+import TagSuggestions from '../shared/TagSuggestions';
 import type { Tag } from '../../../models/Tag';
 import './TaggingForm.scss';
 

@@ -3,8 +3,8 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import type { DropFilesEventHandler } from 'react-dropzone';
 import { IoIosAdd } from 'react-icons/io';
-import type { Upload } from '../../models/Upload';
 import MobileTaggingImagesPreviewItem from './MobileTaggingImagesPreviewItem';
+import type { Upload } from '../../../models/Upload';
 import './MobileTaggingImagesPreview.scss';
 
 type Props = {

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import type { Image } from '../../models/Image';
+import type { Image } from '../../../models/Image';
 import './TaggingImagePreview.scss';
 
 type Props = {

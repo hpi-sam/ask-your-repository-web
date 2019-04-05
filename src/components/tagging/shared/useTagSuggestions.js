@@ -1,8 +1,8 @@
 // @flow
 import { useState, useEffect } from 'react';
-import TagService from '../services/TagService';
-import type { Tag } from '../models/Tag';
-import type { Team } from '../models/Team';
+import TagService from '../../../services/TagService';
+import type { Tag } from '../../../models/Tag';
+import type { Team } from '../../../models/Team';
 
 function useTagSuggestions(team: ?Team, tags: Tag[]) {
   const [suggestions, setSuggestions] = useState([]);

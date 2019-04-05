@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import Tagging from './Tagging';
-import type { TaggableImage } from '../../hooks/useTaggableImage';
-import TagSelector from './form/TagSelector';
-import Tag from '../utility/Tag';
-import type { Tag as TagType } from '../../models/Tag';
+import TagSelector from '../shared/TagSelector';
+import Tag from '../../utility/Tag';
+import type { Tag as TagType } from '../../../models/Tag';
+import type { TaggableImage } from '../../../models/Image';
 
 type Props = {
   image: TaggableImage,

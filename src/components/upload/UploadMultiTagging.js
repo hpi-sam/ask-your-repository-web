@@ -5,7 +5,7 @@ import type { DropFilesEventHandler } from 'react-dropzone';
 import type { Tag as TagType } from '../../models/Tag';
 import type { Upload } from '../../models/Upload';
 import { SaveButton } from '../utility/buttons';
-import MultiTagging from '../tagging/MultiTagging';
+import MultiTagging from '../tagging/desktop/MultiTagging';
 import UploadList from './UploadList';
 
 type Props = {

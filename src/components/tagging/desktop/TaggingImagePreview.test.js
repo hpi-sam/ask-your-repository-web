@@ -2,7 +2,7 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import ImageFactory from '../../factories/ImageFactory';
+import ImageFactory from '../../../factories/ImageFactory';
 import TaggingImagePreview from './TaggingImagePreview';
 
 jest.mock('../../config/api', () => ({
