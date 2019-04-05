@@ -1,7 +1,7 @@
 // @flow
 import { useState, useEffect } from 'react';
-import ImageService from '../services/ImageService';
-import type { Image } from '../models/Image';
+import ImageService from '../../services/ImageService';
+import type { Image } from '../../models/Image';
 
 type State<S> = [S, ((S => S) | S) => void];
 

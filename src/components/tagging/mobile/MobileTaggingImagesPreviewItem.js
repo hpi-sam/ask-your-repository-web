@@ -4,8 +4,8 @@ import { blobToDataURL } from 'blob-util';
 import { Bounce } from 'react-activity';
 import { IoIosRepeat } from 'react-icons/io';
 import classNames from 'classnames';
-import { Button } from '../utility/buttons';
-import type { Upload } from '../../models/Upload';
+import { Button } from '../../utility/buttons';
+import type { Upload } from '../../../models/Upload';
 import './MobileTaggingImagesPreview.scss';
 import 'react-activity/dist/react-activity.css';
 

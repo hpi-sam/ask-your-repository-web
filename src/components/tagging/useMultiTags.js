@@ -1,6 +1,6 @@
 // @flow
 import { useState } from 'react';
-import type { Tag } from '../models/Tag';
+import type { Tag } from '../../models/Tag';
 
 function useMultiTags(
   onAdd: (multiTag: Tag) => void = () => {},

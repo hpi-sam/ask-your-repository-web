@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import TagSuggestion from './TagSuggestion';
-import useTagSuggestions from '../../../hooks/useTagSuggestions';
+import useTagSuggestions from './useTagSuggestions';
 import type { Tag } from '../../../models/Tag';
 import './TagSuggestions.scss';
 import type { AppState } from '../../../state/AppState';

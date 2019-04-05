@@ -10,3 +10,8 @@ export type Image = {
   textTags: Array<Tag>,
   score: number,
 };
+
+export type TaggableImage = Image & {
+  addTag: (tag: Tag) => void,
+  removeTag: (tag: Tag) => void,
+};
