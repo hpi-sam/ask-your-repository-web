@@ -8,7 +8,7 @@ function Footer() {
       <footer className="Footer">
         <LegalList />
       </footer>
-      <div className="Phantom" />
+      <div className="Footer__space" />
     </div>
   );
 }

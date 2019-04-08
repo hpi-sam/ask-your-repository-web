@@ -4,11 +4,9 @@ import './LandingPageFooter.scss';
 
 function LandingPageFooter() {
   return (
-    <div>
-      <footer className="LandingPageFooter">
-        <LegalList />
-      </footer>
-    </div>
+    <footer className="LandingPageFooter">
+      <LegalList />
+    </footer>
   );
 }
 
