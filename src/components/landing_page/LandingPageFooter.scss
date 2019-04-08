@@ -3,7 +3,12 @@
   align-items: center;
   justify-content: center;
   height: var(--footer-height);
+  padding: 0 20px;
   font-size: 14px;  
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 
   &__legal-list {
     margin: 0;
