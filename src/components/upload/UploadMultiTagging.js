@@ -16,7 +16,7 @@ type Props = {
   selectedUpload: Upload,
   setSelectedUpload: (uploadId: string) => void,
   onFileDrop: DropFilesEventHandler,
-  onSubmit: () => {},
+  onSubmit: () => Promise<void>,
 };
 
 function UploadMultiTagging(props: Props) {

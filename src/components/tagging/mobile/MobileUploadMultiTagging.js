@@ -20,7 +20,7 @@ type Props = {
   selectedUpload: Upload,
   setSelectedUpload: (uploadId: string) => void,
   onFileDrop: DropFilesEventHandler,
-  onSubmit: () => void,
+  onSubmit: () => Promise<void>,
 };
 
 function MobileUploadMultiTagging(props: Props) {

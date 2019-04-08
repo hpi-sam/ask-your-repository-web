@@ -9,7 +9,7 @@ import './MobileTagging.scss';
 
 type Props = {
   image: TaggableImage,
-  onSubmit: () => void,
+  onSubmit: () => Promise<void>,
 };
 
 function MobileTagging(props: Props) {
