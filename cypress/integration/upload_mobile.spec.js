@@ -1,28 +1,10 @@
-context('Upload', () => {
-  let activeTeam;
-
+context('Mobile Upload', () => {
   beforeEach(() => {
+    cy.viewport('iphone-6');
     cy.resetDB();
     cy.authenticate();
-    cy.setActiveTeam()
-      .then((team) => {
-        activeTeam = team;
-      });
+    cy.setActiveTeam();
     cy.visit('/upload');
-  });
-
-  context('uploading a single image', () => {
-    beforeEach(() => {
-      cy.server();
-      cy.route({ method: 'POST', url: '/images' }).as('uploadImage');
-      cy.get('[data-cy=upload-dropzone]').drop(['sheep.jpg']);
-    });
-
-    it('uploads the image for the correct team', () => {
-      cy.wait('@uploadImage')
-        .its('response.body.team_id')
-        .should('be.eq', activeTeam.id);
-    });
   });
 
   context('tagging a single uploaded image', () => {
@@ -35,10 +17,11 @@ context('Upload', () => {
     });
 
     it('saves the entered tags correctly', () => {
-      cy.get('[data-cy=tag-selector-input]')
+      cy.get('[data-cy=tag-input]')
         .type('Sheep{enter}')
-        .type('Sweet{enter}{backspace}') // add and delete tag
+        .type('Goat{enter}')
         .type('Cute{enter}');
+      cy.get('[data-cy=tag-remove-button-Goat]').click();
 
       cy.get('[data-cy=save-button]').click();
 
@@ -52,7 +35,7 @@ context('Upload', () => {
     });
   });
 
-  context('uploading multiple images', () => {
+  context('tagging multiple uploaded images', () => {
     beforeEach(() => {
       cy.server();
       cy.route({ method: 'POST', url: '/images' }).as('uploadImage');
@@ -62,19 +45,19 @@ context('Upload', () => {
     });
 
     it('saves the entered tags and multi tags correctly', () => {
-      cy.get('[data-cy=tag-selector-input]', { timeout: 20000 })
-        .type('Cute{enter}')
-        .type('Sheep{enter}');
+      cy.get('[data-cy=tag-input]', { timeout: 20000 })
+        .type('Sheep{enter}')
+        .type('Cute{enter}');
 
       // set 'Cute' as multi tag
-      cy.get('[data-cy=tag-selector-tag]').eq(0)
+      cy.get('[data-cy=tag-Cute]').eq(0)
         .click();
 
       // select next image
       cy.get('[data-cy=upload-list-item]').eq(1)
         .click();
 
-      cy.get('[data-cy=tag-selector-input]')
+      cy.get('[data-cy=tag-input]')
         .type('Goat{enter}');
 
       cy.get('[data-cy=save-button]').click();

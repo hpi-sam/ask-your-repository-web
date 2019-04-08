@@ -11,7 +11,7 @@ type Props = {
   image: TaggableImage,
   renderTag: (tag: Tag) => Node,
   isSaveable: boolean,
-  onSubmit: () => void,
+  onSubmit: () => Promise<void>,
   onSwipeLeft: () => void,
   onSwipeRight: () => void,
 };

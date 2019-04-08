@@ -6,7 +6,7 @@ import type { Tag } from '../../../models/Tag';
 
 type Props = {
   onTagSubmit: (tag: Tag) => void,
-  onSave: () => void,
+  onSave: () => Promise<void>,
   isSaveDisabled: boolean,
 };
 
