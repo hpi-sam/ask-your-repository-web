@@ -95,7 +95,7 @@ class GooglePermissions extends Component<Props, State> {
 
   render() {
     return (
-      <div className="GooglePermissions">      
+      <div className="GooglePermissions">
         {!this.isConnected() && (
           <GoogleLogin
             className="google-button"

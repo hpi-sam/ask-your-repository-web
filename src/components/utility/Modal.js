@@ -42,7 +42,6 @@ class ModalWindow extends Component<Props, State> {
     return (
       <Modal
         isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
         className="ModalView__modal"
         overlayClassName="ModalView__overlay"
       >

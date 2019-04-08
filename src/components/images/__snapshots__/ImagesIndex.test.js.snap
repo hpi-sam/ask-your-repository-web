@@ -5,6 +5,7 @@ exports[`<ImagesIndex /> renders correctly 1`] = `
   activeTeam={
     Object {
       "id": "2dedf601-f0bf-4290-ac3c-f5761234d068",
+      "joinKey": "bbaf37e7-6d47-45e3-8538-a20a48920ed7",
       "members": Array [
         Object {
           "email": "test@example.com",

@@ -12,6 +12,7 @@ import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
+  location: { state: { from: string }},
 };
 
 type State = {
@@ -54,7 +55,7 @@ class RegisterForm extends Component<Props, State> {
       password,
       passwordConfirm,
     } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, location } = this.props;
 
     if (email && username && password && passwordConfirm) {
       if (password !== passwordConfirm) {
@@ -72,7 +73,7 @@ class RegisterForm extends Component<Props, State> {
         username,
         password,
       };
-      const to = this.props.location.state ? this.props.location.state.from : '/';
+      const to = location.state ? location.state.from : '/';
       dispatch(register(user, to));
     } else {
       this.handleError('missingInput', true);
@@ -122,7 +123,7 @@ class RegisterForm extends Component<Props, State> {
     } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit} className="Form">
+      <Form onSubmit={this.handleSubmit} className="Form Form__centered">
         <div className="Form__title">Register</div>
         {this.printError()}
         <div className="Form__input">

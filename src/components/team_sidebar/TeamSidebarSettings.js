@@ -40,7 +40,7 @@ class TeamSidebarSettings extends Component<Props, State> {
 
   invitePeople = () => {
     this.setState(prevState => ({
-      showInvitation: !prevState.showInvitation
+      showInvitation: !prevState.showInvitation,
     }));
   };
 
@@ -53,7 +53,7 @@ class TeamSidebarSettings extends Component<Props, State> {
           type="button"
           onClick={this.handleDropdownClick}
           className="TeamSidebar__dropdown__button"
-          data-cy="user-dropdown-button"
+          data-cy="team-sidebar-settings-dropdown-button"
         >
           <FaEllipsisV />
         </button>
@@ -62,11 +62,12 @@ class TeamSidebarSettings extends Component<Props, State> {
             <button
               type="button"
               onClick={this.invitePeople}
+              data-cy="team-sidebar-settings-invite-button"
             >
               Invite people
             </button>
             <div>
-            {showInvitation && (<TeamInvitationLink team={team} />)}
+              {showInvitation && (<TeamInvitationLink team={team} />)}
             </div>
           </div>
           <button

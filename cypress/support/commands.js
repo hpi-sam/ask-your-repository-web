@@ -24,9 +24,9 @@ Cypress.Commands.add('setActiveTeam', () => cy.window()
       });
   }));
 
-Cypress.Commands.add('authenticate', () => cy.createUser({
-  username: 'jenny',
-  email: 'jenny@example.com',
+Cypress.Commands.add('authenticate', (username = 'jenny', email = 'jenny@example.com') => cy.createUser({
+  username,
+  email,
   password: 'secret',
 }).then((user) => {
   const options = {

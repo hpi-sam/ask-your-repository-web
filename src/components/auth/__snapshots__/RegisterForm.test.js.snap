@@ -5,11 +5,11 @@ exports[`<RegisterForm /> renders correctly 1`] = `
   dispatch={[Function]}
 >
   <Form(t)
-    className="Form"
+    className="Form Form__centered"
     onSubmit={[Function]}
   >
     <t
-      className="Form"
+      className="Form Form__centered"
       getValues={[Function]}
       hideError={[Function]}
       onSubmit={[Function]}
@@ -18,7 +18,7 @@ exports[`<RegisterForm /> renders correctly 1`] = `
       validateAll={[Function]}
     >
       <form
-        className="Form"
+        className="Form Form__centered"
         onSubmit={[Function]}
       >
         <div
@@ -27,10 +27,10 @@ exports[`<RegisterForm /> renders correctly 1`] = `
           Register
         </div>
         <div
-          className="form-input"
+          className="Form__input"
         >
           <label
-            className="Form__label"
+            className="Form__input__label"
           >
             Username:
             <Control(s)
@@ -67,10 +67,10 @@ exports[`<RegisterForm /> renders correctly 1`] = `
           </label>
         </div>
         <div
-          className="form-input"
+          className="Form__input"
         >
           <label
-            className="Form__label"
+            className="Form__input__label"
           >
             Email:
             <Control(s)
@@ -107,10 +107,10 @@ exports[`<RegisterForm /> renders correctly 1`] = `
           </label>
         </div>
         <div
-          className="form-input"
+          className="Form__input"
         >
           <label
-            className="Form__label"
+            className="Form__input__label"
           >
             Password:
             <Control(s)
@@ -147,10 +147,10 @@ exports[`<RegisterForm /> renders correctly 1`] = `
           </label>
         </div>
         <div
-          className="form-input"
+          className="Form__input"
         >
           <label
-            className="Form__label"
+            className="Form__input__label"
           >
             Confirm Password:
             <Control(s)
@@ -190,16 +190,16 @@ exports[`<RegisterForm /> renders correctly 1`] = `
           className="Form__buttons"
         >
           <Button(s)
-            className="Form__buttons__item"
+            className="Form__buttons__item Form__buttons__item__blue"
             data-cy="register-submit-button"
           >
             <s
-              className="Form__buttons__item"
+              className="Form__buttons__item Form__buttons__item__blue"
               data-cy="register-submit-button"
               hasErrors={false}
             >
               <button
-                className="Form__buttons__item"
+                className="Form__buttons__item Form__buttons__item__blue"
                 data-cy="register-submit-button"
                 disabled={false}
               >
@@ -208,12 +208,12 @@ exports[`<RegisterForm /> renders correctly 1`] = `
             </s>
           </Button(s)>
           <Link
-            className="Form__buttons__cancel"
+            className="Form__buttons__item Form__buttons__item__gray"
             replace={false}
             to="/"
           >
             <a
-              className="Form__buttons__cancel"
+              className="Form__buttons__item Form__buttons__item__gray"
               href="/"
               onClick={[Function]}
             >

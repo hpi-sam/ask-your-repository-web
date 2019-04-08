@@ -40,16 +40,18 @@ class TeamJoin extends Component<Props, State> {
     const { joinKey } = match.params;
     const team = teams.find(element => element.joinKey === joinKey);
     const member = user.id;
-    try {
-      await TeamService.updateMember(team, member);
-      this.setState({
-        team,
-        display: true,
-      });
-    } catch (error) {
-      dispatch(setActiveTeam(team));
-      dispatch(push('/images'));
-      dispatch(flashErrorMessage(error.response.data.error));
+    if (team) {
+      try {
+        await TeamService.updateMember(team, member);
+        this.setState({
+          team,
+          display: true,
+        });
+      } catch (error) {
+        dispatch(setActiveTeam(team));
+        dispatch(push('/images'));
+        dispatch(flashErrorMessage(error.response.data.error));
+      }
     }
   }
 
@@ -86,6 +88,7 @@ class TeamJoin extends Component<Props, State> {
               <Link
                 className="TeamJoin__button"
                 to="/gallery"
+                data-cy="team-join-continue-gallery"
               >
                 Continue to gallery
               </Link>
