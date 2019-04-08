@@ -5,6 +5,11 @@
   height: var(--footer-height);
   padding: 0 20px;
   font-size: 14px;  
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--navbar-background-color);
 
   &__legal-list {
     margin: 0;
@@ -20,4 +25,11 @@
   a {
     color: #aaa;
   }
+}
+
+.Phantom {
+  display: block;
+  padding: 0 20px;
+  height: var(--footer-height);
+  width: 100%;
 }
