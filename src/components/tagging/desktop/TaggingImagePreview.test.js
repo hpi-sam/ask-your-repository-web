@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import ImageFactory from '../../../factories/ImageFactory';
 import TaggingImagePreview from './TaggingImagePreview';
 
-jest.mock('../../config/api', () => ({
+jest.mock('../../../config/api', () => ({
   post: jest.fn(() => Promise.resolve()),
 }));
 

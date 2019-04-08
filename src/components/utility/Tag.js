@@ -60,6 +60,7 @@ class Tag extends Component<Props> {
           type="button"
           disabled={!clickable}
           onClick={this.handleClick}
+          data-cy={`tag-${caption}`}
           {...rest}
         >
           <span className="Tag__caption">

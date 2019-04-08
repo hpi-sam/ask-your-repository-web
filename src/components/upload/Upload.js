@@ -10,7 +10,7 @@ import UploadKeyboardListener from './UploadKeyboardHandler';
 import type { Team } from '../../models/Team';
 import type { AppState } from '../../state/AppState';
 import MobileUploadMultiTagging from '../tagging/mobile/MobileUploadMultiTagging';
-import useTaggableUploads from '../../hooks/tagging/useTaggableUploads';
+import useTaggableUploads from '../tagging/useTaggableUploads';
 import UploadMultiTagging from './UploadMultiTagging';
 import './Upload.scss';
 
@@ -41,6 +41,7 @@ function Upload(props: Props) {
       status: 'ready',
       id: uuidv4(),
       image: null,
+      retry: () => {},
     }));
 
     if (!hasSelectedUpload()) {

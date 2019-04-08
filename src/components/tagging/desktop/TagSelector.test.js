@@ -2,6 +2,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TagSelector from './TagSelector';
+import Tag from '../../utility/Tag';
+import type { Tag as TagType } from '../../../models/Tag';
 
 describe('<TagSelector />', () => {
   let wrapper;
@@ -26,6 +28,16 @@ describe('<TagSelector />', () => {
         removeTag={removeTag}
         addMultiTag={addMultiTag}
         removeMultiTag={removeMultiTag}
+        renderTag={(tag: TagType) => (
+          <Tag
+            key={tag}
+            className="TagSelector__tag"
+            caption={tag}
+            removable
+            onRemove={removeTag}
+            data-cy="tag-selector-tag"
+          />
+        )}
       />
     ));
 

@@ -1,17 +1,15 @@
 // @flow
-import React, { Fragment } from 'react';
-import Swipe from 'react-easy-swipe';
+import React from 'react';
 import { IoIosRepeat } from 'react-icons/io';
 import type { DropFilesEventHandler } from 'react-dropzone';
 import { Button } from '../../utility/buttons';
 import Tag from '../../utility/Tag';
-import MobileTaggingInput from './MobileTaggingInput';
 import MobileTaggingImagesPreview from './MobileTaggingImagesPreview';
 import ActivityIndicator from '../../utility/ActivityIndicator';
-import SourceSetFactory from '../../../factories/SourceSetFactory';
 import MobileTaggingHeader from './MobileTaggingHeader';
 import type { Tag as TagType } from '../../../models/Tag';
 import type { Upload } from '../../../models/Upload';
+import MobileTaggingImage from './MobileTaggingImage';
 import './MobileTagging.scss';
 
 type Props = {
@@ -22,9 +20,9 @@ type Props = {
   selectedUpload: Upload,
   setSelectedUpload: (uploadId: string) => void,
   onFileDrop: DropFilesEventHandler,
-  onSubmit: () => {},
+  onSubmit: () => void,
 };
-//
+
 function MobileUploadMultiTagging(props: Props) {
   const {
     multiTags,
@@ -32,6 +30,7 @@ function MobileUploadMultiTagging(props: Props) {
     removeMultiTag,
     selectedUpload,
     uploads,
+    onSubmit,
   } = props;
 
   const { image, status } = selectedUpload;
@@ -93,37 +92,24 @@ function MobileUploadMultiTagging(props: Props) {
           </div>
         )}
         {status === 'succeeded' && image && (
-          <Fragment>
-            <Swipe
-              onSwipeLeft={prev}
-              onSwipeRight={next}
-            >
-              <img
-                srcSet={SourceSetFactory.create(image.url, [320, 480])}
-                src={image.url}
-                alt={image.userTags.join(' ')}
-                className="MobileTagging__image"
+          <MobileTaggingImage
+            onSwipeLeft={prev}
+            onSwipeRight={next}
+            onSubmit={onSubmit}
+            isSaveable={isSaveable()}
+            image={image}
+            renderTag={(tag: TagType) => (
+              <Tag
+                key={tag}
+                caption={tag}
+                removable
+                onRemove={handleRemoveTag}
+                clickable
+                isMultiTag={multiTags.includes(tag)}
+                onClick={multiTags.includes(tag) ? removeMultiTag : addMultiTag}
               />
-              <div className="MobileTagging__tags">
-                {image.userTags.map(tag => (
-                  <Tag
-                    key={tag}
-                    caption={tag}
-                    removable
-                    onRemove={handleRemoveTag}
-                    clickable
-                    isMultiTag={multiTags.includes(tag)}
-                    onClick={multiTags.includes(tag) ? removeMultiTag : addMultiTag}
-                  />
-                ))}
-              </div>
-            </Swipe>
-            <MobileTaggingInput
-              onTagSubmit={image.addTag}
-              onSave={props.onSubmit}
-              isSaveDisabled={!isSaveable()}
-            />
-          </Fragment>
+            )}
+          />
         )}
       </div>
     </div>
