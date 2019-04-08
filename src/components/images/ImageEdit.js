@@ -5,12 +5,12 @@ import { Redirect } from 'react-router-dom';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import ImageService from '../../services/ImageService';
 import ActivityInidicator from '../utility/ActivityIndicator';
-import MobileTagging from '../tagging/MobileTagging';
-import SingleTagging from '../tagging/SingleTagging';
-import useTaggableImage from '../../hooks/useTaggableImage';
+import MobileTagging from '../tagging/mobile/MobileTagging';
+import SingleTagging from '../tagging/desktop/SingleTagging';
+import useTaggableImage from '../tagging/useTaggableImage';
 import { SaveButton, ButtonLink } from '../utility/buttons';
 import Toolbar from '../utility/Toolbar';
-import type { TaggableImage } from '../../hooks/useTaggableImage';
+import type { TaggableImage } from '../../models/Image';
 
 type Props = {
   match: {

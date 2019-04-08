@@ -1,42 +1,36 @@
 // @flow
 import React from 'react';
-import Tag from '../../utility/Tag';
-import MobileTaggingInput from './MobileTaggingInput';
 import MobileTaggingHeader from './MobileTaggingHeader';
+import MobileTaggingImage from './MobileTaggingImage';
+import Tag from '../../utility/Tag';
 import type { TaggableImage } from '../../../models/Image';
+import type { Tag as TagType } from '../../../models/Tag';
 import './MobileTagging.scss';
 
 type Props = {
   image: TaggableImage,
-  onSubmit: () => {},
+  onSubmit: () => void,
 };
 
 function MobileTagging(props: Props) {
-  const { image } = props;
+  const { image, onSubmit } = props;
 
   return (
     <div className="MobileTagging">
       <MobileTaggingHeader image={image} />
       <div className="MobileTagging__image-container">
-        <img
-          src={image.url}
-          alt={image.userTags.join(' ')}
-          className="MobileTagging__image"
-        />
-        <div className="MobileTagging__tags">
-          {image.userTags.map(tag => (
+        <MobileTaggingImage
+          image={image}
+          onSubmit={onSubmit}
+          isSaveable={image.userTags.length > 0}
+          renderTag={(tag: TagType) => (
             <Tag
               key={tag}
               caption={tag}
               removable
               onRemove={image.removeTag}
             />
-          ))}
-        </div>
-        <MobileTaggingInput
-          onTagSubmit={image.addTag}
-          onSave={props.onSubmit}
-          isSaveDisabled={image.userTags.length === 0}
+          )}
         />
       </div>
     </div>

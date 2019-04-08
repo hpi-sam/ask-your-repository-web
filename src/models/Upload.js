@@ -1,10 +1,10 @@
 // @flow
-import type { TaggableImage } from '../hooks/useTaggableImage';
+import type { TaggableImage } from './Image';
 
 export type Upload = {
   id: string,
   file: File,
-  status: 'ongoing' | 'succeeded' | 'failed',
+  status: 'ready' | 'ongoing' | 'succeeded' | 'failed',
   image: ?TaggableImage,
-  retry: () => Promise<void>,
+  retry: () => Promise<void> | void,
 }

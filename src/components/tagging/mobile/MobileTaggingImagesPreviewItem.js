@@ -44,6 +44,7 @@ function MobileTaggingImagesPreview(props: Props) {
       className={className}
       onClick={handleClick}
       type="button"
+      data-cy="upload-list-item"
     >
       <img
         src={dataURL}
