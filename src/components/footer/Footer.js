@@ -1,18 +1,12 @@
 import React from 'react';
+import LegalList from './LegalList';
 import './Footer.scss';
 
 function Footer() {
   return (
     <div>
       <footer className="Footer">
-        <ul className="Footer__legal-list">
-          <li>
-            <a href="/static/imprint.html">Impressum</a>
-          </li>
-          <li>
-            <a href="/static/privacy.html">Datenschutzerklärung</a>
-          </li>
-        </ul>
+        <LegalList />
       </footer>
       <div className="Phantom" />
     </div>

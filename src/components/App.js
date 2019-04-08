@@ -7,7 +7,6 @@ import RegisterForm from './auth/RegisterForm';
 import LandingPage from './landing_page/LandingPage';
 import FlashMessages from './utility/flash/FlashMessages';
 import AuthorizedApp from './AuthorizedApp';
-import Footer from './footer/Footer';
 import type { AppState } from '../state/AppState';
 import './App.scss';
 
@@ -24,7 +23,6 @@ function App(props: Props) {
         <Route path="/register" component={RegisterForm} />
         <Route path="/" component={props.isAuthenticated ? AuthorizedApp : LandingPage} />
       </Switch>
-      <Footer />
     </div>
   );
 }

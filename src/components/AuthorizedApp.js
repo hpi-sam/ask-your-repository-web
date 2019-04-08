@@ -14,6 +14,7 @@ import ImageDetails from './images/ImageDetails';
 import ImageEdit from './images/ImageEdit';
 import TeamRoute from './custom_routes/TeamRoute';
 import TeamSelect from './team_select/TeamSelect';
+import Footer from './footer/Footer';
 import UploadActionButton from './upload/UploadActionButton';
 import './App.scss';
 
@@ -39,6 +40,7 @@ function AuthorizedApp(props: Props) {
         </Switch>
         <TeamRoute path="/images" component={UploadActionButton} />
       </div>
+      <Footer />
     </Fragment>
   );
 }
