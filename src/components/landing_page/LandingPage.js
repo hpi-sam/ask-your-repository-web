@@ -4,6 +4,7 @@ import Particles from 'react-particles-js';
 import TypeIt from 'typeit';
 import particlesConfig from './ParticlesConfiguration';
 import UserAuthNav from './UserAuthNav';
+import LandingPageFooter from './LandingPageFooter';
 import './LandingPage.scss';
 
 type Props = {};
@@ -59,6 +60,7 @@ class LandingPage extends Component<Props, State> {
           <div className="LandingPage__title">Ask Your Cloud </div>
           <div className="LandingPage__subtitle" />
         </div>
+        <LandingPageFooter />
       </div>
     );
   }
