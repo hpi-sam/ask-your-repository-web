@@ -29,6 +29,9 @@ services:
       - "5000:5000"
   jona:
     ipc: host # https://github.com/cypress-io/cypress/issues/350#issuecomment-267704772
+    build:
+      context: ..
+      dockerfile: Dockerfile.dev
     image: bp2018hg1/jona_dev:${CIRCLE_BRANCH}
     depends_on:
       - elija

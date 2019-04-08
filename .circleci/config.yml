@@ -7,9 +7,7 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build -f Dockerfile.dev -t bp2018hg1/jona_dev:$CIRCLE_BRANCH .
-      - run: docker push bp2018hg1/jona_dev:$CIRCLE_BRANCH
+
   test:
     docker:
       - image: circleci/node:9.10
@@ -52,6 +50,7 @@ jobs:
           paths:
             - ./node_modules
       - run: yarn lint
+
   e2e:
     machine:
       docker_layer_caching: true
@@ -59,10 +58,17 @@ jobs:
       COMPOSE_FILE: .circleci/docker-compose.ci.yml
     steps:
       - checkout
-      - run: docker-compose pull elija jona
+      # create compose file from template
+      - run: envsubst < .circleci/compose-template.yml > .circleci/docker-compose.ci.yml
+      # setup e2e
+      - run: docker-compose pull elija
+      - run: docker-compose build jona
       - run: docker-compose up -d
       - run: docker-compose exec jona dockerize -wait http://elija:5000 -timeout 1m
       - run: docker-compose exec jona yarn cypress run
+      # push jona_dev image
+      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - run: docker push bp2018hg1/jona_dev:$CIRCLE_BRANCH
       - store_artifacts:
           path: /app/cypress/screenshots
           destination: e2e-screenshots
@@ -100,15 +106,18 @@ jobs:
             - $PRODUCTION_DEPLOY_FINGERPRINT
       - run: ssh root@$PRODUCTION_DEPLOY_HOST "cd $PRODUCTION_DEPLOY_HOME; ./deploy jona bp2018hg1/jona:$CIRCLE_WORKFLOW_ID"
 
-
 workflows:
   version: 2
   pipeline:
     jobs:
-      - build_dev
       - test
       - flow
       - lint
+      - e2e
+      - build_dev:
+          filters:
+            branches:
+              only: master
       - build_staging:
           filters:
             branches:
@@ -117,9 +126,6 @@ workflows:
           filters:
             branches:
               only: master
-      - e2e:
-          requires:
-            - build_dev
       - deploy_staging:
           requires:
             - e2e
