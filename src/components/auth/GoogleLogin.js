@@ -9,6 +9,7 @@ import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
+  location: { state: { from: string }},
 };
 
 class GoogleLogin extends Component<Props> {

@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { MdContentCopy } from 'react-icons/md';
-import { copyToClipboard } from '../utility/Clipboard';
+import copyToClipboard from '../utility/Clipboard';
 import type { Team } from '../../models/Team';
 import './TeamInvitationLink.scss';
 
@@ -11,31 +11,28 @@ type Props = {
 
 type State = {
   isCopied: boolean,
-  link: string,
 };
 
 class TeamInvitationLink extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const baseUrl = 'localhost:3000/join/';
-    const link = baseUrl + this.props.team.joinKey;
-
     this.state = {
       isCopied: false,
-      link,
     };
   }
 
+  getLink() {
+    return `${window.location.origin.toString() || ''}/join/${this.props.team.joinKey}`;
+  }
+
   copyLink = () => {
-    this.setState({
-      isCopied: true,
-    });
-    copyToClipboard(this.state.link);
+    this.setState({ isCopied: true });
+    copyToClipboard(this.getLink());
   };
 
   render() {
-    const { isCopied, link } = this.state;
+    const { isCopied } = this.state;
 
     return (
       <div className="InviteForm">
@@ -43,13 +40,15 @@ class TeamInvitationLink extends Component<Props, State> {
           type="text"
           name="input"
           className="InviteForm__link"
-          value={link}
+          value={this.getLink()}
           readOnly
           disabled
+          data-cy="team-sidebar-settings-invite-input"
         />
         <MdContentCopy
           className={isCopied ? 'InviteForm__icon InviteForm__icon--active' : 'InviteForm__icon'}
           onClick={this.copyLink}
+          data-cy="team-sidebar-settings-invite-copy-button"
         />
       </div>
     );

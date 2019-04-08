@@ -47,7 +47,7 @@ class TeamSidebarItem extends Component<Props> {
             {team.name}
           </div>
         </button>
-        {isActive && <TeamSidebarSettings team={team}/>}
+        {isActive && <TeamSidebarSettings team={team} />}
       </div>
     );
   }

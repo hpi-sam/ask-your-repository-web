@@ -15,9 +15,6 @@ exports[`<GooglePermissions /> when User is not connected renders correctly 1`] 
   <div
     className="GooglePermissions"
   >
-    <h2>
-      Google Permissions
-    </h2>
     <e
       accessType="online"
       buttonText="Connect your account to Google"

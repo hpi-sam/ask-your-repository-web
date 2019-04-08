@@ -13,6 +13,7 @@ import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
+  location: { state: { from: string }},
 };
 
 type State = {
@@ -123,7 +124,7 @@ class LoginForm extends Component<Props, State> {
           </label>
         </div>
         <div>
-          <Link className="Form__link" to={{pathname: '/register', state: location.state}}>
+          <Link className="Form__link" to={{ pathname: '/register', state: location.state }}>
             No account yet? Register here.
           </Link>
         </div>
