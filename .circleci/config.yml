@@ -75,16 +75,18 @@ jobs:
     steps:
       - checkout
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build --build-arg ENVIRONMENT=staging -t bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID .
+      - run: docker build --build-arg ENVIRONMENT=staging -t bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona_staging:latest .
       - run: docker push bp2018hg1/jona_staging:$CIRCLE_WORKFLOW_ID
+      - run: docker push bp2018hg1/jona_staging:latest
   build_production:
     machine:
       docker_layer_caching: true
     steps:
       - checkout
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID .
+      - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona:latest .
       - run: docker push bp2018hg1/jona:$CIRCLE_WORKFLOW_ID
+      - run: docker push bp2018hg1/jona:latest
   deploy_staging:
     machine: true
     steps:
