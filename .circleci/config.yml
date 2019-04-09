@@ -58,6 +58,8 @@ jobs:
       COMPOSE_FILE: .circleci/docker-compose.ci.yml
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       # create compose file from template
       - run: envsubst < .circleci/compose-template.yml > .circleci/docker-compose.ci.yml
       # setup e2e
