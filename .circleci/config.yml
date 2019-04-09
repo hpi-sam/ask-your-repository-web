@@ -110,12 +110,18 @@ workflows:
       - e2e
       - build_staging:
           requires:
+            - test
+            - flow
+            - lint
             - e2e
           filters:
             branches:
               only: master
       - build_production:
           requires:
+            - test
+            - flow
+            - lint
             - e2e
           filters:
             branches:
