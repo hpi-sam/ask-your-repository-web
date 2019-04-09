@@ -84,7 +84,9 @@ jobs:
     steps:
       - checkout
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona:latest .
+      - run: docker build -t bp2018hg1/jona:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona_production:$CIRCLE_WORKFLOW_ID -t bp2018hg1/jona_production:latest -t bp2018hg1/jona:latest .
+      - run: docker push bp2018hg1/jona_production:latest
+      - run: docker push bp2018hg1/jona_production:$CIRCLE_WORKFLOW_ID
       - run: docker push bp2018hg1/jona:$CIRCLE_WORKFLOW_ID
       - run: docker push bp2018hg1/jona:latest
   deploy_staging:
