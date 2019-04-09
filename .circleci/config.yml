@@ -1,13 +1,5 @@
 version: 2
 jobs:
-  build_dev:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-
   test:
     docker:
       - image: circleci/node:9.10
@@ -116,10 +108,6 @@ workflows:
       - flow
       - lint
       - e2e
-      - build_dev:
-          filters:
-            branches:
-              only: master
       - build_staging:
           filters:
             branches:
