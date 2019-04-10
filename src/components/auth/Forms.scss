@@ -79,14 +79,15 @@
   }
 
   &__buttons {
+    display: flex;
     margin-top: .5em;
-    margin-right: 1em;
     border-radius: .3rem;
-
     font-size: 1.2em;
     font-weight: 400;
 
     &__item {
+      width: 48%;
+      display: inline-block;
       margin: inherit;
       padding: 1rem 2rem;
       border-radius: inherit;
@@ -94,11 +95,22 @@
     }
 
     &__cancel {
-      margin: inherit;
+      text-align: center;
+      width: 48%;
+      display: inline-block;
+      margin-top: inherit;
+      margin-left: 4%;
       padding: 1rem 2rem;
       border-radius: inherit;
       background-color: var(--gray);
       color: black;
     }
+  }
+
+  &__label-link {
+    font-size: 0.8em;
+    font-weight: 300;
+    color: var(--link-color);
+    float: right;
   }
 }

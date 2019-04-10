@@ -44,6 +44,14 @@ class UserService {
     const user: any = humps.camelizeKeys(response.data);
     return user;
   }
+
+  static async changePassword(password: string, resetToken: string ) {
+    const params = {
+      password,
+      resetToken,
+    };
+    await api.put('/password_resets', humps.decamelizeKeys(params));
+  }
 }
 
 export default UserService;

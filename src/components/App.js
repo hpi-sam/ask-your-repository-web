@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
 import LoginForm from './auth/LoginForm';
 import RegisterForm from './auth/RegisterForm';
+import PasswordRequestForm from './auth/forgot_password/PasswordRequestForm';
+import ResetPasswordForm from './auth/forgot_password/ResetPasswordForm';
 import LandingPage from './landing_page/LandingPage';
 import FlashMessages from './utility/flash/FlashMessages';
 import AuthorizedApp from './AuthorizedApp';
@@ -22,6 +24,8 @@ function App(props: Props) {
       <Switch>
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
+        <Route path="/forgot_password" component={PasswordRequestForm} />
+        <Route path="/reset_password" component={ResetPasswordForm} />
         <Route path="/" component={props.isAuthenticated ? AuthorizedApp : LandingPage} />
       </Switch>
       <Footer />

@@ -34,6 +34,14 @@ class AuthService {
       localStorage.removeItem('user');
     }
   }
+
+  static async requestResetLink(emailOrUsername: string) {
+    const params = {
+      emailOrUsername,
+      baseUrl: `${window.location.origin.toString()}/reset_password`,
+    };
+    await api.post('/password_resets', humps.decamelizeKeys(params));
+  }
 }
 
 export default AuthService;
