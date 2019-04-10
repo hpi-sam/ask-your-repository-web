@@ -1,15 +1,16 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
+import { flashErrorMessage, flashSuccessMessage } from 'redux-flash';
 import { Link } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import GoogleLogin from './GoogleLogin';
-import ValidationErrors from '../utility/form/ValidationErrors';
-import { login } from '../../state/auth/auth.actionCreators';
-import type { Errors } from '../../models/Errors';
-import './Forms.scss';
+import ValidationErrors from '../../utility/form/ValidationErrors';
+import type { Errors } from '../../../models/Errors';
+import '../Forms.scss';
+import AuthService from '../../../services/AuthService';
 
 type Props = {
   dispatch: Function,
@@ -17,17 +18,15 @@ type Props = {
 
 type State = {
   email: string,
-  password: string,
   errors: Errors,
 };
 
-class LoginForm extends Component<Props, State> {
+class PasswordRequestForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
       email: '',
-      password: '',
       errors: {
         missingInput: false,
       },
@@ -43,11 +42,22 @@ class LoginForm extends Component<Props, State> {
     e.preventDefault();
     this.resetErrors();
 
-    const { email, password } = this.state;
+    const { email } = this.state;
     const { dispatch } = this.props;
 
-    if (email && password) {
-      dispatch(login(email, password));
+    if (email) {
+      AuthService.requestResetLink(email)
+        .then(() => {
+          dispatch(flashSuccessMessage('Successfully requested a password request. Please check your emails for the reset link.'));
+          dispatch(push('/login'));
+        })
+        .catch((error) => {
+          const message = error.response
+            ? error.response.data.error
+            : 'Could not establish a connection to the server.';
+
+          dispatch(flashErrorMessage(message));
+        });
     } else {
       this.handleError('missingInput', true);
     }
@@ -69,11 +79,6 @@ class LoginForm extends Component<Props, State> {
     });
   };
 
-  isValidEmail = (email: string) => {
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(String(email).toLowerCase());
-  };
-
   printError = () => {
     const error = Object.keys(this.state.errors).find(key => this.state.errors[key] === true);
     if (error) {
@@ -86,14 +91,10 @@ class LoginForm extends Component<Props, State> {
 
 
   render() {
-    const { email, password } = this.state;
+    const { email } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} className="Form">
-        <div className="Form__title">Login</div>
-        <div className="Form__external-login">
-          <GoogleLogin />
-        </div>
-        <hr className="Form__separator" data-content="OR" />
+        <div className="Form__title">Reset Password</div>
         {this.printError()}
         <div className="form-input">
           <label className="Form__label">
@@ -103,37 +104,18 @@ class LoginForm extends Component<Props, State> {
               name="email"
               value={email}
               onChange={this.handleChange}
-              data-cy="login-email-input"
             />
           </label>
-        </div>
-        <div className="form-input">
-          <label className="Form__label">
-            Password:
-            <Link className="Form__label-link" to="/forgot_password">Forgot password?</Link>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-              data-cy="login-password-input"
-            />
-          </label>
-        </div>
-        <div>
-          <Link className="Form__link" to="/register">
-            No account yet? Register here.
-          </Link>
         </div>
         <div className="Form__buttons">
-          <Button className="Form__buttons__item" data-cy="login-submit-button">
-            Login
+          <Button className="Form__buttons__item">
+            Submit
           </Button>
-          <Link to="/" className="Form__buttons__cancel">Cancel</Link>
+          <Link to="/login" className="Form__buttons__cancel">Cancel</Link>
         </div>
       </Form>
     );
   }
 }
 
-export default connect()(LoginForm);
+export default connect()(PasswordRequestForm);
