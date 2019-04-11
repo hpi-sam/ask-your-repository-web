@@ -33,7 +33,7 @@ function AuthorizedApp(props: Props) {
           <Redirect exact from="/" to="/images" />
           <Route path="/select-team" component={TeamSelect} />
           <Route path="/settings" component={Settings} />
-          <Route path="/join/:joinKey" component={TeamJoin} />
+          <Route path="/invites/:joinKey" component={TeamJoin} />
           <TeamRoute path="/upload" component={Upload} />
           <TeamRoute path="/images/:id/edit" component={ImageEdit} />
           <TeamRoute path="/images/:id" component={ImageDetails} />
