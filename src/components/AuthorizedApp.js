@@ -15,6 +15,7 @@ import ImageDetails from './images/ImageDetails';
 import ImageEdit from './images/ImageEdit';
 import TeamRoute from './custom_routes/TeamRoute';
 import TeamSelect from './team_select/TeamSelect';
+import TeamSettings from './settings/TeamSettings';
 import Footer from './footer/Footer';
 import UploadActionButton from './upload/UploadActionButton';
 import './App.scss';
@@ -33,6 +34,7 @@ function AuthorizedApp(props: Props) {
           <Redirect exact from="/" to="/images" />
           <Route path="/select-team" component={TeamSelect} />
           <Route path="/settings" component={Settings} />
+          <Route path="/teams/:id/settings" component={TeamSettings} />
           <Route path="/invites/:joinKey" component={TeamJoin} />
           <TeamRoute path="/upload" component={Upload} />
           <TeamRoute path="/images/:id/edit" component={ImageEdit} />

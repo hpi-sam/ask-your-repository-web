@@ -20,6 +20,12 @@ class TeamService {
     const response = await api.post('/teams', data);
     return response.data;
   }
+
+  static async get(id: string): Promise<Team> {
+    const response = await api.get(`/teams/${id}`);
+    const team: any = humps.camelizeKeys(response.data);
+    return team;
+  }
 }
 
 export default TeamService;

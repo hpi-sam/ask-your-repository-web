@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { push } from 'connected-react-router';
 import qs from 'qs';
 import onClickOutside from 'react-onclickoutside';
@@ -74,23 +74,34 @@ class Search extends Component<Props, State> {
 
     return (
       <form className={className} onSubmit={this.handleSubmit}>
-        <MdSearch className="Search__input__icon Search__input__icon--left" />
-        <input
-          autoFocus
-          type="text"
-          value={search}
-          className="Search__input"
-          onChange={this.handleChange}
-          onFocus={this.handleSelect}
-          placeholder="Search"
-        />
-        {isSelected && (
+        {isSelected ? (
+          <Fragment>
+            <MdSearch className="Search__input__icon Search__input__icon--left" />
+            <input
+              autoFocus
+              type="text"
+              value={search}
+              className="Search__input"
+              onChange={this.handleChange}
+            />
+            <button
+              type="button"
+              onClick={this.handleClose}
+              className="Search__input__close"
+            >
+              <MdClose />
+            </button>
+          </Fragment>
+        ) : (
           <button
             type="button"
-            onClick={this.handleClose}
-            className="Search__input__close"
+            onClick={this.handleSelect}
+            className="Search__preview"
           >
-            <MdClose />
+            <MdSearch className="Search__preview__icon" />
+            <span className="Search__preview__text">
+              Search
+            </span>
           </button>
         )}
       </form>
