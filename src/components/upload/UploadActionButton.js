@@ -22,6 +22,7 @@ function UploadActionButton() {
       <Dropzone
         className="UploadActionButton__dropzone"
         onDrop={onDrop}
+        data-testid="upload-action-button-dropzone"
       />
     </div>
   );
