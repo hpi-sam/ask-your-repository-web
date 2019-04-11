@@ -19,7 +19,7 @@ context('Team Invitation Link', () => {
       .then((url) => {
         cy.authenticate('Erik', 'erik@email.com')
           .then(() => {
-            const redirect = url.substring(url.indexOf('/join'));
+            const redirect = url.substring(url.indexOf('/invites'));
             cy.visit(redirect);
             cy.contains(team.name).should('be.visible');
           });

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { MdContentCopy } from 'react-icons/md';
 import copyToClipboard from '../utility/Clipboard';
 import type { Team } from '../../models/Team';
@@ -9,50 +9,37 @@ type Props = {
   team: Team,
 };
 
-type State = {
-  isCopied: boolean,
-};
+function TeamInvitationLink(props: Props) {
+  const [isCopied, setIsCopied] = useState(false);
 
-class TeamInvitationLink extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      isCopied: false,
-    };
+  function getLink() {
+    return `${window.location.origin || ''}/invites/${props.team.joinKey}`;
   }
 
-  getLink() {
-    return `${window.location.origin.toString() || ''}/join/${this.props.team.joinKey}`;
+  function copyLink() {
+    setIsCopied(true);
+    copyToClipboard(getLink());
   }
 
-  copyLink = () => {
-    this.setState({ isCopied: true });
-    copyToClipboard(this.getLink());
-  };
-
-  render() {
-    const { isCopied } = this.state;
-
-    return (
-      <div className="InviteForm">
-        <input
-          type="text"
-          name="input"
-          className="InviteForm__link"
-          value={this.getLink()}
-          readOnly
-          disabled
-          data-cy="team-sidebar-settings-invite-input"
-        />
-        <MdContentCopy
-          className={isCopied ? 'InviteForm__icon InviteForm__icon--active' : 'InviteForm__icon'}
-          onClick={this.copyLink}
-          data-cy="team-sidebar-settings-invite-copy-button"
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="InviteForm">
+      <input
+        type="text"
+        name="input"
+        className="InviteForm__link"
+        value={getLink()}
+        readOnly
+        disabled
+        data-cy="team-sidebar-settings-invite-input"
+      />
+      <MdContentCopy
+        className={isCopied ? 'InviteForm__icon InviteForm__icon--active' : 'InviteForm__icon'}
+        onClick={copyLink}
+        data-cy="team-sidebar-settings-invite-copy-button"
+      />
+    </div>
+  );
 }
+
 
 export default TeamInvitationLink;

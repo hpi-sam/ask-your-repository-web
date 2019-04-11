@@ -20,13 +20,6 @@ class TeamService {
     const response = await api.post('/teams', data);
     return response.data;
   }
-
-  static async updateMember(team: Team, id: string): Promise<Team> {
-    const url = `/teams/${team.id}/members`;
-    const data = { member: id };
-    const response = await api.post(url, data);
-    return response.data;
-  }
 }
 
 export default TeamService;
