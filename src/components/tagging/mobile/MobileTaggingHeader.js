@@ -1,18 +1,16 @@
 // @flow
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import type { RouterHistory } from 'react-router-dom';
 import { IoIosClose } from 'react-icons/io';
 import TagSuggestions from '../shared/TagSuggestions';
 import type { TaggableImage } from '../../../models/Image';
 
 type Props = {
   image: ?TaggableImage,
-  history: RouterHistory,
+  onDiscard: () => any,
 };
 
 function MobileTaggingHeader(props: Props) {
-  const { image } = props;
+  const { image, onDiscard } = props;
 
   return (
     <header>
@@ -33,15 +31,15 @@ function MobileTaggingHeader(props: Props) {
         </div>
       </div>
       <button
-        onClick={props.history.goBack}
+        onClick={onDiscard}
         className="MobileTagging__cancel"
         type="button"
       >
         <IoIosClose />
-        <span>Cancel</span>
+        <span>Discard</span>
       </button>
     </header>
   );
 }
 
-export default withRouter(MobileTaggingHeader);
+export default MobileTaggingHeader;

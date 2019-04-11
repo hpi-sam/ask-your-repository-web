@@ -1,27 +1,15 @@
 // @flow
-import React, { useState, useEffect } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import { IoIosCloudUpload } from 'react-icons/io';
 import './UploadActionButton.scss';
 
-type Props = {
-  location: { pathname: string },
-};
-
-function UploadActionButton(props: Props) {
+function UploadActionButton() {
   const [files, setFiles] = useState([]);
-
-  useEffect(() => {
-    return () => setFiles([]);
-  }, []);
 
   function onDrop(inputFiles: File[]) {
     setFiles(inputFiles);
-  }
-
-  if (props.location.pathname === '/upload') {
-    return null;
   }
 
   if (files.length > 0) {
@@ -39,4 +27,4 @@ function UploadActionButton(props: Props) {
   );
 }
 
-export default withRouter(UploadActionButton);
+export default UploadActionButton;

@@ -9,15 +9,19 @@ import './MobileTagging.scss';
 
 type Props = {
   image: TaggableImage,
+  onDiscard: () => any,
   onSubmit: () => Promise<void>,
 };
 
 function MobileTagging(props: Props) {
-  const { image, onSubmit } = props;
+  const { image, onDiscard, onSubmit } = props;
 
   return (
     <div className="MobileTagging">
-      <MobileTaggingHeader image={image} />
+      <MobileTaggingHeader
+        image={image}
+        onDiscard={onDiscard}
+      />
       <div className="MobileTagging__image-container">
         <MobileTaggingImage
           image={image}

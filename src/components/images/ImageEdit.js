@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useMedia } from 'react-use';
 import { Redirect } from 'react-router-dom';
+import type { RouterHistory } from 'react-router-dom';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import ImageService from '../../services/ImageService';
 import ActivityInidicator from '../utility/ActivityIndicator';
@@ -13,6 +14,7 @@ import Toolbar from '../utility/Toolbar';
 import type { TaggableImage } from '../../models/Image';
 
 type Props = {
+  history: RouterHistory,
   match: {
     params: { id: string },
   },
@@ -23,22 +25,25 @@ function ImageEdit(props: Props) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const image: ?TaggableImage = useTaggableImage(props.match.params.id);
 
-  async function handleSubmit() {
-    if (!image) return;
+  if (!image) return <ActivityInidicator />;
+  if (isSubmitted) return <Redirect to={`/images/${image.id}`} />;
 
+  async function handleSubmit() {
     const { id, userTags } = image;
     await ImageService.patch(id, { tags: userTags });
     setIsSubmitted(true);
   }
 
-  if (!image) return <ActivityInidicator />;
-  if (isSubmitted) return <Redirect to={`/images/${image.id}`} />;
+  function handleDiscard() {
+    props.history.push(`/images/${image.id}`);
+  }
 
   if (isMobile) {
     return (
       <MobileTagging
         image={image}
         onSubmit={handleSubmit}
+        onDiscard={handleDiscard}
       />
     );
   }
