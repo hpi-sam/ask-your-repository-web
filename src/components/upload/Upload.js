@@ -2,7 +2,7 @@
 import React, { Fragment, useEffect } from 'react';
 import uuidv4 from 'uuid/v4';
 import { useMedia } from 'react-use';
-import { push } from 'connected-react-router';
+import type { RouterHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FileDropzone from './FileDropzone';
 import ImageService from '../../services/ImageService';
@@ -15,8 +15,8 @@ import UploadMultiTagging from './UploadMultiTagging';
 import './Upload.scss';
 
 type Props = {
-  dispatch: Function,
   activeTeam: ?Team,
+  history: RouterHistory,
   location: {
     state: {
       files?: Array<File>,
@@ -57,9 +57,13 @@ function Upload(props: Props) {
   }
 
   useEffect(() => {
-    const { files } = props.location.state;
-    if (files) handleFileDrop(files);
+    const { state } = props.location;
+    if (state && state.files) handleFileDrop(state.files);
   }, []);
+
+  function handleDiscard() {
+    props.history.push('/images');
+  }
 
   async function handleSubmitClick() {
     const patchData = getSuccessfulImages()
@@ -69,7 +73,7 @@ function Upload(props: Props) {
       }));
 
     await ImageService.patchMany(patchData);
-    props.dispatch(push('/images'));
+    props.history.push('/images');
   }
 
   const selectedUpload = getSelectedUpload();
@@ -95,6 +99,7 @@ function Upload(props: Props) {
                   setSelectedUpload={setSelectedUpload}
                   uploads={uploads}
                   onSubmit={handleSubmitClick}
+                  onDiscard={handleDiscard}
                   onFileDrop={handleFileDrop}
                 />
               )}

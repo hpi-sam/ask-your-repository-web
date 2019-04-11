@@ -21,6 +21,7 @@ type Props = {
   setSelectedUpload: (uploadId: string) => void,
   onFileDrop: DropFilesEventHandler,
   onSubmit: () => Promise<void>,
+  onDiscard: () => any,
 };
 
 function MobileUploadMultiTagging(props: Props) {
@@ -31,6 +32,7 @@ function MobileUploadMultiTagging(props: Props) {
     selectedUpload,
     uploads,
     onSubmit,
+    onDiscard,
   } = props;
 
   const { image, status } = selectedUpload;
@@ -64,7 +66,10 @@ function MobileUploadMultiTagging(props: Props) {
 
   return (
     <div className="MobileTagging">
-      <MobileTaggingHeader image={selectedUpload.image} />
+      <MobileTaggingHeader
+        image={selectedUpload.image}
+        onDiscard={onDiscard}
+      />
       <MobileTaggingImagesPreview
         uploads={uploads}
         selectedUpload={selectedUpload}
