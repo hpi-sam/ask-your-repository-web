@@ -37,11 +37,7 @@ function AuthorizedApp(props: Props) {
           <TeamRoute path="/images" component={ImagesIndex} />
           <TeamRoute path="/presentation" component={Presentation} />
         </Switch>
-        <Switch>
-          {/* always display upload button expect on /upload */}
-          <TeamRoute path="/upload" component={Fragment} />
-          <TeamRoute path="/" component={UploadActionButton} />
-        </Switch>
+        <TeamRoute path="/images" component={UploadActionButton} />
       </div>
     </Fragment>
   );

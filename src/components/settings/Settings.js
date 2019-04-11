@@ -3,9 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Password from './Password';
 import GooglePermissions from './GooglePermissions';
-import './Settings.scss';
 import type { AppState } from '../../state/AppState';
 import type { User } from '../../models/User';
+import './Settings.scss';
 
 type Props = {
   user: User,
@@ -14,7 +14,7 @@ type Props = {
 function Settings(props: Props) {
   return (
     <div className="Settings">
-      <h1> Settings </h1>
+      <h1>Settings</h1>
       <GooglePermissions />
       {props.user.hasPassword && <Password />}
     </div>
