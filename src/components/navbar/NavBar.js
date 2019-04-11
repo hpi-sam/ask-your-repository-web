@@ -51,7 +51,7 @@ function NavBar(props: Props) {
               </NavLink>
               <NavLink
                 to="/upload"
-                className="NavBar__item"
+                className="NavBar__item NavBar__item--upload"
                 activeClassName="NavBar__item--active"
               >
                 <MdCloudUpload className="NavBar__item__icon" />
