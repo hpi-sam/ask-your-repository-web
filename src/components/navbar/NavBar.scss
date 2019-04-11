@@ -64,6 +64,14 @@
       background-color: var(--accent-color-dark-blue);
     }
 
+    &--upload {
+      display: none;
+
+      @media (min-width: $xs-to-sm) {
+        display: flex;
+      }
+    }
+
     &--active {
       background-color: #111;
       color: var(--accent-color-blue);

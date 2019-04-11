@@ -15,6 +15,7 @@ import ImageEdit from './images/ImageEdit';
 import TeamRoute from './custom_routes/TeamRoute';
 import TeamSelect from './team_select/TeamSelect';
 import './App.scss';
+import UploadActionButton from './upload/UploadActionButton';
 
 type Props = {
   isTeamSidebarOpen: boolean,
@@ -36,6 +37,7 @@ function AuthorizedApp(props: Props) {
           <TeamRoute path="/images" component={ImagesIndex} />
           <TeamRoute path="/presentation" component={Presentation} />
         </Switch>
+        <UploadActionButton />
       </div>
     </Fragment>
   );

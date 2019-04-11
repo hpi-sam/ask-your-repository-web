@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import uuidv4 from 'uuid/v4';
 import { useMedia } from 'react-use';
 import { push } from 'connected-react-router';
@@ -17,6 +17,11 @@ import './Upload.scss';
 type Props = {
   dispatch: Function,
   activeTeam: ?Team,
+  location: {
+    state: {
+      files?: Array<File>,
+    },
+  }
 };
 
 function Upload(props: Props) {
@@ -50,6 +55,11 @@ function Upload(props: Props) {
 
     addUploads(newUploads);
   }
+
+  useEffect(() => {
+    const { files } = props.location.state;
+    if (files) handleFileDrop(files);
+  }, []);
 
   async function handleSubmitClick() {
     const patchData = getSuccessfulImages()
