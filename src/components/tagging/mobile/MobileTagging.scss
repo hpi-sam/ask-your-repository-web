@@ -18,6 +18,9 @@
   }
 
   &__cancel {
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
     border-left: 1px solid #444;
     padding: 8px var(--spacing);
     align-self: center;
