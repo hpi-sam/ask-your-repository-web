@@ -45,7 +45,7 @@ class UserService {
     return user;
   }
 
-  static async changePassword(password: string, resetToken: string ) {
+  static async changePassword(password: string, resetToken: string) {
     const params = {
       password,
       resetToken,

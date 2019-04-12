@@ -24,8 +24,8 @@ function App(props: Props) {
       <Switch>
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        <Route path="/forgot_password" component={PasswordRequestForm} />
-        <Route path="/reset_password" component={ResetPasswordForm} />
+        <Route path="/forgot-password" component={PasswordRequestForm} />
+        <Route path="/reset-password" component={ResetPasswordForm} />
         <Route path="/" component={props.isAuthenticated ? AuthorizedApp : LandingPage} />
       </Switch>
       <Footer />

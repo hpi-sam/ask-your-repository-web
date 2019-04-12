@@ -110,7 +110,7 @@ class LoginForm extends Component<Props, State> {
         <div className="form-input">
           <label className="Form__label">
             Password:
-            <Link className="Form__label-link" to="/forgot_password">Forgot password?</Link>
+            <Link className="Form__label-link" to="/forgot-password">Forgot password?</Link>
             <Input
               type="password"
               name="password"

@@ -201,6 +201,19 @@ exports[`<LoginForm /> renders correctly 1`] = `
             className="Form__label"
           >
             Password:
+            <Link
+              className="Form__label-link"
+              replace={false}
+              to="/forgot-password"
+            >
+              <a
+                className="Form__label-link"
+                href="/forgot-password"
+                onClick={[Function]}
+              >
+                Forgot password?
+              </a>
+            </Link>
             <Control(s)
               data-cy="login-password-input"
               name="password"

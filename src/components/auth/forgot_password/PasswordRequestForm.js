@@ -38,7 +38,7 @@ class PasswordRequestForm extends Component<Props, State> {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.resetErrors();
 
@@ -46,18 +46,17 @@ class PasswordRequestForm extends Component<Props, State> {
     const { dispatch } = this.props;
 
     if (email) {
-      AuthService.requestResetLink(email)
-        .then(() => {
-          dispatch(flashSuccessMessage('Successfully requested a password request. Please check your emails for the reset link.'));
-          dispatch(push('/login'));
-        })
-        .catch((error) => {
-          const message = error.response
-            ? error.response.data.error
-            : 'Could not establish a connection to the server.';
+      try {
+        await AuthService.requestResetLink(email);
+        dispatch(flashSuccessMessage('Successfully requested a password request. Please check your emails for the reset link.'));
+        dispatch(push('/login'));
+      } catch (error) {
+        const message = error.response
+          ? error.response.data.error
+          : 'Could not establish a connection to the server.';
 
-          dispatch(flashErrorMessage(message));
-        });
+        dispatch(flashErrorMessage(message));
+      }
     } else {
       this.handleError('missingInput', true);
     }
