@@ -14,6 +14,7 @@
 // ***********************************************************
 
 import './commands';
+import chaiSubset from 'chai-subset'; // eslint-disable-line import/no-extraneous-dependencies
 
 if (Cypress.env('API_URL').includes('https') || Cypress.env('API_URL').includes('api.askyour.cloud')) {
   throw new Error(`
@@ -21,3 +22,5 @@ if (Cypress.env('API_URL').includes('https') || Cypress.env('API_URL').includes(
     This is permitted. Use a local server instead.
   `);
 }
+
+chai.use(chaiSubset);

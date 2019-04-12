@@ -51,7 +51,7 @@ Cypress.Commands.add('authenticate', () => cy.createUser({
           csrfToken,
         });
 
-        return authUser;
+        return { csrfToken, ...authUser };
       });
     });
 }));

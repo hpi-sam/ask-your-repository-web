@@ -1,9 +1,13 @@
 context('Upload', () => {
   let activeTeam;
+  let user;
 
   beforeEach(() => {
     cy.resetDB();
-    cy.authenticate();
+    cy.authenticate()
+      .then((authUser) => {
+        user = authUser;
+      });
     cy.setActiveTeam()
       .then((team) => {
         activeTeam = team;
@@ -44,7 +48,12 @@ context('Upload', () => {
 
       cy.wait('@updateManyImages');
 
-      cy.request(`${Cypress.env('API_URL')}/images`)
+      cy.request({
+        url: `${Cypress.env('API_URL')}/images`,
+        headers: {
+          'X-CSRF-Token': user.csrfToken,
+        },
+      })
         .then((response) => {
           const [image] = response.body.images;
           expect(image.user_tags).to.have.members(['Sheep', 'Cute']);
@@ -81,11 +90,15 @@ context('Upload', () => {
 
       cy.wait('@updateManyImages');
 
-      cy.request(`${Cypress.env('API_URL')}/images`)
+      cy.request({
+        url: `${Cypress.env('API_URL')}/images`,
+        headers: {
+          'X-CSRF-Token': user.csrfToken,
+        },
+      })
         .then((response) => {
-          const [image1, image2] = response.body.images;
-          expect(image1.user_tags).to.have.members(['Sheep', 'Cute']);
-          expect(image2.user_tags).to.have.members(['Cute', 'Goat']);
+          expect(response.body.images).to.containSubset([{ user_tags: ['Cute', 'Sheep'] }]);
+          expect(response.body.images).to.containSubset([{ user_tags: ['Goat', 'Cute'] }]);
         });
     });
   });
