@@ -38,7 +38,7 @@ class AuthService {
   static async requestResetLink(emailOrUsername: string) {
     const params = {
       emailOrUsername,
-      baseUrl: `${window.location.origin.toString()}/reset_password`,
+      baseUrl: `${window.location.origin.toString()}/reset-password`,
     };
     await api.post('/password_resets', humps.decamelizeKeys(params));
   }

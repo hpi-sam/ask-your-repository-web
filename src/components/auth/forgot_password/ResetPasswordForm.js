@@ -5,6 +5,7 @@ import { push } from 'connected-react-router';
 import humps from 'humps';
 import qs from 'qs';
 import { Link } from 'react-router-dom';
+import { flashErrorMessage, flashSuccessMessage } from 'redux-flash';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
@@ -12,7 +13,6 @@ import UserService from '../../../services/UserService';
 import ValidationErrors from '../../utility/form/ValidationErrors';
 import type { Errors } from '../../../models/Errors';
 import '../Forms.scss';
-import { flashErrorMessage, flashSuccessMessage } from 'redux-flash';
 
 type Props = {
   dispatch: Function,
@@ -45,7 +45,7 @@ class ResetPasswordForm extends Component<Props, State> {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.resetErrors();
 
@@ -64,23 +64,19 @@ class ResetPasswordForm extends Component<Props, State> {
       const querystring = this.props.location.search;
       const parsedString = qs.parse(querystring, { ignoreQueryPrefix: true });
       const { resetToken } = humps.camelizeKeys(parsedString);
-      console.log("Look:");
-      console.log(querystring);
-      console.log(parsedString);
-      console.log(resetToken);
+      const token: any = resetToken;
 
-      UserService.changePassword(password, resetToken)
-        .then(() => {
-          dispatch(flashSuccessMessage('Successfully updated the password.'));
-          dispatch(push('/login'));
-        })
-        .catch((error) => {
-          const message = error.response
-            ? error.response.data.error
-            : 'Could not establish a connection to the server.';
+      try {
+        await UserService.changePassword(password, token);
+        dispatch(flashSuccessMessage('Successfully updated the password.'));
+        dispatch(push('/login'));
+      } catch (error) {
+        const message = error.response
+          ? error.response.data.error
+          : 'Could not establish a connection to the server.';
 
-          dispatch(flashErrorMessage(message));
-        });
+        dispatch(flashErrorMessage(message));
+      }
     } else {
       this.handleError('missingInput', true);
     }
