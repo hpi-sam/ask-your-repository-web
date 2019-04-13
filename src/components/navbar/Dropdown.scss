@@ -21,6 +21,16 @@
     cursor: pointer;
     line-height: 2em;
 
+    &__icon {
+      display: block;
+      font-size: var(--font-size-6);
+      margin-right: 6px;
+
+      @media (min-width: $sm-to-md) {
+        display: none;
+      }
+    }
+
     &__username {
       display: none;
       margin-right: 6px;

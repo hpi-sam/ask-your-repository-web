@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { push } from 'connected-react-router';
 import qs from 'qs';
 import onClickOutside from 'react-onclickoutside';
@@ -80,8 +80,18 @@ class Search extends Component<Props, State> {
           value={search}
           className="Search__input"
           onChange={this.handleChange}
+          onFocus={this.handleSelect}
           placeholder="Search"
         />
+        {isSelected && (
+          <button
+            type="button"
+            onClick={this.handleClose}
+            className="Search__input__close"
+          >
+            <MdClose />
+          </button>
+        )}
       </form>
     );
   }
