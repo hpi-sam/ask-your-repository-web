@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { MdPerson } from 'react-icons/md';
 import { connect } from 'react-redux';
 import onClickOutside from 'react-onclickoutside';
-import { Link } from 'react-router-dom';
 import { logout } from '../../state/auth/auth.actionCreators';
 import createGoogleAuthInstance from '../../config/createGoogleAuthInstance';
 import type { User } from '../../models/User';
@@ -53,6 +53,7 @@ class Dropdown extends Component<Props, State> {
             className="Dropdown__button"
             data-cy="user-dropdown-button"
           >
+            <MdPerson className="Dropdown__button__icon" />
             <span className="Dropdown__button__username">{username}</span>
             <IoIosArrowDown />
           </button>
