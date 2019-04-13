@@ -14,7 +14,6 @@
     display: flex;
     background-color: var(--navbar-background-color);
     align-items: center;
-    padding: 0 30px;
     font-weight: bold;
     color: white;
     border: none;
@@ -24,17 +23,10 @@
 
     &__username {
       display: none;
+      margin-right: 6px;
 
       @media (min-width: $sm-to-md) {
         display: inline;
-      }
-    }
-
-    &__icon {
-      font-size: 2em;
-
-      @media (min-width: $sm-to-md) {
-        margin-left: .8rem;
       }
     }
   }
@@ -48,38 +40,31 @@
     right: 0;
     display: none;
     position: absolute;
-    background-color: var(--navbar-background-color);
-    border: 2px solid gray;
+    background-color: hsl(232.5, 9.8%, 16.1%);
+    box-shadow: var(--elevation-4);
     border-radius: 4px;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 
     &--active {
       display:block;
     }
 
-    hr {
-      padding: 0px;
-      margin: 0px;    
-    }
-
-    button {
+    &__button {
       width: 100%;
-      background: none;
+      background-color: transparent;
       color: inherit;
       border: none;
-      cursor: pointer;
-      font-weight: bold;
-      color: white;
-      padding: 12px 60px;
-      text-decoration: none;
-      outline: 0;
-      display: block;
-    }
+      border-radius: 0;
+      font-weight: normal;
 
-    button:hover {
-      background-color: #444;
+      & + & {
+        border-top: 1px solid hsl(229.1, 8.1%, 26.5%);
+      }
+
+      &:hover {
+        background-color: hsl(230.8, 9.4%, 27.3%);
+      }
     }
   }
 }

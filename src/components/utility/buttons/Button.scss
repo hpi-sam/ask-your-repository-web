@@ -10,6 +10,7 @@
   --button-disabled-text-color: #333;
   --button-disabled-bg-color: #999;
   --button-hover-bg-color: #f8f8f8;
+  --button-hover-text-color: var(--white);
 }
 
 .Button {
@@ -25,14 +26,13 @@
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
 
-  transition: background-color .2s, color .2s;
-
   &:disabled {
     --button-text-color: var(--button-disabled-text-color);
     --button-bg-color: var(--button-disabled-bg-color);
   }
 
   &:hover {
+    color: var(--button-hover-text-color);
     --button-bg-color: var(--button-hover-bg-color);
   }
 

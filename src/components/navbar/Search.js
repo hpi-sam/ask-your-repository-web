@@ -73,36 +73,15 @@ class Search extends Component<Props, State> {
 
     return (
       <form className={className} onSubmit={this.handleSubmit}>
-        {isSelected ? (
-          <Fragment>
-            <MdSearch className="Search__input__icon Search__input__icon--left" />
-            <input
-              autoFocus
-              type="text"
-              value={search}
-              className="Search__input"
-              onChange={this.handleChange}
-            />
-            <button
-              type="button"
-              onClick={this.handleClose}
-              className="Search__input__close"
-            >
-              <MdClose />
-            </button>
-          </Fragment>
-        ) : (
-          <button
-            type="button"
-            onClick={this.handleSelect}
-            className="Search__preview"
-          >
-            <MdSearch className="Search__preview__icon" />
-            <span className="Search__preview__text">
-              Search
-            </span>
-          </button>
-        )}
+        <MdSearch className="Search__input__icon Search__input__icon--left" />
+        <input
+          autoFocus
+          type="text"
+          value={search}
+          className="Search__input"
+          onChange={this.handleChange}
+          placeholder="Search"
+        />
       </form>
     );
   }

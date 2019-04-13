@@ -1,6 +1,24 @@
 :root {
   --white: hsl(0, 0%, 100%);
-  --gray-9: hsl(0, 0%, 10%);
+
+  --gray-1: hsl(0, 0%, 98%);
+  --gray-2: hsl(0, 0%, 95%);
+  --gray-3: hsl(0, 0%, 90%);
+  --gray-4: hsl(0, 0%, 80%);
+  --gray-5: hsl(0, 0%, 66%);
+  --gray-6: hsl(0, 0%, 50%);
+  --gray-7: hsl(0, 0%, 32%);
+  --gray-8: hsl(0, 0%, 20%);
+  --gray-8: hsl(0, 0%, 8%);
+  --gray-9: hsl(0, 0%, 5%);
+
+  --bg-gray-1: hsl(220, 16.2%, 32.7%);
+  --bg-gray-2: hsl(230.8, 9.4%, 27.3%);
+  --bg-gray-3: hsl(234.5, 9.1%, 23.7%);
+  --bg-gray-4: hsl(234, 10%, 19.6%);
+  --bg-gray-5: hsl(232.5, 9.8%, 16.1%);
+  --bg-gray-6:  hsl(220, 7.9%, 14.9%);
+  --bg-gray-7:  hsl(220, 7.9%, 11.9%);
 
   --green: rgb(45, 194, 26);
   --green-darker: rgb(42, 153, 28);
@@ -8,15 +26,32 @@
   --red-darker: #861212;
   --gray: #bbb;
   --gray-darker: #aaa;
-  --accent-color-blue: rgb(36, 186, 255);
   --accent-color-dark-blue: #003338;
-  --navbar-background-color: rgb(24, 24, 24);
+
+  --primary-color: hsl(198.9, 100%, 57.1%);
+
+  --sidebar-bg-color: var(--bg-gray-4);
+  --navbar-bg-color: var(--bg-gray-2);
+  --footer-bg-color: var(--bg-gray-7);
 
   --link-color: lightslategray;
 
   --success-color: var(--green);
   --error-color: var(--red);
 
-  --main-bg-color: #222;
-  --main-text-color: white;
+  --main-bg-color: var(--bg-gray-6);
+  --main-text-color: var(--white);
 }
+
+
+.blue { background-color: #2196f3; }
+.orange { background-color: #ff9800; }
+.purple { background-color: #9c27b0; }
+.red { background-color: #f44336; }
+.yellow { background-color: #ffeb3b; }
+.green { background-color: #4caf50; }
+.pink { background-color: #e91e63; }
+.cyan { background-color: #00bcd4; }
+.brown { background-color: #795548; }
+.indigo { background-color: #3f51b5; }
+.deep-purple { background-color: #673ab7; }

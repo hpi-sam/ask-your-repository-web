@@ -19,7 +19,7 @@ function TeamInitials(props: Props) {
 
   return (
     <div className={className}>
-      {teamInitials}
+      <span>{teamInitials}</span>
     </div>
   );
 }

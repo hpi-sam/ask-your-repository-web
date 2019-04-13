@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { MdPerson } from 'react-icons/md';
+import { IoIosArrowDown } from 'react-icons/io';
 import { connect } from 'react-redux';
 import onClickOutside from 'react-onclickoutside';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ import createGoogleAuthInstance from '../../config/createGoogleAuthInstance';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
 import './Dropdown.scss';
+import { ButtonLink, Button } from '../utility/buttons';
 
 type Props = {
   user: User,
@@ -53,19 +54,21 @@ class Dropdown extends Component<Props, State> {
             data-cy="user-dropdown-button"
           >
             <span className="Dropdown__button__username">{username}</span>
-            <MdPerson className="Dropdown__button__icon" />
+            <IoIosArrowDown />
           </button>
           <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
-            <Link to="/settings">
-              <button type="button">Settings</button>
-            </Link>
-            <hr />
-            <button
-              type="button"
+            <ButtonLink
+              to="/settings"
+              className="Dropdown__content__button"
+            >
+              Settings
+            </ButtonLink>
+            <Button
+              className="Dropdown__content__button"
               onClick={this.handleLogoutClick}
             >
               Logout
-            </button>
+            </Button>
           </div>
         </div>
       </div>
