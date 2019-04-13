@@ -1,0 +1,28 @@
+.ImagesTimeline {
+  &__item {
+    & + & {
+      margin-top: 20px;
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 12px;
+
+      &__date {
+        margin: 0 20px;
+        color: var(--gray-1);
+        font-weight: 700;
+        font-size: var(--font-size-3);
+      }
+
+      &::before, &::after {
+        content: ' ';
+        border-bottom: 1px solid var(--gray-8);
+        flex: 1;
+        height: 1px;
+      }
+    }
+  }
+}

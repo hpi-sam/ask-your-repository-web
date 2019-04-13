@@ -1,7 +1,8 @@
+
 // @flow
 import React from 'react';
 import GalleryItem from './GalleryItem';
-import type { Image } from './ImageDecorator';
+import type { Image } from '../../../models/Image';
 import './Gallery.scss';
 
 type Props = {
