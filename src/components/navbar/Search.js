@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { push } from 'connected-react-router';
 import qs from 'qs';
 import onClickOutside from 'react-onclickoutside';

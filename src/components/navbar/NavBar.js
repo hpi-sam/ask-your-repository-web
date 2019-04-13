@@ -2,7 +2,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { MdCloudUpload, MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
 import Dropdown from './Dropdown';
