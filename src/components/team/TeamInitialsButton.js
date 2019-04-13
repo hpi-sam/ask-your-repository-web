@@ -24,7 +24,7 @@ function TeamInitialsButton({
       className={styleClasses}
       {...rest}
     >
-      {teamInitials}
+      <span>{teamInitials}</span>
     </button>
   );
 }

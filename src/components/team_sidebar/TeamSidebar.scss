@@ -2,7 +2,6 @@
 
 .TeamSidebar {
   --item-padding: 12px;
-  --bg-color: #111;
 
   position: fixed;
   z-index: 999;
@@ -10,7 +9,7 @@
   flex-direction: column;
   width: var(--team-sidebar-width);
   height: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--sidebar-bg-color);
   transition: width var(--sidebar-animation-duration);
 
   &--collapsed {
@@ -31,7 +30,7 @@
     border-radius: 2px;
 
     &:hover {
-      color: white;
+      color: var(--white);
     }
 
     &:active, &:focus {
@@ -86,10 +85,10 @@
     background-color: transparent;
     transition: opacity .1s, background-color .1s;
     outline: 0;
-    opacity: .5;
+    opacity: .6;
 
     &:hover, &:active, &:focus {
-      background-color: #181818;
+      background-color: var(--bg-gray-3);
       opacity: 1;
     }
 
@@ -99,7 +98,6 @@
 
     &__body {
       margin-left: 10px;
-      font-size: .9em;
       flex: 1;
       text-align: left;
       color: #ddd;

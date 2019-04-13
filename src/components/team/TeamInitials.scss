@@ -1,12 +1,12 @@
 .TeamInitials {
-  --dimension: 3.5em;
+  --dimensions: calc(var(--navbar-height) - 2 * var(--navbar-padding));
 
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--dimension);
-  height: var(--dimension);
-  background-color: #333;
+  width: var(--dimensions);
+  height: var(--dimensions);
+  background-color: var(--bg-gray-5);
   font-weight: bold;
   border-radius: 5px;
   border: 3px solid transparent;

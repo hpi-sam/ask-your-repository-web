@@ -16,13 +16,12 @@ import './NavBar.scss';
 type Props = {
   activeTeam: ?Team,
   isTeamSidebarOpen: boolean,
-  isAuthenticated: boolean,
   onTeamClick: () => void,
 };
 
 function NavBar(props: Props) {
   const {
-    isTeamSidebarOpen, onTeamClick, activeTeam, isAuthenticated,
+    isTeamSidebarOpen, onTeamClick, activeTeam,
   } = props;
 
   return (
@@ -39,58 +38,27 @@ function NavBar(props: Props) {
                   data-cy="navbar-team-button"
                 />
               )}
-              <NavLink
-                to="/images"
-                className="NavBar__item"
-                activeClassName="NavBar__item--active"
-              >
-                <MdImage className="NavBar__item__icon" />
-                <span className="NavBar__item__text">
-                  Gallery
-                </span>
-              </NavLink>
-              <NavLink
-                to="/upload"
-                className="NavBar__item NavBar__item--upload"
-                activeClassName="NavBar__item--active"
-              >
-                <MdCloudUpload className="NavBar__item__icon" />
-                <span className="NavBar__item__text">
-                  Upload
-                </span>
-              </NavLink>
-              <div className="NavBar__presentation-switch">
-                <PresentationSwitch />
+              <div className="NavBar__search">
+                <Search />
               </div>
             </div>
           </Fragment>
         )}
         <div className="NavBar__right">
-          {isAuthenticated
-            ? <Dropdown />
-            : (
-              <Fragment>
-                <NavLink
-                  to="/login"
-                  className="NavBar__item"
-                  activeClassName="NavBar__item--active"
-                >
-                  Login
-                </NavLink>
-                <NavLink
-                  to="/register"
-                  className="NavBar__item"
-                  activeClassName="NavBar__item--active"
-                >
-                  Sign up
-                </NavLink>
-              </Fragment>
-            )
-          }
+          <NavLink
+            to="/images"
+            className="NavBar__item"
+            activeClassName="NavBar__item--active"
+          >
+            Gallery
+          </NavLink>
+          <div className="NavBar__item">
+            <Dropdown />
+          </div>
+          <div className="NavBar__item NavBar__presentation-switch">
+            <PresentationSwitch />
+          </div>
         </div>
-      </div>
-      <div className="NavBar__search">
-        <Search />
       </div>
     </div>
   );
@@ -103,7 +71,6 @@ const mapDispatchToProps = (dispatch: Function) => ({
 const mapStateToProps = (state: AppState) => ({
   activeTeam: state.activeTeam,
   isTeamSidebarOpen: state.teamSidebar.isOpen,
-  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

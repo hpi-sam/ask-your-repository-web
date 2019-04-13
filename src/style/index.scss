@@ -10,8 +10,7 @@
 @import 'library_overrides';
 
 :root {
-  --main-font-size: 18px;
-  --navbar-height: 76px;
+  --border-radius: 3px;
   --searchbar-height: 60px;
   --footer-height: 60px;
   --team-sidebar-width: 100%;
@@ -33,7 +32,7 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto Oxygen-Sans, Ubuntu, Cantarell, “Fira Sans”, “Droid Sans”, "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: normal;
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
@@ -51,4 +50,8 @@ button {
   font: inherit;
   border: none;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
 }

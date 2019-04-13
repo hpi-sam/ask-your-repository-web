@@ -18,7 +18,10 @@ function UploadActionButton() {
 
   return (
     <div className="UploadActionButton">
-      <IoIosCloudUpload className="UploadActionButton__icon" />
+      <div className="UploadActionButton__content">
+        <IoIosCloudUpload />
+        <span>Upload</span>
+      </div>
       <Dropzone
         className="UploadActionButton__dropzone"
         onDrop={onDrop}

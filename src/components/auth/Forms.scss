@@ -55,7 +55,7 @@
 
     &:before {
       content: '';
-      background: var(--accent-color-blue);
+      background: var(--primary-color);
       position: absolute;
       left: 0;
       top: 50%;
@@ -90,7 +90,7 @@
       margin: inherit;
       padding: 1rem 2rem;
       border-radius: inherit;
-      background-color: var(--accent-color-blue);
+      background-color: var(--primary-color);
     }
 
     &__cancel {

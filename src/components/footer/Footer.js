@@ -1,15 +1,16 @@
-import React from 'react';
+// @flow
+import React, { Fragment } from 'react';
 import LegalList from './LegalList';
 import './Footer.scss';
 
 function Footer() {
   return (
-    <div>
+    <Fragment>
       <footer className="Footer">
         <LegalList />
       </footer>
       <div className="Footer__space" />
-    </div>
+    </Fragment>
   );
 }
 
