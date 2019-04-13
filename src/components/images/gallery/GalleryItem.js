@@ -20,12 +20,14 @@ function GalleryItem(props: Props) {
 
   return (
     <Link to={`/images/${image.id}`} className="Gallery__item">
-      <img
-        className="Gallery__item__image"
-        srcSet={srcSet}
-        src={image.url}
-        alt={displayedTags.join(', ')}
-      />
+      <div className="Gallery__item__image-container">
+        <img
+          className="Gallery__item__image"
+          srcSet={srcSet}
+          src={image.url}
+          alt={displayedTags.join(', ')}
+        />
+      </div>
       <GalleryItemOverlay image={image} maxTags={maxTags} />
     </Link>
   );

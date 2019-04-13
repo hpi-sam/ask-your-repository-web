@@ -1,17 +1,23 @@
 @import '../../../style/colors.scss';
 
 .Gallery {
+  --item-width: 260px;
   display: grid;
-  align-items: flex-start;
+  grid-template-columns: repeat(auto-fill, minmax(var(--item-width), 1fr));
+  grid-gap: 12px;
 
-  grid-template-columns: repeat(var(--grid-size), 1fr);
-  grid-gap: var(--grid-gap);
   width: 100%;
 
   &__item {
+    border-radius: 3px;
+    display: flex;
     position: relative;
     overflow: hidden;
-    font-size: 0; // fix for unintentional bottom margin
+
+    &::after {
+      content: ' ';
+      padding-bottom: 100%;
+    }
 
     &:hover > & {
       &__overlay {
@@ -21,6 +27,7 @@
 
     &__image {
       width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
@@ -53,7 +60,7 @@
       --button-text-color: white;
       --button-border-width: 0;
       --button-hover-bg-color: var(--red);
-      
+
       &__confirm{
         display: flex;
         flex-direction: column;
@@ -64,7 +71,7 @@
         padding: 6px;
         border: 3px solid #555;
         outline: none;
-        
+
         &__buttons{
           width: 100%;
           display: flex;
@@ -86,7 +93,7 @@
     padding: 20px;
     border: 3px solid #555;
     outline: none;
-    
+
     &__buttons {
       margin-top: 20px;
       width: 100%;
