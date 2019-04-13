@@ -1,15 +1,15 @@
 :root {
   --button-padding-vertical: 12px;
   --button-padding-horizontal: 15px;
-  --button-bg-color: white;
-  --button-text-color: #222;
-  --button-border-color: #ccc;
+  --button-bg-color: var(--gray-9);
+  --button-text-color: var(--gray-4);
+  --button-border-color: transparent;
   --button-border-width: 1px;
-  --button-border-radius: .3rem;
+  --button-border-radius: var(--border-radius);
 
-  --button-disabled-text-color: #333;
-  --button-disabled-bg-color: #999;
-  --button-hover-bg-color: #f8f8f8;
+  --button-disabled-text-color: var(--gray-3);
+  --button-disabled-bg-color: var(--gray-8);
+  --button-hover-bg-color: var(--gray-8);
 }
 
 .Button {
@@ -25,11 +25,15 @@
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
 
-  transition: background-color .2s, color .2s;
-
   &:disabled {
     --button-text-color: var(--button-disabled-text-color);
     --button-bg-color: var(--button-disabled-bg-color);
+  }
+
+  &.-selected {
+    --button-bg-color: var(--accent-color-blue);
+    --button-text-color: var(--white);
+    --button-hover-bg-color: var(--accent-color-blue);
   }
 
   &:hover {

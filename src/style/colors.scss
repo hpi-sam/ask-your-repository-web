@@ -8,7 +8,7 @@
   --gray-5: hsl(0, 0%, 66%);
   --gray-6: hsl(0, 0%, 50%);
   --gray-7: hsl(0, 0%, 32%);
-  --gray-8: hsl(0, 0%, 20%);
+  --gray-8: hsl(0, 0%, 8%);
   --gray-9: hsl(0, 0%, 5%);
 
   --green: rgb(45, 194, 26);
@@ -19,13 +19,15 @@
   --gray-darker: #aaa;
   --accent-color-blue: rgb(36, 186, 255);
   --accent-color-dark-blue: #003338;
-  --navbar-background-color: rgb(24, 24, 24);
+
+  --navbar-bg-color: hsl(234.5, 9.1%, 23.7%);
+  --footer-bg-color: var(--navbar-bg-color);
 
   --link-color: lightslategray;
 
   --success-color: var(--green);
   --error-color: var(--red);
 
-  --main-bg-color: #222;
+  --main-bg-color: hsl(220, 7.9%, 14.9%);
   --main-text-color: white;
 }

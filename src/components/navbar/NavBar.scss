@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 .5em;
-  background-color: var(--navbar-background-color);
+  background-color: var(--navbar-bg-color);
 
   @media (min-width: $sm-to-md) {
     transition: left var(--sidebar-animation-duration);

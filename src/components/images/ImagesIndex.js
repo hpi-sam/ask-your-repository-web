@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import qs from 'qs';
 import InfinityScroll from 'react-infinite-scroller';
@@ -9,6 +9,9 @@ import type { AppState } from '../../state/AppState';
 import ImagesTimeline from './ImagesTimeline';
 import useImages from './useImages';
 import './ImagesIndex.scss';
+import { Button } from '../utility/buttons';
+import ImagesIndexToolbar from './ImagesIndexToolbar';
+import Gallery from './gallery/Gallery';
 
 type Props = {
   activeTeam: ?Team,
@@ -26,15 +29,26 @@ function ImagesIndex(props: Props) {
     isLoadingInitially,
   } = useImages(props.activeTeam, search);
 
+  const [view, setView] = useState<'timeline' | 'gallery'>('gallery');
+
   return (
     <div className="ImagesIndex">
-      {isLoadingInitially && <ActivityIndicator />}
       <InfinityScroll
         initialLoad={false}
         hasMore={hasMore}
         loadMore={loadMore}
       >
-        <ImagesTimeline images={images} />
+        <ImagesIndexToolbar
+          view={view}
+          setView={setView}
+        />
+        {isLoadingInitially && <ActivityIndicator />}
+        {view === 'timeline' && (
+          <ImagesTimeline images={images} />
+        )}
+        {view === 'gallery' && (
+          <Gallery images={images} />
+        )}
       </InfinityScroll>
     </div>
   );

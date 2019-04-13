@@ -13,13 +13,13 @@
       &__date {
         margin: 0 20px;
         color: var(--gray-1);
-        font-weight: 700;
+        font-weight: 500;
         font-size: var(--font-size-3);
       }
 
       &::before, &::after {
         content: ' ';
-        border-bottom: 1px solid var(--gray-8);
+        border-bottom: 1px solid var(--gray-7);
         flex: 1;
         height: 1px;
       }

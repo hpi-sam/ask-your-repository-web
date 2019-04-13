@@ -1,7 +1,6 @@
-@import '../../../style/colors.scss';
-
 .Gallery {
   --item-width: 200px;
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--item-width), 1fr));
   grid-gap: 12px;
