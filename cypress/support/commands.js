@@ -51,7 +51,7 @@ Cypress.Commands.add('authenticate', () => cy.createUser({
           csrfToken,
         });
 
-        return { csrfToken, ...authUser };
+        return { csrfToken, user: authUser };
       });
     });
 }));
@@ -137,4 +137,18 @@ Cypress.Commands.add('resetDB', () => {
   };
 
   cy.request(options);
+});
+
+Cypress.Commands.add('requestWithAuth', (requestUrl) => {
+  // authenticate command needs to be called and saved
+  // under the auth alias for this command to work: cy.authenticate().as('auth');
+  cy.get('@auth')
+    .then(({ csrfToken }) => (
+      cy.request({
+        url: requestUrl,
+        headers: {
+          'X-CSRF-Token': csrfToken,
+        },
+      })
+    ));
 });

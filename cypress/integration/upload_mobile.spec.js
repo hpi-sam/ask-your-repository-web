@@ -1,13 +1,8 @@
 context('Mobile Upload', () => {
-  let user;
-
   beforeEach(() => {
     cy.viewport('iphone-6');
     cy.resetDB();
-    cy.authenticate()
-      .then((authUser) => {
-        user = authUser;
-      });
+    cy.authenticate().as('auth');
     cy.setActiveTeam();
     cy.visit('/upload');
   });
@@ -32,12 +27,7 @@ context('Mobile Upload', () => {
 
       cy.wait('@updateManyImages');
 
-      cy.request({
-        url: `${Cypress.env('API_URL')}/images`,
-        headers: {
-          'X-CSRF-Token': user.csrfToken,
-        },
-      })
+      cy.requestWithAuth(`${Cypress.env('API_URL')}/images`)
         .then((response) => {
           const [image] = response.body.images;
           expect(image.user_tags).to.have.members(['Sheep', 'Cute']);
@@ -74,12 +64,7 @@ context('Mobile Upload', () => {
 
       cy.wait('@updateManyImages');
 
-      cy.request({
-        url: `${Cypress.env('API_URL')}/images`,
-        headers: {
-          'X-CSRF-Token': user.csrfToken,
-        },
-      })
+      cy.requestWithAuth(`${Cypress.env('API_URL')}/images`)
         .then((response) => {
           expect(response.body.images).to.containSubset([{ user_tags: ['Cute', 'Sheep'] }]);
           expect(response.body.images).to.containSubset([{ user_tags: ['Goat', 'Cute'] }]);
