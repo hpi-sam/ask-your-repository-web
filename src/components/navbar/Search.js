@@ -82,6 +82,7 @@ class Search extends Component<Props, State> {
           onChange={this.handleChange}
           onFocus={this.handleSelect}
           placeholder="Search"
+          data-cy="search-input"
         />
         {isSelected && (
           <button

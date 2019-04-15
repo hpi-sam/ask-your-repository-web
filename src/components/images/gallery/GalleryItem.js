@@ -26,6 +26,7 @@ function GalleryItem(props: Props) {
           srcSet={srcSet}
           src={image.url}
           alt={displayedTags.join(', ')}
+          data-cy={`gallery-item-${displayedTags.join('-')}`}
         />
       </div>
       <GalleryItemOverlay image={image} maxTags={maxTags} />

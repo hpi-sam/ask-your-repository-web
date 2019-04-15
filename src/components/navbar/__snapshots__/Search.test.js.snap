@@ -85,6 +85,7 @@ exports[`<Search /> renders correctly 1`] = `
           <input
             autoFocus={true}
             className="Search__input"
+            data-cy="search-input"
             onChange={[Function]}
             onFocus={[Function]}
             placeholder="Search"
