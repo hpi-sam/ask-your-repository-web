@@ -119,14 +119,15 @@ class ImagesIndex extends Component<Props, State> {
 
     return (
       <div className="ImagesIndex">
-        {isLoadingInitially && <ActivityIndicator />}
-        <InfinityScroll
-          initialLoad={false}
-          hasMore={!this.state.endReached}
-          loadMore={this.loadMoreImages}
-        >
-          <Gallery images={images} />
-        </InfinityScroll>
+        {isLoadingInitially ? <ActivityIndicator /> : (
+          <InfinityScroll
+            initialLoad={false}
+            hasMore={!this.state.endReached}
+            loadMore={this.loadMoreImages}
+          >
+            <Gallery images={images} />
+          </InfinityScroll>
+        )}
       </div>
     );
   }
