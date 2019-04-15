@@ -38,7 +38,7 @@ function AuthorizedApp(props: Props) {
           <TeamRoute path="/images" component={ImagesIndex} />
           <TeamRoute path="/presentation" component={Presentation} />
         </Switch>
-        <TeamRoute path="/images" component={UploadActionButton} />
+        <TeamRoute exact path="/images" component={UploadActionButton} />
       </div>
       <Footer />
     </Fragment>
