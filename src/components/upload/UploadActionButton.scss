@@ -2,12 +2,13 @@
 
 .UploadActionButton {
   --dimensions: 70px;
-  --margin: 15px;
+  --margin-right: 15px;
+  --margin-bottom: calc(var(--footer-height) - 10px);
 
   position: fixed;
   overflow: hidden;
-  right: var(--margin);
-  bottom: var(--margin);
+  right: var(--margin-right);
+  bottom: var(--margin-bottom);
   z-index: 1000;
 
   background-color: var(--primary-color);
@@ -19,10 +20,12 @@
   height: var(--dimensions);
 
   @media (min-width: $xs-to-sm) {
-    --margin: 30px;
+    --margin-right: 30px;
+    --margin-bottom: 30px;
+
     width: auto;
     height: auto;
-    border-radius: 30px;
+    border-radius: 100px;
     padding: 20px 25px;
   }
 
