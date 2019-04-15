@@ -1,15 +1,15 @@
 :root {
   --button-padding-vertical: 12px;
   --button-padding-horizontal: 15px;
-  --button-bg-color: white;
-  --button-text-color: #222;
-  --button-border-color: #ccc;
+  --button-bg-color: var(--bg-gray-2);
+  --button-text-color: var(--white);
+  --button-border-color: transparent;
   --button-border-width: 1px;
   --button-border-radius: .3rem;
 
   --button-disabled-text-color: #333;
   --button-disabled-bg-color: #999;
-  --button-hover-bg-color: #f8f8f8;
+  --button-hover-bg-color: var(--bg-gray-3);
   --button-hover-text-color: var(--white);
 }
 

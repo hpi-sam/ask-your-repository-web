@@ -11,8 +11,8 @@
 
   &__button {
     height: var(--navbar-height);
+    background-color: transparent;
     display: flex;
-    background-color: var(--navbar-background-color);
     align-items: center;
     font-weight: bold;
     color: white;
@@ -50,9 +50,9 @@
     right: 0;
     display: none;
     position: absolute;
-    background-color: hsl(232.5, 9.8%, 16.1%);
     box-shadow: var(--elevation-4);
-    border-radius: 4px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
     min-width: 160px;
     z-index: 1;
 
@@ -62,18 +62,18 @@
 
     &__button {
       width: 100%;
-      background-color: transparent;
+      background-color: var(--bg-gray-5);
       color: inherit;
       border: none;
       border-radius: 0;
       font-weight: normal;
 
       & + & {
-        border-top: 1px solid hsl(229.1, 8.1%, 26.5%);
+        border-top: 1px solid var(--bg-gray-2);
       }
 
       &:hover {
-        background-color: hsl(230.8, 9.4%, 27.3%);
+        background-color: var(--bg-gray-2);
       }
     }
   }

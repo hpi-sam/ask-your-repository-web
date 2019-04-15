@@ -1,13 +1,18 @@
 :root {
   --white: hsl(0, 0%, 100%);
 
+  --text-gray-1: hsl(0, 0%, 97%);
+  --text-gray-2: hsl(0, 0%, 90%);
+  --text-gray-3: hsl(0, 0%, 80%);
+  --text-gray-4: hsl(0, 0%, 60%);
+
   --bg-gray-1: hsl(220, 16.2%, 32.7%);
   --bg-gray-2: hsl(230.8, 9.4%, 27.3%);
   --bg-gray-3: hsl(234.5, 9.1%, 23.7%);
   --bg-gray-4: hsl(234, 10%, 19.6%);
   --bg-gray-5: hsl(232.5, 9.8%, 16.1%);
-  --bg-gray-6:  hsl(220, 7.9%, 14.9%);
-  --bg-gray-7:  hsl(220, 7.9%, 11.9%);
+  --bg-gray-6: hsl(220, 7.9%, 14.9%);
+  --bg-gray-7: hsl(220, 7.9%, 11.9%);
 
   --green: rgb(45, 194, 26);
   --green-darker: rgb(42, 153, 28);

@@ -27,7 +27,7 @@ function UploadList(props: Props) {
           Upload more files
         </span>
       </Dropzone>
-      <Scrollbars autoHide>
+      <Scrollbars autoHide autoHeight>
         <div className="UploadList__inner">
           {props.uploads.map((upload, index) => (
             <UploadListItem
