@@ -68,30 +68,6 @@ exports[`<ImagesIndex /> renders correctly 1`] = `
         </MdCropSquare>
       </div>
     </ActivityIndicator>
-    <InfiniteScroll
-      element="div"
-      getScrollParent={null}
-      hasMore={true}
-      initialLoad={false}
-      isReverse={false}
-      loadMore={[Function]}
-      loader={null}
-      pageStart={0}
-      ref={null}
-      threshold={250}
-      useCapture={false}
-      useWindow={true}
-    >
-      <div>
-        <Gallery
-          images={Array []}
-        >
-          <div
-            className="Gallery"
-          />
-        </Gallery>
-      </div>
-    </InfiniteScroll>
   </div>
 </ImagesIndex>
 `;
