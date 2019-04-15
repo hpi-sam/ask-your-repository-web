@@ -4,10 +4,10 @@ function LegalList() {
   return (
     <ul className="Footer__legal-list">
       <li>
-        <a href="/static/imprint.html">Impressum</a>
+        <a href="/static/imprint.html">Imprint</a>
       </li>
       <li>
-        <a href="/static/privacy.html">Datenschutzerklärung</a>
+        <a href="/static/privacy.html">Privacy</a>
       </li>
     </ul>
   );
