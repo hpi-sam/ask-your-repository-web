@@ -3,9 +3,9 @@ import humps from 'humps';
 context('Change Password', () => {
   beforeEach(() => {
     cy.resetDB();
-    cy.authenticate().then((user) => {
+    cy.authenticate().then((auth) => {
       cy.server();
-      cy.route({ method: 'PATCH', url: `users/${user.id}` }).as('changePassword');
+      cy.route({ method: 'PATCH', url: `users/${auth.user.id}` }).as('changePassword');
       cy.visit('/settings');
     });
   });
