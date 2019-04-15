@@ -64,10 +64,10 @@ jobs:
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
       - run: docker push bp2018hg1/jona_dev:$CIRCLE_BRANCH
       - store_artifacts:
-          path: /app/cypress/screenshots
+          path: ~/project/cypress/screenshots
           destination: e2e-screenshots
       - store_artifacts:
-          path: /app/cypress/videos
+          path: ~/project/cypress/videos
           destination: e2e-videos
   build_staging:
     machine:
