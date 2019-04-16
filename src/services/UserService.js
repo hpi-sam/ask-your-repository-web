@@ -29,8 +29,10 @@ class UserService {
     return user;
   }
 
-  static revokeDriveAccess(id: string): Promise<User> {
-    return api.delete(`/users/${id}/oauths/google/scopes`);
+  static async revokeDriveAccess(id: string): Promise<User> {
+    const response = await api.delete(`/users/${id}/oauths/google/scopes`);
+    const user: any = humps.camelizeKeys(response.data);
+    return user;
   }
 
   static async list(): Promise<User[]> {
