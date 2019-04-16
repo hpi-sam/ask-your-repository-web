@@ -5,15 +5,11 @@
 
   &__inner {
     max-width: var(--max-width);
+    height: calc(100% - var(--footer-height));
 
     margin: 0 auto;
-    box-sizing: content-box;
     padding: 0 var(--padding-sides) 20px var(--padding-sides);
     padding-top: var(--navbar-height);
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
 
     @media (min-width: $sm-to-md) {
       padding-top: var(--navbar-height);

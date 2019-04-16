@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { IoIosCloudOutline } from 'react-icons/io';
 import qs from 'qs';
 import InfinityScroll from 'react-infinite-scroller';
 import Gallery from './gallery/Gallery';
@@ -11,6 +12,8 @@ import type { Team } from '../../models/Team';
 import type { Image as APIImage } from '../../models/Image';
 import type { Image } from './gallery/ImageDecorator';
 import type { AppState } from '../../state/AppState';
+import ListEmpty from '../utility/ListEmpty';
+import { ButtonLink } from '../utility/buttons';
 import './ImagesIndex.scss';
 
 type Props = {
@@ -116,6 +119,22 @@ class ImagesIndex extends Component<Props, State> {
 
   render() {
     const { images, isLoadingInitially } = this.state;
+
+    if (images.length === 0) {
+      return (
+        <ListEmpty>
+          <IoIosCloudOutline />
+          <span>
+            Your team has no images yet.
+            <br />
+            Upload your first one!
+          </span>
+          <ButtonLink to="/upload">
+            Upload Image
+          </ButtonLink>
+        </ListEmpty>
+      );
+    }
 
     return (
       <div className="ImagesIndex">
