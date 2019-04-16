@@ -5,9 +5,11 @@ import { Route } from 'react-router';
 import { PersistGate } from 'redux-persist-erksch/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore, { history } from '../config/configureStore';
+import configureAxios from '../config/configureAxios';
 import App from './App';
 
 const { store, persistor }: any = configureStore();
+configureAxios(store);
 
 function Root() {
   return (
