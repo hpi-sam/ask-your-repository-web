@@ -19,7 +19,7 @@ type Props = {
 
 function App(props: Props) {
   return (
-    <div className="App" id="App">
+    <div className="App">
       <FlashMessages />
       <Switch>
         <Route exact path="/" component={props.isAuthenticated ? AuthorizedApp : LandingPage} />

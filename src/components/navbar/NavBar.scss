@@ -21,10 +21,6 @@
     &--with-sidebar { left: var(--team-sidebar-width); }
   }
 
-  &__transparent {
-    background: rgba(0,0,0,0) !important;
-  }
-
   &__inner {
     display: flex;
     align-items: center;

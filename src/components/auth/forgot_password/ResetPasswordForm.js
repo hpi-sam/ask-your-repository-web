@@ -117,7 +117,7 @@ class ResetPasswordForm extends Component<Props, State> {
     } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit} className="Form">
+      <Form onSubmit={this.handleSubmit} className="Form Form__centered">
         <div className="Form__title">Update Password</div>
         {this.printError()}
         <div className="form-input">
@@ -151,7 +151,7 @@ class ResetPasswordForm extends Component<Props, State> {
           <Button className="Form__buttons__item" data-cy="register-submit-button">
             Update Password
           </Button>
-          <Link to="/" className="Form__buttons__cancel">Cancel</Link>
+          <Link to="/" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
         </div>
       </Form>
     );

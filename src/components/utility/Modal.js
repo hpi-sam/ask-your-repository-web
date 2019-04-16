@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import { MdClear } from 'react-icons/md';
 import './Modal.scss';
 
@@ -13,11 +13,9 @@ type State = {
   modalIsOpen: boolean,
 };
 
-class ModalWindow extends Component<Props, State> {
+class Modal extends Component<Props, State> {
   constructor() {
     super();
-
-    Modal.setAppElement('#App');
 
     this.state = {
       modalIsOpen: true,
@@ -40,7 +38,7 @@ class ModalWindow extends Component<Props, State> {
     const { children, close } = this.props;
 
     return (
-      <Modal
+      <ReactModal
         isOpen={this.state.modalIsOpen}
         className="ModalView__modal"
         overlayClassName="ModalView__overlay"
@@ -57,9 +55,9 @@ class ModalWindow extends Component<Props, State> {
         <div className="ModalView__content">
           {children}
         </div>
-      </Modal>
+      </ReactModal>
     );
   }
 }
 
-export default ModalWindow;
+export default Modal;

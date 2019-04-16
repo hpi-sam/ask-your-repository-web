@@ -32,18 +32,18 @@ class TeamSidebarItem extends Component<Props> {
     });
 
     return (
-      <div className="TeamSidebar__listpoint">
+      <div className={className}>
         <button
           type="button"
           onClick={this.handleClick}
-          className={className}
+          className="TeamSidebar__item__button"
           title={team.name}
         >
           <TeamInitials
             team={team}
             isActive={isActive}
           />
-          <div className="TeamSidebar__item__body">
+          <div className="TeamSidebar__item__button__caption">
             {team.name}
           </div>
         </button>

@@ -5,7 +5,8 @@ import type { Team } from '../models/Team';
 
 class InviteService {
   static async join(key: string): Promise<Team> {
-    const team: any = humps.camelizeKeys(await api.post(`/invites/${key}`));
+    const response = await api.post(`/invites/${key}`);
+    const team: any = humps.camelizeKeys(response.data);
     return team;
   }
 }

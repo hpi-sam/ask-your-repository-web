@@ -9,7 +9,6 @@ import ValidationErrors from '../utility/form/ValidationErrors';
 import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
 import type { Errors } from '../../models/Errors';
-import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,

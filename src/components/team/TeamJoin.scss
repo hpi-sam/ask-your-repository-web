@@ -34,14 +34,7 @@
     font-size: 1.2em;
     padding: 0 1em;
     line-height: 3.2em;
-    background-color: var(--accent-color-blue);
+    background-color: var(--primary-color);
     color: white;
-
-    &:hover, &:focus, &:active {
-      background-color: var(--accent-color-blue-darker);
-      color: white;
-      border: none;
-      outline: none;
-    }
   }
 }

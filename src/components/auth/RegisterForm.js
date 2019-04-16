@@ -8,7 +8,6 @@ import Button from 'react-validation/build/button';
 import ValidationErrors from '../utility/form/ValidationErrors';
 import { register } from '../../state/auth/auth.actionCreators';
 import type { Errors } from '../../models/Errors';
-import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
