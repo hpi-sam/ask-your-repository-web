@@ -6,7 +6,7 @@
 
   @keyframes color-pulse {
     0% { color: var(--main-text-color); }
-    50% { color: rgb(36, 186, 255); }
+    50% { color: var(--primary-color); }
     100% { color: var(--main-text-color); }
   }
 
@@ -14,6 +14,12 @@
   flex-direction: column;
   align-items: center;
   color: var(--main-text-color);
+
+  &.-centered {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
 
   &__spinner {
     font-size: 3rem;
@@ -25,7 +31,7 @@
   &__text {
     margin-top: 20px;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 500;
     animation: color-pulse 4s infinite;
   }
 }

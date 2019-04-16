@@ -124,6 +124,7 @@ exports[`<TeamSidebar /> renders correctly 1`] = `
             className="TeamSidebar__loading"
           >
             <ActivityIndicator
+              centered={false}
               className=""
               text=""
             >

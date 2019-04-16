@@ -120,6 +120,15 @@ class ImagesIndex extends Component<Props, State> {
   render() {
     const { images, isLoadingInitially } = this.state;
 
+    if (isLoadingInitially) {
+      return (
+        <ActivityIndicator
+          centered
+          text="Loading images..."
+        />
+      );
+    }
+
     if (images.length === 0) {
       return (
         <ListEmpty>
@@ -138,15 +147,13 @@ class ImagesIndex extends Component<Props, State> {
 
     return (
       <div className="ImagesIndex">
-        {isLoadingInitially ? <ActivityIndicator /> : (
-          <InfinityScroll
-            initialLoad={false}
-            hasMore={!this.state.endReached}
-            loadMore={this.loadMoreImages}
-          >
-            <Gallery images={images} />
-          </InfinityScroll>
-        )}
+        <InfinityScroll
+          initialLoad={false}
+          hasMore={!this.state.endReached}
+          loadMore={this.loadMoreImages}
+        >
+          <Gallery images={images} />
+        </InfinityScroll>
       </div>
     );
   }
