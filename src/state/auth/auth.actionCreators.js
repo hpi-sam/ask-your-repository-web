@@ -59,6 +59,7 @@ export function connectGoogle(id: string, idToken: any) {
 export function logout() {
   return async (dispatch: Function): Promise<void> => {
     await AuthService.logout();
+    dispatch({ type: 'RESET' });
     dispatch({ type: actionTypes.LOGOUT });
     dispatch(push('/'));
     dispatch(flashSuccessMessage('Successfully logged out'));

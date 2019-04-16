@@ -13,15 +13,23 @@ import presentationMode from './presentation_mode/presentationMode.reducer';
 import auth from './auth/auth.reducer';
 
 function createRootReducer(history: History): CombinedReducer<AppState, Action> {
-  return combineReducers({
-    router: connectRouter(history),
-    presentation,
-    activeTeam,
-    teamSidebar,
-    presentationMode,
-    auth,
-    flash: flashReducer,
-  });
+  return (state, action) => {
+    const combinedReducer = combineReducers({
+      router: connectRouter(history),
+      presentation,
+      activeTeam,
+      teamSidebar,
+      presentationMode,
+      auth,
+      flash: flashReducer,
+    });
+
+    const nextState = action.type === 'RESET'
+      ? undefined
+      : state;
+
+    return combinedReducer(nextState, action);
+  };
 }
 
 export default createRootReducer;
