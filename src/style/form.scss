@@ -23,6 +23,13 @@
     &__label {
       font-size: 1.3em;
       font-weight: 200;
+
+      &__link {
+        font-size: 0.8em;
+        font-weight: 300;
+        color: var(--link-color);
+        float: right;
+      }
     }
 
     input {

@@ -66,16 +66,8 @@ class TeamSidebarSettings extends Component<Props, State> {
             >
               Invite people
             </button>
-            <div>
-              {showInvitation && (<TeamInvitationLink team={team} />)}
-            </div>
+            {showInvitation && (<TeamInvitationLink team={team} />)}
           </div>
-          <button
-            type="button"
-            className="TeamSidebar__dropdown__content__item"
-          >
-            Link with Google Drive
-          </button>
         </div>
       </div>
     );

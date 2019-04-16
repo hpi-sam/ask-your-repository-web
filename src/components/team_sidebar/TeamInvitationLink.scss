@@ -1,38 +1,24 @@
 .InviteForm {
-  width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  align-self: center;
-  text-align: center;
-
-  -webkit-transition-timing-function: ease;
-  transition-timing-function: ease;
-  -webkit-transition: width 2s;
-  transition: width 2s;
+  padding: 5px;
+  z-index: 100;
 
   &__link {
-    flex: .8;
-    margin: 5px 0 5px 5px;
     width: 100%;
     padding: 0 10px;
-    border-radius: 4px;
-    color: black;
-    text-overflow: ellipsis;
+    font-size: var(--font-size-2);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-gray-4);
   }
 
-  &__icon {
-    flex: .2;
-    font-size: 1.5em;
-    cursor: pointer;
+  &__copy-button {
+    flex: 1;
+    margin-left: 5px;
+    background-color: transparent;
 
-    &:hover {
-      color: black;
-    }
-
-    &--active {
-      color: var(--accent-color-blue-darker);
+    &:active {
+      color: var(--primary-color);
     }
   }
 }

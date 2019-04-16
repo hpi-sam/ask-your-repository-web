@@ -1,8 +1,9 @@
 // @flow
-import React, { useState } from 'react';
+import React from 'react';
 import { MdContentCopy } from 'react-icons/md';
 import copyToClipboard from '../utility/Clipboard';
 import type { Team } from '../../models/Team';
+import { Button } from '../utility/buttons';
 import './TeamInvitationLink.scss';
 
 type Props = {
@@ -10,14 +11,11 @@ type Props = {
 };
 
 function TeamInvitationLink(props: Props) {
-  const [isCopied, setIsCopied] = useState(false);
-
   function getLink() {
     return `${window.location.origin || ''}/invites/${props.team.joinKey}`;
   }
 
-  function copyLink() {
-    setIsCopied(true);
+  function handleCopyClick() {
     copyToClipboard(getLink());
   }
 
@@ -32,11 +30,13 @@ function TeamInvitationLink(props: Props) {
         disabled
         data-cy="team-sidebar-settings-invite-input"
       />
-      <MdContentCopy
-        className={isCopied ? 'InviteForm__icon InviteForm__icon--active' : 'InviteForm__icon'}
-        onClick={copyLink}
+      <Button
+        onClick={handleCopyClick}
+        className="InviteForm__copy-button"
         data-cy="team-sidebar-settings-invite-copy-button"
-      />
+      >
+        <MdContentCopy className="InviteForm__icon" />
+      </Button>
     </div>
   );
 }

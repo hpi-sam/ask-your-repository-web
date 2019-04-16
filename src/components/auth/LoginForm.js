@@ -9,11 +9,10 @@ import GoogleLogin from './GoogleLogin';
 import ValidationErrors from '../utility/form/ValidationErrors';
 import { login } from '../../state/auth/auth.actionCreators';
 import type { Errors } from '../../models/Errors';
-import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
-  location: { state: { from: string }},
+  location: { state: { from: string } },
 };
 
 type State = {
@@ -113,7 +112,7 @@ class LoginForm extends Component<Props, State> {
         <div className="Form__input">
           <label className="Form__input__label">
             Password:
-            <Link className="Form__label-link" to="/forgot-password">Forgot password?</Link>
+            <Link className="Form__input__label__link" to="/forgot-password">Forgot password?</Link>
             <Input
               type="password"
               name="password"

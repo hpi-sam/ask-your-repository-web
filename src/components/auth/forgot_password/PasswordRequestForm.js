@@ -91,11 +91,11 @@ class PasswordRequestForm extends Component<Props, State> {
   render() {
     const { email } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit} className="Form">
+      <Form onSubmit={this.handleSubmit} className="Form Form__centered">
         <div className="Form__title">Reset Password</div>
         {this.printError()}
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Email or Username:
             <Input
               type="text"
@@ -106,10 +106,10 @@ class PasswordRequestForm extends Component<Props, State> {
           </label>
         </div>
         <div className="Form__buttons">
-          <Button className="Form__buttons__item">
+          <Button className="Form__buttons__item Form__buttons__item__blue">
             Submit
           </Button>
-          <Link to="/login" className="Form__buttons__cancel">Cancel</Link>
+          <Link to="/login" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
         </div>
       </Form>
     );

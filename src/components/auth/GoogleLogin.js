@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { flashErrorMessage } from 'redux-flash';
 import GoogleLoginButton from 'react-google-login';
 import { loginWithGoogle } from '../../state/auth/auth.actionCreators';
-import '../../style/form.scss';
 
 type Props = {
   dispatch: Function,
