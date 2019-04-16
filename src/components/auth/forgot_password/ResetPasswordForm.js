@@ -120,12 +120,11 @@ class ResetPasswordForm extends Component<Props, State> {
       <Form onSubmit={this.handleSubmit} className="Form Form__centered">
         <div className="Form__title">Update Password</div>
         {this.printError()}
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Password:
             <Input
               type="password"
-              className="form-control"
               name="password"
               value={password}
               onChange={this.handleChange}
@@ -133,12 +132,11 @@ class ResetPasswordForm extends Component<Props, State> {
             />
           </label>
         </div>
-        <div className="form-input">
-          <label className="Form__label">
+        <div className="Form__input">
+          <label className="Form__input__label">
             Confirm Password:
             <Input
               type="password"
-              className="form-control"
               name="passwordConfirm"
               value={passwordConfirm}
               onChange={this.handleChange}
@@ -148,10 +146,18 @@ class ResetPasswordForm extends Component<Props, State> {
         </div>
 
         <div className="Form__buttons">
-          <Button className="Form__buttons__item" data-cy="register-submit-button">
+          <Button
+            className="Form__buttons__item Form__buttons__item__blue"
+            data-cy="register-submit-button"
+          >
             Update Password
           </Button>
-          <Link to="/" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
+          <Link
+            to="/"
+            className="Form__buttons__item Form__buttons__item__gray"
+          >
+            Cancel
+          </Link>
         </div>
       </Form>
     );
