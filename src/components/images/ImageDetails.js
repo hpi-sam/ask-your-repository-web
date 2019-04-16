@@ -35,7 +35,7 @@ class ImageDetail extends Component<Props, State> {
   render() {
     const { image } = this.state;
 
-    if (!image) return <ActivityInidicator />;
+    if (!image) return <ActivityInidicator centered />;
 
     return (
       <div className="ImageDetails">

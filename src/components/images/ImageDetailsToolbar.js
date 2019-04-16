@@ -18,8 +18,10 @@ function ImageDetailsToolbar(props: Props) {
       left={(
         <Fragment>
           <ButtonLink to="/images">
-            <IoIosArrowRoundBack />
-            <span>Back to gallery</span>
+            <IoIosArrowRoundBack style={{ fontSize: 'var(--font-size-5)' }} />
+            <span className="hide-xs">
+              Back to gallery
+            </span>
           </ButtonLink>
         </Fragment>
       )}
