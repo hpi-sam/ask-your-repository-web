@@ -41,7 +41,11 @@ function AuthorizedApp(props: Props) {
           <TeamRoute path="/presentation" component={Presentation} />
           <Redirect from="*" to="/images" />
         </Switch>
-        <TeamRoute exact path="/images" component={UploadActionButton} />
+        <Switch>
+          {/* render UploadActionButton everywhere except on /upload */}
+          <Route path="/upload" render={() => null} />
+          <Route path="/" component={UploadActionButton} />
+        </Switch>
       </div>
       <Footer />
     </Fragment>
