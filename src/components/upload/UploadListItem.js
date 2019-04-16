@@ -32,6 +32,11 @@ class FileUploadListItem extends Component<Props, State> {
 
   handleClick = () => {
     const { onClick, upload } = this.props;
+
+    if (upload.status === 'failed') {
+      upload.retry();
+    }
+
     onClick(upload.id);
   };
 

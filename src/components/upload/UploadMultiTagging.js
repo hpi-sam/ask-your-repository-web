@@ -7,6 +7,7 @@ import type { Upload } from '../../models/Upload';
 import { SaveButton } from '../utility/buttons';
 import MultiTagging from '../tagging/desktop/MultiTagging';
 import UploadList from './UploadList';
+import ActivityIndicator from '../utility/ActivityIndicator';
 
 type Props = {
   multiTags: Array<TagType>,
@@ -44,13 +45,23 @@ function UploadMultiTagging(props: Props) {
   return (
     <Fragment>
       <div className="Upload__tagging">
-        {selectedUpload && selectedUpload.image && (
-          <MultiTagging
-            image={selectedUpload.image}
-            multiTags={multiTags}
-            addMultiTag={addMultiTag}
-            removeMultiTag={removeMultiTag}
-          />
+        {selectedUpload && (
+          <Fragment>
+            {selectedUpload.status === 'ongoing' && (
+              <ActivityIndicator
+                text="Uploading"
+                centered
+              />
+            )}
+            {selectedUpload.image && (
+              <MultiTagging
+                image={selectedUpload.image}
+                multiTags={multiTags}
+                addMultiTag={addMultiTag}
+                removeMultiTag={removeMultiTag}
+              />
+            )}
+          </Fragment>
         )}
       </div>
       <div className="Upload__uploads">
