@@ -28,7 +28,7 @@ type State = {
   isLoadingInitially: boolean,
 };
 
-export const limit = 12;
+export const limit = 20;
 
 class ImagesIndex extends Component<Props, State> {
   defaultState = {

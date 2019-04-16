@@ -5,21 +5,18 @@
 
   &__inner {
     max-width: var(--max-width);
-    height: calc(100% - var(--footer-height));
+    min-height: calc(100% - var(--footer-height));
+    display: flex;
 
     margin: 0 auto;
-    padding: 0 var(--padding-sides) 20px var(--padding-sides);
+    margin-bottom: var(--footer-height);
+    padding: 0 var(--padding-sides) 0 var(--padding-sides);
     padding-top: var(--navbar-height);
 
     @media (min-width: $sm-to-md) {
       padding-top: var(--navbar-height);
       transition: margin-left var(--sidebar-animation-duration);
       &--with-sidebar { margin-left: var(--team-sidebar-width); }
-    }
-
-    &--without-navbar {
-      height: 100%;
-      padding: auto;
     }
   }
 }
