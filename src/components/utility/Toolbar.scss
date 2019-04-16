@@ -1,7 +1,19 @@
+@import '../../style/breakpoints';
+
 .Toolbar {
   display: flex;
   padding: 0;
   margin: 20px auto;
+
+  &__back {
+    span {
+      display: none;
+
+      @media (min-width: $xs-to-sm) {
+        display: block;
+      }
+    }
+  }
 
   &__left {
     margin-right: auto;

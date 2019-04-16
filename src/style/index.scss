@@ -55,3 +55,11 @@ button {
 a {
   text-decoration: none;
 }
+
+.hide-xs {
+  display: none;
+
+  @media (min-width: $xs-to-sm) {
+    display: initial;
+  }
+}
