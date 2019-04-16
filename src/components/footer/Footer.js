@@ -9,7 +9,6 @@ function Footer() {
       <footer className="Footer">
         <LegalList />
       </footer>
-      <div className="Footer__space" />
     </Fragment>
   );
 }
