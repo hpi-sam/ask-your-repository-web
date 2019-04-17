@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IoIosCloudOutline } from 'react-icons/io';
+import { IoIosCloudOutline, IoIosSearch } from 'react-icons/io';
 import qs from 'qs';
 import InfinityScroll from 'react-infinite-scroller';
 import Gallery from './gallery/Gallery';
@@ -119,6 +119,7 @@ class ImagesIndex extends Component<Props, State> {
 
   render() {
     const { images, isLoadingInitially } = this.state;
+    const search = this.getSearchString(this.props.location.search);
 
     if (isLoadingInitially) {
       return (
@@ -126,6 +127,19 @@ class ImagesIndex extends Component<Props, State> {
           centered
           text="Loading images..."
         />
+      );
+    }
+
+    if (images.length === 0 && search) {
+      return (
+        <ListEmpty>
+          <IoIosSearch />
+          <span>
+            We did not find any images
+            <br />
+            for your search query :(
+          </span>
+        </ListEmpty>
       );
     }
 
