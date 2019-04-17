@@ -11,7 +11,7 @@ type Props = {
 };
 
 function TeamInitials(props: Props) {
-  const teamInitials = initials(props.team.name);
+  const teamInitials = initials(props.team.name).substring(0, 4);
 
   const className = classNames('TeamInitials', {
     'TeamInitials--active': props.isActive,
