@@ -1,22 +1,19 @@
 .SingleInputForm {
   --height: 40px;
-  animation: fade-in .5s;
-
-  &__inner {
-    display: flex;
-    height: var(--height);
-    overflow: hidden;
-    border-radius: var(--border-radius);
-  }
+  animation: fade-in .2s;
+  display: flex;
+  height: var(--height);
+  overflow: hidden;
+  border-radius: var(--border-radius);
 
   &__input {
     flex: 1;
     width: 100%;
-    padding: 0 10px;
-    height: 100%;
+    padding: 0 12px;
     color: white;
     background-color: var(--bg-gray-2);
     outline: none;
+    line-height: 1.2;
 
     &:placeholder-shown {
       color: var(--text-gray-4);

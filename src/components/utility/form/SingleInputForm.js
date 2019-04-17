@@ -50,28 +50,26 @@ class SingleInputForm extends Component<Props, State> {
         onSubmit={this.handleSubmit}
         data-cy={this.props['data-cy']}
       >
-        <div className="SingleInputForm__inner">
-          <input
-            className="SingleInputForm__input"
-            value={this.state.text}
-            type="text"
-            onChange={this.handleInputChange}
-            placeholder={this.props.placeholder}
-          />
-          <SaveButton
-            type="submit"
-            className="SingleInputForm__button"
-          >
-            <MdCheck />
-          </SaveButton>
-          <CloseButton
-            onClick={this.props.onClose}
-            type="button"
-            className="SingleInputForm__button"
-          >
-            <MdClose />
-          </CloseButton>
-        </div>
+        <input
+          className="SingleInputForm__input"
+          value={this.state.text}
+          type="text"
+          onChange={this.handleInputChange}
+          placeholder={this.props.placeholder}
+        />
+        <SaveButton
+          type="submit"
+          className="SingleInputForm__button"
+        >
+          <MdCheck />
+        </SaveButton>
+        <CloseButton
+          onClick={this.props.onClose}
+          type="button"
+          className="SingleInputForm__button"
+        >
+          <MdClose />
+        </CloseButton>
       </form>
     );
   }

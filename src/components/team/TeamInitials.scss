@@ -8,7 +8,7 @@
   height: var(--dimensions);
   background-color: var(--bg-gray-5);
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   border: 3px solid transparent;
   transition: border-color .1s;
   outline: none;
