@@ -57,19 +57,22 @@ class Dropdown extends Component<Props, State> {
             <span className="Dropdown__button__username navbar-key">{username}</span>
             <IoIosArrowDown className="navbar-key" />
           </button>
-          <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
-            <ButtonLink
-              to="/settings"
-              className="Dropdown__content__button"
-            >
-              Settings
-            </ButtonLink>
-            <Button
-              className="Dropdown__content__button"
-              onClick={this.handleLogoutClick}
-            >
-              Logout
-            </Button>
+          <div className={isSelected ? 'Dropdown__container Dropdown__container--active' : 'Dropdown__container'}>
+            <div className="Dropdown__arrow" />
+            <div className="Dropdown__content">
+              <ButtonLink
+                to="/settings"
+                className="Dropdown__content__button"
+              >
+                Settings
+              </ButtonLink>
+              <Button
+                className="Dropdown__content__button"
+                onClick={this.handleLogoutClick}
+              >
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -45,31 +45,46 @@
     background-color: inherit;
   }
 
-  &__content {
+  &__arrow {
+    z-index: 2;
+    padding: 5px;
+    display: block;
+    background-color: var(--bg-gray-4);
+    left: auto;
+    right: 16px;
+    top: -5px;
+    border-top: 1px solid var(--bg-gray-2);
+    border-left: 1px solid var(--bg-gray-2);
+    transform: rotate(45deg);
+    position: absolute;
+  }
+
+  &__container {
     border: 1px solid var(--bg-gray-2);
-    margin-top: -8px;
+    margin: -8px -16px 0 0;
     right: 0;
     display: none;
     position: absolute;
     box-shadow: var(--elevation-4);
-    overflow: hidden;
     border-radius: var(--border-radius);
+    background-color: var(--bg-gray-4);
     min-width: 160px;
     z-index: 1;
 
-    &::before {
-      height: 2px;
-      width: 2px;
-      background-color: red;
-    }
-
     &--active {
-      display:block;
+      display: block;
     }
+  }
+
+  &__content {
+    overflow: hidden;
+    z-index: 3;
+    position: relative;
+    border-radius: inherit;
 
     &__button {
       width: 100%;
-      background-color: var(--bg-gray-5);
+      background-color: var(--bg-gray-4);
       color: inherit;
       border: none;
       border-radius: 0;
@@ -80,7 +95,7 @@
       }
 
       &:hover {
-        background-color: var(--bg-gray-4);
+        background-color: var(--bg-gray-3);
       }
     }
   }
