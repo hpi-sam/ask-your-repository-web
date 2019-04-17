@@ -1,7 +1,7 @@
 .FlashMessage {
   --space-to-top: 20px;
 
-  z-index: 200;
+  z-index: var(--flash-index);
   position: absolute;
   top: 0;
   left: 50%;

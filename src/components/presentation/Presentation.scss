@@ -25,7 +25,7 @@
     left: 50%;
     right: 50%;
     transform: translateX(-50%) translateY(-50%);
-    z-index: 20;
+    z-index: var(--presentation-index);
     position: absolute;
 
     img {
@@ -35,7 +35,7 @@
     @for $i from 1 through 4 {
       &--left--#{$i}, &--right--#{$i} {
         filter: brightness(calc(60% - 10% * #{$i}));
-        z-index: calc(10 - #{$i});
+        z-index: calc(var(--presentation-index) - #{$i});
       }
 
       &--left--#{$i} {

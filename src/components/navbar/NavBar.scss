@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   position: fixed;
-  z-index: 100;
+  z-index: var(--navbar-index);
 
   display: flex;
   flex-direction: column;
