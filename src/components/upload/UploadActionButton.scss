@@ -9,7 +9,7 @@
   overflow: hidden;
   right: var(--margin-right);
   bottom: var(--margin-bottom);
-  z-index: 200;
+  z-index: var(--upload-button-index);
 
   background-color: var(--primary-color);
   color: var(--white);

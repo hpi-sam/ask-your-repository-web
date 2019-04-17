@@ -4,7 +4,7 @@
   --item-padding: 12px;
 
   position: fixed;
-  z-index: 999;
+  z-index: var(--team-sidebar-index);
   display: flex;
   flex-direction: column;
   width: var(--team-sidebar-width);

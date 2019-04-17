@@ -46,7 +46,7 @@
   }
 
   &__arrow {
-    z-index: 2;
+    z-index: var(--dropdown-arraow-index);
     padding: 5px;
     display: block;
     background-color: var(--bg-gray-4);
@@ -69,7 +69,7 @@
     border-radius: var(--border-radius);
     background-color: var(--bg-gray-4);
     min-width: 160px;
-    z-index: 1;
+    z-index: var(--dropdown-container-index);
 
     &--active {
       display: block;
@@ -78,7 +78,7 @@
 
   &__content {
     overflow: hidden;
-    z-index: 3;
+    z-index: var(--dropdown-content-index);
     position: relative;
     border-radius: inherit;
 
