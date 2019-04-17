@@ -34,6 +34,12 @@
       padding-left: 60px;
     }
 
+    @media (max-width: $xs) {
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
     &:focus, &:active {
       background-color: var(--bg-gray-3);
 

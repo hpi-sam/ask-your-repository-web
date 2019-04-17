@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { MdImage } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
 import Dropdown from './Dropdown';
@@ -37,6 +38,16 @@ function NavBar(props: Props) {
                   data-cy="navbar-team-button"
                 />
               )}
+              <NavLink
+                to="/images"
+                className="NavBar__item"
+                activeClassName="NavBar__item--active"
+              >
+                <MdImage className="NavBar__item__icon navbar-key" />
+                <span className="NavBar__item__text navbar-key">
+                  Gallery
+                </span>
+              </NavLink>
               <div className="NavBar__search">
                 <Search />
               </div>
@@ -44,13 +55,6 @@ function NavBar(props: Props) {
           </Fragment>
         )}
         <div className="NavBar__right">
-          <NavLink
-            to="/images"
-            className="NavBar__item"
-            activeClassName="NavBar__item--active"
-          >
-            Gallery
-          </NavLink>
           <div className="NavBar__item">
             <Dropdown />
           </div>

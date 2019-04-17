@@ -1,5 +1,6 @@
 :root {
   --white: hsl(0, 0%, 100%);
+  --white-hover: hsl(0, 0%, 80%);
 
   --text-gray-1: hsl(0, 0%, 97%);
   --text-gray-2: hsl(0, 0%, 90%);
@@ -22,12 +23,14 @@
   --gray-darker: #aaa;
 
   --primary-color: hsl(198.9, 100%, 57.1%);
+  --primary-color-hover: hsl(200, 100%, 50%);
 
   --sidebar-bg-color: var(--bg-gray-4);
   --navbar-bg-color: var(--bg-gray-2);
   --footer-bg-color: var(--bg-gray-7);
 
   --link-color: lightslategray;
+  --link-color-hover: #9ca8b4;
 
   --success-color: var(--green);
   --error-color: var(--red);

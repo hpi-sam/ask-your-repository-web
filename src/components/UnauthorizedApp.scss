@@ -1,0 +1,8 @@
+.UnauthorizedApp {
+  display: flex;
+  min-height: 100%;
+
+  &:before {
+    background-color: var(--main-bg-color);
+  }
+}
