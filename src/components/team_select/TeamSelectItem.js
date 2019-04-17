@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import initials from 'initials';
+import TeamnInitials from '../team/TeamInitials';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 import type { Team } from '../../models/Team';
 import './TeamSelectItem.scss';
@@ -31,7 +31,6 @@ class TeamSelectItem extends Component<Props> {
 
   render() {
     const { team } = this.props;
-    const teamInitials = initials(team.name);
 
     return (
       <button
@@ -39,9 +38,7 @@ class TeamSelectItem extends Component<Props> {
         className="TeamSelectItem"
         onClick={this.handleClick}
       >
-        <div className="TeamSelectItem__avatar">
-          {teamInitials}
-        </div>
+        <TeamnInitials team={team} className="TeamSelectItem__avatar" />
         <div className="TeamSelectItem__info">
           <div className="TeamSelectItem__title">
             {team.name}

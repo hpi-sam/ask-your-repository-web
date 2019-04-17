@@ -43,6 +43,7 @@ class TeamSelectCreate extends Component<Props, State> {
             onSubmit={this.handleFormSubmit}
             placeholder="My Team"
             data-cy="team-select-form"
+            className="TeamSelect__create__form"
           />
         ) : (
           <button

@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
-import initials from 'initials';
-import classNames from 'classnames';
+import TeamInitials from './TeamInitials';
 import type { Team } from '../../models/Team';
 import './TeamInitials.scss';
 
@@ -15,16 +14,13 @@ function TeamInitialsButton({
   className,
   ...rest
 }: Props) {
-  const teamInitials = initials(team.name);
-  const styleClasses = classNames('TeamInitials', className);
-
   return (
     <button
       type="button"
-      className={styleClasses}
+      className={className}
       {...rest}
     >
-      <span>{teamInitials}</span>
+      <TeamInitials team={team} />
     </button>
   );
 }

@@ -5,14 +5,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: .3em;
+  padding: 8px;
   width: 450px;
 
-  background-color: #333;
-  font-size: 1.2em;
+  background-color: var(--bg-gray-3);
+  font-size: var(--font-size-4);
   text-align: left;
 
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   border: 3px solid transparent;
   transition: border-color .1s;
   outline: none;
@@ -39,19 +39,17 @@
   }
 
   &__members {
-    color: #666;
+    color: var(--text-gray-4);
   }
 
   &__avatar {
     --dimension: 3em;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
     width: var(--dimension);
     height: var(--dimension);
-    background-color: #222;
-    font-weight: bold;
-    border-radius: 5px;
+
+    &:hover, &:focus, &:active, &--active {
+      border-color: transparent;
+    }
   }
 }
