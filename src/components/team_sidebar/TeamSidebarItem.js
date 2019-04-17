@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { push } from 'connected-react-router';
 import TeamInitials from '../team/TeamInitials';
 import TeamSidebarSettings from './TeamSidebarSettings';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
@@ -21,6 +22,7 @@ class TeamSidebarItem extends Component<Props> {
     const { dispatch, team } = this.props;
     dispatch(setActiveTeam(team));
     dispatch(closeTeamSidebar());
+    dispatch(push('/images'));
   };
 
   render() {
