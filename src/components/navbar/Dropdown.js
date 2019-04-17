@@ -53,9 +53,9 @@ class Dropdown extends Component<Props, State> {
             className="Dropdown__button"
             data-cy="user-dropdown-button"
           >
-            <MdPerson className="Dropdown__button__icon" />
-            <span className="Dropdown__button__username">{username}</span>
-            <IoIosArrowDown />
+            <MdPerson className="Dropdown__button__icon navbar-key" />
+            <span className="Dropdown__button__username navbar-key">{username}</span>
+            <IoIosArrowDown className="navbar-key" />
           </button>
           <div className={isSelected ? 'Dropdown__content Dropdown__content--active' : 'Dropdown__content'}>
             <ButtonLink

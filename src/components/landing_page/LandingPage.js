@@ -4,7 +4,6 @@ import Particles from 'react-particles-js';
 import TypeIt from 'typeit';
 import particlesConfig from './ParticlesConfiguration';
 import UserAuthNav from './UserAuthNav';
-import LandingPageFooter from './LandingPageFooter';
 import './LandingPage.scss';
 
 type Props = {};
@@ -36,7 +35,7 @@ class LandingPage extends Component<Props, State> {
       .type('Still using folders?')
       .pause(1000)
       .break()
-      .type('Graphbased cloud solution for your data collection')
+      .type('Graph based cloud solution for your data')
       .pause(4000)
       .delete()
       .pause(1000)
@@ -60,7 +59,6 @@ class LandingPage extends Component<Props, State> {
           <div className="LandingPage__title">Ask Your Cloud </div>
           <div className="LandingPage__subtitle" />
         </div>
-        <LandingPageFooter />
       </div>
     );
   }

@@ -5,11 +5,17 @@
   height: var(--footer-height);
   padding: 0 20px;
   font-size: var(--font-size-2);
+
+  width: 100%;
+
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
   background-color: var(--footer-bg-color);
+
+  &__unauthorized {
+    position: static;
+  }
 
   &__legal-list {
     margin: 0;
@@ -24,6 +30,10 @@
 
   a {
     color: #aaa;
+  }
+
+  a:hover, a:active {
+    color: #fff;
   }
 
   &__space {

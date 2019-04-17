@@ -46,6 +46,7 @@
   }
 
   &__content {
+    border: 1px solid var(--bg-gray-2);
     margin-top: -8px;
     right: 0;
     display: none;
@@ -55,6 +56,12 @@
     border-radius: var(--border-radius);
     min-width: 160px;
     z-index: 1;
+
+    &::before {
+      height: 2px;
+      width: 2px;
+      background-color: red;
+    }
 
     &--active {
       display:block;
@@ -73,7 +80,7 @@
       }
 
       &:hover {
-        background-color: var(--bg-gray-2);
+        background-color: var(--bg-gray-4);
       }
     }
   }

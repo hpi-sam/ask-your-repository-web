@@ -29,6 +29,9 @@
     padding: 20px 25px;
   }
 
+  &:hover {
+    background-color: var(--primary-color-hover);
+  }
   &__content {
     display: flex;
     height: 100%;
