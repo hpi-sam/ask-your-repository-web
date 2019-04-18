@@ -9,6 +9,11 @@ export type Image = {
   labelTags: Array<Tag>,
   textTags: Array<Tag>,
   score: number,
+  fileDate: string,
+};
+
+export type DeletableImage = Image & {
+  delete: () => Promise<void>,
 };
 
 export type TaggableImage = Image & {

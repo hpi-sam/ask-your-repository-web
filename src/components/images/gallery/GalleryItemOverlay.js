@@ -5,14 +5,14 @@ import { IoIosMore } from 'react-icons/io';
 import { MdDelete } from 'react-icons/md';
 import { confirmAlert } from 'react-confirm-alert';
 import Tag from '../../utility/Tag';
-import type { Image } from './ImageDecorator';
+import type { DeletableImage } from '../../../models/Image';
 import { Button } from '../../utility/buttons';
 import './Gallery.scss';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import DeleteImageConfirmation from './DeleteImageConfirmation';
 
 type Props = {
-  image: Image,
+  image: DeletableImage,
   maxTags: number,
 };
 

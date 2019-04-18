@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
 import GalleryItem from './GalleryItem';
-import type { Image } from './ImageDecorator';
+import type { DeletableImage } from '../../../models/Image';
 import './Gallery.scss';
 
 type Props = {
-  images: Array<Image>,
+  images: Array<DeletableImage>,
 };
 
 function Gallery(props: Props) {
