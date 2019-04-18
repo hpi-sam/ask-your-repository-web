@@ -15,69 +15,6 @@ exports[`<NavBar /> renders correctly 1`] = `
       <div
         className="NavBar__right"
       >
-        <NavLink
-          activeClassName="NavBar__item--active"
-          aria-current="page"
-          className="NavBar__item"
-          to="/images"
-        >
-          <Route
-            path="\\\\/images"
-          >
-            <Link
-              aria-current={null}
-              className="NavBar__item"
-              replace={false}
-              to="/images"
-            >
-              <a
-                aria-current={null}
-                className="NavBar__item"
-                href="/images"
-                onClick={[Function]}
-              >
-                <MdImage
-                  className="NavBar__item__icon navbar-key"
-                >
-                  <IconBase
-                    attr={
-                      Object {
-                        "viewBox": "0 0 24 24",
-                      }
-                    }
-                    className="NavBar__item__icon navbar-key"
-                  >
-                    <svg
-                      className="NavBar__item__icon navbar-key"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      strokeWidth="0"
-                      style={
-                        Object {
-                          "color": undefined,
-                        }
-                      }
-                      viewBox="0 0 24 24"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
-                        key="0"
-                      />
-                    </svg>
-                  </IconBase>
-                </MdImage>
-                <span
-                  className="NavBar__item__text navbar-key"
-                >
-                  Gallery
-                </span>
-              </a>
-            </Link>
-          </Route>
-        </NavLink>
         <div
           className="NavBar__item"
         >
@@ -242,7 +179,7 @@ exports[`<NavBar /> renders correctly 1`] = `
           </Connect(OnClickOutside(Dropdown))>
         </div>
         <div
-          className="NavBar__item NavBar__presentation-switch"
+          className="NavBar__item NavBar__item__presentation-switch"
         >
           <Connect(PresentationSwitch)>
             <PresentationSwitch

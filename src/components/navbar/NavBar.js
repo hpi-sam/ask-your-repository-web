@@ -45,20 +45,22 @@ function NavBar(props: Props) {
           </Fragment>
         )}
         <div className="NavBar__right">
-          <NavLink
-            to="/images"
-            className="NavBar__item"
-            activeClassName="NavBar__item--active"
-          >
-            <MdImage className="NavBar__item__icon navbar-key" />
-            <span className="NavBar__item__text navbar-key">
-              Gallery
-            </span>
-          </NavLink>
+          {activeTeam && (
+            <NavLink
+              to="/images"
+              className="NavBar__item"
+              activeClassName="NavBar__item--active"
+            >
+              <MdImage className="NavBar__item__icon navbar-key" />
+              <span className="NavBar__item__text navbar-key">
+                Gallery
+              </span>
+            </NavLink>
+          )}
           <div className="NavBar__item">
             <Dropdown />
           </div>
-          <div className="NavBar__item NavBar__presentation-switch">
+          <div className="NavBar__item NavBar__item__presentation-switch">
             <PresentationSwitch />
           </div>
         </div>
