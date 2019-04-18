@@ -16,9 +16,11 @@
     flex: 1;
     margin-left: 5px;
     background-color: transparent;
+    color: var(--text-gray-4);
+    outline: none;
 
-    &:active {
-      color: var(--primary-color);
+    &:hover, &:focus, &:active {
+      color: var(--white);
     }
   }
 }

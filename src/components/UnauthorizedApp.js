@@ -8,7 +8,7 @@ import ResetPasswordForm from './auth/forgot_password/ResetPasswordForm';
 import LandingPage from './landing_page/LandingPage';
 import UnauthorizedFooter from './footer/UnauthorizedFooter';
 import AuthorizedApp from './AuthorizedApp';
-import AuthenticatedRoute from './auth/AuthenticatedRoute';
+import AuthenticatedRoute from './custom_routes/AuthenticatedRoute';
 import './UnauthorizedApp.scss';
 
 function UnauthorizedApp() {
@@ -29,4 +29,4 @@ function UnauthorizedApp() {
   );
 }
 
-export default UnauthorizedApp
+export default UnauthorizedApp;
