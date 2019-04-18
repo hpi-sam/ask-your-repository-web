@@ -36,7 +36,44 @@ exports[`<NavBar /> renders correctly 1`] = `
                 href="/images"
                 onClick={[Function]}
               >
-                Gallery
+                <MdImage
+                  className="NavBar__item__icon navbar-key"
+                >
+                  <IconBase
+                    attr={
+                      Object {
+                        "viewBox": "0 0 24 24",
+                      }
+                    }
+                    className="NavBar__item__icon navbar-key"
+                  >
+                    <svg
+                      className="NavBar__item__icon navbar-key"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      strokeWidth="0"
+                      style={
+                        Object {
+                          "color": undefined,
+                        }
+                      }
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                        key="0"
+                      />
+                    </svg>
+                  </IconBase>
+                </MdImage>
+                <span
+                  className="NavBar__item__text navbar-key"
+                >
+                  Gallery
+                </span>
               </a>
             </Link>
           </Route>
@@ -87,7 +124,7 @@ exports[`<NavBar /> renders correctly 1`] = `
                       type="button"
                     >
                       <MdPerson
-                        className="Dropdown__button__icon"
+                        className="Dropdown__button__icon navbar-key"
                       >
                         <IconBase
                           attr={
@@ -95,10 +132,10 @@ exports[`<NavBar /> renders correctly 1`] = `
                               "viewBox": "0 0 24 24",
                             }
                           }
-                          className="Dropdown__button__icon"
+                          className="Dropdown__button__icon navbar-key"
                         >
                           <svg
-                            className="Dropdown__button__icon"
+                            className="Dropdown__button__icon navbar-key"
                             fill="currentColor"
                             height="1em"
                             stroke="currentColor"
@@ -120,17 +157,21 @@ exports[`<NavBar /> renders correctly 1`] = `
                         </IconBase>
                       </MdPerson>
                       <span
-                        className="Dropdown__button__username"
+                        className="Dropdown__button__username navbar-key"
                       />
-                      <IoIosArrowDown>
+                      <IoIosArrowDown
+                        className="navbar-key"
+                      >
                         <IconBase
                           attr={
                             Object {
                               "viewBox": "0 0 512 512",
                             }
                           }
+                          className="navbar-key"
                         >
                           <svg
+                            className="navbar-key"
                             fill="currentColor"
                             height="1em"
                             stroke="currentColor"
@@ -153,39 +194,46 @@ exports[`<NavBar /> renders correctly 1`] = `
                       </IoIosArrowDown>
                     </button>
                     <div
-                      className="Dropdown__content"
+                      className="Dropdown__container"
                     >
-                      <ButtonLink
-                        className="Dropdown__content__button"
-                        to="/settings"
+                      <div
+                        className="Dropdown__arrow"
+                      />
+                      <div
+                        className="Dropdown__content"
                       >
-                        <Link
-                          className="Button Dropdown__content__button"
-                          replace={false}
+                        <ButtonLink
+                          className="Dropdown__content__button"
                           to="/settings"
                         >
-                          <a
+                          <Link
                             className="Button Dropdown__content__button"
-                            href="/settings"
-                            onClick={[Function]}
+                            replace={false}
+                            to="/settings"
                           >
-                            Settings
-                          </a>
-                        </Link>
-                      </ButtonLink>
-                      <Button
-                        className="Dropdown__content__button"
-                        onClick={[Function]}
-                        type="button"
-                      >
-                        <button
-                          className="Button Dropdown__content__button"
+                            <a
+                              className="Button Dropdown__content__button"
+                              href="/settings"
+                              onClick={[Function]}
+                            >
+                              Settings
+                            </a>
+                          </Link>
+                        </ButtonLink>
+                        <Button
+                          className="Dropdown__content__button"
                           onClick={[Function]}
                           type="button"
                         >
-                          Logout
-                        </button>
-                      </Button>
+                          <button
+                            className="Button Dropdown__content__button"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Logout
+                          </button>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import React from 'react';
 import type { ComponentType } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import AuthRoute from './AuthRoute';
+import AuthenticatedRoute from './AuthenticatedRoute';
 import type { AppState } from '../../state/AppState';
 
 type Props = {
@@ -17,7 +17,7 @@ function TeamRoute({ hasActiveTeam, component: Component, ...rest }: Props) {
       {...rest}
       render={() => (
         hasActiveTeam
-          ? <AuthRoute {...rest} component={Component} />
+          ? <AuthenticatedRoute {...rest} component={Component} />
           : <Redirect to="/select-team" />
       )}
     />

@@ -157,7 +157,7 @@
       margin-top: 20px;
       left: 12px;
       width: calc(-30px + var(--team-sidebar-width));
-      background-color: var(--bg-gray-1);
+      background-color: var(--bg-gray-2);
       display: none;
       position: fixed;
       min-width: 160px;
@@ -176,9 +176,13 @@
 
         > button {
           width: 100%;
-          background-color: transparent;
+          background-color: var(--bg-gray-2);
           border: none;
           outline: none;
+
+          &:hover {
+            background-color: var(--bg-gray-1);
+          }
         }
       }
     }
