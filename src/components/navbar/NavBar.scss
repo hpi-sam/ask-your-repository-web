@@ -45,12 +45,8 @@
     flex: 1;
   }
 
-  &__presentation-switch {
-    display: none;
-
-    @media (min-width: $sm-to-md) {
-      display: flex;
-    }
+  &__right {
+    margin-left: auto;
   }
 
   &__right &__item {
@@ -74,6 +70,14 @@
     font-weight: bold;
     color: var(--white);
 
+    &__presentation-switch {
+    display: none;
+
+      @media (min-width: $xs-to-sm) {
+        display: flex;
+      }
+    }
+
     &:hover {
       .navbar-key {
         color: var(--white-hover)
@@ -95,11 +99,12 @@
       margin-left: 10px;
 
       @media (min-width: $xs-to-sm) {
-        display: inline;
+        display: flex;
       }
     }
 
     &__icon {
+      display: flex;
       font-size: 1.5em;
     }
   }
