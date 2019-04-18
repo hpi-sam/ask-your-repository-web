@@ -30,6 +30,7 @@
       },
       "allowChildren": false
     }],
+    "jsx-a11y/tabindex-no-positive": "off",
     "react-hooks/rules-of-hooks": "error"
   },
   "overrides": [
