@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import type { Location } from 'react-router';
 import { IoIosCloudOutline, IoIosSearch } from 'react-icons/io';
 import qs from 'qs';
 import InfinityScroll from 'react-infinite-scroller';
@@ -18,7 +19,7 @@ import './ImagesIndex.scss';
 
 type Props = {
   activeTeam: ?Team,
-  location: Object
+  location: Location,
 };
 
 type State = {
