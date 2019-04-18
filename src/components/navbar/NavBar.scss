@@ -94,9 +94,16 @@
       }
     }
 
+    svg:first-child {
+      margin-right: 10px;
+    }
+
+    span + svg {
+      margin-left: 6px;
+    }
+
     &__text {
       display: none;
-      margin-left: 10px;
 
       @media (min-width: $xs-to-sm) {
         display: flex;

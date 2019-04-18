@@ -1,28 +1,47 @@
 // @flow
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import type { Dispatch } from 'react-redux';
 import classNames from 'classnames';
-import { MdImage } from 'react-icons/md';
+import { IoIosArrowDown } from 'react-icons/io';
+import { MdImage, MdPerson } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
-import Dropdown from './Dropdown';
 import TeamInitialsButton from '../team/TeamInitialsButton';
 import PresentationSwitch from './PresentationSwitch';
 import type { Team } from '../../models/Team';
+import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
+import type { Action } from '../../state/Action';
 import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
+import Dropdown from '../utility/dropdown/Dropdown';
+import createGoogleAuthInstance from '../../config/createGoogleAuthInstance';
+import { ButtonLink, Button } from '../utility/buttons';
+import { logout } from '../../state/auth/auth.actionCreators';
 import './NavBar.scss';
 
 type Props = {
   activeTeam: ?Team,
   isTeamSidebarOpen: boolean,
-  onTeamClick: () => void,
+  user: User,
+  dispatch: Dispatch<Action>,
 };
 
 function NavBar(props: Props) {
   const {
-    isTeamSidebarOpen, onTeamClick, activeTeam,
+    dispatch, isTeamSidebarOpen, activeTeam, user,
   } = props;
+
+  function handleLogoutClick() {
+    createGoogleAuthInstance().then((googleAuth) => {
+      googleAuth.signOut();
+    });
+    dispatch(logout());
+  }
+
+  function handleTeamClick() {
+    dispatch(openTeamSidebar());
+  }
 
   return (
     <div className={classNames('NavBar', { 'NavBar--with-sidebar': isTeamSidebarOpen })}>
@@ -32,7 +51,7 @@ function NavBar(props: Props) {
             <div className="NavBar__left">
               {!isTeamSidebarOpen && activeTeam && (
                 <TeamInitialsButton
-                  onClick={onTeamClick}
+                  onClick={handleTeamClick}
                   className="NavBar__team"
                   team={activeTeam}
                   data-cy="navbar-team-button"
@@ -58,7 +77,33 @@ function NavBar(props: Props) {
             </NavLink>
           )}
           <div className="NavBar__item">
-            <Dropdown />
+            <Dropdown
+              trigger={(
+                <Fragment>
+                  <MdPerson className="NavBar__item__icon hide-sm navbar-key" />
+                  <span className="NavBar__item__text navbar-key">
+                    {user.username}
+                  </span>
+                  <IoIosArrowDown className="navbar-key" />
+                </Fragment>
+              )}
+              content={(
+                <Fragment>
+                  <ButtonLink
+                    to="/settings"
+                    className="Dropdown__content__button"
+                  >
+                    Settings
+                  </ButtonLink>
+                  <Button
+                    className="Dropdown__content__button"
+                    onClick={handleLogoutClick}
+                  >
+                    Logout
+                  </Button>
+                </Fragment>
+              )}
+            />
           </div>
           <div className="NavBar__item NavBar__item__presentation-switch">
             <PresentationSwitch />
@@ -69,13 +114,10 @@ function NavBar(props: Props) {
   );
 }
 
-const mapDispatchToProps = (dispatch: Function) => ({
-  onTeamClick: () => { dispatch(openTeamSidebar()); },
-});
-
 const mapStateToProps = (state: AppState) => ({
+  user: state.auth.user,
   activeTeam: state.activeTeam,
   isTeamSidebarOpen: state.teamSidebar.isOpen,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps)(NavBar);

@@ -54,6 +54,12 @@ button {
   background-color: transparent;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -63,5 +69,11 @@ a {
 
   @media (min-width: $xs-to-sm) {
     display: initial;
+  }
+}
+
+.hide-sm {
+  @media (min-width: $xs-to-sm) {
+    display: none;
   }
 }
