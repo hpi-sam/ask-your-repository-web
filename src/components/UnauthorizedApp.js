@@ -7,9 +7,9 @@ import RegisterForm from './auth/RegisterForm';
 import PasswordRequestForm from './auth/forgot_password/PasswordRequestForm';
 import ResetPasswordForm from './auth/forgot_password/ResetPasswordForm';
 import LandingPage from './landing_page/LandingPage';
-import UnauthorizedFooter from './footer/UnauthorizedFooter';
 import AuthorizedApp from './AuthorizedApp';
 import AuthenticatedRoute from './custom_routes/AuthenticatedRoute';
+import Footer from './footer/Footer';
 import './UnauthorizedApp.scss';
 
 type Props = {
@@ -36,7 +36,7 @@ class UnauthorizedApp extends React.Component<Props> {
             <AuthenticatedRoute path="*" component={AuthorizedApp} />
           </Switch>
         </div>
-        <UnauthorizedFooter />
+        <Footer />
       </Fragment>
     );
   }

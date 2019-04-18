@@ -6,16 +6,22 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import initialState from '../../state/initialState';
+import UserFactory from '../../factories/UserFactory';
 import NavBar from './NavBar';
 
 const mockStore = configureStore();
+
+const state = {
+  ...initialState,
+  user: UserFactory.createStaticAuthenticatedUser(),
+};
 
 describe('<NavBar />', () => {
   let wrapper;
   let store;
 
   beforeEach(() => {
-    store = mockStore(initialState);
+    store = mockStore(state);
     wrapper = mount((
       <Provider store={store}>
         <MemoryRouter>

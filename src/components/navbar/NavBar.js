@@ -76,35 +76,37 @@ function NavBar(props: Props) {
               </span>
             </NavLink>
           )}
-          <div className="NavBar__item">
-            <Dropdown
-              trigger={(
-                <Fragment>
-                  <MdPerson className="NavBar__item__icon hide-sm navbar-key" />
-                  <span className="NavBar__item__text navbar-key">
-                    {user.username}
-                  </span>
-                  <IoIosArrowDown className="navbar-key" />
-                </Fragment>
-              )}
-              content={(
-                <Fragment>
-                  <ButtonLink
-                    to="/settings"
-                    className="Dropdown__content__button"
-                  >
-                    Settings
-                  </ButtonLink>
-                  <Button
-                    className="Dropdown__content__button"
-                    onClick={handleLogoutClick}
-                  >
-                    Logout
-                  </Button>
-                </Fragment>
-              )}
-            />
-          </div>
+          {user && (
+            <div className="NavBar__item">
+              <Dropdown
+                trigger={(
+                  <Fragment>
+                    <MdPerson className="NavBar__item__icon hide-sm navbar-key" />
+                    <span className="NavBar__item__text navbar-key">
+                      {user.username}
+                    </span>
+                    <IoIosArrowDown className="navbar-key" />
+                  </Fragment>
+                )}
+                content={(
+                  <Fragment>
+                    <ButtonLink
+                      to="/settings"
+                      className="Dropdown__content__button"
+                    >
+                      Settings
+                    </ButtonLink>
+                    <Button
+                      className="Dropdown__content__button"
+                      onClick={handleLogoutClick}
+                    >
+                      Logout
+                    </Button>
+                  </Fragment>
+                )}
+              />
+            </div>
+          )}
           <div className="NavBar__item NavBar__item__presentation-switch">
             <PresentationSwitch />
           </div>

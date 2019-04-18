@@ -1,7 +1,7 @@
 // @flow
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
-import useOnClickOutside from 'use-onclickoutside'
+import useOnClickOutside from 'use-onclickoutside';
 import './Dropdown.scss';
 
 type Props = {
