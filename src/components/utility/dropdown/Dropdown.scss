@@ -1,0 +1,97 @@
+@import '../../../style/breakpoints.scss';
+
+.Dropdown {
+  --arrow-top: auto;
+  --arrow-right: auto;
+  --arrow-left: auto;
+  --arrow-bottom: auto;
+  --container-top: auto;
+  --container-bottom: auto;
+  --container-right: auto;
+  --container-left: auto;
+
+  display: flex;
+  position: relative;
+
+  &.-up {
+    --arrow-top: auto;
+    --arrow-right: 16px;
+    --arrow-left: auto;
+    --arrow-bottom: -5px;
+    --container-bottom: 30px;
+    --container-right: 0;
+  }
+
+  &.-down {
+    --arrow-top: -5px;
+    --arrow-right: 10px;
+    --container-top: 30px;
+    --container-right: 0;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    outline: none;
+  }
+
+  &__arrow {
+    position: absolute;
+    z-index: var(--dropdown-arrow-index);
+    left: var(--arrow-left);
+    right: var(--arrow-right);
+    top: var(--arrow-top);
+    bottom: var(--arrow-bottom);
+
+    padding: 5px;
+    background-color: var(--bg-gray-4);
+    border: 1px solid var(--bg-gray-2);
+    transform: rotate(45deg);
+  }
+
+  &__container {
+    display: none;
+    position: absolute;
+
+    right: var(--container-right);
+    left: var(--container-left);
+    top: var(--container-top);
+    bottom: var(--container-bottom);
+
+    min-width: 160px;
+
+    border: 1px solid var(--bg-gray-2);
+    box-shadow: var(--elevation-4);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-gray-4);
+    z-index: var(--dropdown-container-index);
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__content {
+    overflow: hidden;
+    z-index: var(--dropdown-content-index);
+    position: relative;
+    border-radius: inherit;
+
+    &__button {
+      width: 100%;
+      background-color: var(--bg-gray-4);
+      color: inherit;
+      border: none;
+      border-radius: 0;
+      font-weight: normal;
+
+      & + & {
+        border-top: 1px solid var(--bg-gray-2);
+      }
+
+      &:hover {
+        background-color: var(--bg-gray-3);
+      }
+    }
+  }
+}
