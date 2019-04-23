@@ -101,7 +101,7 @@ class LoginForm extends Component<Props, State> {
           <label className="Form__input__label">
             Email or Username:
             <Input
-              tabindex="1"
+              tabIndex="1"
               type="text"
               name="email"
               value={email}
@@ -115,7 +115,7 @@ class LoginForm extends Component<Props, State> {
             Password:
             <Link className="Form__input__label__link" to="/forgot-password">Forgot password?</Link>
             <Input
-              tabindex="2"
+              tabIndex="2"
               type="password"
               name="password"
               value={password}
@@ -130,7 +130,7 @@ class LoginForm extends Component<Props, State> {
           </Link>
         </div>
         <div className="Form__buttons">
-          <Button tabindex="3" className="Form__buttons__item Form__buttons__item__blue" data-cy="login-submit-button">
+          <Button tabIndex="3" className="Form__buttons__item Form__buttons__item__blue" data-cy="login-submit-button">
             Login
           </Button>
           <Link to="/" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
