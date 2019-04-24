@@ -50,9 +50,9 @@
   }
 
   &__right &__item {
-    margin-left: 0;
     margin-right: 0;
-    padding-left: 30px;
+    margin-left: 30px;
+    outline: none;
 
     &:last-child {
       margin-right: 20px;

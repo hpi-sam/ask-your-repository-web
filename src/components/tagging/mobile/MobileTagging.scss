@@ -150,23 +150,26 @@
       flex: 1;
       background-color: rgba(0, 0, 0, .5);
       border-bottom: 3px solid var(--primary-color);
+      border-radius: 0;
       color: white;
       padding: 0 20px;
       outline: none;
       min-width: 100px;
+      margin: 0;
     }
 
     &__enter-button {
       display: flex;
       justify-content: center;
       min-width: var(--input-height);
-      background-color: rgba(0, 0, 0, .7);
+      background-color: var(--bg-gray-2);
       border: none;
       border-radius: 0;
       color: white;
+      margin: 0;
 
-      &:active, &:focus {
-        background-color: rgba(0, 0, 0, .9);
+      &:active, &:focus, &:hover {
+        background-color: var(--bg-gray-3);
       }
     }
 
@@ -175,6 +178,7 @@
       justify-content: center;
       border-radius: 0;
       min-width: var(--input-height);
+      margin: 0;
     }
   }
 }

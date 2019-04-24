@@ -27,7 +27,6 @@ function TeamInvitationLink(props: Props) {
         className="InviteForm__link"
         value={getLink()}
         readOnly
-        disabled
         data-cy="team-sidebar-settings-invite-input"
       />
       <Button
