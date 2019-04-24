@@ -17,9 +17,11 @@
     font-weight: bold;
     color: white;
     border: none;
-    outline: none;
     cursor: pointer;
     line-height: 2em;
+
+    &:focus {outline:none;}
+    &::-moz-focus-inner {border:0;}
 
     &__icon {
       display: block;

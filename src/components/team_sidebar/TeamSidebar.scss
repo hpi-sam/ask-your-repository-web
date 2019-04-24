@@ -87,15 +87,27 @@
     background-color: transparent;
     transition: opacity .1s, background-color .1s;
     outline: 0;
-    opacity: .6;
+
+    > button {
+      color: var(--text-gray-4);
+    }
+
 
     &:hover, &:active, &:focus {
       background-color: var(--bg-gray-3);
       opacity: 1;
+
+      > button {
+        color: var(--text-gray-1);
+      }
     }
 
     &--active {
       opacity: 1;
+
+      > button {
+        color: var(--text-gray-1);
+      }
     }
 
     &__button {
@@ -110,7 +122,7 @@
         margin-left: 10px;
         flex: 1;
         text-align: left;
-        color: #ddd;
+        color: inherit;
         text-overflow: ellipsis;
         overflow: hidden;
       }
@@ -147,7 +159,7 @@
       color: var(--text-gray-4);
       outline: none;
 
-      &:hover, &:focus, &:active {
+      &:hover, &:focus, &:active, &--active {
         color: var(--white);
       }
     }
@@ -174,15 +186,12 @@
         display: flex;
         flex-direction: column;
 
-        > button {
+        > span {
+          padding: 4px 16px;
           width: 100%;
           background-color: var(--bg-gray-2);
           border: none;
           outline: none;
-
-          &:hover {
-            background-color: var(--bg-gray-1);
-          }
         }
       }
     }

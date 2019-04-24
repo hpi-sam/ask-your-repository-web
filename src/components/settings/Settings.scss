@@ -1,11 +1,16 @@
+@import '../../style/breakpoints.scss';
+
 .Settings {
-  margin-top: 1.5em;
-  width: 100%;
+  margin: 1.5em 5px 0 5px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  @media(min-width: $xs-to-sm) {
+    margin: 1.5em 30px 0 30px;
+  }
 
   &__title {
     font-size: 3.5em;
