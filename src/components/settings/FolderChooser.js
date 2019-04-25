@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import GooglePicker from 'react-google-picker';
+import Button from '../utility/buttons/Button';
 import type { Team } from '../../models/Team';
 import DriveService from '../../services/DriveService';
 
@@ -30,7 +31,7 @@ function FolderChooser(props: Props) {
 
         const pickerCallback = (data) => {
           let url = 'nothing';
-          if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+          if (data[google.picker.Response.ACTION] === google.picker.Action.PICKED) {
             const doc = data[google.picker.Response.DOCUMENTS][0];
             console.log(doc);
             url = doc[google.picker.Document.URL];
@@ -51,7 +52,7 @@ function FolderChooser(props: Props) {
         picker.build().setVisible(true);
       }}
     >
-      <span>Click</span>
+      <Button> Connect Folder </Button>
       <div className="google" />
 
     </GooglePicker>

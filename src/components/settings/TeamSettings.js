@@ -1,5 +1,5 @@
 // @flow
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FolderChooser from './FolderChooser';
 import './Settings.scss';
@@ -13,32 +13,43 @@ type Props = {
   }
 };
 
-
-function hasFolder(team: Team) {
-  return false;
+type State = {
+  team: Team,
 }
 
-function Settings(props: Props) {
-  console.log('cookies');
-  const [team, setTeam]: any = useState(null);
+class Settings extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
 
-  async function loadTeam() {
-    console.log('loading team');
-    const fetchedTeam = await TeamService.get(props.match.params.id);
-    setTeam(fetchedTeam);
+    this.state = {
+      team: {},
+    };
   }
 
-  useEffect(
-    () => {
-      loadTeam();
-    }, [],
-  );
-  return (
-    <div className="Settings">
-      <h1> Settings </h1>
-      {hasFolder(team) || <FolderChooser team={team} />}
-    </div>
-  );
+  async componentDidMount() {
+    const team = await TeamService.get(this.props.match.params.id);
+    this.setState({
+        team,
+    });
+  }
+
+  hasFolder() {
+    return false;
+  }
+
+  render() {
+    const { team } = this.state;
+
+    return (
+      <div className="Settings">
+        <h1> Settings for Team<i> {team.name} </i></h1>
+        <div id="TeamSettings__googledrive">
+          <h2> Connect your team to a Google Drive Folder </h2>          
+          {this.hasFolder(team) || <FolderChooser team={team} />}
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state: AppState) => ({
