@@ -4,9 +4,10 @@ import humps from 'humps';
 import { startPresentation } from '../state/presentation/presentation.actionCreators';
 import { SET_ACTIVE_TEAM } from '../state/active_team/activeTeam.actionTypes';
 import { SYNCHRONIZED_SEARCH } from '../state/presentation/presentation.actionTypes';
-import type { Image } from '../models/Image';
+import { filterImages } from '../services/ImageService';
 import type { Team } from '../models/Team';
 import type { Action } from '../state/Action';
+import type { SocketioImages } from '../models/Image';
 
 function socketioMiddleware() {
   const socketUrl = process.env.REACT_APP_API_URL;
@@ -32,13 +33,10 @@ function socketioMiddleware() {
   };
 
   return (store: any) => {
-    socket.on('START_PRESENTATION', (images: Image[]) => {
+    socket.on('START_PRESENTATION', (responseData: SocketioImages) => {
       if (store.getState().presentationMode.isActive) {
-        const filteredImages = images
-          .filter(image => image.score > 0)
-          .slice(0, 4);
-
-        store.dispatch(startPresentation(filteredImages));
+        const { images }: any = humps.camelizeKeys(responseData);
+        store.dispatch(startPresentation(filterImages(images, 5), responseData.search));
       }
     });
 

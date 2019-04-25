@@ -52,4 +52,10 @@ class ImageService {
   }
 }
 
+export function filterImages(images: Image[], count: number): Image[] {
+  return images
+    .filter(image => image.score > 0)
+    .slice(0, count);
+}
+
 export default ImageService;
