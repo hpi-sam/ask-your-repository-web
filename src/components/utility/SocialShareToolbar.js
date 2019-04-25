@@ -58,14 +58,14 @@ class SocialShareDropdown extends Component<Props, State> {
               url={message}
               className="SocialShareToolbar__dropdown__content__item"
             >
-              <WhatsappIcon size={32} round={true} />
+              <WhatsappIcon size={32} round />
             </WhatsappShareButton>
 
             <TelegramShareButton
               url={message}
               className="SocialShareToolbar__dropdown__content__item"
             >
-              <TelegramIcon size={32} round={true} />
+              <TelegramIcon size={32} round />
             </TelegramShareButton>
 
             <EmailShareButton
@@ -73,7 +73,7 @@ class SocialShareDropdown extends Component<Props, State> {
               subject="I want to share an image from askyour.cloud with you"
               className="SocialShareToolbar__dropdown__content__item"
             >
-              <EmailIcon size={32} round={true} />
+              <EmailIcon size={32} round />
             </EmailShareButton>
           </div>
         </div>
