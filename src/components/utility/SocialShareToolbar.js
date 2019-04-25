@@ -14,6 +14,7 @@ import './SocialShareToolbar.scss';
 
 type Props = {
   image: string,
+  tags: string,
 };
 
 type State = {
@@ -37,7 +38,8 @@ class SocialShareDropdown extends Component<Props, State> {
 
   render() {
     const { isSelected } = this.state;
-    const { image } = this.props;
+    const { image, tags } = this.props;
+    const message = `Check out this image I have uploaded to askyour.cloud:\n\n${image}\n\nTags: ${tags}`;
 
     return (
       <div className="SocialShareToolbar">
@@ -53,22 +55,22 @@ class SocialShareDropdown extends Component<Props, State> {
           </button>
           <div className={isSelected ? 'SocialShareToolbar__dropdown__content SocialShareToolbar__dropdown__content--active' : 'SocialShareToolbar__dropdown__content'}>
             <WhatsappShareButton
-              url={image}
+              url={message}
               className="SocialShareToolbar__dropdown__content__item"
             >
               <WhatsappIcon size={32} round={true} />
             </WhatsappShareButton>
 
             <TelegramShareButton
-              url={image}
+              url={message}
               className="SocialShareToolbar__dropdown__content__item"
             >
               <TelegramIcon size={32} round={true} />
             </TelegramShareButton>
 
             <EmailShareButton
-              url={image}
-              subject="Ask Your Cloud"
+              url={message}
+              subject="I want to share an image from askyour.cloud with you"
               className="SocialShareToolbar__dropdown__content__item"
             >
               <EmailIcon size={32} round={true} />
