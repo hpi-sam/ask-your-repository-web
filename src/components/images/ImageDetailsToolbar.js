@@ -28,7 +28,7 @@ function ImageDetailsToolbar(props: Props) {
       )}
       right={(
         <Fragment>
-          <SocialShareDropdown image={image.url} tags={image.userTags.join(' ')}/>
+          <SocialShareDropdown image={image.url} tags={image.userTags.join(' ')} />
           <a className="Button" href={image.url}>
             <IoIosDocument />
             <span>View file</span>
