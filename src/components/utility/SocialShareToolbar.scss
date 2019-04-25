@@ -1,0 +1,30 @@
+.SocialShareToolbar {
+
+  &__dropdown {
+    display: inline-block;
+    position: relative;
+
+    &__button {
+
+    }
+
+    &__content {
+      right: 0;
+      display: none;
+      position: absolute;
+      background-color: white;
+      padding: 5px;
+      border-radius: 4px;
+      z-index: 1;
+
+      &--active {
+        display: flex;
+        flex-direction: row;
+      }
+
+      &__item {
+        padding: 5px;
+      }
+    }
+  }
+}
