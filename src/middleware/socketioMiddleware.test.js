@@ -39,9 +39,12 @@ describe('socketio middleware', () => {
     });
 
     it('calls the registered function for START_PRESENTATION ', () => {
-      serverSocket.emit('START_PRESENTATION', [{
-        id: 'image_id', url: 'test_url', tags: 'test', score: 1.0,
-      }]);
+      serverSocket.emit('START_PRESENTATION', {
+        images: [{
+          id: 'image_id', url: 'test_url', tags: 'test', score: 1.0,
+        }],
+        images_count: 1,
+      });
       expect();
     });
   });

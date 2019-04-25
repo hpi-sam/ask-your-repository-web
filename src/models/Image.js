@@ -15,3 +15,9 @@ export type TaggableImage = Image & {
   addTag: (tag: Tag) => void,
   removeTag: (tag: Tag) => void,
 };
+
+export type SocketioImages = {
+  images: Image[],
+  images_count: number,
+  search: string,
+};

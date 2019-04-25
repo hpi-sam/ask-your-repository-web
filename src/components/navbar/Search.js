@@ -60,6 +60,7 @@ class Search extends Component<Props, State> {
 
     if (this.props.isPresentationModeOn) {
       this.props.dispatch(synchronizedSearch(search));
+      this.props.dispatch(push(`/presentation?${qs.stringify({ search })}`));
     } else {
       this.props.dispatch(push(`/images?${qs.stringify({ search })}`));
     }
