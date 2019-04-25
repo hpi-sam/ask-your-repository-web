@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { MdSettings } from 'react-icons/md';
 import classNames from 'classnames';
 import { push } from 'connected-react-router';
 import TeamInitials from '../team/TeamInitials';
-import TeamSidebarSettings from './TeamSidebarSettings';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 import { closeTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
 import type { Team } from '../../models/Team';
@@ -23,6 +23,13 @@ class TeamSidebarItem extends Component<Props> {
     dispatch(setActiveTeam(team));
     dispatch(closeTeamSidebar());
     dispatch(push('/images'));
+  };
+
+  handleSettingsClick = () => {
+    const { dispatch, team } = this.props;
+    const url = `/teams/${team.id}/settings`;
+    dispatch(closeTeamSidebar());
+    dispatch(push(url));
   };
 
   render() {
@@ -49,7 +56,16 @@ class TeamSidebarItem extends Component<Props> {
             {team.name}
           </div>
         </button>
-        <TeamSidebarSettings team={team} />
+        { isActive && (
+          <button
+            type="button"
+            onClick={this.handleSettingsClick}
+            className="TeamSidebar__dropdown__button"
+            data-cy="team-sidebar-settings-dropdown-button"
+          >
+            <MdSettings />
+          </button>
+        ) }
       </div>
     );
   }

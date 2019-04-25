@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { FaEllipsisV } from 'react-icons/fa';
+import { MdSettings } from 'react-icons/md';
 import onClickOutside from 'react-onclickoutside';
 import TeamInvitationLink from './TeamInvitationLink';
 import type { Team } from '../../models/Team';
@@ -46,7 +46,7 @@ class TeamSidebarSettings extends Component<Props, State> {
           className={isSelected ? 'TeamSidebar__dropdown__button TeamSidebar__dropdown__button--active' : 'TeamSidebar__dropdown__button'}
           data-cy="team-sidebar-settings-dropdown-button"
         >
-          <FaEllipsisV />
+          <MdSettings />
         </button>
         <div className={isSelected ? 'TeamSidebar__dropdown__content TeamSidebar__dropdown__content--active' : 'TeamSidebar__dropdown__content'}>
           <div className="TeamSidebar__dropdown__content__item">
