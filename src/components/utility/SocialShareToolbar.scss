@@ -9,10 +9,11 @@
     }
 
     &__content {
+      margin-top: 3px;
       right: 0;
       display: none;
       position: absolute;
-      background-color: white;
+      background-color: var(--button-bg-color);
       padding: 5px;
       border-radius: 4px;
       z-index: 1;
