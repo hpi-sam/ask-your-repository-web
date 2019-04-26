@@ -51,7 +51,11 @@ function GoogleDriveFolderPicker(props: Props) {
         picker.build().setVisible(true);
       }}
     >
-      <Button> Connect with Google Drive Folder </Button>
+      <Button
+        data-cy="team-settings-googledrive-connect-button"
+      >
+        Connect with Google Drive Folder
+      </Button>
       <div className="google" />
     </GooglePicker>
   );

@@ -13,7 +13,7 @@ type Props = {
 
 function ConfirmModal(props: Props) {
   return (
-    <Modal>
+    <Modal close={false}>
       {props.children}
       <div className="ModalView__modal__buttonbar">
         <SaveButton onClick={props.onContinue}> Continue </SaveButton>

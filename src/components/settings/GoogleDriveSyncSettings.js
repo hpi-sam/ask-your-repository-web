@@ -27,7 +27,7 @@ class GoogleDriveSyncSettings extends Component<Props,State> {
 
   hasFolder = () => {
     // do something here
-    return false;
+    return true;
   }
 
   handleModal = () => {
@@ -58,7 +58,11 @@ class GoogleDriveSyncSettings extends Component<Props,State> {
         {hasFolder ? (
           <Fragment>
             <div className="Settings__item__text"> Your team is currently connected to: some folder...</div>
-            <DeleteButton onClick={this.handleModal}> Revoke Access </DeleteButton>
+            <DeleteButton
+              onClick={this.handleModal}
+              data-cy="team-settings-googledrive-revoke-access"
+            >
+              Revoke Access </DeleteButton>
           </Fragment>
         ) : (
           <Fragment>
