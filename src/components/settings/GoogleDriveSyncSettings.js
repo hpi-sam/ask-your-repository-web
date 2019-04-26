@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, Fragment } from 'react';
-import Button from '../utility/buttons/Button';
+import DeleteButton from '../utility/buttons/DeleteButton';
 import ConfirmModal from '../utility/ConfirmModal';
 import GoogleDriveFolderPicker from './GoogleDriveFolderPicker';
 import type { Team } from '../../models/Team';
@@ -20,9 +20,14 @@ class GoogleDriveSyncSettings extends Component<Props,State> {
     super(props);
 
     this.state = {
-      hasFolder: true,
+      hasFolder: this.hasFolder(),
       showModal: false,
     };
+  }
+
+  hasFolder = () => {
+    // do something here
+    return false;
   }
 
   handleModal = () => {
@@ -38,7 +43,7 @@ class GoogleDriveSyncSettings extends Component<Props,State> {
   render() {
     const { team } = this.props;
     const { hasFolder, showModal } = this.state;
-    
+
     return (
       <Fragment>
         {showModal && (
@@ -53,7 +58,7 @@ class GoogleDriveSyncSettings extends Component<Props,State> {
         {hasFolder ? (
           <Fragment>
             <div className="Settings__item__text"> Your team is currently connected to: some folder...</div>
-            <Button onClick={this.handleModal}> Revoke Access </Button>
+            <DeleteButton onClick={this.handleModal}> Revoke Access </DeleteButton>
           </Fragment>
         ) : (
           <Fragment>
