@@ -42,6 +42,7 @@ class Modal extends Component<Props, State> {
         isOpen={this.state.modalIsOpen}
         className="ModalView__modal"
         overlayClassName="ModalView__overlay"
+        ariaHideApp={false}
       >
         {close && (
           <button

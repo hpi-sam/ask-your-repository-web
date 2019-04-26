@@ -9,8 +9,7 @@ type Props = {
     team: Team,
   };
 
-function FolderChooser(props: Props) {
-  console.log(process.env.REACT_APP_DEVELOPER_KEY);
+function GoogleDriveFolderPicker(props: Props) {
   return (
     <GooglePicker
       clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
@@ -52,11 +51,10 @@ function FolderChooser(props: Props) {
         picker.build().setVisible(true);
       }}
     >
-      <Button> Connect Folder </Button>
+      <Button> Connect with Google Drive Folder </Button>
       <div className="google" />
-
     </GooglePicker>
   );
 }
 
-export default FolderChooser;
+export default GoogleDriveFolderPicker;
