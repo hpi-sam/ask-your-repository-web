@@ -1,7 +1,22 @@
 .ModalView {
 
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--sidebar-bg-color) !important;
+    color: var(--white) !important;
+    font-size: 1.2em;
+    outline: none;
+
+    &:hover, &:focus, &:active {
+      color: var(--white-hover) !important;
+    }
+  }
+
   &__modal {
     position: absolute;
+    max-width: 70%;
     top: 50%;
     left: 50%;
     right: auto;
@@ -11,26 +26,26 @@
     transform: translate(-50%, -50%);
     user-select: none;
 
-    background-color: white;
-    color: black;
+    background-color: var(--sidebar-bg-color);
+    color: var(--white);
 
     border-radius: 4px;
     z-index: 999;
     outline: none;
     border: none;
 
-    button:nth-child(1) {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: white !important;
-      color: black !important;
-      font-size: 1.2em;
-    }
-
     div {
       width: auto;
       height: auto;
+    }
+
+    &__buttonbar {
+      display: flex;
+      padding-top: 1em;
+
+      button:not(:last-child) {
+        margin-right: 10px;
+      }
     }
   }
 
@@ -40,7 +55,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(0, 0, 0, 0.85);
     z-index: 998;
   }
 }

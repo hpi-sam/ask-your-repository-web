@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { MdSettings } from 'react-icons/md';
 import onClickOutside from 'react-onclickoutside';
-import TeamInvitationLink from './TeamInvitationLink';
+import TeamInvitationLink from '../settings/TeamInvitationLink';
 import type { Team } from '../../models/Team';
 import './TeamSidebar.scss';
 

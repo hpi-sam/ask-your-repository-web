@@ -1,16 +1,17 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import FolderChooser from './FolderChooser';
-import './Settings.scss';
-import type { AppState } from '../../state/AppState';
 import TeamService from '../../services/TeamService';
+import GoogleDriveSyncSettings from './GoogleDriveSyncSettings';
+import TeamInvitationLink from './TeamInvitationLink';
 import type { Team } from '../../models/Team';
+import './Settings.scss';
 
 type Props = {
   match: {
-    params: { id: string }
-  }
+    params: {
+      id: string,
+    },
+  },
 };
 
 type State = {
@@ -33,28 +34,24 @@ class Settings extends Component<Props, State> {
     });
   }
 
-  hasFolder() {
-    return false;
-  }
-
   render() {
     const { team } = this.state;
 
     return (
       <div className="Settings">
         <h1> Settings for Team<i> {team.name} </i></h1>
-        <div id="TeamSettings__googledrive">
-          <h2> Connect your team to a Google Drive Folder </h2>          
-          {this.hasFolder(team) || <FolderChooser team={team} />}
+        <div className="Settings__item">
+          <div className="Settings__item__title"> Google Drive Sync </div>
+          <GoogleDriveSyncSettings team={team} />
+        </div>
+        <div className="Settings__item">
+          <div className="Settings__item__title"> Invite people </div>
+          <div className="Settings__item__text"> Copy the link below and share it with your team members to allow them access to this team. </div>
+          <TeamInvitationLink team={team} />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  user: state.auth.user,
-});
-
-
-export default connect(mapStateToProps)(Settings);
+export default Settings;
