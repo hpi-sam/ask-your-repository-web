@@ -42,5 +42,16 @@
     > * + * {
       margin-left: 10px;
     }
+
+    .Button {
+      svg {
+        margin: 2px;
+      }
+      span {
+        @media(max-width: $xs-to-sm) {
+          display: none;
+        }
+      }
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import '../../style/breakpoints';
+
 .SocialShareToolbar {
 
   &__dropdown {
@@ -5,12 +7,21 @@
     position: relative;
 
     &__button {
-
+      svg {
+        margin: 2px;
+      }
+      span {
+        @media(max-width: $xs-to-sm) {
+          display: none;
+        }
+      }
     }
 
     &__content {
       margin-top: 3px;
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-left: auto;
       display: none;
       position: absolute;
       background-color: var(--button-bg-color);
@@ -25,6 +36,13 @@
 
       &__item {
         padding: 5px;
+      }
+
+      .SocialMediaShareButton{
+        &:active, &:hover, &:focus {
+          opacity: 0.5;
+          cursor: pointer;
+        }
       }
     }
   }
