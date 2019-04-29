@@ -9,10 +9,6 @@ import type { Team } from '../../models/Team';
 
 export const limit = 12;
 
-function compareByFileDate(a: APIImage, b: APIImage): number {
-  return new Date(b.fileDate) - new Date(a.fileDate);
-}
-
 function useImages(team: ?Team, search: string) {
   const [offset, setOffset] = useState<number>(0);
   const [isLoadingInitially, setIsLoadingInitially] = useState<boolean>(true);
@@ -71,12 +67,10 @@ function useImages(team: ?Team, search: string) {
   }, [team, search]);
 
   return {
-    images: images
-      .sort(compareByFileDate)
-      .map<DeletableImage>(image => ({
-        ...image,
-        delete: createDeleteHandler(image),
-      })),
+    images: images.map<DeletableImage>(image => ({
+      ...image,
+      delete: createDeleteHandler(image),
+    })),
     isLoadingInitially,
     hasMore,
     loadMore: fetchImages,

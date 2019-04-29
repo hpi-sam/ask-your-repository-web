@@ -3,16 +3,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ImageFactory from '../../../factories/ImageFactory';
 import GalleryItem from './GalleryItem';
-import ImageDecorator from './ImageDecorator';
 
-
-const image = ImageFactory.createStaticDummyImage();
+const image = {
+  ...ImageFactory.createStaticDummyImage(),
+  delete: () => Promise.resolve(),
+};
 
 describe('<GalleryItem />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<GalleryItem image={ImageDecorator.decorateImage(image)} />);
+    wrapper = shallow(<GalleryItem image={image} />);
   });
 
   it('should render an img with the correct src', () => {
