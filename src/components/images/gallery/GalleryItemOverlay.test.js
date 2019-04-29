@@ -4,16 +4,18 @@ import { shallow } from 'enzyme';
 import ImageFactory from '../../../factories/ImageFactory';
 import Tag from '../../utility/Tag';
 import GalleryItemOverlay from './GalleryItemOverlay';
-import ImageDecorator from './ImageDecorator';
 
-const image = ImageFactory.createStaticDummyImage();
+const image = {
+  ...ImageFactory.createStaticDummyImage(),
+  delete: () => Promise.resolve(),
+};
 
 describe('<GalleryItem />', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(<GalleryItemOverlay
-      image={ImageDecorator.decorateImage(image)}
+      image={image}
       maxTags={5}
     />);
   });
