@@ -6,4 +6,5 @@ export type Team = {
   joinKey: string,
   name: string,
   members: Array<User>,
+  drive: any,
 };

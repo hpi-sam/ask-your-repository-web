@@ -21,6 +21,11 @@
     width: 100%;
     margin-bottom: 2.5em;
 
+    &__link{
+      color:white;
+      text-decoration: underline;
+    }
+
     &__title {
       font-size: 2em;
       margin-bottom: .4em;
