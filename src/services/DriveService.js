@@ -9,8 +9,6 @@ class DriveService {
   }
 
   static async delete(teamId: string, driveId: any): any {
-    console.log(teamId);
-    console.log(driveId);
     await api.delete(`teams/${teamId}/drives/${driveId}`);
   }
 }
