@@ -7,7 +7,7 @@ import { SYNCHRONIZED_SEARCH } from '../state/presentation/presentation.actionTy
 import { filterImages } from '../services/ImageService';
 import type { Team } from '../models/Team';
 import type { Action } from '../state/Action';
-import type { SocketioImages } from '../models/Image';
+import type { PresentationImages } from '../models/Image';
 
 function socketioMiddleware() {
   const socketUrl = process.env.REACT_APP_API_URL;
@@ -33,7 +33,7 @@ function socketioMiddleware() {
   };
 
   return (store: any) => {
-    socket.on('START_PRESENTATION', (responseData: SocketioImages) => {
+    socket.on('START_PRESENTATION', (responseData: PresentationImages) => {
       if (store.getState().presentationMode.isActive) {
         const { images }: any = humps.camelizeKeys(responseData);
         store.dispatch(startPresentation(filterImages(images, 5), responseData.search));

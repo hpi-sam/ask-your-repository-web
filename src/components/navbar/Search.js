@@ -53,16 +53,16 @@ class Search extends Component<Props, State> {
   handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { activeTeam } = this.props;
+    const { activeTeam, dispatch, isPresentationModeOn } = this.props;
     if (!activeTeam) return;
 
     const { search } = this.state;
 
-    if (this.props.isPresentationModeOn) {
-      this.props.dispatch(synchronizedSearch(search));
-      this.props.dispatch(push(`/presentation?${qs.stringify({ search })}`));
+    if (isPresentationModeOn) {
+      dispatch(synchronizedSearch(search));
+      dispatch(push(`/presentation?${qs.stringify({ search })}`));
     } else {
-      this.props.dispatch(push(`/images?${qs.stringify({ search })}`));
+      dispatch(push(`/images?${qs.stringify({ search })}`));
     }
   };
 

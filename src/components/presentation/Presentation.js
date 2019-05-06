@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import qs from 'qs';
 import type { Presentation as PresentationType } from '../../models/Presentation';
 import type { AppState } from '../../state/AppState';
-import type { Image as APIImage } from '../../models/Image';
+import type { Image } from '../../models/Image';
 import ImageService, { filterImages } from '../../services/ImageService';
 import type { Team } from '../../models/Team';
 import ListEmpty from '../utility/ListEmpty';
@@ -24,7 +24,7 @@ type Props = {
 type State = {
   isLoadingInitially: boolean,
   activeIndex: number,
-  images: APIImage[],
+  images: Image[],
 };
 
 class Presentation extends Component<Props, State> {
@@ -100,7 +100,7 @@ class Presentation extends Component<Props, State> {
         teamId: activeTeam.id,
         search,
       };
-      const images: APIImage[] = await ImageService.list(params);
+      const images: Image[] = await ImageService.list(params);
       this.setState({ images: filterImages(images, 5), isLoadingInitially: false });
     } catch (error) {
       // TODO: Handle error
