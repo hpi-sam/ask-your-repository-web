@@ -28,9 +28,13 @@ class Settings extends Component<Props, State> {
   }
 
   async componentDidMount() {
+    this.reloadTeam();
+  }
+
+  reloadTeam = async () => {
     const team = await TeamService.get(this.props.match.params.id);
     this.setState({
-        team,
+      team,
     });
   }
 
@@ -39,10 +43,18 @@ class Settings extends Component<Props, State> {
 
     return (
       <div className="Settings">
-        <h1> Settings for Team<i> {team.name} </i></h1>
+        <h1>
+          {' '}
+          Settings for Team
+          <i>
+            {' '}
+            {team.name}
+            {' '}
+          </i>
+        </h1>
         <div className="Settings__item">
           <div className="Settings__item__title"> Google Drive Sync </div>
-          <GoogleDriveSyncSettings team={team} />
+          <GoogleDriveSyncSettings reloadTeam={this.reloadTeam} team={team} />
         </div>
         <div className="Settings__item">
           <div className="Settings__item__title"> Invite people </div>
