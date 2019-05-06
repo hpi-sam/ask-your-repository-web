@@ -33,7 +33,6 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
   }
 
   hasFolder = () => {
-    console.log(this.props);
     if (this.props.team.drive) {
       return true;
     } return false;
@@ -100,7 +99,10 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
             onContinue={this.revokeAccess}
           >
             <div> Are you sure you want to revoke the access? </div>
-            <div> Your images will not be synced between your team and your Google Drive anymore. </div>
+            <div>
+              Your images will not be synced between your
+              team and your Google Drive anymore.
+            </div>
           </ConfirmModal>
         )}
         {hasFolder() ? (

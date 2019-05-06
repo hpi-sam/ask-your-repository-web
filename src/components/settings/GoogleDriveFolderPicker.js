@@ -16,8 +16,6 @@ function GoogleDriveFolderPicker(props: Props) {
       clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
       developerKey={process.env.REACT_APP_DEVELOPER_KEY}
       scope={['https://www.googleapis.com/auth/drive']}
-      onChange={data => console.log('on change:', data)}
-      onAuthFailed={data => console.log('on auth failed:', data)}
       multiselect
       navHidden
       authImmediate={false}
@@ -30,18 +28,12 @@ function GoogleDriveFolderPicker(props: Props) {
           .setSelectFolderEnabled(true);
 
         const pickerCallback = async (data) => {
-          let url = 'nothing';
-          console.log(data);
           if (data[google.picker.Response.ACTION] === google.picker.Action.PICKED) {
             const doc = data[google.picker.Response.DOCUMENTS][0];
-            console.log(doc);
-            url = doc[google.picker.Document.URL];
-            await DriveService.create(props.team.id, { driveId: doc.id, name: doc.name, url: doc.url });
+            await DriveService.create(props.team.id,
+              { driveId: doc.id, name: doc.name, url: doc.url });
             props.reloadTeam();
           }
-          const message = `You picked: ${url}`;
-          console.log(`set folder: ${url} for team ${props.team.name}`);
-          console.log(message);
         };
 
 
