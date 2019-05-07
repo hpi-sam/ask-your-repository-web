@@ -37,6 +37,13 @@
       line-height: 1.4em;
     }
     &__help{
+      :hover > &__tooltip, :active > &__tooltip, :focus > &__tooltip {
+        transform-origin: 100% 0%;
+        -webkit-animation: fadeIn 0.3s ease-in-out;
+        animation: fadeIn 0.3s ease-in-out;  
+        display: block;
+      }
+
       display: block;
       vertical-align: middle;
       text-align: center;
@@ -60,16 +67,8 @@
       }
 
       &__tooltip{
-        &:hover, :active, :focus{
-          opacity: 100;
-          transform-origin: 100% 0%;
-          -webkit-animation: fadeIn 0.3s ease-in-out;
-          animation: fadeIn 0.3s ease-in-out;
-        }
-         
 
-        display: block;
-        opacity: 0;
+        display: none;
         text-align: left;
         position: absolute;
         background-color: rgb(80, 83, 85);
