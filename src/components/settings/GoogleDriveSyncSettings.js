@@ -18,7 +18,6 @@ type Props = {
 };
 
 type State = {
-  hasFolder: Function,
   showModal: boolean,
 };
 
@@ -27,16 +26,9 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
     super(props);
 
     this.state = {
-      hasFolder: this.hasFolder,
       showModal: false,
     };
   }
-
-  hasFolder = () => {
-    if (this.props.team.drive) {
-      return true;
-    } return false;
-  };
 
   hasGoogleDriveAccess = () => {
     const { google } = this.props.user;
@@ -46,12 +38,7 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
     return false;
   };
 
-  isOwner = () => {
-    if (this.props.team.drive.owner.id === this.props.user.id) {
-      return true;
-    }
-    return false;
-  };
+  isOwner = () => this.props.team.drive && this.props.team.drive.owner.id === this.props.user.id;
 
   handleModal = () => {
     this.setState(prevState => ({
@@ -60,6 +47,7 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
   };
 
   revokeAccess = async () => {
+    if (!this.props.team.drive) return;
     await DriveService.delete(this.props.team.id, this.props.team.drive.id);
     this.setState({ showModal: false });
     this.props.reloadTeam();
@@ -68,9 +56,9 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
 
   render() {
     const { team } = this.props;
-    const { hasFolder, showModal } = this.state;
+    const { showModal } = this.state;
     let connectionInformation;
-    if (hasFolder()) {
+    if (team.drive) {
       connectionInformation = (
         <Fragment>
           <div className="Settings__item__text">
