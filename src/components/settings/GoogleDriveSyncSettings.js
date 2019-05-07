@@ -102,7 +102,7 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
     } else {
       connectionInformation = (
         <Fragment>
-          <div>
+          <div className="Settings__item__text">
           You have to connect a google account first and give us drive access.
             {' '}
             <br />
