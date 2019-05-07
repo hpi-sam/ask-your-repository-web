@@ -69,17 +69,38 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
   render() {
     const { team } = this.props;
     const { hasFolder, showModal } = this.state;
-
-    let notConnectedDiv;
-    if (this.hasGoogleDriveAccess()) {
-      notConnectedDiv = (
+    let connectionInformation;
+    if (hasFolder()) {
+      connectionInformation = (
+        <Fragment>
+          <div className="Settings__item__text">
+            {' '}
+            Your team is currently connected to:
+            {' '}
+            <a className="Settings__item__link" href={team.drive.url}>
+              {team.drive.name}
+            </a>
+          </div>
+          {this.isOwner() && (
+          <DeleteButton
+            onClick={this.handleModal}
+            data-cy="team-settings-googledrive-revoke-access"
+          >
+            Revoke Access
+            {' '}
+          </DeleteButton>
+          )}
+        </Fragment>
+      );
+    } else if (this.hasGoogleDriveAccess()) {
+      connectionInformation = (
         <Fragment>
           <div className="Settings__item__text"> Connect your team to a Google Drive folder to automatically sync your images. </div>
           <GoogleDriveFolderPicker reloadTeam={this.props.reloadTeam} team={team} />
         </Fragment>
       );
     } else {
-      notConnectedDiv = (
+      connectionInformation = (
         <Fragment>
           <div>
           You have to connect a google account first and give us drive access.
@@ -105,28 +126,7 @@ class GoogleDriveSyncSettings extends Component<Props, State> {
             </div>
           </ConfirmModal>
         )}
-        {hasFolder() ? (
-          <Fragment>
-            <div className="Settings__item__text">
-              {' '}
-              Your team is currently connected to:
-              {' '}
-              <a href={team.drive.url}>
-                {team.drive.name}
-              </a>
-            </div>
-            {this.isOwner() && (
-            <DeleteButton
-              onClick={this.handleModal}
-              data-cy="team-settings-googledrive-revoke-access"
-            >
-              Revoke Access
-              {' '}
-
-            </DeleteButton>
-            )}
-          </Fragment>
-        ) : (notConnectedDiv)}
+        {connectionInformation}
       </Fragment>
     );
   }
