@@ -53,7 +53,15 @@ class Settings extends Component<Props, State> {
           </i>
         </h1>
         <div className="Settings__item">
-          <div className="Settings__item__title"> Google Drive Sync </div>
+          <div className="Settings__item__title">
+            Google Drive Sync
+            <div className="Settings__item__help">
+              <p className="Settings__item__help__tooltip">
+                If you connect a google drive folder to this team, images will be automagically synchronized
+                from Ask your Cloud to that folder. And vice versa!
+              </p>
+            </div>
+          </div>
           <GoogleDriveSyncSettings reloadTeam={this.reloadTeam} team={team} />
         </div>
         <div className="Settings__item">
