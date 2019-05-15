@@ -12,7 +12,7 @@
   margin-bottom: var(--tag-margin);
   border-radius: var(--tag-border-radius);
 
-  height: 40px;
+  height: var(--tag-height);
   display: inline-flex;
   background-color: #eee;
   max-width: 100%;
@@ -25,6 +25,12 @@
 
   &--multi {
     box-shadow: 0 0 3px 2px #fff;
+  }
+
+  &--small {
+    --tag-height: 20px;
+    --tag-font-size: var(--font-size-2);
+    --tag-padding-horizontal: 5px;
   }
 
   &__button {

@@ -1,0 +1,23 @@
+.ImageFaceForm {
+  &__bounding-box {
+    border: 3px solid var(--green);
+    box-shadow: var(--elevation-3);
+    position: absolute;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+  }
+
+  &__name, &__input {
+    position: absolute;
+    background-color: hsla(0, 0%, 0%, 0.8);
+    padding: 10px;
+    text-align: center;
+    box-shadow: var(--elevation-3);
+    border-radius: var(--border-radius);
+    margin-top: 10px;
+  }
+
+  &__input {
+    animation: fade-in .1s;
+  }
+}

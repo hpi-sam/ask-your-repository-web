@@ -7,6 +7,12 @@ const colors = [
   'blue',
   'orange',
   'purple',
+  'green',
+  'pink',
+  'cyan',
+  'brown',
+  'indigo',
+  'deep-purple',
 ];
 
 class ColorFactory {

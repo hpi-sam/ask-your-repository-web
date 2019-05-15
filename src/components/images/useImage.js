@@ -3,10 +3,8 @@ import { useState, useEffect } from 'react';
 import ImageService from '../../services/ImageService';
 import type { Image } from '../../models/Image';
 
-type State<S> = [S, ((S => S) | S) => void];
-
 function useImage(imageId: string) {
-  const [image, setImage]: State<?Image> = useState(null);
+  const [image, setImage] = useState<Image | null>(null);
 
   async function loadImage() {
     const responseImage = await ImageService.get(imageId);
@@ -15,7 +13,7 @@ function useImage(imageId: string) {
 
   useEffect(() => {
     loadImage();
-  }, []);
+  }, [imageId]);
 
   return { image, setImage };
 }

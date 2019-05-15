@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ImageFactory from '../../../factories/ImageFactory';
-import Tag from '../../utility/Tag';
+import Tag from '../../utility/tags/Tag';
 import GalleryItemOverlay from './GalleryItemOverlay';
 import ImageDecorator from './ImageDecorator';
 

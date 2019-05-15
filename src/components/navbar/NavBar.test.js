@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import initialState from '../../state/initialState';
 import UserFactory from '../../factories/UserFactory';
+import TeamFactory from '../../factories/TeamFactory';
 import NavBar from './NavBar';
 
 const mockStore = configureStore();
@@ -14,6 +15,7 @@ const mockStore = configureStore();
 const state = {
   ...initialState,
   user: UserFactory.createStaticAuthenticatedUser(),
+  activeTeam: TeamFactory.createStaticDummyTeam(),
 };
 
 describe('<NavBar />', () => {

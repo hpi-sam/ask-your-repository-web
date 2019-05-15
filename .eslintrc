@@ -16,6 +16,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": "off",
     "react/destructuring-assignment": "off",
     "react/require-default-props": "off",
     "react/default-props-match-prop-types": "off",

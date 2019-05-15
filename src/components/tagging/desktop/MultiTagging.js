@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Tagging from './Tagging';
 import TagSelector from './TagSelector';
-import Tag from '../../utility/Tag';
+import Tag from '../../utility/tags/Tag';
 import type { Tag as TagType } from '../../../models/Tag';
 import type { TaggableImage } from '../../../models/Image';
 

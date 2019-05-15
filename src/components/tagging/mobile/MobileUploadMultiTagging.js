@@ -3,7 +3,7 @@ import React from 'react';
 import { IoIosRepeat } from 'react-icons/io';
 import type { DropFilesEventHandler } from 'react-dropzone';
 import { Button } from '../../utility/buttons';
-import Tag from '../../utility/Tag';
+import Tag from '../../utility/tags/Tag';
 import MobileTaggingImagesPreview from './MobileTaggingImagesPreview';
 import ActivityIndicator from '../../utility/ActivityIndicator';
 import MobileTaggingHeader from './MobileTaggingHeader';

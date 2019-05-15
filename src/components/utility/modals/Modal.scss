@@ -1,5 +1,5 @@
-.ModalView {
-
+.Modal {
+  /*
   &__modal {
     position: absolute;
     top: 50%;
@@ -33,8 +33,15 @@
       height: auto;
     }
   }
+  */
+
+  &__content {
+    display: flex;
+    outline: none;
+  }
 
   &__overlay {
+    overflow: auto;
     position: fixed;
     top: 0;
     left: 0;

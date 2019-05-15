@@ -8,7 +8,7 @@ import type { Match } from 'react-router-dom';
 import { flashErrorMessage } from 'redux-flash';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 import InviteService from '../../services/InviteService';
-import Modal from '../utility/Modal';
+import Modal from '../utility/modals/Modal';
 import type { Team } from '../../models/Team';
 import type { Action } from '../../state/Action';
 import './TeamJoin.scss';

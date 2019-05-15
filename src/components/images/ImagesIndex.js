@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import type { Location } from 'react-router';
+import { Route } from 'react-router-dom';
 import { IoIosCloudOutline, IoIosSearch } from 'react-icons/io';
 import qs from 'qs';
 import InfinityScroll from 'react-infinite-scroller';
@@ -15,6 +16,7 @@ import type { Image } from './gallery/ImageDecorator';
 import type { AppState } from '../../state/AppState';
 import ListEmpty from '../utility/ListEmpty';
 import { ButtonLink } from '../utility/buttons';
+import ImageDetailsModal from './ImageDetailsModal';
 import './ImagesIndex.scss';
 
 type Props = {
@@ -162,6 +164,7 @@ class ImagesIndex extends Component<Props, State> {
 
     return (
       <div className="ImagesIndex">
+        <Route path="/images/:id" component={ImageDetailsModal} />
         <InfinityScroll
           initialLoad={false}
           hasMore={!this.state.endReached}

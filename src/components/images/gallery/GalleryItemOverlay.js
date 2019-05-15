@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import { IoIosMore } from 'react-icons/io';
 import { MdDelete } from 'react-icons/md';
 import { confirmAlert } from 'react-confirm-alert';
-import Tag from '../../utility/Tag';
+import Tag from '../../utility/tags/Tag';
 import type { Image } from './ImageDecorator';
 import { Button } from '../../utility/buttons';
 import './Gallery.scss';

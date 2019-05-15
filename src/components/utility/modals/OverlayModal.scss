@@ -1,0 +1,18 @@
+.OverlayModal {
+  &__overlay {
+    padding: 50px;
+    background-color: hsla(0, 0%, 0%, 0.9);
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 30px;
+
+    font-size: var(--font-size-7);
+    color: var(--white);
+  }
+}

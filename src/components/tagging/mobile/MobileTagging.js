@@ -2,7 +2,7 @@
 import React from 'react';
 import MobileTaggingHeader from './MobileTaggingHeader';
 import MobileTaggingImage from './MobileTaggingImage';
-import Tag from '../../utility/Tag';
+import Tag from '../../utility/tags/Tag';
 import type { TaggableImage } from '../../../models/Image';
 import type { Tag as TagType } from '../../../models/Tag';
 import './MobileTagging.scss';

@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import ImageService from '../../services/ImageService';
 import ActivityInidicator from '../utility/ActivityIndicator';
 import ImageDetailsToolbar from './ImageDetailsToolbar';
-import Tag from '../utility/Tag';
+import Tag from '../utility/tags/Tag';
 import type { Image } from '../../models/Image';
 import './ImageDetails.scss';
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TagSelector from './TagSelector';
-import Tag from '../../utility/Tag';
+import Tag from '../../utility/tags/Tag';
 import type { Tag as TagType } from '../../../models/Tag';
 
 describe('<TagSelector />', () => {

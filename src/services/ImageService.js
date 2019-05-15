@@ -26,6 +26,14 @@ class ImageService {
     return images;
   }
 
+  static async related(id: string, limit: number = 5) {
+    const response = await api.get(`/images/${id}/related`, {
+      params: { limit },
+    });
+    const images: any = humps.camelizeKeys(response.data.images);
+    return images;
+  }
+
   static async create(formData: FormData): Promise<Image> {
     const headers = { 'Content-Type': 'multipart/form-data' };
     const response = await api.post('/images', formData, { headers });

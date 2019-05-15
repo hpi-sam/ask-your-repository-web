@@ -2,18 +2,18 @@
 import React, { Component } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import classNames from 'classnames';
-import ColorFactory from '../../factories/ColorFactory';
-import type { Tag as TagType } from '../../models/Tag';
+import ColorFactory from '../../../factories/ColorFactory';
+import type { Tag as TagType } from '../../../models/Tag';
 import './Tag.scss';
 
-type Props = {
+export type Props = {
   caption: string,
   className?: string,
   isMultiTag?: boolean,
   clickable?: boolean,
-  onClick: (tag: TagType) => void,
+  onClick?: (tag: TagType) => void,
   removable?: boolean,
-  onRemove: (tag: TagType) => void,
+  onRemove?: (tag: TagType) => void,
 };
 
 class Tag extends Component<Props> {

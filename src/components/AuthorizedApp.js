@@ -36,7 +36,6 @@ function AuthorizedApp(props: Props) {
           <Route path="/invites/:joinKey" component={TeamJoin} />
           <TeamRoute path="/upload" component={Upload} />
           <TeamRoute path="/images/:id/edit" component={ImageEdit} />
-          <TeamRoute path="/images/:id" component={ImageDetails} />
           <TeamRoute path="/images" component={ImagesIndex} />
           <TeamRoute path="/presentation" component={Presentation} />
           <Redirect from="*" to="/images" />
