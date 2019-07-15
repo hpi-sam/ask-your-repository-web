@@ -109,7 +109,7 @@ workflows:
   pipeline:
     jobs:
       - test
-      - flow
+      # - flow
       - lint
       - e2e
       - build_staging:
