@@ -39,5 +39,6 @@ This repo is part of the "Ask your Repository" Bachelor project containing the f
 
 You can find more detailed documentation in the [wiki](https://github.com/hpi-sam/ask-your-repository-web/wiki).  
   
-    
+
+## License
 This project is licensed under the terms of the MIT license.
