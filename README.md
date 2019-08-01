@@ -9,7 +9,15 @@ This repo is part of the "Ask your Repository" Bachelor project containing the f
 - [Tobito - Ask your Repository Dialogflow Adapter](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter)  
 - [Ask your Repository Docker Deployment](https://github.com/hpi-sam/ask-your-repository-docker)  
 
-
+## Setup
+1. Install YARN: https://yarnpkg.com/lang/en/docs/install/
+2. Clone the repository: `git clone https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter.git`
+3. Change directory into the repository folder: `cd ask-your-repository-dialogflow-adapter`
+4. Execute `yarn install` to install dependencies
+5. Execute `yarn flow-typed install` to install types for all dependencies
+5. Start developing and Have fun!
+6. ???
+7. Profit!
 
 ## Available Scripts
 
