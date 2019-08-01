@@ -35,10 +35,9 @@ This repo is part of the "Ask your Repository" Bachelor project containing the f
 
 `yarn lint` &middot; Run ESLint
 
-## Docu
+## Documentation
 
-You can find more detailed documentation in the [wiki](https://github.com/hpi-sam/ask-your-repository-web/wiki).  
-  
+Further documentation can be found in the [Wiki](https://github.com/hpi-sam/ask-your-repository-web/wiki).
 
 ## License
 This project is licensed under the terms of the MIT license.
