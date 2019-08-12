@@ -1,7 +1,7 @@
 // @flow
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import classNames from 'classnames';
 import ImagesIndex from './images/ImagesIndex';
 import Upload from './upload/Upload';

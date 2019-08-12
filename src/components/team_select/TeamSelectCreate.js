@@ -1,63 +1,42 @@
 // @flow
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { IoIosAdd } from 'react-icons/io';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SingleInputForm from '../utility/form/SingleInputForm';
 import TeamService from '../../services/TeamService';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 
-type Props = {
-  dispatch: Function,
-};
+const TeamSelectCreate = () => {
+  const dispatch = useDispatch();
+  const [isFormActive, setIsFormActive] = useState(false);
 
-type State = {
-  isFormActive: boolean,
-};
-
-class TeamSelectCreate extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      isFormActive: false,
-    };
-  }
-
-  handleFormSubmit = async (name: string) => {
-    const team = await TeamService.create({ name });
-    this.props.dispatch(setActiveTeam(team));
+  const handleFormSubmit = async (name: string) => {
+    const { team } = await dispatch(TeamService.create({ name }));
+    dispatch(setActiveTeam(team));
   };
 
-  handleCloseForm = () => this.setState({ isFormActive: false });
+  return (
+    <div className="TeamSelect__create">
+      {isFormActive ? (
+        <SingleInputForm
+          onClose={() => setIsFormActive(false)}
+          onSubmit={handleFormSubmit}
+          placeholder="My Team"
+          data-cy="team-select-form"
+          className="TeamSelect__create__form"
+        />
+      ) : (
+        <button
+          type="button"
+          className="TeamSelect__create__button"
+          data-cy="team-select-create-button"
+          onClick={() => setIsFormActive(true)}
+        >
+          <IoIosAdd />
+        </button>
+      )}
+    </div>
+  );
+};
 
-  handleOpenForm = () => this.setState({ isFormActive: true });
-
-  render() {
-    const { isFormActive } = this.state;
-
-    return (
-      <div className="TeamSelect__create">
-        {isFormActive ? (
-          <SingleInputForm
-            onClose={this.handleCloseForm}
-            onSubmit={this.handleFormSubmit}
-            placeholder="My Team"
-            data-cy="team-select-form"
-            className="TeamSelect__create__form"
-          />
-        ) : (
-          <button
-            type="button"
-            className="TeamSelect__create__button"
-            data-cy="team-select-create-button"
-            onClick={this.handleOpenForm}
-          >
-            <IoIosAdd />
-          </button>
-        )}
-      </div>
-    );
-  }
-}
-
-export default connect()(TeamSelectCreate);
+export default TeamSelectCreate;

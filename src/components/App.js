@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FlashMessages from './utility/flash/FlashMessages';
 import AuthorizedApp from './AuthorizedApp';

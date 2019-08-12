@@ -4,6 +4,7 @@ import type { TeamSidebarState } from './team_sidebar/teamSidebar.reducer';
 import type { PresentationState } from './presentation/presentation.reducer';
 import type { PresentationModeState } from './presentation_mode/presentationMode.reducer';
 import type { AuthState } from './auth/auth.reducer';
+import type { TeamsState } from './teams/teams.reducer';
 
 export type AppState = {
   activeTeam: ActiveTeamState,
@@ -11,4 +12,5 @@ export type AppState = {
   presentationMode: PresentationModeState,
   teamSidebar: TeamSidebarState,
   auth: AuthState,
+  teams: TeamsState,
 };

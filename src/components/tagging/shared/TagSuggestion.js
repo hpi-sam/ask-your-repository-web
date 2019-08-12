@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import ColorFactory from '../../../factories/ColorFactory';
 import type { Tag } from '../../../models/Tag';
@@ -9,28 +9,23 @@ type Props = {
   onClick: (tag: Tag) => void,
 };
 
-class TagSuggestion extends Component<Props> {
-  handleClick = () => {
-    const { onClick, tag } = this.props;
-    onClick(tag);
-  };
+const TagSuggestion = ({ onClick, tag }: Props) => {
+  const className = classNames(
+    'TagSuggestions__item',
+    ColorFactory.fromTag(tag),
+  );
 
-  render() {
-    const { tag } = this.props;
-    const className = classNames('TagSuggestions__item', ColorFactory.fromTag(tag));
-
-    return (
-      <button
-        onClick={this.handleClick}
-        type="button"
-        className={className}
-      >
-        <span className="TagSuggestions__item__text">
-          {tag}
-        </span>
-      </button>
-    );
-  }
-}
+  return (
+    <button
+      onClick={() => onClick(tag)}
+      type="button"
+      className={className}
+    >
+      <span className="TagSuggestions__item__text">
+        {tag}
+      </span>
+    </button>
+  );
+};
 
 export default TagSuggestion;

@@ -1,6 +1,6 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import { flashErrorMessage, flashSuccessMessage } from 'redux-flash';
 import { Link } from 'react-router-dom';
@@ -11,38 +11,20 @@ import ValidationErrors from '../../utility/form/ValidationErrors';
 import type { Errors } from '../../../models/Errors';
 import AuthService from '../../../services/AuthService';
 
-type Props = {
-  dispatch: Function,
-};
+const PasswordRequestForm = () => {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState<Errors>({ missingInput: false });
 
-type State = {
-  email: string,
-  errors: Errors,
-};
-
-class PasswordRequestForm extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      email: '',
-      errors: {
-        missingInput: false,
-      },
-    };
-  }
-
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+  const resetErrors = () => {
+    setErrors({
+      missingInput: false,
+    });
   };
 
-  handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.resetErrors();
-
-    const { email } = this.state;
-    const { dispatch } = this.props;
+    resetErrors();
 
     if (email) {
       try {
@@ -57,63 +39,41 @@ class PasswordRequestForm extends Component<Props, State> {
         dispatch(flashErrorMessage(message));
       }
     } else {
-      this.handleError('missingInput', true);
+      setErrors({ missingInput: true });
     }
   };
 
-  handleError = (name: $Keys<Errors>, value: boolean) => {
-    this.setState({
-      errors: {
-        [name]: value,
-      },
-    });
+  const printError = () => {
+    const error = Object.keys(errors).find(key => errors[key]);
+
+    return error
+      ? <ValidationErrors error={error} />
+      : null;
   };
 
-  resetErrors = () => {
-    this.setState({
-      errors: {
-        missingInput: false,
-      },
-    });
-  };
+  return (
+    <Form onSubmit={handleSubmit} className="Form Form__centered">
+      <div className="Form__title">Reset Password</div>
+      {printError()}
+      <div className="Form__input">
+        <label className="Form__input__label">
+          Email or Username:
+          <Input
+            type="text"
+            name="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </label>
+      </div>
+      <div className="Form__buttons">
+        <Button className="Form__buttons__item Form__buttons__item__blue">
+          Submit
+        </Button>
+        <Link to="/login" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
+      </div>
+    </Form>
+  );
+};
 
-  printError = () => {
-    const error = Object.keys(this.state.errors).find(key => this.state.errors[key] === true);
-    if (error) {
-      return (
-        <ValidationErrors error={error} />
-      );
-    }
-    return false;
-  };
-
-
-  render() {
-    const { email } = this.state;
-    return (
-      <Form onSubmit={this.handleSubmit} className="Form Form__centered">
-        <div className="Form__title">Reset Password</div>
-        {this.printError()}
-        <div className="Form__input">
-          <label className="Form__input__label">
-            Email or Username:
-            <Input
-              type="text"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </label>
-        </div>
-        <div className="Form__buttons">
-          <Button className="Form__buttons__item Form__buttons__item__blue">
-            Submit
-          </Button>
-          <Link to="/login" className="Form__buttons__item Form__buttons__item__gray">Cancel</Link>
-        </div>
-      </Form>
-    );
-  }
-}
-
-export default connect()(PasswordRequestForm);
+export default PasswordRequestForm;

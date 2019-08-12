@@ -1,8 +1,6 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import onClickOutside from 'react-onclickoutside';
-import type { Team } from '../../models/Team';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import TeamService from '../../services/TeamService';
 import { setActiveTeam } from '../../state/active_team/activeTeam.actionCreators';
 import { closeTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
@@ -10,36 +8,28 @@ import SingleInputForm from '../utility/form/SingleInputForm';
 
 type Props = {
   onClose: () => void,
-  addTeam: (team: Team) => void,
-  dispatch: Function,
 };
 
-class TeamSidebarAddItemForm extends Component<Props> {
-  handleSaveClick = async (name: string) => {
-    const team = await TeamService.create({ name });
+const TeamSidebarAddItemForm = (props: Props) => {
+  const dispatch = useDispatch();
+  const { onClose } = props;
 
-    const { dispatch, onClose, addTeam } = this.props;
+  const handleSaveClick = async (name: string) => {
+    const { team } = await dispatch(TeamService.create({ name }));
     onClose();
-    addTeam(team);
     dispatch(setActiveTeam(team));
     dispatch(closeTeamSidebar());
   };
 
-  handleClickOutside = () => {
-    this.props.onClose();
-  };
+  return (
+    <SingleInputForm
+      onClose={() => onClose()}
+      onSubmit={handleSaveClick}
+      placeholder="My Team"
+      className="TeamSidebar__create-form"
+      data-cy="team-sidebar-form"
+    />
+  );
+};
 
-  render() {
-    return (
-      <SingleInputForm
-        onClose={this.props.onClose}
-        onSubmit={this.handleSaveClick}
-        placeholder="My Team"
-        className="TeamSidebar__create-form"
-        data-cy="team-sidebar-form"
-      />
-    );
-  }
-}
-
-export default connect()(onClickOutside(TeamSidebarAddItemForm));
+export default TeamSidebarAddItemForm;

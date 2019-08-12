@@ -15,7 +15,6 @@ const mockStore = configureMockStore();
 
 jest.mock('../../../services/UserService');
 
-
 describe('<ResetPasswordForm />', () => {
   let wrapper;
   let store;
@@ -51,23 +50,21 @@ describe('<ResetPasswordForm />', () => {
   });
 
   it('shows a validation Error when submitting with mismatching passwords', () => {
-    const password = 'test';
-    wrapper.setState({ password, passwordConfirm: 'missmatched_password' });
+    wrapper.find('input[name="password"]')
+      .simulate('change', { target: { name: 'password', value: 'test' } });
+    wrapper.find('input[name="passwordConfirm"]')
+      .simulate('change', { target: { name: 'password', value: 'mismatched_password' } });
     wrapper.find(Form).simulate('submit');
     wrapper = wrapper.update();
     expect(wrapper.find(ValidationErrors).text()).toEqual('Passwords do not match.');
   });
 
   it('calls the auth service with the password', () => {
-    const password = 'test';
-    wrapper.setState({ password, passwordConfirm: password });
+    wrapper.find('input[name="password"]')
+      .simulate('change', { target: { name: 'password', value: 'test' } });
+    wrapper.find('input[name="passwordConfirm"]')
+      .simulate('change', { target: { name: 'password', value: 'test' } });
     wrapper.find(Form).simulate('submit');
-    expect(UserService.changePassword).toHaveBeenCalledWith(password, 'test_token');
-  });
-
-  it('updates the state when the user types in the password field', () => {
-    const password = 'test';
-    wrapper.find('input[name="password"]').simulate('change', { target: { name: 'password', value: password } });
-    expect(wrapper.state().password).toEqual(password);
+    expect(UserService.changePassword).toHaveBeenCalledWith('test', 'test_token');
   });
 });

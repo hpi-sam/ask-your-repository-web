@@ -28,7 +28,7 @@ exports[`<Root /> renders correctly 1`] = `
       }
     }
   >
-    <Connect(ConnectedRouterWithContext)
+    <Component
       history={
         Object {
           "action": "POP",
@@ -51,10 +51,19 @@ exports[`<Root /> renders correctly 1`] = `
       }
     >
       <Route
-        component={[Function]}
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(App)",
+            "type": [Function],
+            Symbol(Symbol.hasInstance): [Function],
+          }
+        }
         path="/"
       />
-    </Connect(ConnectedRouterWithContext)>
+    </Component>
   </PersistGate>
 </Provider>
 `;
