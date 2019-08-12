@@ -51,14 +51,8 @@ describe('<PasswordRequestForm />', () => {
 
   it('calls the auth service with the provided email', () => {
     const testEmail = 'test@example.com';
-    wrapper.setState({ email: testEmail });
+    wrapper.find('input').simulate('change', { target: { name: 'email', value: testEmail } });
     wrapper.find(Form).simulate('submit');
     expect(AuthService.requestResetLink).toHaveBeenCalledWith(testEmail);
-  });
-
-  it('updates the state when the user types an email', () => {
-    const testEmail = 'test@example.com';
-    wrapper.find('input').simulate('change', { target: { name: 'email', value: testEmail } });
-    expect(wrapper.state().email).toEqual(testEmail);
   });
 });

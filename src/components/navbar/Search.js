@@ -1,62 +1,39 @@
 // @flow
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import { push } from 'connected-react-router';
-import qs from 'qs';
-import onClickOutside from 'react-onclickoutside';
-import { connect } from 'react-redux';
+import useOnClickOutside from 'use-onclickoutside';
+import { useSelector, useDispatch } from 'react-redux';
 import { MdSearch, MdClose } from 'react-icons/md';
 import classNames from 'classnames';
+import qs from 'qs';
 import { synchronizedSearch } from '../../state/presentation/presentation.actionCreators';
 import type { AppState } from '../../state/AppState';
-import type { Team } from '../../models/Team';
 import './Search.scss';
 
-type Props = {
-  dispatch: Function,
-  activeTeam: ?Team,
-  isPresentationModeOn: boolean,
-};
+const Search = () => {
+  const dispatch = useDispatch();
+  const activeTeam = useSelector((state: AppState) => state.activeTeam);
+  const isPresentationModeOn = useSelector((state: AppState) => state.presentationMode.isActive);
+  const [search, setSearch] = useState('');
+  const [isSelected, setIsSelected] = useState(false);
+  const ref = useRef(null);
+  useOnClickOutside(ref, () => setIsSelected(false));
 
-type State = {
-  search: string,
-  isSelected: boolean,
-};
+  const handleSelect = () => setIsSelected(true);
 
-class Search extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      isSelected: false,
-      search: '',
-    };
-  }
-
-  handleClickOutside = () => {
-    this.setState({ isSelected: false });
+  const handleClose = () => {
+    setIsSelected(false);
+    setSearch('');
   };
 
-  handleSelect = () => {
-    this.setState({ isSelected: true });
+  const handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
-  handleClose = () => {
-    this.setState({ isSelected: false, search: '' });
-  };
-
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    this.setState({ search: value });
-  };
-
-  handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const { activeTeam, dispatch, isPresentationModeOn } = this.props;
     if (!activeTeam) return;
-
-    const { search } = this.state;
 
     if (isPresentationModeOn) {
       dispatch(synchronizedSearch(search));
@@ -66,41 +43,33 @@ class Search extends Component<Props, State> {
     }
   };
 
-  render() {
-    const { isSelected, search } = this.state;
-    const className = classNames('Search', {
-      'Search--active': isSelected,
-    });
+  const className = classNames('Search', {
+    'Search--active': isSelected,
+  });
 
-    return (
-      <form className={className} onSubmit={this.handleSubmit}>
-        <MdSearch className="Search__input__icon Search__input__icon--left" />
-        <input
-          autoFocus
-          type="text"
-          value={search}
-          className="Search__input"
-          onChange={this.handleChange}
-          onFocus={this.handleSelect}
-          placeholder="Search"
-        />
-        {isSelected && (
-          <button
-            type="button"
-            onClick={this.handleClose}
-            className="Search__input__close"
-          >
-            <MdClose />
-          </button>
-        )}
-      </form>
-    );
-  }
-}
+  return (
+    <form className={className} onSubmit={handleSubmit} ref={ref}>
+      <MdSearch className="Search__input__icon Search__input__icon--left" />
+      <input
+        autoFocus
+        type="text"
+        value={search}
+        className="Search__input"
+        onChange={handleChange}
+        onFocus={handleSelect}
+        placeholder="Search"
+      />
+      {isSelected && (
+        <button
+          type="button"
+          onClick={handleClose}
+          className="Search__input__close"
+        >
+          <MdClose />
+        </button>
+      )}
+    </form>
+  );
+};
 
-const mapStateToProps = (state: AppState) => ({
-  activeTeam: state.activeTeam,
-  isPresentationModeOn: state.presentationMode.isActive,
-});
-
-export default connect(mapStateToProps)(onClickOutside(Search));
+export default Search;

@@ -14,7 +14,7 @@ exports[`<TaggingForm /> renders correctly 1`] = `
   >
     Suggestions - Type number to add
   </div>
-  <Connect(TagSuggestions)
+  <Component
     onSuggestionClick={[Function]}
     tags={
       Array [

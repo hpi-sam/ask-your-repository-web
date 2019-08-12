@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import type { Location } from 'react-router';
+import type { Location } from 'react-router-dom';
 import { IoIosSearch } from 'react-icons/io';
 import classNames from 'classnames';
 import qs from 'qs';

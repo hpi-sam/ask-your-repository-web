@@ -1,7 +1,6 @@
 // @flow
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import type { Dispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { IoIosArrowDown } from 'react-icons/io';
 import { MdImage, MdPerson } from 'react-icons/md';
@@ -9,10 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Search from './Search';
 import TeamInitialsButton from '../team/TeamInitialsButton';
 import PresentationSwitch from './PresentationSwitch';
-import type { Team } from '../../models/Team';
-import type { User } from '../../models/User';
 import type { AppState } from '../../state/AppState';
-import type { Action } from '../../state/Action';
 import { openTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
 import Dropdown from '../utility/dropdown/Dropdown';
 import createGoogleAuthInstance from '../../config/createGoogleAuthInstance';
@@ -20,17 +16,11 @@ import { ButtonLink, Button } from '../utility/buttons';
 import { logout } from '../../state/auth/auth.actionCreators';
 import './NavBar.scss';
 
-type Props = {
-  activeTeam: ?Team,
-  isTeamSidebarOpen: boolean,
-  user: User,
-  dispatch: Dispatch<Action>,
-};
-
-function NavBar(props: Props) {
-  const {
-    dispatch, isTeamSidebarOpen, activeTeam, user,
-  } = props;
+const NavBar = () => {
+  const dispatch = useDispatch();
+  const isTeamSidebarOpen = useSelector((state: AppState) => state.teamSidebar.isOpen);
+  const activeTeam = useSelector((state: AppState) => state.activeTeam);
+  const user = useSelector((state: AppState) => state.auth.user);
 
   function handleLogoutClick() {
     createGoogleAuthInstance().then((googleAuth) => {
@@ -114,12 +104,6 @@ function NavBar(props: Props) {
       </div>
     </div>
   );
-}
+};
 
-const mapStateToProps = (state: AppState) => ({
-  user: state.auth.user,
-  activeTeam: state.activeTeam,
-  isTeamSidebarOpen: state.teamSidebar.isOpen,
-});
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;

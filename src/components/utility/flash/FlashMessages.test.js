@@ -31,7 +31,7 @@ describe('<FlashMessages />', () => {
   });
 
   it('renders nothing on empty queue', () => {
-    expect(wrapper.find(FlashMessages).html()).toEqual(null);
+    expect(wrapper.find(FlashMessages).exists()).toEqual(false);
   });
 
   describe('latest message is error message', () => {

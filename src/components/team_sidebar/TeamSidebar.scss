@@ -82,7 +82,6 @@
 
     animation: item-fade-in .5s;
     width: var(--team-sidebar-width);
-    padding: var(--item-padding);
     margin-bottom: var(--sidebar-padding);
     background-color: transparent;
     transition: opacity .1s, background-color .1s;
@@ -90,8 +89,8 @@
 
     > button {
       color: var(--text-gray-4);
+      padding: var(--item-padding);
     }
-
 
     &:hover, &:active, &:focus {
       background-color: var(--bg-gray-3);

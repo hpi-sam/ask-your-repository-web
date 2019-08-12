@@ -1,7 +1,7 @@
 // @flow
 import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router';
-import type { Location } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import type { Location } from 'react-router-dom';
 import LoginForm from './auth/LoginForm';
 import RegisterForm from './auth/RegisterForm';
 import PasswordRequestForm from './auth/forgot_password/PasswordRequestForm';

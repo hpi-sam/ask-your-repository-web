@@ -1,110 +1,64 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import useOnClickOutside from 'use-onclickoutside';
 import classNames from 'classnames';
-import onClickOutside from 'react-onclickoutside';
 import { MdPeople, MdClose } from 'react-icons/md';
-import type { Team } from '../../models/Team';
 import ActivityIndicator from '../utility/ActivityIndicator';
-import TeamService from '../../services/TeamService';
 import TeamSidebarItem from './TeamSidebarItem';
 import TeamSidebarAddItem from './TeamSidebarAddItem';
-import TeamsContext from '../../contexts/TeamsContext';
 import type { AppState } from '../../state/AppState';
-import './TeamSidebar.scss';
 import { closeTeamSidebar } from '../../state/team_sidebar/teamSidebar.actionCreators';
+import useTeams from './useTeams';
+import './TeamSidebar.scss';
 
-type Props = {
-  isOpen: boolean,
-  dispatch: Function,
-};
+const TeamSidebar = () => {
+  const dispatch = useDispatch();
+  const { teams, isLoading } = useTeams();
+  const isOpen = useSelector((state: AppState) => state.teamSidebar.isOpen);
+  const ref = useRef(null);
 
-type State = {
-  teams: Array<Team>,
-  addTeam: (team: Team) => void,
-  isLoading: boolean,
-};
-
-class TeamSidebar extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.addTeam = (team: Team) => {
-      this.setState(state => ({
-        teams: [...state.teams, team],
-      }));
-    };
-
-    this.state = {
-      teams: [],
-      addTeam: this.addTeam,
-      isLoading: true,
-    };
-  }
-
-  async componentDidMount() {
-    const teams = await TeamService.list();
-
-    this.setState({
-      teams,
-      isLoading: false,
-    });
-  }
-
-  handleClose = () => {
-    if (!this.props.isOpen) return;
-    this.props.dispatch(closeTeamSidebar());
+  const handleClose = () => {
+    if (!isOpen) return;
+    dispatch(closeTeamSidebar());
   };
 
-  handleClickOutside = () => this.handleClose();
+  useOnClickOutside(ref, () => handleClose());
 
-  addTeam: (team: Team) => void;
+  const className = classNames('TeamSidebar', {
+    'TeamSidebar--collapsed': !isOpen,
+  });
 
-  render() {
-    const { teams, isLoading, addTeam } = this.state;
-    const { isOpen } = this.props;
-
-    const className = classNames('TeamSidebar', {
-      'TeamSidebar--collapsed': !isOpen,
-    });
-
-    return (
-      <TeamsContext.Provider value={{ teams, addTeam }}>
-        <div className={className} data-cy="team-sidebar">
-          <div className="TeamSidebar__title">
-            <MdPeople className="TeamSidebar__title__icon" />
-            Teams
-            <button
-              type="button"
-              onClick={this.handleClose}
-              className="TeamSidebar__close-button"
-            >
-              <MdClose />
-            </button>
-          </div>
-          {isLoading ? (
-            <div className="TeamSidebar__loading">
-              <ActivityIndicator />
-            </div>
-          ) : (
-            <div className="TeamSidebar__list">
-              {teams.map(team => (
-                <TeamSidebarItem
-                  key={team.id}
-                  team={team}
-                />
-              ))}
-              <TeamSidebarAddItem />
-            </div>
-          )}
+  return (
+    <div className={className} data-cy="team-sidebar" ref={ref}>
+      <div className="TeamSidebar__title">
+        <MdPeople className="TeamSidebar__title__icon" />
+        Teams
+        <button
+          type="button"
+          onClick={handleClose}
+          className="TeamSidebar__close-button"
+        >
+          <MdClose />
+        </button>
+      </div>
+      {isLoading ? (
+        <div className="TeamSidebar__loading">
+          <ActivityIndicator />
         </div>
-      </TeamsContext.Provider>
-    );
-  }
-}
+      ) : (
+        <div className="TeamSidebar__list">
+          {teams.map(team => (
+            <TeamSidebarItem
+              key={team.id}
+              team={team}
+            />
+          ))}
+          <TeamSidebarAddItem />
+        </div>
+      )}
+    </div>
+  );
+};
 
-const mapStateToProps = (state: AppState) => ({
-  isOpen: state.teamSidebar.isOpen,
-});
-
-export default connect(mapStateToProps)(onClickOutside(TeamSidebar));
+export default TeamSidebar;

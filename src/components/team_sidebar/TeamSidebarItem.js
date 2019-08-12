@@ -1,6 +1,6 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdSettings } from 'react-icons/md';
 import classNames from 'classnames';
 import { push } from 'connected-react-router';
@@ -13,66 +13,58 @@ import './TeamSidebar.scss';
 
 type Props = {
   team: Team,
-  dispatch: Function,
-  activeTeam: ?Team,
 };
 
-class TeamSidebarItem extends Component<Props> {
-  handleClick = () => {
-    const { dispatch, team } = this.props;
+const TeamSidebarItem = ({ team }: Props) => {
+  const dispatch = useDispatch();
+  const activeTeam = useSelector((state: AppState) => state.activeTeam);
+
+  const handleClick = () => {
     dispatch(setActiveTeam(team));
     dispatch(closeTeamSidebar());
     dispatch(push('/images'));
   };
 
-  handleSettingsClick = () => {
-    const { dispatch, team } = this.props;
+  const handleSettingsClick = () => {
     const url = `/teams/${team.id}/settings`;
     dispatch(closeTeamSidebar());
     dispatch(push(url));
   };
 
-  render() {
-    const { activeTeam, team } = this.props;
-    const isActive = !!activeTeam && activeTeam.id === team.id;
+  const isActive = !!activeTeam && activeTeam.id === team.id;
 
-    const className = classNames('TeamSidebar__item', {
-      'TeamSidebar__item--active': isActive,
-    });
+  const className = classNames('TeamSidebar__item', {
+    'TeamSidebar__item--active': isActive,
+  });
 
-    return (
-      <div className={className}>
+  return (
+    <div className={className}>
+      <button
+        type="button"
+        onClick={handleClick}
+        className="TeamSidebar__item__button"
+        title={team.name}
+      >
+        <TeamInitials
+          team={team}
+          isActive={isActive}
+        />
+        <div className="TeamSidebar__item__button__caption">
+          {team.name}
+        </div>
+      </button>
+      { isActive && (
         <button
           type="button"
-          onClick={this.handleClick}
-          className="TeamSidebar__item__button"
-          title={team.name}
+          onClick={handleSettingsClick}
+          className="TeamSidebar__dropdown__button"
+          data-cy="team-sidebar-settings-dropdown-button"
         >
-          <TeamInitials
-            team={team}
-            isActive={isActive}
-          />
-          <div className="TeamSidebar__item__button__caption">
-            {team.name}
-          </div>
+          <MdSettings />
         </button>
-        { isActive && (
-          <button
-            type="button"
-            onClick={this.handleSettingsClick}
-            className="TeamSidebar__dropdown__button"
-            data-cy="team-sidebar-settings-dropdown-button"
-          >
-            <MdSettings />
-          </button>
-        ) }
-      </div>
-    );
-  }
-}
+      ) }
+    </div>
+  );
+};
 
-const mapStateToProps = (state: AppState) => ({
-  activeTeam: state.activeTeam,
-});
-
-export default connect(mapStateToProps)(TeamSidebarItem);
+export default TeamSidebarItem;

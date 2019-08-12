@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
+import { Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist-erksch/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore, { history } from '../config/configureStore';

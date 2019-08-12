@@ -15,33 +15,31 @@ type Props = {
   onItemClick: (uploadId: string) => void,
 };
 
-function UploadList(props: Props) {
-  return (
-    <div className="UploadList">
-      <Dropzone
-        className="UploadList__dropzone-item"
-        onDrop={props.onDrop}
-      >
-        <IoIosAdd className="UploadList__dropzone-item__icon" />
-        <span className="UploadList__dropzone-item__text">
-          Upload more files
-        </span>
-      </Dropzone>
-      <Scrollbars autoHide>
-        <div className="UploadList__inner">
-          {props.uploads.map((upload, index) => (
-            <UploadListItem
-              upload={upload}
-              index={index}
-              key={upload.id}
-              onClick={props.onItemClick}
-              isSelected={props.selectedUploadId === upload.id}
-            />
-          ))}
-        </div>
-      </Scrollbars>
-    </div>
-  );
-}
+const UploadList = (props: Props) => (
+  <div className="UploadList">
+    <Dropzone
+      className="UploadList__dropzone-item"
+      onDrop={props.onDrop}
+    >
+      <IoIosAdd className="UploadList__dropzone-item__icon" />
+      <span className="UploadList__dropzone-item__text">
+        Upload more files
+      </span>
+    </Dropzone>
+    <Scrollbars autoHide>
+      <div className="UploadList__inner">
+        {props.uploads.map((upload, index) => (
+          <UploadListItem
+            upload={upload}
+            index={index}
+            key={upload.id}
+            onClick={props.onItemClick}
+            isSelected={props.selectedUploadId === upload.id}
+          />
+        ))}
+      </div>
+    </Scrollbars>
+  </div>
+);
 
 export default UploadList;
