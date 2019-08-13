@@ -11,6 +11,10 @@ export type Image = {
   score: number,
 };
 
+export type DeletableImage = Image & {
+  delete: () => Promise<void>,
+};
+
 export type TaggableImage = Image & {
   addTag: (tag: Tag) => void,
   removeTag: (tag: Tag) => void,

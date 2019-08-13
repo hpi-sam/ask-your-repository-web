@@ -6,16 +6,18 @@ import toJson from 'enzyme-to-json';
 import Gallery from './Gallery';
 import ImageFactory from '../../../factories/ImageFactory';
 import GalleryItem from './GalleryItem';
-import ImageDecorator from './ImageDecorator';
 
-const images = _.times(3, () => ImageFactory.createStaticDummyImage());
+const images = _.times(3, () => ImageFactory.createStaticDummyImage())
+  .map(image => ({
+    ...image,
+    delete: () => Promise.resolve(),
+  }));
 
 describe('<Gallery />', () => {
   let wrapper;
 
   beforeEach(() => {
-    const decoratedImages = images.map(image => ImageDecorator.decorateImage(image));
-    wrapper = shallow(<Gallery images={decoratedImages} />);
+    wrapper = shallow(<Gallery images={images} />);
   });
 
   it('renders correctly', () => {

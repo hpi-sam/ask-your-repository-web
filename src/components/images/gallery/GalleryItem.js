@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { Image } from './ImageDecorator';
+import type { DeletableImage } from '../../../models/Image';
 import GalleryItemOverlay from './GalleryItemOverlay';
 import SourceSetFactory from '../../../factories/SourceSetFactory';
 import './Gallery.scss';
@@ -9,7 +9,7 @@ import './Gallery.scss';
 const maxTags = 5;
 
 type Props = {
-  image: Image,
+  image: DeletableImage,
 };
 
 function GalleryItem(props: Props) {
