@@ -12,6 +12,10 @@
     --item-width: 200px;
   }
 
+  &__loading {
+    margin: 30px 0;
+  }
+
   &__item {
     border-radius: 3px;
     display: flex;

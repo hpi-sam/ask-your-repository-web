@@ -11,6 +11,7 @@ export const limit = 12;
 
 function useImages(team: ?Team, search: string) {
   const [offset, setOffset] = useState<number>(0);
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [isLoadingInitially, setIsLoadingInitially] = useState<boolean>(true);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [images, setImages] = useState<APIImage[]>([]);
@@ -34,6 +35,7 @@ function useImages(team: ?Team, search: string) {
 
     const currentOffset = offset;
     setOffset(offset + limit);
+    setIsLoadingMore(true);
 
     try {
       const params = {
@@ -54,6 +56,7 @@ function useImages(team: ?Team, search: string) {
       // TODO: Handle error
     }
 
+    setIsLoadingMore(false);
     setIsLoadingInitially(false);
   }
 
@@ -72,6 +75,7 @@ function useImages(team: ?Team, search: string) {
       delete: createDeleteHandler(image),
     })),
     isLoadingInitially,
+    isLoadingMore,
     hasMore,
     loadMore: fetchImages,
   };

@@ -27,6 +27,7 @@ function ImagesIndex(props: Props) {
     images,
     loadMore,
     hasMore,
+    isLoadingMore,
     isLoadingInitially,
   } = useImages(props.activeTeam, search);
 
@@ -75,7 +76,10 @@ function ImagesIndex(props: Props) {
         hasMore={hasMore}
         loadMore={loadMore}
       >
-        <Gallery images={images} />
+        <Gallery
+          images={images}
+          isLoading={isLoadingMore}
+        />
       </InfinityScroll>
     </div>
   );

@@ -16,6 +16,8 @@ type State = {
 };
 
 class TagSelector extends React.Component<Props, State> {
+  tagInput: ?HTMLInputElement;
+
   constructor(props: Props) {
     super(props);
 
@@ -67,8 +69,6 @@ class TagSelector extends React.Component<Props, State> {
 
     this.setState({ tagInputValue: '' });
   }
-
-  tagInput: ?HTMLInputElement;
 
   render() {
     const { tags } = this.props;
