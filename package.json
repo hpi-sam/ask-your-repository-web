@@ -14,7 +14,7 @@
     "initials": "^3.0.0",
     "lodash": "^4.17.11",
     "mdbreact": "^4.8.3",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.13.1",
     "qs": "^6.6.0",
     "react": "^16.9.0",
     "react-activity": "^1.2.2",
